@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloUsuarioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESSFEDE;Initial Catalog=BancoDeGermoplasma;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.AltaUsuario" Method="AltaUsuario">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

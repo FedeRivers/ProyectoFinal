@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.2017
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoFinal", "ProyectoFinal\ProyectoFinal.csproj", "{851D8E11-DCBE-43D6-87D6-E400DF17DEE6}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BancoDeGermoplasma", "BancoDeGermoplasma\BancoDeGermoplasma.sqlproj", "{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseDeDatos", "BaseDeDatos", "{0149681A-D2F1-438A-B0E7-5AA8304390FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,18 @@ Global
 		{851D8E11-DCBE-43D6-87D6-E400DF17DEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{851D8E11-DCBE-43D6-87D6-E400DF17DEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{851D8E11-DCBE-43D6-87D6-E400DF17DEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4BF5D9A9-7105-4CD4-90EA-E17EC0D053F5} = {0149681A-D2F1-438A-B0E7-5AA8304390FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B11C98B6-5F4E-4F63-8C5B-902DA39BFB6C}
