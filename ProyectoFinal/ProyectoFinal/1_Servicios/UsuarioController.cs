@@ -1,92 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using ProyectoFinal._2_Dominio.Logica;
+﻿using ProyectoFinal._2_Dominio.Logica;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
-using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoFinal._1_Servicios
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : ApiController
     {
-        // GET: Usuario
-        public ActionResult Index()
+        // GET: api/Usuario
+       /* public IEnumerable<string> Get()
         {
-            return View();
+            return new string[] { "value1", "value2" };
         }
 
-        // GET: Usuario/Details/5
-        public ActionResult Details(int id)
+        // GET: api/Usuario/5
+        public string Get(int id)
         {
-            return View();
+            return "value";
+        }
+        */
+       /* // POST: api/Usuario
+        public void Post([FromBody]string value)
+        {
         }
 
-        // GET: Usuario/Create
-        public ActionResult Create()
+        // PUT: api/Usuario/5
+        public void Put(int id, [FromBody]string value)
         {
-            return View();
         }
 
-        // POST: Usuario/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        // DELETE: api/Usuario/5
+        public void Delete(int id)
         {
-            try
-            {
-                // TODO: Add insert logic here
+        }*/
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Usuario/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Usuario/AltaUsuario
         [HttpPost]
         public AltaUsuarioOut AltaUsuario([FromBody]AltaUsuarioIn input)
         {
             try
             {
-                return CRUDUsuario.AltaUsuario(input);
+                return new CRUDUsuario().AltaUsuario(input);
             }
             catch
             {
-                return View();
+                return new AltaUsuarioOut();  
             }
         }
 
-        // GET: Usuario/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Usuario/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

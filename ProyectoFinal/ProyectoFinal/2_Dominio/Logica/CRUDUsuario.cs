@@ -1,4 +1,5 @@
-﻿using ProyectoFinal.Parametros.Entrada;
+﻿using ProyectoFinal._3_Persistencia;
+using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ProyectoFinal._2_Dominio.Logica
     {
         public AltaUsuarioOut AltaUsuario(AltaUsuarioIn input)
         {
-            return 
+            return new PUsuario().AltaUsuario(input);
         }
     }
 }
