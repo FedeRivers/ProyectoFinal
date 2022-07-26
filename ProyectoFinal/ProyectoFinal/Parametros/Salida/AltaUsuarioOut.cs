@@ -8,6 +8,6 @@ namespace ProyectoFinal.Parametros.Salida
 {
     public class AltaUsuarioOut
     {
-        private ActionResult ActionResult { get; set; }
+        public HttpStatusCodeResult Status { get; set; }
     }
 }
