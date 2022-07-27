@@ -25,5 +25,20 @@ namespace ProyectoFinal._3_Persistencia
             
             return output;
         }
+
+        public LoginOut Login(LoginIn input)
+        {
+            var output = new LoginOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloUsuarioDataContext())
+            {
+                var result = dataContext.Login(input.Mail, input.Contrasena);
+                if (result != null)
+                {
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+            }
+
+            return output;
+        }
     }
 }
