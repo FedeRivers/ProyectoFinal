@@ -53,5 +53,18 @@ namespace ProyectoFinal._1_Servicios
             }
         }
 
+        [HttpPost]
+        public LoginOut Login([FromBody]LoginIn input)
+        {
+            try
+            {
+                return new CRUDUsuario().Login(input);
+            }
+            catch
+            {
+                return new LoginOut();
+            }
+        }
+
     }
 }

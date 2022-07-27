@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class AltaUsuarioOut : ParametroBaseOut
+    public class ParametroBaseOut
     {
+        public HttpStatusCodeResult Status { get; set; }
     }
 }

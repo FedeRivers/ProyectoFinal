@@ -3,5 +3,6 @@
     [nombre]   VARCHAR (100) NOT NULL,
     [apellido] VARCHAR (100) NOT NULL,
     [mail] VARCHAR(100) NOT NULL, 
+    [contrasena] VARCHAR(50) NOT NULL, 
     CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([id] ASC)
 );

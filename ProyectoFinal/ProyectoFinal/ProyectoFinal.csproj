@@ -185,7 +185,10 @@
       <DependentUpon>ModeloUsuario.dbml</DependentUpon>
     </Compile>
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\LoginIn.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\LoginOut.cs" />
+    <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,13 +229,16 @@
     <None Include="3_Persistencia\Models\ModeloUsuario.dbml.layout">
       <DependentUpon>ModeloUsuario.dbml</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

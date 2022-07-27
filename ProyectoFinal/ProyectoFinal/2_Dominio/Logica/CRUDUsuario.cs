@@ -14,5 +14,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PUsuario().AltaUsuario(input);
         }
+
+        public LoginOut Login(LoginIn input)
+        {
+            return new PUsuario().Login(input);
+        }
     }
 }
