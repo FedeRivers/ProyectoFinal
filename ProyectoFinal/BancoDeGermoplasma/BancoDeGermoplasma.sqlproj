@@ -63,5 +63,6 @@
   <ItemGroup>
     <Build Include="Tablas\Usuarios.sql" />
     <Build Include="StoreProcedure\AltaUsuario.sql" />
+    <Build Include="StoreProcedure\Login.sql" />
   </ItemGroup>
 </Project>
