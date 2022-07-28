@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { UsuarioService } from 'src/app/Usuario/Services/usuario.service';
+import { LoginIn } from '../../Parametros/Entrada/LoginIn';
+
 /**
  * @title Input with error messages
  */
@@ -10,14 +12,29 @@ import {FormControl, Validators} from '@angular/forms';
 })
 
 export class LoginComponent implements OnInit {
-  hide = true;
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  private loginIn:LoginIn;
   
-  constructor() { }
+  constructor(private usuarioServicio:UsuarioService) { 
+    this.loginIn = new LoginIn();
+  }
+  
   ngOnInit(): void {
   }
 
-}
+  @Input()
+  set Mail(value:string){
+    this.loginIn.mail = value;
+  }; 
+  @Input()
+  set Contrasena(value:string){
+    this.loginIn.contrasena = value;
+  };
+
+  Login(){
+    this.usuarioServicio.Login(this.loginIn)
+      .subscribe( usuario => console.log('Respuesta', usuario))
+  }
+} 
 
 
 
