@@ -53,8 +53,8 @@ namespace ProyectoFinal._1_Servicios
             }
         }
 
-        [HttpPost]
-        public LoginOut Login([FromBody]LoginIn input)
+        [HttpGet]
+        public LoginOut Login([FromUri]LoginIn input)
         {
             try
             {
