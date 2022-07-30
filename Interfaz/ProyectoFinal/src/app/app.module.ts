@@ -7,12 +7,15 @@ import { LoginComponent } from './Auth/login/login.component';
 import { UsuarioComponent } from './Usuario/usuario.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MejoradorComponent } from './Mejoradores/mejorador.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuarioComponent,
-    LoginComponent
+    LoginComponent,
+    MejoradorComponent
   ],
   imports: [
     BrowserModule,
