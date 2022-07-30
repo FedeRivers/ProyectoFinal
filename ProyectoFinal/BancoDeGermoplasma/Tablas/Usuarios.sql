@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Usuarios] (
-    [id]       INT           IDENTITY (1, 1) NOT NULL,
+    [idUsuario]       INT           IDENTITY (1, 1) NOT NULL,
     [nombre]   VARCHAR (100) NOT NULL,
     [apellido] VARCHAR (100) NOT NULL,
     [mail] VARCHAR(100) NOT NULL, 
     [contrasena] VARCHAR(50) NOT NULL, 
-    CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([id] ASC)
+    CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([idUsuario] ASC)
 );

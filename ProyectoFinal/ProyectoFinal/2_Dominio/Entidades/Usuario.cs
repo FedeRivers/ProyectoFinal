@@ -7,7 +7,7 @@ namespace ProyectoFinal._2_Dominio
 {
     public class Usuario
     {
-        public int Id { get; set; }
+        public int IdUsuario { get; set; }
 
         public string Nombre { get; set; }
 

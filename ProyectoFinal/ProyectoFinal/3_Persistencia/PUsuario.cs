@@ -38,7 +38,7 @@ namespace ProyectoFinal._3_Persistencia
                     output.Status = new HttpStatusCodeResult(200);
                     output.Usuario = new Usuario
                     {
-                        Id = result.id,
+                        IdUsuario = result.id,
                         Nombre = result.nombre,
                         Apellido = result.apellido,
                         Mail = result.mail,
