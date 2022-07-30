@@ -64,5 +64,9 @@
     <Build Include="Tablas\Usuarios.sql" />
     <Build Include="StoreProcedure\AltaUsuario.sql" />
     <Build Include="StoreProcedure\Login.sql" />
+    <Build Include="Tablas\Mejoradores.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="BancoDeGermoplasma.refactorlog" />
   </ItemGroup>
 </Project>
