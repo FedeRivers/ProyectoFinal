@@ -141,6 +141,7 @@
     <Compile Include="1_Servicios\UsuarioController.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDUsuario.cs" />
+    <Compile Include="2_Dominio\Logica\Seguridad.cs" />
     <Compile Include="3_Persistencia\PUsuario.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

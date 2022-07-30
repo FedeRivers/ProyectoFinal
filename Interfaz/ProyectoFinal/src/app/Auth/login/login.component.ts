@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { UsuarioService } from 'src/app/Usuario/Services/usuario.service';
 import { LoginIn } from '../../Parametros/Entrada/LoginIn';
+import * as CryptoJS from 'crypto-js';
 
 /**
  * @title Input with error messages
@@ -13,7 +14,6 @@ import { LoginIn } from '../../Parametros/Entrada/LoginIn';
 
 export class LoginComponent implements OnInit {
   private loginIn:LoginIn;
-  
   constructor(private usuarioServicio:UsuarioService) { 
     this.loginIn = new LoginIn();
   }
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   };
 
   Login(){
+    this.loginIn.contrasena = CryptoJS.AES.encrypt(this.loginIn.contrasena,"123").toString();
     this.usuarioServicio.Login(this.loginIn)
       .subscribe( usuario => console.log('Respuesta', usuario))
   }
