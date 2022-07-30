@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../class/usuario';
-import { AltaUsuarioIn } from '../../Parametros/Entrada/AltaUsuarioIn';
+import { Usuario } from '../Usuario/class/usuario';
+import { AltaUsuarioIn } from '../Parametros/Entrada/AltaUsuarioIn';
 import { HttpHeaders } from '@angular/common/http';
 import { LoginIn } from 'src/app/Parametros/Entrada/LoginIn';
 

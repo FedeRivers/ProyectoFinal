@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { UsuarioService } from 'src/app/Usuario/Services/usuario.service';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 import { LoginIn } from '../../Parametros/Entrada/LoginIn';
 import * as CryptoJS from 'crypto-js';
 
