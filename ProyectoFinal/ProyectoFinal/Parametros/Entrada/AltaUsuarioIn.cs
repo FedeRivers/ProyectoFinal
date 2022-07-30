@@ -9,5 +9,6 @@ namespace ProyectoFinal.Parametros.Entrada
     public class AltaUsuarioIn
     {
         public Usuario Usuario { get; set; }
+        
     }
 }

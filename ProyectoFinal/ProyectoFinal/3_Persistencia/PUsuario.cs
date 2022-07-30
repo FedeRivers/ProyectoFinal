@@ -1,4 +1,5 @@
-﻿using ProyectoFinal._3_Persistencia.Models;
+﻿using ProyectoFinal._2_Dominio;
+using ProyectoFinal._3_Persistencia.Models;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -31,10 +32,18 @@ namespace ProyectoFinal._3_Persistencia
             var output = new LoginOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-                var result = dataContext.Login(input.Mail, input.Contrasena);
+                var result = dataContext.Login(input.Mail, input.Contrasena).FirstOrDefault();
                 if (result != null)
                 {
                     output.Status = new HttpStatusCodeResult(200);
+                    output.Usuario = new Usuario
+                    {
+                        Id = result.id,
+                        Nombre = result.nombre,
+                        Apellido = result.apellido,
+                        Mail = result.mail,
+                        Contrasena = result.contrasena   
+                    };
                 }
             }
 
