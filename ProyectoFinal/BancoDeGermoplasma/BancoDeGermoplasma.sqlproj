@@ -68,6 +68,7 @@
     <Build Include="StoreProcedure\AltaMejorador.sql" />
     <Build Include="StoreProcedure\ModificarMejorador.sql" />
     <Build Include="StoreProcedure\BajaMejorador.sql" />
+    <Build Include="StoreProcedure\ListarMejoradores.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

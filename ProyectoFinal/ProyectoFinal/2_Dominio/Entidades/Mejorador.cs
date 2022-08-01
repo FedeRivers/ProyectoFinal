@@ -15,8 +15,8 @@ namespace ProyectoFinal._2_Dominio.Entidades
 
         public string Direccion { get; set; }
 
-        public DateTime FechaDeIngreso { get; set; }
+        public DateTime? FechaDeIngreso { get; set; }
         
-        public bool Activo { get; set; }
+        public bool? Activo { get; set; }
     }
 }

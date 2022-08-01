@@ -1,4 +1,4 @@
-import { Mejorador } from "src/app/Mejoradores/class/mejorador";
+import { Mejorador } from "src/app/Components/Mejorador/class/mejorador";
 
 export class ModificarMejoradorIn {
     

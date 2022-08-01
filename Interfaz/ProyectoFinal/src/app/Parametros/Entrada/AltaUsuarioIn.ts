@@ -1,4 +1,4 @@
-import { Usuario } from '../../Usuario/class/usuario';
+import { Usuario } from '../../Components/Usuario/class/usuario';
 export class AltaUsuarioIn {
     
     private Usuario: Usuario;
