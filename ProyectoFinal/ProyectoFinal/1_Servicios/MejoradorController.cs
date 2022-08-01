@@ -37,7 +37,7 @@ namespace ProyectoFinal._1_Servicios
             {
                 return new CRUDMejorador().AltaMejorador(input);
             }
-            catch
+            catch(Exception ex)
             {
                 return new AltaMejoradorOut();
             }
@@ -51,24 +51,38 @@ namespace ProyectoFinal._1_Servicios
             {
                 return new CRUDMejorador().BajaMejorador(input);
             }
-            catch
+            catch (Exception ex)
             {
                 return new BajaMejoradorOut();
             }
         }
 
         // PUT: api/Mejorador/5
-        [HttpPut]
+        [HttpPost]
         public ModificarMejoradorOut ModificarMejorador([FromBody]ModificarMejoradorIn input)
         {
             try
             {
                 return new CRUDMejorador().ModificarMejorador(input);
             }
-            catch
+            catch (Exception ex)
             {
                 return new ModificarMejoradorOut();
             }
         }
+
+        [HttpGet]
+        public ListarMejoradorOut ListarMejoradores([FromUri]ListarMejoradorIn input)
+        {
+            try
+            {
+                return new CRUDMejorador().ListarMejorador(input);
+            }
+            catch (Exception ex)
+            {
+                return new ListarMejoradorOut();
+            }
+        }
+
     }
 }

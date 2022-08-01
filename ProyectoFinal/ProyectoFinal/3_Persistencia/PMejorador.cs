@@ -1,4 +1,5 @@
-﻿using ProyectoFinal._3_Persistencia.Models;
+﻿using ProyectoFinal._2_Dominio.Entidades;
+using ProyectoFinal._3_Persistencia.Models;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -49,6 +50,33 @@ namespace ProyectoFinal._3_Persistencia
                 var result = dataContext.ModificarMejorador(input.Mejorador.IdMejorador, input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
                 if (result != -1)
                 {
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+            }
+
+            return output;
+        }
+
+        public ListarMejoradorOut ListarMejorador(ListarMejoradorIn input)
+        {
+            var output = new ListarMejoradorOut { Mejoradores=new List<Mejorador>(), Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloMejoradorDataContext())
+            {
+                var result = dataContext.ListarMejoradores(input.TerminoDeBusqueda);
+                if (result != null)
+                {
+                    foreach (var mejorador in result)
+                    {
+                        output.Mejoradores.Add(new Mejorador
+                        {
+                            IdMejorador = mejorador.idMejorador,
+                            Nombre = mejorador.nombre,
+                            Mail = mejorador.mail,
+                            Direccion = mejorador.direccion,
+                            Activo = mejorador.activo,
+                            FechaDeIngreso = mejorador.fechaDeIngreso
+                        });
+                    }
                     output.Status = new HttpStatusCodeResult(200);
                 }
             }

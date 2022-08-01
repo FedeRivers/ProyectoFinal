@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../Services/usuario.service';
 import { Usuario } from './class/usuario';
-import { AltaUsuarioIn } from '../Parametros/Entrada/AltaUsuarioIn';
+
+import { AltaUsuarioIn } from 'src/app/Parametros/Entrada/AltaUsuarioIn';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 
 
 
@@ -25,8 +26,8 @@ export class UsuarioComponent implements OnInit {
   
 
   Agregar(event:Event){
-    this.usuario.nombre = 'PEPITO';
-    this.usuario.apellido = 'DIDIMAO';
+    this.usuario.Nombre = 'PEPITO';
+    this.usuario.Apellido = 'DIDIMAO';
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
     .subscribe( usuario => console.log('Respuesta', usuario))

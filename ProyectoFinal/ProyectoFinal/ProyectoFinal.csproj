@@ -196,11 +196,13 @@
     <Compile Include="Parametros\Entrada\AltaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
+    <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />

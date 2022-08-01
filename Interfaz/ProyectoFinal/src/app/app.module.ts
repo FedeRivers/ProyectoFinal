@@ -4,10 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Auth/login/login.component';
-import { UsuarioComponent } from './Usuario/usuario.component';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MejoradorComponent } from './Mejoradores/mejorador.component';
+import { MejoradorComponent } from './Components/Mejorador/mejorador.component';
+import { UsuarioComponent } from './Components/Usuario/usuario.component';
+
+
+
 
 
 @NgModule({
@@ -15,7 +19,7 @@ import { MejoradorComponent } from './Mejoradores/mejorador.component';
     AppComponent,
     UsuarioComponent,
     LoginComponent,
-    MejoradorComponent
+    MejoradorComponent,
   ],
   imports: [
     BrowserModule,

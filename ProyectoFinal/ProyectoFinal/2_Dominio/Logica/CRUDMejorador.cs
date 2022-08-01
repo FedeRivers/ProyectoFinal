@@ -24,5 +24,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PMejorador().ModificarMejorador(input);
         }
+
+        public ListarMejoradorOut ListarMejorador(ListarMejoradorIn input)
+        {
+            return new PMejorador().ListarMejorador(input);
+        }
     }
 }

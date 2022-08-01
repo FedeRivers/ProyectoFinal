@@ -33,7 +33,7 @@ namespace ProyectoFinal._3_Persistencia.Models
     #endregion
 		
 		public ModeloMejoradorDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeGermoplasmaConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeGermoplasmaConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -81,6 +81,129 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idMejorador, nombre, mail, direccion);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarMejoradores")]
+		public ISingleResult<ListarMejoradoresResult> ListarMejoradores([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			return ((ISingleResult<ListarMejoradoresResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class ListarMejoradoresResult
+	{
+		
+		private int _idMejorador;
+		
+		private string _nombre;
+		
+		private string _mail;
+		
+		private string _direccion;
+		
+		private System.Nullable<System.DateTime> _fechaDeIngreso;
+		
+		private System.Nullable<bool> _activo;
+		
+		public ListarMejoradoresResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idMejorador", DbType="Int NOT NULL")]
+		public int idMejorador
+		{
+			get
+			{
+				return this._idMejorador;
+			}
+			set
+			{
+				if ((this._idMejorador != value))
+				{
+					this._idMejorador = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string mail
+		{
+			get
+			{
+				return this._mail;
+			}
+			set
+			{
+				if ((this._mail != value))
+				{
+					this._mail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_direccion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string direccion
+		{
+			get
+			{
+				return this._direccion;
+			}
+			set
+			{
+				if ((this._direccion != value))
+				{
+					this._direccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeIngreso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaDeIngreso
+		{
+			get
+			{
+				return this._fechaDeIngreso;
+			}
+			set
+			{
+				if ((this._fechaDeIngreso != value))
+				{
+					this._fechaDeIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
+		public System.Nullable<bool> activo
+		{
+			get
+			{
+				return this._activo;
+			}
+			set
+			{
+				if ((this._activo != value))
+				{
+					this._activo = value;
+				}
+			}
 		}
 	}
 }
