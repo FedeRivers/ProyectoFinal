@@ -1,12 +1,12 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AltaMejoradorIn } from '../../Parametros/Entrada/AltaMejoradorIn';
 import { MejoradorService } from '../../Services/mejorador.service';
 import { Mejorador } from './class/mejorador';
 import { BajaMejoradorIn } from '../../Parametros/Entrada/BajaMejoradorIn';
 import { ModificarMejoradorIn } from '../../Parametros/Entrada/ModificarMejoradorIn';
 import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
-import { Observable } from 'rxjs/internal/Observable';
 import { ListarMejoradorOut } from '../../Parametros/Salida/ListarMejoradorOut';
+import { ModalComponent } from '../Modal/modal.component';
 
 
 
@@ -16,26 +16,37 @@ import { ListarMejoradorOut } from '../../Parametros/Salida/ListarMejoradorOut';
   styleUrls: ['./mejorador.component.css']
 })
 export class MejoradorComponent implements OnInit {
-  private AltaMejoradorIn:AltaMejoradorIn;
-  private BajaMejoradorIn:BajaMejoradorIn;
-  private ModificarMejoradorIn:ModificarMejoradorIn;
-  private Mejorador: Mejorador;
+  private altaMejoradorIn:AltaMejoradorIn;
+  private bajaMejoradorIn:BajaMejoradorIn;
+  private modificarMejoradorIn:ModificarMejoradorIn;
+  private mejorador: Mejorador;
   private terminoDeBusqueda: string='';
-  //private Mejoradores: Observable<Mejorador[]> = new Observable;
-  private Mejoradores: Mejorador[];
+  private mejoradores: Mejorador[];
+  private estaSeleccionado: boolean = false;
+  @ViewChild("modal") modal!: ModalComponent;
 
   constructor(private mejoradorServicio:MejoradorService) {
-    this.AltaMejoradorIn = new AltaMejoradorIn();
-    this.BajaMejoradorIn = new BajaMejoradorIn();
-    this.ModificarMejoradorIn = new ModificarMejoradorIn();
-    this.Mejorador = new Mejorador();
-    this.Mejoradores = [];
+    this.altaMejoradorIn = new AltaMejoradorIn();
+    this.bajaMejoradorIn = new BajaMejoradorIn();
+    this.modificarMejoradorIn = new ModificarMejoradorIn();
+    this.mejorador = new Mejorador();
+    this.mejoradores = []; 
     this.Listar();
+    this.modal = new ModalComponent();
   }
 
   ngOnInit(): void {
     
   }
+
+  public get EstaSeleccionado(): boolean {
+    return this.estaSeleccionado;
+  }
+  public set EstaSeleccionado(value: boolean) {
+    this.estaSeleccionado = value;
+  }
+
+
 
   public get TerminoDeBusqueda(): string {
     return this.terminoDeBusqueda;
@@ -46,57 +57,82 @@ export class MejoradorComponent implements OnInit {
   }
 
   
-  public get mejoradores():Mejorador[] {
-    return this.Mejoradores;
+  public get Mejoradores():Mejorador[] {
+    return this.mejoradores;
   }
-  public set mejoradores(value: Mejorador[]) {
-    this.Mejoradores = value;
+  public set Mejoradores(value: Mejorador[]) {
+    this.mejoradores = value;
   }
 
 
   
 
   @Input()
-  set Nombre(value:string)
-  {
-    this.Mejorador.Nombre = value;
+  set Nombre(value:string){
+    this.mejorador.Nombre = value;
   }; 
-  get Nombre() : string
-  {
-    return this.Mejorador.Nombre;
+  get Nombre() : string{
+    return this.mejorador.Nombre;
   };
  
   @Input()
   set Mail(value:string){
-    this.Mejorador.Mail = value;
+    this.mejorador.Mail = value;
   }; 
+  get Mail(){
+    return this.mejorador.Mail;
+  };
+
   @Input()
   set Direccion(value:string){
-    this.Mejorador.Direccion = value;
+    this.mejorador.Direccion = value;
+  };
+  get Direccion(){
+    return this.mejorador.Direccion;
   };
 
   AltaMejorador(){
-    this.AltaMejoradorIn.mejorador = this.Mejorador;
-    this.mejoradorServicio.Agregar(this.AltaMejoradorIn)
-      .subscribe( mejorador => console.log('Respuesta', mejorador));
+    this.altaMejoradorIn.mejorador = this.mejorador;
+    this.mejoradorServicio.Agregar(this.altaMejoradorIn)
+      .subscribe( mejorador => {
+         console.log('Respuesta', mejorador)
+        }, err => {
+          console.log(err);
+        }
+        );
   }
 
   BajaMejorador(){
-    this.Mejorador.IdMejorador = 1;
-    this.BajaMejoradorIn.idMejorador = this.Mejorador.IdMejorador;
-    this.mejoradorServicio.Baja(this.BajaMejoradorIn)
+    this.bajaMejoradorIn.idMejorador = this.mejorador.IdMejorador;
+    this.mejoradorServicio.Baja(this.bajaMejoradorIn)
       .subscribe( mejorador => console.log('Respuesta', mejorador));
   }
 
   ModificarMejorador(){
-    this.Mejorador.IdMejorador = 1;
-    this.ModificarMejoradorIn.mejorador = this.Mejorador;
-    this.mejoradorServicio.Modificar(this.ModificarMejoradorIn)
+    this.modificarMejoradorIn.mejorador = this.mejorador;
+    this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => console.log('Respuesta', mejorador))
   }
 
-  onSelect(mejorador:Mejorador){
-    this.Mejorador.Nombre = mejorador.Nombre;
+  Seleccionar(mejorador:Mejorador)
+  {
+    this.mejorador.IdMejorador = mejorador.IdMejorador;
+    this.mejorador.Nombre = mejorador.Nombre;
+    this.mejorador.Mail = mejorador.Mail;
+    this.mejorador.Direccion = mejorador.Direccion;  
+    this.modal.Prueba='PEPITO';
+    this.modal.open(); 
+    this.Ocultar();
+  }
+
+ Regresar()
+  {
+    this.mejorador = new Mejorador();
+    this.Ocultar();
+  }
+  Ocultar()
+  {
+    this.EstaSeleccionado = !this.EstaSeleccionado;
   }
 
   Listar(){

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MejoradorComponent } from './Components/Mejorador/mejorador.component';
 import { UsuarioComponent } from './Components/Usuario/usuario.component';
+import { ModalComponent } from './Components/Modal/modal.component';
 
 
 
@@ -20,6 +21,7 @@ import { UsuarioComponent } from './Components/Usuario/usuario.component';
     UsuarioComponent,
     LoginComponent,
     MejoradorComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
