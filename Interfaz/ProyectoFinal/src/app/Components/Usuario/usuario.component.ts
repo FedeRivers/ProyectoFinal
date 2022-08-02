@@ -30,7 +30,12 @@ export class UsuarioComponent implements OnInit {
     this.usuario.Apellido = 'DIDIMAO';
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
-    .subscribe( usuario => console.log('Respuesta', usuario))
+    .subscribe( usuario => {
+      console.log('Respuesta', usuario);
+    }, err => {
+      console.log(err);
+    }
+    );
 
     
   }
