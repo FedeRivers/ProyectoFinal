@@ -1,5 +1,7 @@
-import {Component,Input,OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Component,EventEmitter,Input,OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+
+import { ParametroBaseOut } from '../../Parametros/Salida/ParametroBaseOut';
 
 
 
@@ -10,19 +12,52 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent implements OnInit {
   closeResult = '';
+  private cerrar: EventEmitter<string>;
+  private aceptar: EventEmitter<string>;
+
   @ViewChild("content") content!: TemplateRef<any>;
-  constructor(private modalService?: NgbModal) { }
+  
+ 
+  constructor(config?: NgbModalConfig,private modalService?: NgbModal) { 
+    this.ParametroOut = new ParametroBaseOut();
+    this.Error = false;
+    if(config!=undefined)
+    {
+      config.backdrop = 'static';
+      config.keyboard = false;
+    }
+    this.cerrar = new EventEmitter();
+    this.aceptar = new EventEmitter();
+  }
   
   ngOnInit(): void {
   }
 
-  @Input() Prueba!:string;
+  @Output()
+  public get Cerrar(): EventEmitter<string> {
+    return this.cerrar;
+  }
+  public set Cerrar(value: EventEmitter<string>) {
+    this.cerrar = value;
+  }
+  @Output()
+  public get Aceptar(): EventEmitter<string> {
+    return this.aceptar;
+  }
+  public set Aceptar(value: EventEmitter<string>) {
+    this.aceptar = value;
+  }
 
+  @Input() Error:boolean;
+  @Input() ParametroOut:ParametroBaseOut;
+  
   open() {
     this.modalService!.open(this.content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.aceptar.emit();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.cerrar.emit();
     });
   }
 
@@ -36,6 +71,10 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  MensajeResultado():string
+  {
+    return this.Error ? this.ParametroOut.MensajeError : this.ParametroOut.MensajeExito;
+  }
 
 
 }

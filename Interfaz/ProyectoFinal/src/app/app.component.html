@@ -1,4 +1,37 @@
-<!-- <app-usuario></app-usuario> -->
-<app-mejorador></app-mejorador>
+<ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content">
+    <li [ngbNavItem]="1" *ngIf="Mejorador">
+        <a ngbNavLink>Simple</a>
+        <ng-template ngbNavContent>
+            <app-mejorador></app-mejorador>
+        </ng-template>
+    </li>
+    <li [ngbNavItem]="2" *ngIf="Usuario">
+        <a ngbNavLink><b>Fancy</b> title</a>
+        <ng-template ngbNavContent>
+            <app-usuario></app-usuario>
+        </ng-template>
+    </li>
+    <li ngbDropdown class="nav-item" *ngIf="Mejorador">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
+        <div ngbDropdownMenu>
+            <button ngbDropdownItem>Action</button>
+            <button ngbDropdownItem>Another action</button>
+            <button ngbDropdownItem>Something else here</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem>Separated link</button>
+            <app-mejorador></app-mejorador>
+        </div>
+    </li>
+    <li ngbNavItem [disabled]="true" class="ms-auto">
+        <a ngbNavLink>Disabled</a>
+        <ng-template ngbNavContent>
+        </ng-template>
+    </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+
+
 <!-- <app-modal></app-modal> -->
 <!-- <app-login></app-login> -->

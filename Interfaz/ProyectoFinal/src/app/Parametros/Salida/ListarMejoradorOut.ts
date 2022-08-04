@@ -4,6 +4,7 @@ export class ListarMejoradorOut {
     
     private _mejoradores:Mejorador[]= [] ;
 
+
     constructor(){}
 
     public get Mejoradores(): Mejorador[] {
@@ -12,5 +13,6 @@ export class ListarMejoradorOut {
     public set Mejoradores(value: Mejorador[] ) {
         this._mejoradores = value;
     }
+    
 
 }

@@ -7,6 +7,11 @@ import { ModificarMejoradorIn } from '../../Parametros/Entrada/ModificarMejorado
 import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
 import { ListarMejoradorOut } from '../../Parametros/Salida/ListarMejoradorOut';
 import { ModalComponent } from '../Modal/modal.component';
+import { AltaMejoradorOut } from '../../Parametros/Salida/AltaMejoradorOut';
+import { BajaMejoradorOut } from 'src/app/Parametros/Salida/BajaMejoradorOut';
+import { ModificarMejoradorOut } from 'src/app/Parametros/Salida/ModificarMejoradorOut';
+import { Timeouts } from 'selenium-webdriver';
+
 
 
 
@@ -53,7 +58,9 @@ export class MejoradorComponent implements OnInit {
   }
   public set TerminoDeBusqueda(value: string) {
     this.terminoDeBusqueda = value;
-    this.Listar();
+    setTimeout(()=>{
+      this.Listar();
+    },1500)
   }
 
   
@@ -93,25 +100,45 @@ export class MejoradorComponent implements OnInit {
 
   AltaMejorador(){
     this.altaMejoradorIn.mejorador = this.mejorador;
+    this.modal.ParametroOut = new AltaMejoradorOut();
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
-         console.log('Respuesta', mejorador)
+         this.modal.Error = false;
+         this.modal.open(); 
         }, err => {
-          console.log(err);
+          this.modal.Error = true;
+          this.modal.open(); 
         }
         );
   }
 
   BajaMejorador(){
+    this.modal.MensajeResultado  
     this.bajaMejoradorIn.idMejorador = this.mejorador.IdMejorador;
+    this.modal.ParametroOut = new BajaMejoradorOut();
     this.mejoradorServicio.Baja(this.bajaMejoradorIn)
-      .subscribe( mejorador => console.log('Respuesta', mejorador));
+      .subscribe( mejorador => {
+        this.modal.Error = false;
+        this.modal.open(); 
+       }, err => {
+         this.modal.Error = true;
+         this.modal.open(); 
+       }
+       );
   }
 
   ModificarMejorador(){
     this.modificarMejoradorIn.mejorador = this.mejorador;
+    this.modal.ParametroOut = new ModificarMejoradorOut();
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
-      .subscribe( mejorador => console.log('Respuesta', mejorador))
+      .subscribe( mejorador => {
+        this.modal.Error = false;
+        this.modal.open(); 
+       }, err => {
+         this.modal.Error = true;
+         this.modal.open(); 
+       }
+       );
   }
 
   Seleccionar(mejorador:Mejorador)
@@ -120,8 +147,6 @@ export class MejoradorComponent implements OnInit {
     this.mejorador.Nombre = mejorador.Nombre;
     this.mejorador.Mail = mejorador.Mail;
     this.mejorador.Direccion = mejorador.Direccion;  
-    this.modal.Prueba='PEPITO';
-    this.modal.open(); 
     this.Ocultar();
   }
 
@@ -139,6 +164,7 @@ export class MejoradorComponent implements OnInit {
     let listarMejoradorIn:ListarMejoradorIn;
     listarMejoradorIn = new ListarMejoradorIn();
     listarMejoradorIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    this.mejoradores = [];
     this.mejoradorServicio.Listar(listarMejoradorIn)
     .subscribe( mejorador => {
       if(mejorador.Mejoradores!=undefined){
@@ -149,4 +175,7 @@ export class MejoradorComponent implements OnInit {
     }
       )
   }
+
+
+ 
 }

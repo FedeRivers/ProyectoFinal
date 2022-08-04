@@ -7,4 +7,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProyectoFinal';
+  public listaDePermisos: string [];
+  Mejorador:boolean=false;
+  Usuario:boolean=false;
+
+  constructor(){
+    this.listaDePermisos = ["1","2","3"];
+    this.ValidarPermisos()
+  }
+
+  ValidarPermisos()
+  {
+    this.listaDePermisos.forEach(permiso => {
+      switch(permiso){
+        case "1": this.Mejorador = true;
+          break;
+        case "2": this.Usuario = true;
+          break;
+      }
+
+    });
+
+  }
+
+
+
+
 }
