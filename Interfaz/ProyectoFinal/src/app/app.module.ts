@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MejoradorComponent } from './Components/Mejorador/mejorador.component';
 import { UsuarioComponent } from './Components/Usuario/usuario.component';
 import { ModalComponent } from './Components/Modal/modal.component';
+import { TipoDeUsuarioComponent } from './Components/TipoDeUsuario/tipoDeUsuario.component';
+
 
 
 
@@ -22,6 +24,7 @@ import { ModalComponent } from './Components/Modal/modal.component';
     LoginComponent,
     MejoradorComponent,
     ModalComponent,
+    TipoDeUsuarioComponent,
   ],
   imports: [
     BrowserModule,

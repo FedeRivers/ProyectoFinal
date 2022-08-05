@@ -11,6 +11,12 @@
             <app-usuario></app-usuario>
         </ng-template>
     </li>
+    <li [ngbNavItem]="3" *ngIf="TipoDeUsuario">
+        <a ngbNavLink><b>Fancy</b> title</a>
+        <ng-template ngbNavContent>
+            <app-tipoDeUsuario></app-tipoDeUsuario>
+        </ng-template>
+    </li>
     <li ngbDropdown class="nav-item" *ngIf="Mejorador">
         <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
         <div ngbDropdownMenu>

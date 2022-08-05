@@ -10,10 +10,11 @@ export class AppComponent {
   public listaDePermisos: string [];
   Mejorador:boolean=false;
   Usuario:boolean=false;
+  TipoDeUsuario:boolean=false;
 
   constructor(){
     this.listaDePermisos = ["1","2","3"];
-    this.ValidarPermisos()
+    this.ValidarPermisos();
   }
 
   ValidarPermisos()
@@ -24,6 +25,7 @@ export class AppComponent {
           break;
         case "2": this.Usuario = true;
           break;
+        case "3": this.TipoDeUsuario = true;
       }
 
     });
