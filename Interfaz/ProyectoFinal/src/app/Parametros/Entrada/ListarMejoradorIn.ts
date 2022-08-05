@@ -1,14 +1,8 @@
-export class ListarMejoradorIn {
+import { ListarBaseIn } from './ListarBaseIn';
+export class ListarMejoradorIn extends ListarBaseIn {
     
-    private TerminoDeBusqueda: string= '';
-
-    constructor(){}
-
-    public get terminoDeBusqueda(): string {
-        return this.TerminoDeBusqueda;
-    }
-    public set terminoDeBusqueda(value: string ) {
-        this.TerminoDeBusqueda = value;
-    }
+   constructor(){
+       super();
+   }
 
 }
