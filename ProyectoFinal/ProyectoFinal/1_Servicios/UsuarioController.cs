@@ -39,7 +39,7 @@ namespace ProyectoFinal._1_Servicios
         public void Delete(int id)
         {
         }*/
-
+       
         [HttpPost]
         public AltaUsuarioOut AltaUsuario([FromBody]AltaUsuarioIn input)
         {
@@ -65,6 +65,13 @@ namespace ProyectoFinal._1_Servicios
                 return new LoginOut();
             }
         }
+
+        [HttpGet]
+        public ListarUsuariosOut ListarUsuarios([FromUri]ListarUsuariosIn input)
+        {
+            return new CRUDUsuario().ListarUsuarios(input);
+        }
+
 
     }
 }

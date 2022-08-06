@@ -146,6 +146,7 @@
     <Compile Include="2_Dominio\Logica\CRUDTipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDMejorador.cs" />
     <Compile Include="2_Dominio\Logica\CRUDUsuario.cs" />
+    <Compile Include="2_Dominio\Logica\Mail.cs" />
     <Compile Include="2_Dominio\Logica\Seguridad.cs" />
     <Compile Include="3_Persistencia\Models\ModeloMejorador.designer.cs">
       <AutoGen>True</AutoGen>
@@ -206,6 +207,7 @@
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
@@ -213,6 +215,7 @@
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarTipoDeUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />

@@ -4,6 +4,7 @@ export class Usuario {
     private apellido: string;
     private mail: string;
     private cedula: string;
+    private contrasena: string;
     private activo: string;
 
     constructor()
@@ -13,6 +14,7 @@ export class Usuario {
         this.mail = '';
         this.cedula = '';
         this.activo = '';
+        this.contrasena = '';
     }
 
     public get Nombre(): string {
@@ -48,6 +50,13 @@ export class Usuario {
     }
     public set Activo(value: string) {
         this.activo = value;
+    }
+
+    public get Contrasena(): string {
+        return this.contrasena;
+    }
+    public set Contrasena(value: string) {
+        this.contrasena = value;
     }
 
 }
