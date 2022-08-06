@@ -12,24 +12,6 @@ namespace ProyectoFinal._1_Servicios
 {
     public class MejoradorController : ApiController
     {
-        // GET: api/Mejorador
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Mejorador/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Mejorador
-        public void Post([FromBody]string value)
-        {
-        }
-
-
         [HttpPost]
         public AltaMejoradorOut AltaMejorador([FromBody]AltaMejoradorIn input)
         {
