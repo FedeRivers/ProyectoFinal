@@ -22,6 +22,11 @@ namespace ProyectoFinal._2_Dominio.Logica
 
         }
 
+        public ModificarUsuarioOut ModificarUsuario(ModificarUsuarioIn input)
+        {
+            return new PUsuario().ModificarUsuario(input);
+        }
+
         public LoginOut Login(LoginIn input)
         {
             return new PUsuario().Login(input);

@@ -27,6 +27,21 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
+        public ModificarUsuarioOut ModificarUsuario(ModificarUsuarioIn input)
+        {
+            var output = new ModificarUsuarioOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloUsuarioDataContext())
+            {
+                var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula);
+                if (result != -1)
+                {
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+            }
+
+            return output;
+        }
+
         public LoginOut Login(LoginIn input)
         {
             var output = new LoginOut { Status = new HttpStatusCodeResult(404) };
