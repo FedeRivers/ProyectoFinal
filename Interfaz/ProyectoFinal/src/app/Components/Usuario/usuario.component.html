@@ -7,76 +7,92 @@
 
 <body>
     <div class="container text-center">
-        <div class="mb-3 row">
-            <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
-            <div class="col-xs-3 col-sm-auto">
-                <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
-            </div>
-            <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
+        <div class=row *ngIf="EstaSeleccionado">
+            <form class="row form">
+                <div class="col-md-12">
+                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanNombre">Nombre:</span>
+                    <input class="form-control" id="txtNombre" name="txtNombre" [(ngModel)]="Usuario.Nombre" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanApellido">Apellido:</span>
+                    <input class="form-control" name="txtApellido" [(ngModel)]="Usuario.Apellido" placeholder="Ingrese apellido" aria-label="txtApellido" aria-describedby="spanApellido" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanMail">Mail:</span>
+                    <input class="form-control" name="txtMail" [(ngModel)]="Usuario.Mail" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanCedula">Cédula:</span>
+                    <input class="form-control" name="txtCedula" [(ngModel)]="Usuario.Cedula" placeholder="Ingrese cédula de identidad" aria-label="txtCedula" aria-describedby="spanCedula" required>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <button (click)="AltaUsuario()">Agregar Usuario</button>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <button (click)="BajaUsuario()">Eliminar Usuario</button>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <button (click)="ModificarUsuario()">Modificar Usuario</button>
+                </div>
+            </form>
         </div>
-        <table class="table table-hover">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col" sortable="nombre">Nombre</th>
-                    <th scope="col" sortable="mail">Mail</th>
-                    <th scope="col" sortable="direccion">Direccion</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="pointer" *ngFor="let usuario of Usuarios">
-                    <td>
-                        <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                        <ngb-highlight [result]="usuario.Nombre"></ngb-highlight>
-                    </td>
-                    <td>
-                        <ngb-highlight [result]="usuario.Apellido "></ngb-highlight>
-                    </td>
-                    <td>
-                        <ngb-highlight [result]="usuario.Mail"></ngb-highlight>
-                    </td>
-                    <td>
-                        <ngb-highlight [result]="usuario.Cedula"></ngb-highlight>
-                    </td>
-                    <td>
-                        <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(usuario)"></i>
-                    </td>
-                    <td>
-                        <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(usuario)"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-between p-2">
-            <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-            <!-- </ngb-pagination> -->
+        <div class=row *ngIf="!EstaSeleccionado">
+            <div class="mb-3 row">
+                <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
+                <div class="col-xs-3 col-sm-auto">
+                    <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
+                </div>
+                <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
+            </div>
+            <table class="table table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col" sortable="nombre">Nombre</th>
+                        <th scope="col" sortable="apellido">Apellido</th>
+                        <th scope="col" sortable="mail">Mail</th>
+                        <th scope="col" sorteable="cedula">Cédula</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" *ngFor="let usuario of Usuarios">
+                        <td>
+                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
+                            <ngb-highlight [result]="usuario.Nombre"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="usuario.Apellido "></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="usuario.Mail"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="usuario.Cedula"></ngb-highlight>
+                        </td>
+                        <td>
+                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(usuario)"></i>
+                        </td>
+                        <td>
+                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(usuario)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
+                <!-- </ngb-pagination> -->
 
-            <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-            <!-- <option [ngValue]="2">2 items per page</option> -->
-            <!-- <option [ngValue]="4">4 items per page</option> -->
-            <!-- <option [ngValue]="6">6 items per page</option> -->
-            <!-- </select> -->
+                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
+                <!-- <option [ngValue]="2">2 items per page</option> -->
+                <!-- <option [ngValue]="4">4 items per page</option> -->
+                <!-- <option [ngValue]="6">6 items per page</option> -->
+                <!-- </select> -->
+            </div>
         </div>
-
-        <form class="row">
-            <div class="col-md-12">
-
-                <input name="txtNombre" [(ngModel)]="Usuario.Nombre" placeholder="Ingrese nombre" required>
-            </div>
-            <div class="col-md-12">
-                <input name="txtApellido" [(ngModel)]="Usuario.Apellido" placeholder="Ingrese apellido" required>
-            </div>
-            <div class="col-md-12">
-                <input name="txtMail" [(ngModel)]="Usuario.Mail" placeholder="Ingrese mail" required>
-            </div>
-            <div class="col-md-12">
-                <input name="txtCedula" [(ngModel)]="Usuario.Cedula" placeholder="Ingrese cédula de identidad" required>
-            </div>
-            <div class="col-md-12">
-                <button (click)="Agregar()">Agregar Usuario</button>
-            </div>
-        </form>
     </div>
 </body>
 <app-modal #modal></app-modal>

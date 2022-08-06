@@ -6,6 +6,7 @@ import { UsuarioService } from 'src/app/Services/usuario.service';
 import { ListarUsuariosIn } from 'src/app/Parametros/Entrada/ListarUsuariosIn';
 import { ModalComponent } from '../Modal/modal.component';
 import { ModificarUsuarioIn } from 'src/app/Parametros/Entrada/ModificarUsuarioIn';
+import { BajaUsuarioIn } from 'src/app/Parametros/Entrada/BajaUsuarioIn';
 
 
 
@@ -18,14 +19,17 @@ export class UsuarioComponent implements OnInit {
 
   private usuario: Usuario;
   private altaUsuarioIn: AltaUsuarioIn;
+  private bajaUsuarioIn: BajaUsuarioIn;
   private modificarUsuarioIn: ModificarUsuarioIn;
   private usuarios: Usuario[] = [];
   private terminoDeBusqueda: string = "";
+  private estaSeleccionado: boolean = false;
   @ViewChild("modal") modal!: ModalComponent;
 
   constructor(private usuarioServicio: UsuarioService) {
     this.usuario = new Usuario;
     this.altaUsuarioIn = new AltaUsuarioIn;
+    this.bajaUsuarioIn = new BajaUsuarioIn;
     this.modificarUsuarioIn = new ModificarUsuarioIn;
     this.Listar();
   }
@@ -34,6 +38,12 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public get EstaSeleccionado(): boolean {
+    return this.estaSeleccionado;
+  }
+  public set EstaSeleccionado(value: boolean) {
+    this.estaSeleccionado = value;
+  }
 
   public get TerminoDeBusqueda(): string {
     return this.terminoDeBusqueda;
@@ -66,7 +76,7 @@ export class UsuarioComponent implements OnInit {
   }
 
 
-  Agregar()
+  AltaUsuario()
   {
     this.usuario.Contrasena = '123456789';
     this.altaUsuarioIn.usuario = this.usuario;
@@ -80,8 +90,21 @@ export class UsuarioComponent implements OnInit {
        });
   }
 
+  BajaUsuario()
+  {
+    this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
+    this.usuarioServicio.Baja(this.bajaUsuarioIn)
+    .subscribe( usuario => {
+      this.modal.Error = false;
+      this.modal.open(); 
+     }, err => {
+       this.modal.Error = true;
+       this.modal.open(); 
+     });
+  }
 
-  Modificar()
+
+  ModificarUsuario()
   {
     this.modificarUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
@@ -114,5 +137,26 @@ export class UsuarioComponent implements OnInit {
   }
 
 
-  Seleccionar(usuario:Usuario){}
+  Seleccionar(usuario:Usuario)
+  {
+    this.usuario.IdUsuario = usuario.IdUsuario;
+    this.usuario.Nombre = usuario.Nombre;
+    this.usuario.Apellido = usuario.Apellido;  
+    this.usuario.Mail = usuario.Mail;
+    this.usuario.Cedula = usuario.Cedula;
+    this.usuario.Contrasena = usuario.Contrasena;
+    this.usuario.Activo = usuario.Activo;
+    this.Ocultar();
+  }
+
+ Regresar()
+  {
+    this.usuario = new Usuario();
+    this.Ocultar();
+  }
+  Ocultar()
+  {
+    this.EstaSeleccionado = !this.EstaSeleccionado;
+  }
+
 }
