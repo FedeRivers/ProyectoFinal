@@ -5,6 +5,7 @@ import { AltaUsuarioIn } from 'src/app/Parametros/Entrada/AltaUsuarioIn';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { ListarUsuariosIn } from 'src/app/Parametros/Entrada/ListarUsuariosIn';
 import { ModalComponent } from '../Modal/modal.component';
+import { ModificarUsuarioIn } from 'src/app/Parametros/Entrada/ModificarUsuarioIn';
 
 
 
@@ -17,14 +18,15 @@ export class UsuarioComponent implements OnInit {
 
   private usuario: Usuario;
   private altaUsuarioIn: AltaUsuarioIn;
+  private modificarUsuarioIn: ModificarUsuarioIn;
   private usuarios: Usuario[] = [];
   private terminoDeBusqueda: string = "";
-  
-  @ViewChild("modal") modal: ModalComponent;
+  @ViewChild("modal") modal!: ModalComponent;
+
   constructor(private usuarioServicio: UsuarioService) {
     this.usuario = new Usuario;
     this.altaUsuarioIn = new AltaUsuarioIn;
-    this.modal = new ModalComponent();
+    this.modificarUsuarioIn = new ModificarUsuarioIn;
     this.Listar();
   }
 
@@ -44,34 +46,56 @@ export class UsuarioComponent implements OnInit {
   }
 
   /*Lista de usuario*/
-  public get Usuarios(): Usuario[] {
+  public get Usuarios(): Usuario[]
+  {
     return this.usuarios;
   }
-  public set Usuarios(value: Usuario[]) {
+  public set Usuarios(value: Usuario[])
+  {
     this.usuarios = value;
   }
 
   /*Usuario*/
-  public get Usuario(): Usuario {
+  public get Usuario(): Usuario
+  {
     return this.usuario;
   }
-  public set Usuario(value: Usuario) {
+  public set Usuario(value: Usuario)
+  {
     this.usuario = value;
   }
 
 
-  Agregar(event: Event) {
+  Agregar()
+  {
     this.usuario.Contrasena = '123456789';
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
-      .subscribe(usuario => {
-        console.log('Respuesta', usuario);
-      }, err => {
-        console.log(err);
-      });
+      .subscribe( usuario => {
+        this.modal.Error = false;
+        this.modal.open(); 
+       }, err => {
+         this.modal.Error = true;
+         this.modal.open(); 
+       });
   }
 
-  Listar() {
+
+  Modificar()
+  {
+    this.modificarUsuarioIn.usuario = this.usuario;
+    this.usuarioServicio.Modificar(this.modificarUsuarioIn)
+      .subscribe( usuario => {
+        this.modal.Error = false;
+        this.modal.open(); 
+       }, err => {
+         this.modal.Error = true;
+         this.modal.open(); 
+       });
+  }
+
+  Listar()
+  {
     let listarUsuariosIn: ListarUsuariosIn;
     listarUsuariosIn = new ListarUsuariosIn();
     listarUsuariosIn.terminoDeBusqueda = this.terminoDeBusqueda;
