@@ -39,4 +39,8 @@
     <Parameter Name="Cedula" Parameter="cedula" Type="System.String" DbType="VarChar(10)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.BajaUsuario" Method="BajaUsuario">
+    <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

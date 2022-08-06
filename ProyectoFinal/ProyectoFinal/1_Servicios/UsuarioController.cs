@@ -27,6 +27,19 @@ namespace ProyectoFinal._1_Servicios
         }
 
         [HttpPost]
+        public BajaUsuarioOut BajaUsuario(BajaUsuarioIn input)
+        {
+            try
+            {
+                return new CRUDUsuario().BajaUsuario(input);
+            }
+            catch (Exception ex)
+            {
+                return new BajaUsuarioOut();
+            }
+        }
+
+        [HttpPost]
         public ModificarUsuarioOut ModificarUsuario([FromBody]ModificarUsuarioIn input)
         {
             try

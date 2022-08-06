@@ -206,6 +206,7 @@
     <Compile Include="Parametros\Entrada\AltaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
+    <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarTipoDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
