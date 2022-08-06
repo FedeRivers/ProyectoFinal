@@ -61,16 +61,17 @@
 
         <form class="row">
             <div class="col-md-12">
-                <input name="txtNombre" placeholder="Ingrese nombre" required>
+
+                <input name="txtNombre" [(ngModel)]="Usuario.Nombre" placeholder="Ingrese nombre" required>
             </div>
             <div class="col-md-12">
-                <input name="txtApellido" placeholder="Ingrese apellido" required>
+                <input name="txtApellido" [(ngModel)]="Usuario.Apellido" placeholder="Ingrese apellido" required>
             </div>
             <div class="col-md-12">
-                <input name="txtMail" placeholder="Ingrese mail" required>
+                <input name="txtMail" [(ngModel)]="Usuario.Mail" placeholder="Ingrese mail" required>
             </div>
             <div class="col-md-12">
-                <input name="txtCedula" placeholder="Ingrese cédula de identidad" required>
+                <input name="txtCedula" [(ngModel)]="Usuario.Cedula" placeholder="Ingrese cédula de identidad" required>
             </div>
             <div class="col-md-12">
                 <button (click)="Agregar($event)">Agregar Usuario</button>

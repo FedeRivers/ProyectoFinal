@@ -17,7 +17,7 @@ namespace ProyectoFinal._3_Persistencia
             var output = new AltaUsuarioOut{ Status = new HttpStatusCodeResult(404)};
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-               var result =  dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido);
+               var result =  dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula);
                 if (result != -1)
                 {
                     output.Status = new HttpStatusCodeResult(200);
@@ -47,6 +47,39 @@ namespace ProyectoFinal._3_Persistencia
                 }
             }
 
+            return output;
+        }
+
+
+        public ListarUsuariosOut ListarUsuarios(ListarUsuariosIn input)
+        {
+            var output = new ListarUsuariosOut { Status = new HttpStatusCodeResult(200) , Usuarios = new List<Usuario>()};
+            try
+            {
+                using (var dataContext = new ModeloUsuarioDataContext())
+                {
+                    var result = dataContext.ListarUsuarios(input.TerminoDeBusqueda);
+                    if (result != null)
+                    {
+                        foreach (var usuario in result)
+                        {
+                            output.Usuarios.Add(new Usuario
+                            {
+                                IdUsuario = usuario.idUsuario,
+                                Nombre = usuario.nombre,
+                                Apellido = usuario.apellido,
+                                Mail = usuario.mail,
+                                Contrasena = usuario.contrasena,
+                                Activo = usuario.activo,
+                            });
+                        }            
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Status = new HttpStatusCodeResult(400);
+            }
             return output;
         }
     }

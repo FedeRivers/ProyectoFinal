@@ -71,6 +71,7 @@
     <Build Include="StoreProcedure\ListarMejoradores.sql" />
     <Build Include="Tablas\TipoDeUsuario.sql" />
     <Build Include="StoreProcedure\ListarTiposDeUsuario.sql" />
+    <Build Include="StoreProcedure\ListarUsuarios.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

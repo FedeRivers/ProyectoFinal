@@ -18,14 +18,16 @@ export class UsuarioComponent implements OnInit {
   private usuario: Usuario;
   private altaUsuarioIn: AltaUsuarioIn;
   private usuarios: Usuario[] = [];
-
   private terminoDeBusqueda: string = "";
+  
   @ViewChild("modal") modal: ModalComponent;
   constructor(private usuarioServicio: UsuarioService) {
     this.usuario = new Usuario;
     this.altaUsuarioIn = new AltaUsuarioIn;
     this.modal = new ModalComponent();
+    this.Listar();
   }
+
 
   ngOnInit(): void {
   }
@@ -41,6 +43,7 @@ export class UsuarioComponent implements OnInit {
     }, 1500)
   }
 
+  /*Lista de usuario*/
   public get Usuarios(): Usuario[] {
     return this.usuarios;
   }
@@ -48,10 +51,17 @@ export class UsuarioComponent implements OnInit {
     this.usuarios = value;
   }
 
+  /*Usuario*/
+  public get Usuario(): Usuario {
+    return this.usuario;
+  }
+  public set Usuario(value: Usuario) {
+    this.usuario = value;
+  }
+
 
   Agregar(event: Event) {
-    this.usuario.Nombre = 'PEPITO';
-    this.usuario.Apellido = 'DIDIMAO';
+    this.usuario.Contrasena = '123456789';
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
       .subscribe(usuario => {
