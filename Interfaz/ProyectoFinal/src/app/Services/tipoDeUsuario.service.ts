@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListarTiposDeUsuarioOut } from '../Parametros/Salida/ListarTiposDeUsuarioOut';
-import { MetodosUrl } from './Metodos/MetodosUrl';
+import { MetodosUrl } from './Metodos/metodosUrl';
 
 
 @Injectable({

@@ -69,13 +69,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((ISingleResult<LoginResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarUsuarios")]
-		public ISingleResult<ListarUsuariosResult> ListarUsuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
-			return ((ISingleResult<ListarUsuariosResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaUsuario")]
 		public int AltaUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(50)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula)
 		{
@@ -95,6 +88,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarUsuarios")]
+		public ISingleResult<ListarUsuariosResult> ListarUsuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			return ((ISingleResult<ListarUsuariosResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -205,9 +205,15 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private string _apellido;
 		
+		private string _contrasena;
+		
 		private string _mail;
 		
-		private string _contrasena;
+		private string _cedula;
+		
+		private System.Nullable<System.DateTime> _fechaDeIngreso;
+		
+		private System.Nullable<System.DateTime> _fechaDeModificacion;
 		
 		private bool _activo;
 		
@@ -263,6 +269,22 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contrasena", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string contrasena
+		{
+			get
+			{
+				return this._contrasena;
+			}
+			set
+			{
+				if ((this._contrasena != value))
+				{
+					this._contrasena = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mail", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string mail
 		{
@@ -279,18 +301,50 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contrasena", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string contrasena
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cedula", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string cedula
 		{
 			get
 			{
-				return this._contrasena;
+				return this._cedula;
 			}
 			set
 			{
-				if ((this._contrasena != value))
+				if ((this._cedula != value))
 				{
-					this._contrasena = value;
+					this._cedula = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeIngreso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaDeIngreso
+		{
+			get
+			{
+				return this._fechaDeIngreso;
+			}
+			set
+			{
+				if ((this._fechaDeIngreso != value))
+				{
+					this._fechaDeIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeModificacion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaDeModificacion
+		{
+			get
+			{
+				return this._fechaDeModificacion;
+			}
+			set
+			{
+				if ((this._fechaDeModificacion != value))
+				{
+					this._fechaDeModificacion = value;
 				}
 			}
 		}

@@ -5,10 +5,10 @@ import { AltaUsuarioIn } from '../Parametros/Entrada/AltaUsuarioIn';
 import { HttpHeaders } from '@angular/common/http';
 import { LoginIn } from 'src/app/Parametros/Entrada/LoginIn';
 import { ListarUsuariosIn } from '../Parametros/Entrada/ListarUsuariosIn';
-import { MetodosUrl } from './Metodos/MetodosUrl';
 import { ListarUsuariosOut } from '../Parametros/Salida/ListarUsuariosOut';
 import { ModificarUsuarioIn } from '../Parametros/Entrada/ModificarUsuarioIn';
 import { BajaUsuarioIn } from '../Parametros/Entrada/BajaUsuarioIn';
+import { MetodosUrl } from './Metodos/metodosUrl';
 
 
 @Injectable({

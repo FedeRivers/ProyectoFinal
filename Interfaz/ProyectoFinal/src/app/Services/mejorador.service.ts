@@ -6,7 +6,7 @@ import { ModificarMejoradorIn } from '../Parametros/Entrada/ModificarMejoradorIn
 import { ListarMejoradorIn } from '../Parametros/Entrada/ListarMejoradorIn';
 import { ListarMejoradorOut } from '../Parametros/Salida/ListarMejoradorOut';
 import { AltaMejoradorOut } from '../Parametros/Salida/AltaMejoradorOut';
-import { MetodosUrl } from './Metodos/MetodosUrl';
+import { MetodosUrl } from './Metodos/metodosUrl';
 
 @Injectable({
   providedIn: 'root'

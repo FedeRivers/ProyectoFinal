@@ -7,6 +7,7 @@ import { ListarUsuariosIn } from 'src/app/Parametros/Entrada/ListarUsuariosIn';
 import { ModalComponent } from '../Modal/modal.component';
 import { ModificarUsuarioIn } from 'src/app/Parametros/Entrada/ModificarUsuarioIn';
 import { BajaUsuarioIn } from 'src/app/Parametros/Entrada/BajaUsuarioIn';
+import { Mensajes } from '../Modal/Mensajes/mensajes';
 
 
 
@@ -24,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   private usuarios: Usuario[] = [];
   private terminoDeBusqueda: string = "";
   private estaSeleccionado: boolean = false;
-  @ViewChild("modal") modal!: ModalComponent;
+  @ViewChild("modal") modal: ModalComponent;
 
   constructor(private usuarioServicio: UsuarioService) {
     this.usuario = new Usuario;
@@ -32,6 +33,7 @@ export class UsuarioComponent implements OnInit {
     this.bajaUsuarioIn = new BajaUsuarioIn;
     this.modificarUsuarioIn = new ModificarUsuarioIn;
     this.Listar();
+    this.modal = new ModalComponent();
   }
 
 
@@ -82,9 +84,11 @@ export class UsuarioComponent implements OnInit {
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
       .subscribe( usuario => {
+        this.modal.Mensaje = Mensajes.AltaUsuarioExito;
         this.modal.Error = false;
-        this.modal.open(); 
+        this.modal.open();     
        }, err => {
+         this.modal.Mensaje = Mensajes.AltaUsuarioError;
          this.modal.Error = true;
          this.modal.open(); 
        });
@@ -95,9 +99,11 @@ export class UsuarioComponent implements OnInit {
     this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
     this.usuarioServicio.Baja(this.bajaUsuarioIn)
     .subscribe( usuario => {
+      this.modal.Mensaje = Mensajes.BajaUsuarioExito;
       this.modal.Error = false;
       this.modal.open(); 
      }, err => {
+       this.modal.Mensaje = Mensajes.BajaUsuarioError;
        this.modal.Error = true;
        this.modal.open(); 
      });
@@ -109,9 +115,11 @@ export class UsuarioComponent implements OnInit {
     this.modificarUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
+        this.modal.Mensaje = Mensajes.ModificarUsuarioExito;
         this.modal.Error = false;
         this.modal.open(); 
        }, err => {
+         this.modal.Mensaje = Mensajes.ModificarUsuarioError;
          this.modal.Error = true;
          this.modal.open(); 
        });
@@ -126,7 +134,7 @@ export class UsuarioComponent implements OnInit {
     this.usuarioServicio.Listar(listarUsuariosIn)
       .subscribe(lista => {
         if (lista.Usuarios != undefined) {
-          lista.Usuarios.forEach((valor: Usuario) => {
+            lista.Usuarios.forEach((valor: Usuario) => {
             this.usuarios.push(valor);
           })
         }
