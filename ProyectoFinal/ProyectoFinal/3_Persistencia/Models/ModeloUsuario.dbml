@@ -11,17 +11,6 @@
       <Column Name="contrasena" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.ListarUsuarios" Method="ListarUsuarios">
-    <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="ListarUsuariosResult">
-      <Column Name="idUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="mail" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="contrasena" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.AltaUsuario" Method="AltaUsuario">
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(100)" />
@@ -42,5 +31,19 @@
   <Function Name="dbo.BajaUsuario" Method="BajaUsuario">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ListarUsuarios" Method="ListarUsuarios">
+    <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ListarUsuariosResult">
+      <Column Name="idUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="contrasena" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="mail" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cedula" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaDeIngreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fechaDeModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

@@ -100,6 +100,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Apellido = usuario.apellido,
                                 Mail = usuario.mail,
                                 Contrasena = usuario.contrasena,
+                                Cedula = usuario.cedula,
                                 Activo = usuario.activo,
                             });
                         }            

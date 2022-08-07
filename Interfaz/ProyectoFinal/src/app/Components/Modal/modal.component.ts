@@ -1,10 +1,5 @@
 import {Component,EventEmitter,Input,OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-
-import { ParametroBaseOut } from '../../Parametros/Salida/ParametroBaseOut';
-
-
-
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -19,8 +14,9 @@ export class ModalComponent implements OnInit {
   
  
   constructor(config?: NgbModalConfig,private modalService?: NgbModal) { 
-    this.ParametroOut = new ParametroBaseOut();
+
     this.Error = false;
+    this.Mensaje = '';
     if(config!=undefined)
     {
       config.backdrop = 'static';
@@ -32,6 +28,9 @@ export class ModalComponent implements OnInit {
   
   ngOnInit(): void {
   }
+
+  @Input() Error:boolean;
+  @Input() Mensaje:string;
 
   @Output()
   public get Cerrar(): EventEmitter<string> {
@@ -48,8 +47,7 @@ export class ModalComponent implements OnInit {
     this.aceptar = value;
   }
 
-  @Input() Error:boolean;
-  @Input() ParametroOut:ParametroBaseOut;
+
   
   open() {
     this.modalService!.open(this.content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -70,11 +68,5 @@ export class ModalComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
-  MensajeResultado():string
-  {
-    return this.Error ? this.ParametroOut.MensajeError : this.ParametroOut.MensajeExito;
-  }
-
 
 }

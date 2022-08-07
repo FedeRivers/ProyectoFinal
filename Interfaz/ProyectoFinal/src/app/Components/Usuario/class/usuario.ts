@@ -1,5 +1,6 @@
 export class Usuario {
     
+    private idUsuario: number;
     private nombre: string;
     private apellido: string;
     private mail: string;
@@ -15,6 +16,14 @@ export class Usuario {
         this.cedula = '';
         this.activo = '';
         this.contrasena = '';
+        this.idUsuario = 0;
+    }
+
+    public get IdUsuario(): number {
+        return this.idUsuario;
+    }
+    public set IdUsuario(value: number) {
+        this.idUsuario = value;
     }
 
     public get Nombre(): string {

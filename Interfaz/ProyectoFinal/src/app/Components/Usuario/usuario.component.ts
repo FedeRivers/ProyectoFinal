@@ -5,6 +5,9 @@ import { AltaUsuarioIn } from 'src/app/Parametros/Entrada/AltaUsuarioIn';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { ListarUsuariosIn } from 'src/app/Parametros/Entrada/ListarUsuariosIn';
 import { ModalComponent } from '../Modal/modal.component';
+import { ModificarUsuarioIn } from 'src/app/Parametros/Entrada/ModificarUsuarioIn';
+import { BajaUsuarioIn } from 'src/app/Parametros/Entrada/BajaUsuarioIn';
+import { Mensajes } from '../Modal/Mensajes/mensajes';
 
 
 
@@ -17,21 +20,32 @@ export class UsuarioComponent implements OnInit {
 
   private usuario: Usuario;
   private altaUsuarioIn: AltaUsuarioIn;
+  private bajaUsuarioIn: BajaUsuarioIn;
+  private modificarUsuarioIn: ModificarUsuarioIn;
   private usuarios: Usuario[] = [];
   private terminoDeBusqueda: string = "";
-  
+  private estaSeleccionado: boolean = false;
   @ViewChild("modal") modal: ModalComponent;
+
   constructor(private usuarioServicio: UsuarioService) {
     this.usuario = new Usuario;
     this.altaUsuarioIn = new AltaUsuarioIn;
-    this.modal = new ModalComponent();
+    this.bajaUsuarioIn = new BajaUsuarioIn;
+    this.modificarUsuarioIn = new ModificarUsuarioIn;
     this.Listar();
+    this.modal = new ModalComponent();
   }
 
 
   ngOnInit(): void {
   }
 
+  public get EstaSeleccionado(): boolean {
+    return this.estaSeleccionado;
+  }
+  public set EstaSeleccionado(value: boolean) {
+    this.estaSeleccionado = value;
+  }
 
   public get TerminoDeBusqueda(): string {
     return this.terminoDeBusqueda;
@@ -44,34 +58,75 @@ export class UsuarioComponent implements OnInit {
   }
 
   /*Lista de usuario*/
-  public get Usuarios(): Usuario[] {
+  public get Usuarios(): Usuario[]
+  {
     return this.usuarios;
   }
-  public set Usuarios(value: Usuario[]) {
+  public set Usuarios(value: Usuario[])
+  {
     this.usuarios = value;
   }
 
   /*Usuario*/
-  public get Usuario(): Usuario {
+  public get Usuario(): Usuario
+  {
     return this.usuario;
   }
-  public set Usuario(value: Usuario) {
+  public set Usuario(value: Usuario)
+  {
     this.usuario = value;
   }
 
 
-  Agregar(event: Event) {
+  AltaUsuario()
+  {
     this.usuario.Contrasena = '123456789';
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
-      .subscribe(usuario => {
-        console.log('Respuesta', usuario);
-      }, err => {
-        console.log(err);
-      });
+      .subscribe( usuario => {
+        this.modal.Mensaje = Mensajes.AltaUsuarioExito;
+        this.modal.Error = false;
+        this.modal.open();     
+       }, err => {
+         this.modal.Mensaje = Mensajes.AltaUsuarioError;
+         this.modal.Error = true;
+         this.modal.open(); 
+       });
   }
 
-  Listar() {
+  BajaUsuario()
+  {
+    this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
+    this.usuarioServicio.Baja(this.bajaUsuarioIn)
+    .subscribe( usuario => {
+      this.modal.Mensaje = Mensajes.BajaUsuarioExito;
+      this.modal.Error = false;
+      this.modal.open(); 
+     }, err => {
+       this.modal.Mensaje = Mensajes.BajaUsuarioError;
+       this.modal.Error = true;
+       this.modal.open(); 
+     });
+  }
+
+
+  ModificarUsuario()
+  {
+    this.modificarUsuarioIn.usuario = this.usuario;
+    this.usuarioServicio.Modificar(this.modificarUsuarioIn)
+      .subscribe( usuario => {
+        this.modal.Mensaje = Mensajes.ModificarUsuarioExito;
+        this.modal.Error = false;
+        this.modal.open(); 
+       }, err => {
+         this.modal.Mensaje = Mensajes.ModificarUsuarioError;
+         this.modal.Error = true;
+         this.modal.open(); 
+       });
+  }
+
+  Listar()
+  {
     let listarUsuariosIn: ListarUsuariosIn;
     listarUsuariosIn = new ListarUsuariosIn();
     listarUsuariosIn.terminoDeBusqueda = this.terminoDeBusqueda;
@@ -79,7 +134,7 @@ export class UsuarioComponent implements OnInit {
     this.usuarioServicio.Listar(listarUsuariosIn)
       .subscribe(lista => {
         if (lista.Usuarios != undefined) {
-          lista.Usuarios.forEach((valor: Usuario) => {
+            lista.Usuarios.forEach((valor: Usuario) => {
             this.usuarios.push(valor);
           })
         }
@@ -90,5 +145,26 @@ export class UsuarioComponent implements OnInit {
   }
 
 
-  Seleccionar(usuario:Usuario){}
+  Seleccionar(usuario:Usuario)
+  {
+    this.usuario.IdUsuario = usuario.IdUsuario;
+    this.usuario.Nombre = usuario.Nombre;
+    this.usuario.Apellido = usuario.Apellido;  
+    this.usuario.Mail = usuario.Mail;
+    this.usuario.Cedula = usuario.Cedula;
+    this.usuario.Contrasena = usuario.Contrasena;
+    this.usuario.Activo = usuario.Activo;
+    this.Ocultar();
+  }
+
+ Regresar()
+  {
+    this.usuario = new Usuario();
+    this.Ocultar();
+  }
+  Ocultar()
+  {
+    this.EstaSeleccionado = !this.EstaSeleccionado;
+  }
+
 }
