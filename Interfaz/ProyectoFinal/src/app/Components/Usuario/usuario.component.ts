@@ -7,9 +7,7 @@ import { ListarUsuariosIn } from 'src/app/Parametros/Entrada/ListarUsuariosIn';
 import { ModalComponent } from '../Modal/modal.component';
 import { ModificarUsuarioIn } from 'src/app/Parametros/Entrada/ModificarUsuarioIn';
 import { BajaUsuarioIn } from 'src/app/Parametros/Entrada/BajaUsuarioIn';
-import { Mensajes } from '../Modal/Mensajes/mensajes';
-
-
+import { RecursosDeIdioma } from '../Constantes/constantes';
 
 @Component({
   selector: 'app-usuario',
@@ -84,11 +82,11 @@ export class UsuarioComponent implements OnInit {
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
       .subscribe( usuario => {
-        this.modal.Mensaje = Mensajes.AltaUsuarioExito;
+        this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO;
         this.modal.Error = false;
         this.modal.open();     
        }, err => {
-         this.modal.Mensaje = Mensajes.AltaUsuarioError;
+         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR;
          this.modal.Error = true;
          this.modal.open(); 
        });
@@ -99,11 +97,11 @@ export class UsuarioComponent implements OnInit {
     this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
     this.usuarioServicio.Baja(this.bajaUsuarioIn)
     .subscribe( usuario => {
-      this.modal.Mensaje = Mensajes.BajaUsuarioExito;
+      this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Baja.EXITO;
       this.modal.Error = false;
       this.modal.open(); 
      }, err => {
-       this.modal.Mensaje = Mensajes.BajaUsuarioError;
+       this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Baja.ERROR;
        this.modal.Error = true;
        this.modal.open(); 
      });
@@ -115,11 +113,11 @@ export class UsuarioComponent implements OnInit {
     this.modificarUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
-        this.modal.Mensaje = Mensajes.ModificarUsuarioExito;
+        this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO;
         this.modal.Error = false;
         this.modal.open(); 
        }, err => {
-         this.modal.Mensaje = Mensajes.ModificarUsuarioError;
+         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR;
          this.modal.Error = true;
          this.modal.open(); 
        });

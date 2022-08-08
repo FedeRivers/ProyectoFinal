@@ -6,7 +6,7 @@ import { ModificarMejoradorIn } from '../Parametros/Entrada/ModificarMejoradorIn
 import { ListarMejoradorIn } from '../Parametros/Entrada/ListarMejoradorIn';
 import { ListarMejoradorOut } from '../Parametros/Salida/ListarMejoradorOut';
 import { AltaMejoradorOut } from '../Parametros/Salida/AltaMejoradorOut';
-import { MetodosUrl } from './Metodos/metodosUrl';
+import { MetodosUrl } from '../Components/Constantes/constantes';
 
 @Injectable({
   providedIn: 'root'
@@ -17,18 +17,18 @@ export class MejoradorService {
   constructor( private http:HttpClient ) { }
 
   public Agregar(altaMejoradorIn:AltaMejoradorIn){
-    return this.http.post<AltaMejoradorOut>(`${this.baseUrl+MetodosUrl.AltaMejorador}`,altaMejoradorIn);
+    return this.http.post<AltaMejoradorOut>(`${this.baseUrl+ MetodosUrl.Mejorador.ALTA}`,altaMejoradorIn);
   }
 
   public Baja(bajaMejoradorIn:BajaMejoradorIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.BajaMejorador}`,bajaMejoradorIn);
+    return this.http.post(`${this.baseUrl+MetodosUrl.Mejorador.BAJA}`,bajaMejoradorIn);
   }
 
   public Modificar(modificarMejoradorIn:ModificarMejoradorIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.ModificarMejorador}`,modificarMejoradorIn);
+    return this.http.post(`${this.baseUrl+MetodosUrl.Mejorador.MODIFICAR}`,modificarMejoradorIn);
   }
 
   public Listar(listarMejoradorIn:ListarMejoradorIn){
-    return this.http.get<ListarMejoradorOut>(`${this.baseUrl+MetodosUrl.ListarMejoradores}?TerminoDeBusqueda=${listarMejoradorIn.terminoDeBusqueda}`);
+    return this.http.get<ListarMejoradorOut>(`${this.baseUrl+MetodosUrl.Mejorador.LISTAR}?TerminoDeBusqueda=${listarMejoradorIn.terminoDeBusqueda}`);
   }
 }

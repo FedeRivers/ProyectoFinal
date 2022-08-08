@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MetodosUrl } from '../Components/Constantes/constantes';
 import { ListarTiposDeUsuarioOut } from '../Parametros/Salida/ListarTiposDeUsuarioOut';
-import { MetodosUrl } from './Metodos/metodosUrl';
+
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class TipoDeUsuarioService {
 
   public ListarTipoDeUsuario()
   {
-    return this.http.get<ListarTiposDeUsuarioOut>(`${this.baseUrl+MetodosUrl.ListarTiposDeUsuario}`);
+    return this.http.get<ListarTiposDeUsuarioOut>(`${this.baseUrl+MetodosUrl.TiposDeUsuario.LISTAR}`);
   }
 
 }
