@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloTipoDeUsuarioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESSFEDE;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.ListarModulosPorTipoDeUsuario" Method="ListarModulosPorTipoDeUsuario">  
+  <Parameter Name="TipoDeUsuarioId" Parameter="tipoDeUsuarioId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ListarModulosPorTipoDeUsuarioResult">
+      <Column Name="idModulo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.ListarTiposDeUsuario" Method="ListarTiposDeUsuario">
     <ElementType Name="ListarTiposDeUsuarioResult">
       <Column Name="idTipoDeUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

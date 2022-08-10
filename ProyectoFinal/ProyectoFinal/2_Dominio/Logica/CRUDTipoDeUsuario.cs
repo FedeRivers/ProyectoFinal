@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal._3_Persistencia;
+using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,14 @@ namespace ProyectoFinal._2_Dominio.Logica
 {
     public class CRUDTipoDeUsuario
     {
-        public ListarTipoDeUsuarioOut ListarTiposDeUsuario()
+        public ListarTiposDeUsuarioOut ListarTiposDeUsuario(ListarTiposDeUsuarioIn input)
         {
-            return new PTipoDeUsuario().ListarTiposDeUsuario();
+            return new PTipoDeUsuario().ListarTiposDeUsuario(input);
+        }
+
+        public ListarModulosPorTipoDeUsuarioOut ListarModulosPorTipoDeUsuario(ListarModulosPorTipoDeUsuarioIn input)
+        {
+            return new PTipoDeUsuario().ListarModulosPorTipoDeUsuario(input);
         }
 
     }

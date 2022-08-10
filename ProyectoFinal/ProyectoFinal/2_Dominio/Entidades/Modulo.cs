@@ -5,11 +5,10 @@ using System.Web;
 
 namespace ProyectoFinal._2_Dominio.Entidades
 {
-    public class TipoDeUsuario
+    public class Modulo
     {
-        public int IdTipoDeUsuario { get; set; }
+        public int IdModulo { get; set; }
         public string Nombre { get; set; }
-        public bool Activo { get; set; }
-        public List<Modulo> Modulos { get; set; }
+        public bool? Activo { get; set; }
     }
 }

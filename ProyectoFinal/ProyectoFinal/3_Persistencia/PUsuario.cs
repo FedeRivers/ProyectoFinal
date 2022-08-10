@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal._2_Dominio;
+using ProyectoFinal._2_Dominio.Entidades;
 using ProyectoFinal._3_Persistencia.Models;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
@@ -68,11 +69,12 @@ namespace ProyectoFinal._3_Persistencia
                     output.Status = new HttpStatusCodeResult(200);
                     output.Usuario = new Usuario
                     {
-                        IdUsuario = result.id,
+                        IdUsuario = result.idUsuario,
                         Nombre = result.nombre,
                         Apellido = result.apellido,
                         Mail = result.mail,
-                        Contrasena = result.contrasena   
+                        Contrasena = result.contrasena,
+                        TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = result.idTipoDeUsuario }
                     };
                 }
             }
@@ -102,6 +104,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Contrasena = usuario.contrasena,
                                 Cedula = usuario.cedula,
                                 Activo = usuario.activo,
+                                TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = usuario.idTipoDeUsuario }
                             });
                         }            
                     }

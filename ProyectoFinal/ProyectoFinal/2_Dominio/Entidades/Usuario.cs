@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoFinal._2_Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,8 @@ namespace ProyectoFinal._2_Dominio
         public string Mail { get; set; }
 
         public string Cedula { get; set; }
+
+        public TipoDeUsuario TipoDeUsuario {get; set;}
 
         public DateTime FechaDeIngreso { get; set; }
 

@@ -21,4 +21,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="idTipoDeUsuario" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="811fe8e1-4f55-4d71-8a0d-4167f1006df4" ChangeDateTime="08/08/2022 23:04:32">
+    <Property Name="ElementName" Value="[dbo].[Modulos].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Modulos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idModulo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1f219762-7d1b-4c18-b361-1a09af9004a7" ChangeDateTime="08/08/2022 23:10:36">
+    <Property Name="ElementName" Value="[dbo].[ModulosPorTiposDeUsuario].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ModulosPorTiposDeUsuario]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idModulo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1267c6b5-79c7-4949-adae-e5435d68d07d" ChangeDateTime="08/08/2022 23:15:35">
+    <Property Name="ElementName" Value="[dbo].[ModulosPorTiposDeUsuario].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ModulosPorTiposDeUsuario]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idModulo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3aa6b1a1-3fed-4d82-a9c4-6c383ef5c9d4" ChangeDateTime="08/10/2022 01:29:54">
+    <Property Name="ElementName" Value="[dbo].[Usuarios].[idModulo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Usuarios]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idTipoDeUsuario" />
+  </Operation>
 </Operations>
