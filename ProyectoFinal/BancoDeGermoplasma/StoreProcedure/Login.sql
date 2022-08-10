@@ -4,6 +4,6 @@
 AS
 BEGIN
 	SELECT *
-	FROM Usuarios
+	FROM Usuarios u INNER JOIN TiposDeUsuario tu ON u.idTipoDeUsuario = tu.idTipoDeUsuario
 	WHERE @Mail = mail AND @Contrasena = contrasena
 END

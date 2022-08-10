@@ -34,7 +34,15 @@ namespace ProyectoFinal._2_Dominio.Logica
 
         public LoginOut Login(LoginIn input)
         {
-            return new PUsuario().Login(input);
+            var output = new PUsuario().Login(input);
+            if (output.Usuario != null)
+            {
+                output.Usuario.TipoDeUsuario.Modulos = new PTipoDeUsuario().ListarModulosPorTipoDeUsuario(new ListarModulosPorTipoDeUsuarioIn
+                {
+                    IdTipoDeUsuario = output.Usuario.TipoDeUsuario.IdTipoDeUsuario
+                }).Modulos;
+            }
+            return output;
         }
 
         public ListarUsuariosOut ListarUsuarios(ListarUsuariosIn input)

@@ -7,6 +7,8 @@
     [cedula] VARCHAR(10) NOT NULL, 
     [fechaDeIngreso] DATETIME NULL DEFAULT GETDATE(), 
     [fechaDeModificacion] DATETIME NULL DEFAULT GETDATE(), 
-	[activo] BIT NOT NULL DEFAULT 1 
-    CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([idUsuario] ASC)
+	[activo] BIT NOT NULL DEFAULT 1, 
+    [idTipoDeUsuario] INT NOT NULL
+    CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([idUsuario] ASC),
+	CONSTRAINT [FK_Usuarios_TiposDeUsuario] FOREIGN KEY ([idTipoDeUsuario]) REFERENCES [TiposDeUsuario]([idTipoDeUsuario]),
 );

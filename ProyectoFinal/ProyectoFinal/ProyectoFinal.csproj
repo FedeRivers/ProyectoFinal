@@ -141,6 +141,7 @@
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
+    <Compile Include="2_Dominio\Entidades\Modulo.cs" />
     <Compile Include="2_Dominio\Entidades\TipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDTipoDeUsuario.cs" />
@@ -208,6 +209,8 @@
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarModulosPorTipoDeUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarTiposDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
@@ -217,7 +220,8 @@
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
-    <Compile Include="Parametros\Salida\ListarTipoDeUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\ListarModulosPorTipoDeUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\ListarTiposDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
