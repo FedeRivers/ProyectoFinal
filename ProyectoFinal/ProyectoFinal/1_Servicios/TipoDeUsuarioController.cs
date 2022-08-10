@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal._2_Dominio.Logica;
+using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,15 @@ namespace ProyectoFinal._1_Servicios
     {
 
         [HttpGet]
-        public ListarTipoDeUsuarioOut ListarTiposDeUsuario()
+        public ListarTiposDeUsuarioOut ListarTiposDeUsuario(ListarTiposDeUsuarioIn input)
         {
-            return new CRUDTipoDeUsuario().ListarTiposDeUsuario();
+            return new CRUDTipoDeUsuario().ListarTiposDeUsuario(input);
+        }
+
+        [HttpGet]
+        public ListarModulosPorTipoDeUsuarioOut ListarModulosPorTipoDeUsuario(ListarModulosPorTipoDeUsuarioIn input)
+        {
+            return new CRUDTipoDeUsuario().ListarModulosPorTipoDeUsuario(input);
         }
 
         // POST: api/TipoDeUsuario

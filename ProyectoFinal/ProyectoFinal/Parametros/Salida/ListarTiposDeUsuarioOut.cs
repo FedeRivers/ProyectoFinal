@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class ListarTipoDeUsuarioOut : ParametroBaseOut
+    public class ListarTiposDeUsuarioOut : ParametroBaseOut
     {
         public List<TipoDeUsuario> TiposDeUsuario { get; set; }
     }

@@ -62,11 +62,80 @@ namespace ProyectoFinal._3_Persistencia.Models
 			OnCreated();
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarModulosPorTipoDeUsuario")]
+		public ISingleResult<ListarModulosPorTipoDeUsuarioResult> ListarModulosPorTipoDeUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoDeUsuarioId", DbType="Int")] System.Nullable<int> tipoDeUsuarioId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tipoDeUsuarioId);
+			return ((ISingleResult<ListarModulosPorTipoDeUsuarioResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTiposDeUsuario")]
 		public ISingleResult<ListarTiposDeUsuarioResult> ListarTiposDeUsuario()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ListarTiposDeUsuarioResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class ListarModulosPorTipoDeUsuarioResult
+	{
+		
+		private int _idModulo;
+		
+		private string _nombre;
+		
+		private System.Nullable<bool> _activo;
+		
+		public ListarModulosPorTipoDeUsuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idModulo", DbType="Int NOT NULL")]
+		public int idModulo
+		{
+			get
+			{
+				return this._idModulo;
+			}
+			set
+			{
+				if ((this._idModulo != value))
+				{
+					this._idModulo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
+		public System.Nullable<bool> activo
+		{
+			get
+			{
+				return this._activo;
+			}
+			set
+			{
+				if ((this._activo != value))
+				{
+					this._activo = value;
+				}
+			}
 		}
 	}
 	

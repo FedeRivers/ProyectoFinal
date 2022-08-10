@@ -69,11 +69,14 @@
     <Build Include="StoreProcedure\ModificarMejorador.sql" />
     <Build Include="StoreProcedure\BajaMejorador.sql" />
     <Build Include="StoreProcedure\ListarMejoradores.sql" />
-    <Build Include="Tablas\TipoDeUsuario.sql" />
+    <Build Include="Tablas\TiposDeUsuario.sql" />
     <Build Include="StoreProcedure\ListarTiposDeUsuario.sql" />
     <Build Include="StoreProcedure\ListarUsuarios.sql" />
     <Build Include="StoreProcedure\ModificarUsuario.sql" />
     <Build Include="StoreProcedure\BajaUsuario.sql" />
+    <Build Include="Tablas\Modulos.sql" />
+    <Build Include="Tablas\ModulosPorTiposDeUsuario.sql" />
+    <Build Include="StoreProcedure\ListarModulosPorTipoDeUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

@@ -4,11 +4,15 @@ AS
 BEGIN
 	If (@TerminoDeBusqueda is not null)
 		BEGIN
-			select * from Usuarios where nombre Like '%'+@TerminoDeBusqueda+'%' and activo = 1
+			select * 
+			from Usuarios u INNER JOIN TiposDeUsuario tu ON u.idTipoDeUsuario = tu.idTipoDeUsuario
+			where u.nombre Like '%'+@TerminoDeBusqueda+'%' and u.activo = 1
 			
 		END
 	Else
 		BEGIN
-			select * from Usuarios where  activo = 1		
+			select * 
+			from Usuarios u INNER JOIN TiposDeUsuario tu ON u.idTipoDeUsuario = tu.idTipoDeUsuario
+			where  u.activo = 1		
 		END
 END
