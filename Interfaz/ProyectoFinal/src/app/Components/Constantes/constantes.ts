@@ -3,7 +3,7 @@ export const RecursosDeIdioma = {
     MensajesFormularios :
     {
         CAMPO_OBLIGATORIO:'Este campo es obligatorio.',
-        CAMPO_UNDEFINED:'Campo Undefined',
+        CAMPO_INVALIDO: 'El dato ingresado no es correcto.',
     },
     MensajesServicios : 
     {
@@ -72,13 +72,9 @@ export const ExpresionesRegulares = {
     LETRAS_Y_ESPACIOS : new RegExp("^[a-zA-Z ]+$"),
     MAIL : new RegExp("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"),
     LETRAS_NUMEROS_Y_ESPACIOS : new RegExp("^[a-zA-Z0-9 ]+$"),
+    NUMEROS: new RegExp("^[0-9]+$"),
 }
 
-export const EstilosDeFormulario = {
-    FORMULARIO : 'form-control',
-    VALIDO : 'form-control is-valid',
-    INVALIDO : 'form-control is-invalid',
-}
 
 
 

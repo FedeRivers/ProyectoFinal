@@ -3,6 +3,7 @@ import { TipoDeUsuarioService } from '../../Services/tipoDeUsuario.service';
 import { ModalComponent } from '../Modal/modal.component';
 import { Usuario } from '../Usuario/class/usuario';
 import { TipoDeUsuario } from './class/tipoDeUsuario';
+import { ListarTipoDeUsuarioIn } from '../../Parametros/Entrada/ListarTipoDeUsuarioIn';
 
 @Component({
   selector: 'app-tipoDeUsuario',
@@ -32,8 +33,10 @@ export class TipoDeUsuarioComponent implements OnInit {
   }
 
   Listar(){
+    let listarTipoDeUsuarioIn:ListarTipoDeUsuarioIn;
+    listarTipoDeUsuarioIn = new ListarTipoDeUsuarioIn();
     this.tiposDeUsuario = [];
-    this.tipoDeUsuarioService.ListarTipoDeUsuario()
+    this.tipoDeUsuarioService.ListarTipoDeUsuario(listarTipoDeUsuarioIn)
     .subscribe( lista => {
       if(lista.TiposDeUsuario!=undefined){
          lista.TiposDeUsuario.forEach(( valor : TipoDeUsuario)=>{
@@ -41,6 +44,7 @@ export class TipoDeUsuarioComponent implements OnInit {
         })
       }
     }, err => {
+         this.modal.Mensaje = err;
          this.modal.Error = true;
          this.modal.open(); 
     });

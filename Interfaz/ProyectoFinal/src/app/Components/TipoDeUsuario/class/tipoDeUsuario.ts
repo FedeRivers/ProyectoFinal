@@ -1,3 +1,5 @@
+import { Modulo } from "../../Modulo/class/modulo";
+
 export class TipoDeUsuario{
     private idTipoDeUsuario!: number;
  
@@ -5,6 +7,8 @@ export class TipoDeUsuario{
     
     private active!: boolean;
    
+    private modulos: Modulo[] = [];
+
     constructor(){}
 
     public get IdTipoDeUsuario(): number {
@@ -13,7 +17,6 @@ export class TipoDeUsuario{
     public set IdTipoDeUsuario(value: number) {
         this.idTipoDeUsuario = value;
     }
-
     public get Nombre(): string {
         return this.nombre;
     }
@@ -25,5 +28,11 @@ export class TipoDeUsuario{
     }
     public set Active(value: boolean) {
         this.active = value;
+    }
+    public get Modulos(): Modulo[] {
+        return this.modulos;
+    }
+    public set Modulos(value: Modulo[]) {
+        this.modulos = value;
     }
 }

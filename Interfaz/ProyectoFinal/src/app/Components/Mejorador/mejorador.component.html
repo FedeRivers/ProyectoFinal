@@ -14,24 +14,24 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNombre">Nombre:</span>
-                    <input name="txtNombre" [(ngModel)]="Nombre" [ngClass]="ValidarNombre()" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre" required>
-                    <div class="invalid-feedback">{{NombreEsValido}}</div>
+                    <input name="txtNombre" [(ngModel)]="Mejorador.Nombre" [ngClass]="Mejorador.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
+                        required>
+                    <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMail">Mail:</span>
-                    <input name="txtMail" [(ngModel)]="Mail" [ngClass]="ValidarMail()" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail" required>
-                    <div class="invalid-feedback">{{MailEsValido}}</div>
+                    <input name="txtMail" class="form-control" [(ngModel)]="Mejorador.Mail" [ngClass]="Mejorador.Mail!=undefined ? ValidarMail() ? 'is-valid':'is-invalid':'form-control'" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail" required>
+                    <div class="invalid-feedback">{{MensajeMailInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanDireccion">Dirección:</span>
-                    <input name="txtDireccion" [(ngModel)]="Direccion" [ngClass]="ValidarDireccion()" placeholder="Ingrese dirección" aria-label="txtDireccion" aria-describedby="spanDireccion" requeried>
-                    <div class="invalid-feedback">{{DireccionEsValido}}</div>
+                    <input name="txtDireccion" class="form-control" [(ngModel)]="Mejorador.Direccion" [ngClass]="Mejorador.Direccion!=undefined ? ValidarDireccion() ? 'is-valid':'is-invalid':'form-control'" placeholder="Ingrese dirección" aria-label="txtDireccion" aria-describedby="spanDireccion"
+                        requeried>
+                    <div class="invalid-feedback">{{MensajeDireccionInvalido}}</div>
                 </div>
                 <div class="">
                     <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaMejorador()">Agregar Mejorador</button>
-
                     <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaMejorador()">Eliminar Mejorador</button>
-
                     <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarMejorador()">Modificar Mejorador</button>
                 </div>
             </form>

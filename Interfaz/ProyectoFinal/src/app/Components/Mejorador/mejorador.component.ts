@@ -6,7 +6,8 @@ import { BajaMejoradorIn } from '../../Parametros/Entrada/BajaMejoradorIn';
 import { ModificarMejoradorIn } from '../../Parametros/Entrada/ModificarMejoradorIn';
 import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
 import { ModalComponent } from '../Modal/modal.component';
-import { ExpresionesRegulares, EstilosDeFormulario, RecursosDeIdioma } from '../Constantes/constantes';
+import { ExpresionesRegulares, RecursosDeIdioma } from '../Constantes/constantes';
+import { convertTypeAcquisitionFromJson } from 'typescript';
 
 
 
@@ -26,10 +27,14 @@ export class MejoradorComponent implements OnInit {
   private btnAlta: boolean = false;
   private btnBaja: boolean = false;
   private btnModificar: boolean = false;
-  private nombreEsValido!: string; 
-  private mailEsValido!: string;
-  private direccionEsValido!: string;
-  
+  private nombreEsValido:boolean = false;
+  private mailEsValido: boolean = false;
+  private direccionEsValido: boolean = false;
+  private mensajeNombreInvalido: string = '';
+  private mensajeMailInvalido: string = '';
+  private mensajeDireccionInvalido: string = '';
+
+
   @ViewChild("modal") modal: ModalComponent;
 
   constructor(private mejoradorServicio:MejoradorService) {
@@ -63,6 +68,12 @@ export class MejoradorComponent implements OnInit {
     },500)
   }
   
+  public get Mejorador(): Mejorador {
+    return this.mejorador;
+  }
+  public set Mejorador(value: Mejorador) {
+    this.mejorador = value;
+  }
   public get Mejoradores():Mejorador[] {
     return this.mejoradores;
   }
@@ -70,70 +81,67 @@ export class MejoradorComponent implements OnInit {
     this.mejoradores = value;
   }
 
+// #region Get y Set de botones (utilizado para habilitar y deshabilitar los mismos).
   public get BtnAlta(): boolean {
     return this.btnAlta;
   }
   public set BtnAlta(value: boolean) {
     this.btnAlta = value;
   }
-
   public get BtnBaja(): boolean {
     return this.btnBaja;
   }
   public set BtnBaja(value: boolean) {
     this.btnBaja = value;
   }
-
   public get BtnModificar(): boolean {
     return this.btnModificar;
   }
   public set BtnModificar(value: boolean) {
     this.btnModificar = value;
   }
-  public get NombreEsValido(): string {
+  //#endregion
+  //#region Get y Set de validar datos introducidos por el usuario.
+  public get NombreEsValido(): boolean {
     return this.nombreEsValido;
   }
-  public set NombreEsValido(value: string) {
+  public set NombreEsValido(value: boolean) {
     this.nombreEsValido = value;
   }
-  public get MailEsValido(): string {
+  public get MailEsValido(): boolean {
     return this.mailEsValido;
   }
-  public set MailEsValido(value: string) {
+  public set MailEsValido(value: boolean) {
     this.mailEsValido = value;
   }
-  public get DireccionEsValido(): string {
+  public get DireccionEsValido(): boolean {
     return this.direccionEsValido;
   }
-  public set DireccionEsValido(value: string) {
+  public set DireccionEsValido(value: boolean) {
     this.direccionEsValido = value;
   }
+  //#endregion
+  //#region Get y Set de mensajes de error para mostrar al usuario
+  public get MensajeNombreInvalido(): string {
+    return this.mensajeNombreInvalido;
+  }
+  public set MensajeNombreInvalido(value: string) {
+    this.mensajeNombreInvalido = value;
+  }
+  public get MensajeMailInvalido(): string {
+    return this.mensajeMailInvalido;
+  }
+  public set MensajeMailInvalido(value: string) {
+    this.mensajeMailInvalido = value;
+  }
+  public get MensajeDireccionInvalido(): string {
+    return this.mensajeDireccionInvalido;
+  }
+  public set MensajeDireccionInvalido(value: string) {
+    this.mensajeDireccionInvalido = value;
+  }
+  //#endregion
   
-
-  @Input()
-  set Nombre(value:string){
-    this.mejorador.Nombre = value;
-  }; 
-  get Nombre() : string{
-    return this.mejorador.Nombre;
-  };
- 
-  @Input()
-  set Mail(value:string){
-    this.mejorador.Mail = value;
-  }; 
-  get Mail(){
-    return this.mejorador.Mail;
-  };
-
-  @Input()
-  set Direccion(value:string){
-    this.mejorador.Direccion = value;
-  };
-  get Direccion(){
-    return this.mejorador.Direccion;
-  };
-
   AltaMejorador(){
     this.altaMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
@@ -234,69 +242,75 @@ export class MejoradorComponent implements OnInit {
     
   }
  
-  ValidarNombre():string
+  ValidarNombre():boolean
   {
-    this.nombreEsValido = RecursosDeIdioma.MensajesFormularios.CAMPO_UNDEFINED;
-    if(this.mejorador.Nombre != undefined)
+    if(this.mejorador.Nombre != '')
     {
-      if(this.mejorador.Nombre != '' && ExpresionesRegulares.LETRAS_Y_ESPACIOS.test(this.mejorador.Nombre))
+      if(ExpresionesRegulares.LETRAS_Y_ESPACIOS.test(this.mejorador.Nombre))
       {
-        this.nombreEsValido = '';
-        return EstilosDeFormulario.VALIDO;
+        this.nombreEsValido = true;
       }
       else
       {
-        this.nombreEsValido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-        return EstilosDeFormulario.INVALIDO;
+        this.nombreEsValido = false;
+        this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
       }
     }
-    return EstilosDeFormulario.FORMULARIO;
+    else
+    {
+      this.nombreEsValido = false;
+      this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
+    }
+    return this.nombreEsValido;
   }
 
-  ValidarMail():string
+  ValidarMail():boolean
   {
-    this.mailEsValido = RecursosDeIdioma.MensajesFormularios.CAMPO_UNDEFINED;
-    if(this.mejorador.Mail != undefined)
+    if(this.mejorador.Mail != '')
     {
-      if(this.mejorador.Mail != '' && ExpresionesRegulares.MAIL.test(this.mejorador.Mail))
+      if(ExpresionesRegulares.MAIL.test(this.mejorador.Mail))
       {
-        this.mailEsValido = '';
-        return EstilosDeFormulario.VALIDO;
+        this.mailEsValido = true;
       }
       else
       {
-        this.mailEsValido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-        return EstilosDeFormulario.INVALIDO;
+        this.mailEsValido = false;
+        this.mensajeMailInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
       }
     }
-    return EstilosDeFormulario.FORMULARIO;
+    else
+    {
+      this.mailEsValido = false;
+      this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
+    }
+    return this.mailEsValido;
   }
 
-  ValidarDireccion():string
+  ValidarDireccion():boolean
   {
-    this,this.direccionEsValido = RecursosDeIdioma.MensajesFormularios.CAMPO_UNDEFINED;
-    if(this.mejorador.Direccion != undefined)
+    if(this.mejorador.Direccion != '')
     {
-      if(this.mejorador.Direccion != '' && ExpresionesRegulares.LETRAS_NUMEROS_Y_ESPACIOS.test(this.mejorador.Direccion))
+      if(ExpresionesRegulares.LETRAS_NUMEROS_Y_ESPACIOS.test(this.mejorador.Direccion))
       {
-        this.DireccionEsValido = '';
-        return EstilosDeFormulario.VALIDO;
+        this.direccionEsValido = true;
       }
       else
       {
-        this.DireccionEsValido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-        return EstilosDeFormulario.INVALIDO;
+        this.direccionEsValido = false;
+        this.mensajeDireccionInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
       }
     }
-    return EstilosDeFormulario.FORMULARIO;
+    else
+    {
+      this.DireccionEsValido = false;
+      this.mensajeDireccionInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
+    }
+  return this.direccionEsValido;
   }
-
-
-
 
   ValidarFormulario():boolean
   {
-    return this.nombreEsValido=='' && this.mailEsValido=='' && this.direccionEsValido=='';
+    return this.nombreEsValido && this.mailEsValido && this.direccionEsValido;
   }
 
 }
