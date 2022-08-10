@@ -22,7 +22,7 @@ namespace ProyectoFinal._1_Servicios
         [HttpGet]
         public ListarModulosPorTipoDeUsuarioOut ListarModulosPorTipoDeUsuario(ListarModulosPorTipoDeUsuarioIn input)
         {
-            return new CRUDTipoDeUsuario().ListarTiposDeUsuario(input);
+            return new CRUDTipoDeUsuario().ListarModulosPorTipoDeUsuario(input);
         }
 
         // POST: api/TipoDeUsuario

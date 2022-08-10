@@ -1,11 +1,5 @@
-import { ParametroBaseOut } from './ParametroBaseOut';
-export class ModificarMejoradorOut extends ParametroBaseOut{
+export class ModificarMejoradorOut{
     
-
-constructor(){
-    super();
-    this.MensajeExito='Mejorador modificado con éxito.';
-    this.MensajeError='Ocurrió un error al modificar el mejorador.';
-}
+constructor(){}
 
 }

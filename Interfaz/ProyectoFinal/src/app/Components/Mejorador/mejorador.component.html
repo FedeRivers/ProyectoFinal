@@ -5,87 +5,103 @@
     <title>ABM Mejorador</title>
 </head>
 
-<body class="container">
-    <div class=row *ngIf="EstaSeleccionado">
-        <div class="col-md-12">
-            <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
-        </div>
-        <div class="col-md-12">
-            <input name="txtNombre" [(ngModel)]="Nombre" placeholder="Ingrese nombre" required>
-        </div>
-        <div class="col-md-12">
-            <input name="txtMail" [(ngModel)]="Mail" placeholder="Ingrese mail" required>
-        </div>
-        <div class="col-md-12">
-            <input name="txtDireccion" [(ngModel)]="Direccion" placeholder="Ingrese dirección" required>
-        </div>
-        <div class="col-md-4 col-lg-4">
-            <button (click)="AltaMejorador()">Agregar Mejorador</button>
-        </div>
-        <div class="col-md-4 col-lg-4">
-            <button (click)="BajaMejorador()">Eliminar Mejorador</button>
-        </div>
-        <div class="col-md-4 col-lg-4">
-            <button (click)="ModificarMejorador()">Modificar Mejorador</button>
-        </div>
-    </div>
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
+            <!-- <div class="col-md-2"></div> -->
+            <form class="col-md-8 form border border-5">
+                <div class="col-md-12">
+                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanNombre">Nombre:</span>
+                    <input name="txtNombre" [(ngModel)]="Nombre" class="form-control" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre" required>
+                    <div class="invalid-feedback">Probando campo</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanMail">Mail:</span>
+                    <input name="txtMail" [(ngModel)]="Mail" class="form-control" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanDireccion">Dirección:</span>
+                    <input name="txtDireccion" [(ngModel)]="Direccion" class="form-control" placeholder="Ingrese dirección" aria-label="txtDireccion" aria-describedby="spanDireccion" requeried>
+                </div>
+                <div class="">
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1" (click)="AltaMejorador()">Agregar Mejorador</button>
 
-    <div *ngIf="!EstaSeleccionado">
-        <div class="mb-3 row">
-            <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
-            <div class="col-xs-3 col-sm-auto">
-                <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success" (click)="BajaMejorador()">Eliminar Mejorador</button>
+
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1" (click)="ModificarMejorador()">Modificar Mejorador</button>
+                </div>
+            </form>
+            <!-- <div class="col-md-4"></div> -->
+        </div>
+
+        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
+            <div class="row input-group">
+                <div class="row mb-3 col-md-8">
+
+                    <label for="txtTerminoDeBusqueda" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="txtTerminoDeBusqueda" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
+                    </div>
+                    <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
+
+                </div>
+                <div class="col-md-2"></div>
+                <div class="mb-3 ml-auto col-md-2">
+                    <span class="input-group">             
+                    <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
+                        <i id="iAgregar" class="bi bi-plus-square"></i>
+                        Agregar                
+                    </button>
+                </span>
+                </div>
             </div>
-            <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
-        </div>
 
-        <table class="table table-hover">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col" sortable="nombre">Nombre</th>
-                    <th scope="col" sortable="mail">Mail</th>
-                    <th scope="col" sortable="direccion">Direccion</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="pointer" *ngFor="let mejorador of Mejoradores">
-                    <td>
-                        <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                        <ngb-highlight [result]="mejorador.Nombre"></ngb-highlight>
-                    </td>
-                    <td>
-                        <ngb-highlight [result]="mejorador.Mail "></ngb-highlight>
-                    </td>
-                    <td>
-                        <ngb-highlight [result]="mejorador.Direccion"></ngb-highlight>
-                    </td>
-                    <td>
-                        <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(mejorador)"></i>
-                    </td>
-                    <td>
-                        <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(mejorador)"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-between p-2">
-            <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-            <!-- </ngb-pagination> -->
+            <table class="table table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col" sortable="nombre">Nombre</th>
+                        <th scope="col" sortable="mail">Mail</th>
+                        <th scope="col" sortable="direccion">Direccion</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" *ngFor="let mejorador of Mejoradores">
+                        <td>
+                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
+                            <ngb-highlight [result]="mejorador.Nombre"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="mejorador.Mail "></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="mejorador.Direccion"></ngb-highlight>
+                        </td>
+                        <td>
+                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(mejorador); BotonSeleccionado('Modificar')"></i>
+                        </td>
+                        <td>
+                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(mejorador);BotonSeleccionado('Baja')"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
+                <!-- </ngb-pagination> -->
 
-            <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-            <!-- <option [ngValue]="2">2 items per page</option> -->
-            <!-- <option [ngValue]="4">4 items per page</option> -->
-            <!-- <option [ngValue]="6">6 items per page</option> -->
-            <!-- </select> -->
+                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
+                <!-- <option [ngValue]="2">2 items per page</option> -->
+                <!-- <option [ngValue]="4">4 items per page</option> -->
+                <!-- <option [ngValue]="6">6 items per page</option> -->
+                <!-- </select> -->
+            </div>
         </div>
     </div>
-
-
-
-
-
 </body>
 <app-modal #modal (Aceptar)="Ocultar()" (Cerrar)="Ocultar()"></app-modal>
 

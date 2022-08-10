@@ -1,16 +1,20 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Mensaje</h4>
-        <button type="button" class="btn bi bi-x-square" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <div class="mb-3">
-                <span>{{MensajeResultado()}}</span>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Mensaje</h4>
+            <!-- <button type="button" class="btn bi bi-x-square " style="font-size: 2rem; color: cornflowerblue;" (click)="modal.dismiss('Cross click')"></button> -->
+            <i class="btn bi bi-x-square " style="font-size: 2rem; color:darkgray;" (click)="modal.dismiss('Cross click')"></i>
+        </div>
+        <div class="modal-body">
+            <form [ngClass]="Error==true ? 'alert alert-danger' : 'alert alert-success'">
+                <div class="mb-3">
+                    <span>{{Mensaje}}</span>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="button" class="alert alert-success" (click)="modal.close('Save click')">Save</button> -->
+            <button type="button" [ngClass]="Error==true ? 'btn btn-outline-danger' : 'btn btn-outline-success'" (click)="modal.close('Save click')">Aceptar</button>
+        </div>
     </div>
 </ng-template>

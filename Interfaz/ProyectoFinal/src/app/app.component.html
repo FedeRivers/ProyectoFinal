@@ -1,23 +1,23 @@
 <ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content">
     <li [ngbNavItem]="1" *ngIf="Mejorador">
-        <a ngbNavLink>Simple</a>
+        <a ngbNavLink><b>Mejoradores</b></a>
         <ng-template ngbNavContent>
             <app-mejorador></app-mejorador>
         </ng-template>
     </li>
     <li [ngbNavItem]="2" *ngIf="Usuario">
-        <a ngbNavLink><b>Fancy</b> title</a>
+        <a ngbNavLink><b>Usuarios</b></a>
         <ng-template ngbNavContent>
             <app-usuario></app-usuario>
         </ng-template>
     </li>
     <li [ngbNavItem]="3" *ngIf="TipoDeUsuario">
-        <a ngbNavLink><b>Fancy</b> title</a>
+        <a ngbNavLink><b>Tipos de Usuarios</b></a>
         <ng-template ngbNavContent>
             <app-tipoDeUsuario></app-tipoDeUsuario>
         </ng-template>
     </li>
-    <li ngbDropdown class="nav-item" *ngIf="Mejorador">
+    <!-- <li ngbDropdown class="nav-item" *ngIf="Mejorador"> 
         <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
         <div ngbDropdownMenu>
             <button ngbDropdownItem>Action</button>
@@ -32,7 +32,7 @@
         <a ngbNavLink>Disabled</a>
         <ng-template ngbNavContent>
         </ng-template>
-    </li>
+    </li>-->
 </ul>
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
 

@@ -1,19 +1,12 @@
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AltaMejoradorIn } from '../../Parametros/Entrada/AltaMejoradorIn';
 import { MejoradorService } from '../../Services/mejorador.service';
 import { Mejorador } from './class/mejorador';
 import { BajaMejoradorIn } from '../../Parametros/Entrada/BajaMejoradorIn';
 import { ModificarMejoradorIn } from '../../Parametros/Entrada/ModificarMejoradorIn';
 import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
-import { ListarMejoradorOut } from '../../Parametros/Salida/ListarMejoradorOut';
 import { ModalComponent } from '../Modal/modal.component';
-import { AltaMejoradorOut } from '../../Parametros/Salida/AltaMejoradorOut';
-import { BajaMejoradorOut } from 'src/app/Parametros/Salida/BajaMejoradorOut';
-import { ModificarMejoradorOut } from 'src/app/Parametros/Salida/ModificarMejoradorOut';
-import { Timeouts } from 'selenium-webdriver';
-
-
-
+import { Mensajes } from '../Modal/Mensajes/mensajes';
 
 @Component({
   selector: 'app-mejorador',
@@ -28,7 +21,11 @@ export class MejoradorComponent implements OnInit {
   private terminoDeBusqueda: string='';
   private mejoradores: Mejorador[];
   private estaSeleccionado: boolean = false;
-  @ViewChild("modal") modal!: ModalComponent;
+  private btnAlta: boolean = false;
+  private btnBaja: boolean = false;
+  private btnModificar: boolean = false;
+
+  @ViewChild("modal") modal: ModalComponent;
 
   constructor(private mejoradorServicio:MejoradorService) {
     this.altaMejoradorIn = new AltaMejoradorIn();
@@ -51,8 +48,6 @@ export class MejoradorComponent implements OnInit {
     this.estaSeleccionado = value;
   }
 
-
-
   public get TerminoDeBusqueda(): string {
     return this.terminoDeBusqueda;
   }
@@ -60,9 +55,8 @@ export class MejoradorComponent implements OnInit {
     this.terminoDeBusqueda = value;
     setTimeout(()=>{
       this.Listar();
-    },1500)
+    },500)
   }
-
   
   public get Mejoradores():Mejorador[] {
     return this.mejoradores;
@@ -71,6 +65,26 @@ export class MejoradorComponent implements OnInit {
     this.mejoradores = value;
   }
 
+  public get BtnAlta(): boolean {
+    return this.btnAlta;
+  }
+  public set BtnAlta(value: boolean) {
+    this.btnAlta = value;
+  }
+
+  public get BtnBaja(): boolean {
+    return this.btnBaja;
+  }
+  public set BtnBaja(value: boolean) {
+    this.btnBaja = value;
+  }
+
+  public get BtnModificar(): boolean {
+    return this.btnModificar;
+  }
+  public set BtnModificar(value: boolean) {
+    this.btnModificar = value;
+  }
 
   
 
@@ -100,12 +114,13 @@ export class MejoradorComponent implements OnInit {
 
   AltaMejorador(){
     this.altaMejoradorIn.mejorador = this.mejorador;
-    this.modal.ParametroOut = new AltaMejoradorOut();
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
+         this.modal.Mensaje = Mensajes.AltaMejoradorExito;
          this.modal.Error = false;
          this.modal.open(); 
         }, err => {
+          this.modal.Mensaje = Mensajes.AltaMejoradorError;
           this.modal.Error = true;
           this.modal.open(); 
         }
@@ -113,14 +128,14 @@ export class MejoradorComponent implements OnInit {
   }
 
   BajaMejorador(){
-    this.modal.MensajeResultado  
     this.bajaMejoradorIn.idMejorador = this.mejorador.IdMejorador;
-    this.modal.ParametroOut = new BajaMejoradorOut();
     this.mejoradorServicio.Baja(this.bajaMejoradorIn)
       .subscribe( mejorador => {
+        this.modal.Mensaje = Mensajes.BajaMejoradorExito;
         this.modal.Error = false;
         this.modal.open(); 
        }, err => {
+         this.modal.Mensaje = Mensajes.BajaMejoradorError;
          this.modal.Error = true;
          this.modal.open(); 
        }
@@ -129,35 +144,17 @@ export class MejoradorComponent implements OnInit {
 
   ModificarMejorador(){
     this.modificarMejoradorIn.mejorador = this.mejorador;
-    this.modal.ParametroOut = new ModificarMejoradorOut();
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => {
+        this.modal.Mensaje = Mensajes.ModificarMejoradorExito;
         this.modal.Error = false;
         this.modal.open(); 
        }, err => {
+         this.modal.Mensaje = Mensajes.ModificarMejoradorError;
          this.modal.Error = true;
          this.modal.open(); 
        }
        );
-  }
-
-  Seleccionar(mejorador:Mejorador)
-  {
-    this.mejorador.IdMejorador = mejorador.IdMejorador;
-    this.mejorador.Nombre = mejorador.Nombre;
-    this.mejorador.Mail = mejorador.Mail;
-    this.mejorador.Direccion = mejorador.Direccion;  
-    this.Ocultar();
-  }
-
- Regresar()
-  {
-    this.mejorador = new Mejorador();
-    this.Ocultar();
-  }
-  Ocultar()
-  {
-    this.EstaSeleccionado = !this.EstaSeleccionado;
   }
 
   Listar(){
@@ -175,6 +172,46 @@ export class MejoradorComponent implements OnInit {
     }
       )
   }
+
+  Seleccionar(mejorador:Mejorador)
+  {
+    this.mejorador.IdMejorador = mejorador.IdMejorador;
+    this.mejorador.Nombre = mejorador.Nombre;
+    this.mejorador.Mail = mejorador.Mail;
+    this.mejorador.Direccion = mejorador.Direccion;  
+    this.Ocultar();
+  }
+
+ Regresar()
+  {
+    this.mejorador = new Mejorador();
+    this.Ocultar();
+    this.btnAlta = false;
+    this.btnBaja = false;
+    this.btnModificar = false;
+  }
+  Ocultar()
+  {
+    this.EstaSeleccionado = !this.EstaSeleccionado;
+  }
+
+  BotonSeleccionado(boton:string)
+  {
+    switch(boton)
+    {
+      case "Alta":
+        this.btnAlta = true;
+        break;
+      case "Baja":
+        this.btnBaja = true;
+        break;
+      case "Modificar":
+        this.btnModificar = true;
+        break;
+    }
+    
+  }
+ 
 
 
  

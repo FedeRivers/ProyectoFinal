@@ -1,5 +1,3 @@
-import { Mejorador } from "src/app/Components/Mejorador/class/mejorador";
-
 export class BajaMejoradorIn {
     
     private IdMejorador!: Number;
