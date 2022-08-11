@@ -17,6 +17,7 @@ import { TipoDeUsuarioComponent } from './Components/TipoDeUsuario/tipoDeUsuario
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
