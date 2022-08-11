@@ -7,9 +7,6 @@ import { ModificarMejoradorIn } from '../../Parametros/Entrada/ModificarMejorado
 import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
 import { ModalComponent } from '../Modal/modal.component';
 import { ExpresionesRegulares, RecursosDeIdioma } from '../Constantes/constantes';
-import { convertTypeAcquisitionFromJson } from 'typescript';
-
-
 
 @Component({
   selector: 'app-mejorador',

@@ -65,6 +65,7 @@ export const MetodosUrl = {
     TiposDeUsuario :
     {
         LISTAR: 'ListarTiposDeUsuario',
+        LISTARMODULOSPORTIPODEUSUARIO: 'ListarModulosPorTipoDeUsuario',
     }   
 }
 

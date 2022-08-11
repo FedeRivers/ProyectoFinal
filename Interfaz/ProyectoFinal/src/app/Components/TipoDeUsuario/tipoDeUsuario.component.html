@@ -1,43 +1,107 @@
-<body class="container">
-    <div>
-        <table class="table table-hover">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col" sortable="nombre">Nombre</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="pointer" *ngFor="let tipoDeUsuario of TiposDeUsuario">
-                    <td>
-                        <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                        <ngb-highlight [result]="tipoDeUsuario.Nombre"></ngb-highlight>
-                    </td>
-                    <td>
-                        <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar"></i>
-                    </td>
-                    <td>
-                        <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-between p-2">
-            <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-            <!-- </ngb-pagination> -->
+<!DOCTYPE html>
+<html lang="es-ES">
 
-            <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-            <!-- <option [ngValue]="2">2 items per page</option> -->
-            <!-- <option [ngValue]="4">4 items per page</option> -->
-            <!-- <option [ngValue]="6">6 items per page</option> -->
-            <!-- </select> -->
+<head>
+    <title>Modificar Tipo de Usuario</title>
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
+            <div class="col-md-2"></div>
+            <form class="col-md-8 form border border-5">
+                <div class="col-md-12">
+                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanNombre">Nombre:</span>
+                    <input name="txtNombre" [(ngModel)]="TipoDeUsuario.Nombre" readonly aria-label="txtNombre" aria-describedby="spanNombre" required>
+                </div>
+            </form>
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-lg-4">
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="nombre">Modulos Disponibles:</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let modulo of Modulos">
+                            <td>
+                                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
+                                <ngb-highlight [result]="modulo.Nombre"></ngb-highlight>
+                            </td>
+                            <td>
+                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="nombre">Modulos Activos:</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let modulo of TipoDeUsuario.Modulos">
+                            <td>
+                                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
+                                <ngb-highlight [result]="modulo.Nombre"></ngb-highlight>
+                            </td>
+                            <td>
+                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div *ngIf="!EstaSeleccionado" class="row justify-content-md-center ">
+            <div class="col-md-4 col-lg-4 border p-2 border-opacity-10 mt-5">
+
+
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="nombre">Nombre</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let tipoDeUsuario of TiposDeUsuario">
+                            <td>
+                                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
+                                <ngb-highlight [result]="tipoDeUsuario.Nombre"></ngb-highlight>
+                            </td>
+                            <td>
+                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(tipoDeUsuario)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between p-2">
+                    <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
+                    <!-- </ngb-pagination> -->
+
+                    <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
+                    <!-- <option [ngValue]="2">2 items per page</option> -->
+                    <!-- <option [ngValue]="4">4 items per page</option> -->
+                    <!-- <option [ngValue]="6">6 items per page</option> -->
+                    <!-- </select> -->
+                </div>
+            </div>
         </div>
     </div>
-
-
-
-
-
 </body>
-<app-modal #modal></app-modal>
+<app-modal #modal (Aceptar)="Ocultar()" (Cerrar)="Ocultar()"></app-modal>
+
+</html>
