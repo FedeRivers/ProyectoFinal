@@ -59,6 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="Tablas" />
     <Folder Include="StoreProcedure" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tablas\Usuarios.sql" />
@@ -77,6 +78,7 @@
     <Build Include="Tablas\Modulos.sql" />
     <Build Include="Tablas\ModulosPorTiposDeUsuario.sql" />
     <Build Include="StoreProcedure\ListarModulosPorTipoDeUsuario.sql" />
+    <PostDeploy Include="Scripts\CatalogoUsuarios.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />
