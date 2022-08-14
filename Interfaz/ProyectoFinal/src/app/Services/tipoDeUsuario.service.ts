@@ -5,6 +5,8 @@ import { ListarTiposDeUsuarioOut } from '../Parametros/Salida/ListarTiposDeUsuar
 import { ListarTipoDeUsuarioIn } from '../Parametros/Entrada/ListarTipoDeUsuarioIn';
 import { ListarModulosPorTipoDeUsuarioOut } from '../Parametros/Salida/ListarModulosPorTipoDeUsuarioOut';
 import { ListarModulosPorTipoDeUsuarioIn } from 'src/app/Parametros/Entrada/ListarModulosPorTipoDeUsuarioIn';
+import { ModificarTipoDeUsuarioIn } from '../Parametros/Entrada/ModificarTipoDeUsuario';
+
 
 
 
@@ -23,7 +25,14 @@ export class TipoDeUsuarioService {
 
   public ListarModulosPorTipoDeUsuario(listarModulosPorTipoDeUsuario:ListarModulosPorTipoDeUsuarioIn)
   {
-    return this.http.get<ListarModulosPorTipoDeUsuarioOut>(`${this.baseUrl+MetodosUrl.TiposDeUsuario.LISTARMODULOSPORTIPODEUSUARIO}`)
+    return this.http.get<ListarModulosPorTipoDeUsuarioOut>(`${this.baseUrl+MetodosUrl.TiposDeUsuario.LISTARMODULOSPORTIPODEUSUARIO}?IdTipoDeUsuario=${listarModulosPorTipoDeUsuario.IdTipoDeUsuario}`);
   }
+
+  public ModificarTipoDeUsuario(modificarTipoDeUsuarioIn:ModificarTipoDeUsuarioIn)
+  {
+    return this.http.post(`${this.baseUrl+MetodosUrl.TiposDeUsuario.MODIFICARTIPODEUSUARIO}`,modificarTipoDeUsuarioIn);
+  }
+
+  
 
 }

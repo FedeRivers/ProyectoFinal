@@ -6,23 +6,30 @@ import { ListarUsuariosIn } from 'src/app/Parametros/Entrada/ListarUsuariosIn';
 import { ModalComponent } from '../Modal/modal.component';
 import { ModificarUsuarioIn } from 'src/app/Parametros/Entrada/ModificarUsuarioIn';
 import { BajaUsuarioIn } from 'src/app/Parametros/Entrada/BajaUsuarioIn';
-import { ExpresionesRegulares, RecursosDeIdioma } from '../Constantes/constantes';
+import {  RecursosDeIdioma } from '../Constantes/constantes';
+import { FormularioBase } from '../FormularioBase/class/formularioBase';
+import { TipoDeUsuario } from '../TipoDeUsuario/class/tipoDeUsuario';
+import { ListarTipoDeUsuarioIn } from '../../Parametros/Entrada/ListarTipoDeUsuarioIn';
+import { TipoDeUsuarioService } from '../../Services/tipoDeUsuario.service';
+
+
 
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
-export class UsuarioComponent implements OnInit {
+export class UsuarioComponent extends FormularioBase implements OnInit {
 
   private usuario: Usuario;
   private altaUsuarioIn: AltaUsuarioIn;
   private bajaUsuarioIn: BajaUsuarioIn;
   private modificarUsuarioIn: ModificarUsuarioIn;
   private usuarios: Usuario[] = [];
+  private tiposDeUsuario: TipoDeUsuario[] = [];
   private terminoDeBusqueda: string = "";
   private estaSeleccionado: boolean = false;
-
+  
   private btnAlta: boolean = false;
   private btnBaja: boolean = false;
   private btnModificar: boolean = false;
@@ -35,14 +42,15 @@ export class UsuarioComponent implements OnInit {
   private mensajeApellidoInvalido: string = '';
   private mensajeMailInvalido: string = '';
   private mensajeCedulaInvalido: string = '';
-
+  
   @ViewChild("modal") modal: ModalComponent;
 
-  constructor(private usuarioServicio: UsuarioService) {
+  constructor(private usuarioServicio: UsuarioService,private tipoDeUsuarioServicio:TipoDeUsuarioService) {
+    super();
     this.usuario = new Usuario();
-    this.altaUsuarioIn = new AltaUsuarioIn;
-    this.bajaUsuarioIn = new BajaUsuarioIn;
-    this.modificarUsuarioIn = new ModificarUsuarioIn;
+    this.altaUsuarioIn = new AltaUsuarioIn();
+    this.bajaUsuarioIn = new BajaUsuarioIn();
+    this.modificarUsuarioIn = new ModificarUsuarioIn();
     this.Listar();
     this.modal = new ModalComponent();
   }
@@ -86,6 +94,13 @@ export class UsuarioComponent implements OnInit {
   public set Usuarios(value: Usuario[])
   {
     this.usuarios = value;
+  }
+
+  public get TiposDeUsuario(): TipoDeUsuario[] {
+    return this.tiposDeUsuario;
+  }
+  public set TiposDeUsuario(value: TipoDeUsuario[]) {
+    this.tiposDeUsuario = value;
   }
   //#endregion
 
@@ -170,13 +185,9 @@ export class UsuarioComponent implements OnInit {
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
       .subscribe( usuario => {
-        this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO;
-        this.modal.Error = false;
-        this.modal.open();     
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
        }, err => {
-         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR;
-         this.modal.Error = true;
-         this.modal.open(); 
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
        });
   }
 
@@ -212,21 +223,32 @@ export class UsuarioComponent implements OnInit {
 
   Listar()
   {
-    let listarUsuariosIn: ListarUsuariosIn;
-    listarUsuariosIn = new ListarUsuariosIn();
+    let listarUsuariosIn: ListarUsuariosIn = new ListarUsuariosIn();
     listarUsuariosIn.terminoDeBusqueda = this.terminoDeBusqueda;
     this.usuarios = [];
     this.usuarioServicio.Listar(listarUsuariosIn)
       .subscribe(lista => {
         if (lista.Usuarios != undefined) {
-            lista.Usuarios.forEach((valor: Usuario) => {
-            this.usuarios.push(valor);
-          })
+            this.usuarios = lista.Usuarios
+          }
+      }, err => {
+        this.modal.Error = true;
+        this.modal.open();
+    });
+  }
+
+  ListarTiposDeUsuario()
+  {
+    this.TiposDeUsuario = [];
+    this.tipoDeUsuarioServicio.ListarTipoDeUsuario(new ListarTipoDeUsuarioIn())
+      .subscribe( lista =>{
+        if(lista.TiposDeUsuario!=undefined) {
+          this.tiposDeUsuario = lista.TiposDeUsuario;
         }
       }, err => {
         this.modal.Error = true;
         this.modal.open();
-      });
+    });
   }
 
 
@@ -262,6 +284,7 @@ export class UsuarioComponent implements OnInit {
     {
       case "Alta":
         this.btnAlta = true;
+        this.ListarTiposDeUsuario();
         break;
       case "Baja":
         this.btnBaja = true;
@@ -275,90 +298,29 @@ export class UsuarioComponent implements OnInit {
 
   ValidarNombre():boolean
   {
-    if(this.usuario.Nombre != '')
-    {
-      if(ExpresionesRegulares.LETRAS_Y_ESPACIOS.test(this.usuario.Nombre))
-      {
-        this.nombreEsValido = true;
-      }
-      else
-      {
-        this.nombreEsValido = false;
-        this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }      
-    }
-    else
-    {
-      this.nombreEsValido = false;
-      this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO
-    }
+    this.mensajeNombreInvalido = this.ValidarLetras(this.usuario.Nombre);
+    this.mensajeNombreInvalido != '' ? this.nombreEsValido = false : this.nombreEsValido = true;
     return this.nombreEsValido;
   }
 
   ValidarApellido():boolean
   {
-    if(this.usuario.Apellido != '')
-    {
-      if(ExpresionesRegulares.LETRAS_Y_ESPACIOS.test(this.usuario.Apellido))
-      {
-        this.apellidoEsValido = true;
-      }
-      else
-      {
-        this.apellidoEsValido = false;
-        this.mensajeApellidoInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }
-    }
-    else
-    {
-      this.apellidoEsValido = false;
-      this.mensajeApellidoInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-    }
-
+    this.mensajeApellidoInvalido = this.ValidarLetrasYEspacio(this.usuario.Apellido);
+    this.mensajeApellidoInvalido != '' ? this.apellidoEsValido = false : this.apellidoEsValido = true;
     return this.apellidoEsValido;
   }
 
-  ValidarMail():boolean
+  ValidarMailUsuario():boolean
   {
-    if(this.usuario.Mail != '')
-    {
-      if(ExpresionesRegulares.MAIL.test(this.usuario.Mail))
-      {
-        this.mailEsValido = true;
-      }
-      else
-      {
-        this.mailEsValido = false;
-        this.mensajeMailInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }
-    }
-    else
-    {
-      this.MailEsValido = false;
-      this.mensajeMailInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-    }
-    return this.mailEsValido;
+   this.mensajeMailInvalido = this.ValidarMail(this.usuario.Mail);
+   this.mensajeMailInvalido != '' ? this.mailEsValido = false : this.mailEsValido = true;
+   return this.mailEsValido;
   }
 
-  ValidarCedula():boolean
+  ValidarCedulaUsuario():boolean
   {
-    if(this.usuario.Cedula != '')
-    {
-      if(ExpresionesRegulares.NUMEROS.test(this.usuario.Cedula))
-      {
-        this.cedulaEsValida = true;
-      }
-      else
-      {
-        this.cedulaEsValida = false;
-        this.mensajeCedulaInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }
-    }
-    else
-    {
-      this.cedulaEsValida = false;
-      this.mensajeCedulaInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-    }
+    this.mensajeCedulaInvalido = this.ValidarCedula(this.usuario.Cedula);
+    this.mensajeCedulaInvalido != '' ? this.cedulaEsValida = false : this.cedulaEsValida = true;
     return this.cedulaEsValida;
   }
 
@@ -366,5 +328,29 @@ export class UsuarioComponent implements OnInit {
   ValidarFormulario():boolean
   {
     return this.nombreEsValido && this.apellidoEsValido && this.mailEsValido && this.cedulaEsValida;
+  }
+
+  Confirmar(){
+    if(this.btnAlta)
+    {
+      this.AltaUsuario();
+    }
+    else if(this.btnBaja)
+    {
+      this.BajaUsuario();
+    }
+    else
+    {
+      this.ModificarUsuario();
+    }
+  }
+
+  AbrirModal(){
+    this.modal.open();
+  }
+
+  SeleccionarTipoDeUsuario(tipoDeUsuario:TipoDeUsuario)
+  {
+    this.usuario.TipoDeUsuario = tipoDeUsuario;
   }
 }

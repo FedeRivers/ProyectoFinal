@@ -7,10 +7,14 @@ export class Usuario {
     private mail!: string;
     private cedula!: string;
     private contrasena!: string;
-    private listaTiposDeUsuario: TipoDeUsuario[] = [];
+    private tipoDeUsuario: TipoDeUsuario;
     private activo!: string;
 
-    constructor(){}
+    constructor()
+    {
+        this.tipoDeUsuario = new TipoDeUsuario();
+    }
+
 
     public get IdUsuario(): number {
         return this.idUsuario;
@@ -54,11 +58,11 @@ export class Usuario {
         this.contrasena = value;
     }
 
-    public get ListaTiposDeUsuario(): TipoDeUsuario[] {
-        return this.listaTiposDeUsuario;
+    public get TipoDeUsuario(): TipoDeUsuario{
+        return this.tipoDeUsuario;
     }
-    public set ListaTiposDeUsuario(value: TipoDeUsuario[]) {
-        this.listaTiposDeUsuario = value;
+    public set TipoDeUsuario(value: TipoDeUsuario) {
+        this.tipoDeUsuario = value;
     }
 
     public get Activo(): string {

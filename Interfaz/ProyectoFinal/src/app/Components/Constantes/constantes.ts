@@ -7,6 +7,10 @@ export const RecursosDeIdioma = {
     },
     MensajesServicios : 
     {
+        Confirmacion:
+        {
+            PREGUNTA:'¿Desea confirmar los cambios?',
+        },
         Usuario :
         {
             Alta:
@@ -43,6 +47,14 @@ export const RecursosDeIdioma = {
                 EXITO:'Mejorador modificado con éxito.',
             },
         },
+        TipoDeUsuario :
+        {
+            Modificar : 
+            {
+                ERROR:'Ocurrió un error al modificar el tipo de usuario.',
+                EXITO:'Tipo de usuario modificado con éxito.',
+            }
+        }
     },
 }
 
@@ -66,10 +78,12 @@ export const MetodosUrl = {
     {
         LISTAR: 'ListarTiposDeUsuario',
         LISTARMODULOSPORTIPODEUSUARIO: 'ListarModulosPorTipoDeUsuario',
+        MODIFICARTIPODEUSUARIO: 'ModificarTipoDeUsuario',
     }   
 }
 
 export const ExpresionesRegulares = {
+    LETRAS : new RegExp("^[a-zA-Z]+$"),
     LETRAS_Y_ESPACIOS : new RegExp("^[a-zA-Z ]+$"),
     MAIL : new RegExp("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"),
     LETRAS_NUMEROS_Y_ESPACIOS : new RegExp("^[a-zA-Z0-9 ]+$"),
