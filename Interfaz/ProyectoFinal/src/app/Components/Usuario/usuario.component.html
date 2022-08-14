@@ -26,19 +26,28 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMail">Mail:</span>
-                    <input name="txtMail" [(ngModel)]="Usuario.Mail" [ngClass]="Usuario.Mail!=undefined ? ValidarMail() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail" required>
+                    <input name="txtMail" [(ngModel)]="Usuario.Mail" [ngClass]="Usuario.Mail!=undefined ? ValidarMailUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail"
+                        required>
                     <div class="invalid-feedback">{{MensajeMailInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanCedula">Cédula:</span>
-                    <input name="txtCedula" [(ngModel)]="Usuario.Cedula" [ngClass]="Usuario.Cedula!=undefined ? ValidarCedula() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese cédula de identidad" aria-label="txtCedula" aria-describedby="spanCedula"
+                    <input name="txtCedula" [(ngModel)]="Usuario.Cedula" [ngClass]="Usuario.Cedula!=undefined ? ValidarCedulaUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese cédula de identidad" aria-label="txtCedula" aria-describedby="spanCedula"
                         required>
                     <div class="invalid-feedback">{{CedulaEsValida}}</div>
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanTipoDeUsuario">Tipo de usuario:</span>
+                    <select name="txtTipoDeUsuario" class="form-select" [(ngModel)]="Usuario.TipoDeUsuario" aria-label="txtTipoDeUsuario" aria-describedby="spanTipoDeUsuario">
+                        <option *ngFor="let tipoDeUsuario of TiposDeUsuario"  value="{{tipoDeUsuario}}">
+                            {{tipoDeUsuario.Nombre}}
+                        </option>
+                    </select>
+                </div>
                 <div class="">
-                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaUsuario()">Agregar Usuario</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaUsuario()">Eliminar Usuario</button>
-                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarUsuario()">Modificar Usuario</button>
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Usuario</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Usuario</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Usuario</button>
                 </div>
             </form>
         </div>
@@ -110,6 +119,7 @@
         </div>
     </div>
 </body>
-<app-modal #modal (Aceptar)="Ocultar()" (Cerrar)="Ocultar()"></app-modal>
+<app-modal #modal (Aceptar)="Ocultar()" (Cancelar)="Ocultar()" (Confirmar)="Confirmar()"></app-modal>
+
 
 </html>

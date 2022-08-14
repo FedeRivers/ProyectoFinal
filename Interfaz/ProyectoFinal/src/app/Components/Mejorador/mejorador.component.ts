@@ -8,12 +8,14 @@ import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
 import { ModalComponent } from '../Modal/modal.component';
 import { ExpresionesRegulares, RecursosDeIdioma } from '../Constantes/constantes';
 
+
+
 @Component({
   selector: 'app-mejorador',
   templateUrl: './mejorador.component.html',
   styleUrls: ['./mejorador.component.css']
 })
-export class MejoradorComponent implements OnInit {
+export class MejoradorComponent implements OnInit  {
   private altaMejoradorIn:AltaMejoradorIn;
   private bajaMejoradorIn:BajaMejoradorIn;
   private modificarMejoradorIn:ModificarMejoradorIn;

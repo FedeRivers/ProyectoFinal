@@ -20,7 +20,7 @@ namespace ProyectoFinal._1_Servicios
         }
 
         [HttpGet]
-        public ListarModulosPorTipoDeUsuarioOut ListarModulosPorTipoDeUsuario(ListarModulosPorTipoDeUsuarioIn input)
+        public ListarModulosPorTipoDeUsuarioOut ListarModulosPorTipoDeUsuario([FromUri]ListarModulosPorTipoDeUsuarioIn input)
         {
             return new CRUDTipoDeUsuario().ListarModulosPorTipoDeUsuario(input);
         }

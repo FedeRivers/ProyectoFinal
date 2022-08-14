@@ -5,6 +5,9 @@ import { TipoDeUsuario } from './class/tipoDeUsuario';
 import { ListarTipoDeUsuarioIn } from '../../Parametros/Entrada/ListarTipoDeUsuarioIn';
 import { ListarModulosPorTipoDeUsuarioIn } from 'src/app/Parametros/Entrada/ListarModulosPorTipoDeUsuarioIn';
 import { Modulo } from '../Modulo/class/modulo';
+import { ModificarTipoDeUsuarioIn } from 'src/app/Parametros/Entrada/ModificarTipoDeUsuario';
+import { RecursosDeIdioma } from '../Constantes/constantes';
+
 
 @Component({
   selector: 'app-tipoDeUsuario',
@@ -20,12 +23,13 @@ export class TipoDeUsuarioComponent implements OnInit {
   private mensajeNombreInvalido: string = '';
 
   @ViewChild("modal") modal!: ModalComponent;
-  
+
   constructor( private tipoDeUsuarioService:TipoDeUsuarioService ) {
     this.tipoDeUsuario = new TipoDeUsuario();
     this.tiposDeUsuario = [];
     this.modulos = [];
     this.Listar();
+    this.ListarModulosPorTipoDeUsuario(new TipoDeUsuario());
     this.modal = new ModalComponent();
    }
    
@@ -90,16 +94,15 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.tipoDeUsuarioService.ListarModulosPorTipoDeUsuario(listarModulosPorTipoDeUsuarioIn)
     .subscribe( lista => {
       if(lista.Modulos!=undefined){
-        lista.Modulos.forEach((valor : Modulo)=>{
-          if(tipoDeUsuario.IdTipoDeUsuario!=null)
-          {
-            this.tipoDeUsuario.Modulos.push(valor);
-          }
-          else
-          {
-            this.modulos.push(valor);
-          }
-        })
+        if(tipoDeUsuario.IdTipoDeUsuario!=null)
+        {
+          this.tipoDeUsuario.Modulos = lista.Modulos;
+          this.FiltrarListaDeModulos();
+        }
+        else
+        {
+          this.modulos = lista.Modulos;
+        }
       }
     },err => {
         this.modal.Mensaje = err;
@@ -108,9 +111,26 @@ export class TipoDeUsuarioComponent implements OnInit {
     });
   }
 
-  Modificar(tipoDeUsuario:TipoDeUsuario)
+  ModificarTipoDeUsuario()
   {
+    let modificarTipoDeUsuarioIn:ModificarTipoDeUsuarioIn = new ModificarTipoDeUsuarioIn();
+    modificarTipoDeUsuarioIn.Modulos = this.tipoDeUsuario.Modulos;
+    this.tipoDeUsuarioService.ModificarTipoDeUsuario(modificarTipoDeUsuarioIn)
+    .subscribe( tipoDeUsuario => {
+      this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.TipoDeUsuario.Modificar.EXITO;
+      this.modal.Error = false;
+      this.modal.open(); 
+     }, err => {
+       this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.TipoDeUsuario.Modificar.ERROR;
+       this.modal.Error = true;
+       this.modal.open(); 
+     });
 
+  }
+
+  BotonModificar()
+  {
+    this.modal.open();
   }
 
   Seleccionar(tipoDeUsuario:TipoDeUsuario)
@@ -118,10 +138,8 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.tipoDeUsuario.IdTipoDeUsuario = tipoDeUsuario.IdTipoDeUsuario;
     this.tipoDeUsuario.Nombre = tipoDeUsuario.Nombre;
     this.tipoDeUsuario.Active = tipoDeUsuario.Active;
-    this.ListarModulosPorTipoDeUsuario(new TipoDeUsuario())
     this.ListarModulosPorTipoDeUsuario(tipoDeUsuario);
     this.Ocultar();
-
   }
 
   Regresar()
@@ -133,5 +151,26 @@ export class TipoDeUsuarioComponent implements OnInit {
   {
     this.EstaSeleccionado = !this.EstaSeleccionado;
   }
+
+  AgregarModuloATipoDeUsuario(modulo:Modulo)//Agrega un módulo a la lista de módulos que tiene un tipo de usuario
+  {
+    this.tipoDeUsuario.Modulos.push(modulo);
+    this.modulos.splice(this.modulos.indexOf(modulo),1);
+  }
+
+  QuitarModuloATipoDeUsuario(modulo:Modulo)//Quita un módulo a la lista de módulos que tiene un tipo de usuario
+  {
+    this.modulos.push(modulo);
+    this.tipoDeUsuario.Modulos.splice(this.tipoDeUsuario.Modulos.indexOf(modulo),1);
+  }
+
+
+  FiltrarListaDeModulos()
+  {
+    this.tipoDeUsuario.Modulos.forEach(moduloTipoUsuario => {
+      this.modulos = this.modulos.filter(modulo => moduloTipoUsuario.IdModulo != modulo.IdModulo);
+    });
+  }
+
 
 }
