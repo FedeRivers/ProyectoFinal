@@ -20,5 +20,10 @@ namespace ProyectoFinal._2_Dominio.Logica
             return new PTipoDeUsuario().ListarModulosPorTipoDeUsuario(input);
         }
 
+        public ModificarTipoDeUsuarioOut ModificarTipoDeUsuario(ModificarTipoDeUsuarioIn input)
+        {
+            return new PTipoDeUsuario().ModificarTipoDeUsuario(input);
+        }
+
     }
 }

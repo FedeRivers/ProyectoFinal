@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ProyectoFinal._2_Dominio.Entidades
+namespace ProyectoFinal.Parametros.Salida
 {
-    public class ModuloEnum
+    public class ModificarTipoDeUsuarioOut : ParametroBaseOut
     {
-
     }
 }

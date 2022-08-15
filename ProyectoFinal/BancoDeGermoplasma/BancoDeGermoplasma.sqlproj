@@ -60,6 +60,7 @@
     <Folder Include="Tablas" />
     <Folder Include="StoreProcedure" />
     <Folder Include="Scripts\" />
+    <Folder Include="User Defined Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tablas\Usuarios.sql" />
@@ -79,6 +80,8 @@
     <Build Include="Tablas\ModulosPorTiposDeUsuario.sql" />
     <Build Include="StoreProcedure\ListarModulosPorTipoDeUsuario.sql" />
     <PostDeploy Include="Scripts\CatalogoUsuarios.sql" />
+    <Build Include="User Defined Types\ModulosPDT.sql" />
+    <Build Include="StoreProcedure\ModificarTiposDeUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

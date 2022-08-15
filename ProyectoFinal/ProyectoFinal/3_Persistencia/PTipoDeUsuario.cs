@@ -1,5 +1,6 @@
 ﻿using ProyectoFinal._2_Dominio.Entidades;
 using ProyectoFinal._3_Persistencia.Models;
+using ProyectoFinal._3_Persistencia.Models.ParametroDeTabla;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -55,6 +56,27 @@ namespace ProyectoFinal._3_Persistencia
                             Activo = modulo.activo
                         });
                     }
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+            }
+
+            return output;
+        }
+
+        public ModificarTipoDeUsuarioOut ModificarTipoDeUsuario(ModificarTipoDeUsuarioIn input)
+        {
+            var output = new ModificarTipoDeUsuarioOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloTipoDeUsuarioDataContext())
+            {
+                var modulosPDT = input.TipoDeUsuario.Modulos.Select(m =>
+                new ModulosPDT
+                {
+                    IdModulo = m.IdModulo
+                }).ToList();
+
+                var result = dataContext.ExecuteCommand("dbo.ModificarTiposDeUsuario", input.TipoDeUsuario.IdTipoDeUsuario, modulosPDT);
+                if (result != null)
+                {
                     output.Status = new HttpStatusCodeResult(200);
                 }
             }

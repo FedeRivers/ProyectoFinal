@@ -25,6 +25,12 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDTipoDeUsuario().ListarModulosPorTipoDeUsuario(input);
         }
 
+        [HttpPost]
+        public ModificarTipoDeUsuarioOut ModificarTipoDeUsuario(ModificarTipoDeUsuarioIn input)
+        {
+            return new CRUDTipoDeUsuario().ModificarTipoDeUsuario(input);
+        }
+
         // POST: api/TipoDeUsuario
         public void Post([FromBody]string value)
         {
