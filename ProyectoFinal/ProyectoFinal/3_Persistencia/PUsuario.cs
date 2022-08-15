@@ -18,7 +18,7 @@ namespace ProyectoFinal._3_Persistencia
             var output = new AltaUsuarioOut{ Status = new HttpStatusCodeResult(404)};
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-               var result =  dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula);
+               var result =  dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario);
                 if (result != -1)
                 {
                     output.Status = new HttpStatusCodeResult(200);

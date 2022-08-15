@@ -8,7 +8,7 @@ export class Usuario {
     private cedula!: string;
     private contrasena!: string;
     private tipoDeUsuario: TipoDeUsuario;
-    private activo!: string;
+    private activo!: boolean;
 
     constructor()
     {
@@ -65,10 +65,10 @@ export class Usuario {
         this.tipoDeUsuario = value;
     }
 
-    public get Activo(): string {
+    public get Activo(): boolean {
         return this.activo;
     }
-    public set Activo(value: string) {
+    public set Activo(value: boolean) {
         this.activo = value;
     }
 }

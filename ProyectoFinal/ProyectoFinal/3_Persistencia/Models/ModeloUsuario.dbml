@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloUsuarioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESSFEDE;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
-
-  <Function Name="dbo.AltaUsuario" Method="AltaUsuario">
-    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Mail" Parameter="mail" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="Cedula" Parameter="cedula" Type="System.String" DbType="VarChar(10)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.ModificarUsuario" Method="ModificarUsuario">
     <Parameter Name="IdUsuario" Parameter="idUsuario" Type="System.Int32" DbType="Int" />
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
@@ -52,5 +43,14 @@
       <Column Name="activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="idTipoDeUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.AltaUsuario" Method="AltaUsuario">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Mail" Parameter="mail" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Cedula" Parameter="cedula" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="IdTipoDeUsuario" Parameter="idTipoDeUsuario" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
