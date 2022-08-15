@@ -257,13 +257,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
 
   Seleccionar(usuario:Usuario)
   {
-    this.usuario.IdUsuario = usuario.IdUsuario;
-    this.usuario.Nombre = usuario.Nombre;
-    this.usuario.Apellido = usuario.Apellido;  
-    this.usuario.Mail = usuario.Mail;
-    this.usuario.Cedula = usuario.Cedula;
-    this.usuario.Contrasena = usuario.Contrasena;
-    this.usuario.Activo = usuario.Activo;
+    this.usuario = usuario;
     this.Ocultar();
   }
 

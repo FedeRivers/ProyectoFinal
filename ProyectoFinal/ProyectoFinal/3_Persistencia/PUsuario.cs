@@ -98,13 +98,14 @@ namespace ProyectoFinal._3_Persistencia
                             output.Usuarios.Add(new Usuario
                             {
                                 IdUsuario = usuario.idUsuario,
-                                Nombre = usuario.nombre,
+                                Nombre = usuario.NombreUsuario,
                                 Apellido = usuario.apellido,
                                 Mail = usuario.mail,
                                 Contrasena = usuario.contrasena,
                                 Cedula = usuario.cedula,
                                 Activo = usuario.activo,
-                                TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = usuario.idTipoDeUsuario }
+                                TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = usuario.idTipoDeUsuario,
+                                                                    Nombre = usuario.NombreTipoDeUsuario }
                             });
                         }            
                     }
