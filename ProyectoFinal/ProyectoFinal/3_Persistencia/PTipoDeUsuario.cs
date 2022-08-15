@@ -5,6 +5,8 @@ using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -68,16 +70,30 @@ namespace ProyectoFinal._3_Persistencia
             var output = new ModificarTipoDeUsuarioOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloTipoDeUsuarioDataContext())
             {
-                var modulosPDT = input.TipoDeUsuario.Modulos.Select(m =>
-                new ModulosPDT
+                using (var tabla = new DataTable())
                 {
-                    IdModulo = m.IdModulo
-                }).ToList();
+                    foreach (var modulo in input.TipoDeUsuario.Modulos)
+                    {
+                        tabla.Rows.Add(modulo.IdModulo.ToString());
+                    }
 
-                var result = dataContext.ExecuteCommand("dbo.ModificarTiposDeUsuario", input.TipoDeUsuario.IdTipoDeUsuario, modulosPDT);
-                if (result != null)
-                {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var pList = new SqlParameter("@parametro", SqlDbType.Structured)
+                    {
+                        TypeName = "dbo.ModulosPDT",
+
+                        Value = tabla
+                    };
+                    //var modulosPDT = input.TipoDeUsuario.Modulos.Select(m =>
+                    //new ModulosPDT
+                    //{
+                    //    IdModulo = m.IdModulo
+                    //}).ToList();
+
+                    var result = dataContext.ExecuteCommand("dbo.ModificarTiposDeUsuario", input.TipoDeUsuario.IdTipoDeUsuario, pList);
+                    if (result != null)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
                 }
             }
 
