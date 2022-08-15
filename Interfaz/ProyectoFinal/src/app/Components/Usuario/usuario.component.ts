@@ -37,11 +37,14 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   private nombreEsValido: boolean = false; 
   private apellidoEsValido: boolean = false; 
   private mailEsValido: boolean = false; 
-  private cedulaEsValida: boolean = false; 
+  private cedulaEsValida: boolean = false;
+  private tipoDeUsuarioEsValido: boolean = false; 
+
   private mensajeNombreInvalido: string = '';
   private mensajeApellidoInvalido: string = '';
   private mensajeMailInvalido: string = '';
   private mensajeCedulaInvalido: string = '';
+  private mensajeTipoDeUsuarioInvalido: string = '';
   
   @ViewChild("modal") modal: ModalComponent;
 
@@ -324,10 +327,17 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     return this.cedulaEsValida;
   }
 
+  ValidarTipoDeUsuario():boolean
+  {
+    this.mensajeTipoDeUsuarioInvalido = this.ValidarNumero(this.usuario.TipoDeUsuario.IdTipoDeUsuario.toString());
+    this.mensajeTipoDeUsuarioInvalido != '' ? this.tipoDeUsuarioEsValido = false: this.tipoDeUsuarioEsValido = true;
+    return this.tipoDeUsuarioEsValido;
+  }
+
   
   ValidarFormulario():boolean
   {
-    return this.nombreEsValido && this.apellidoEsValido && this.mailEsValido && this.cedulaEsValida;
+    return this.nombreEsValido && this.apellidoEsValido && this.mailEsValido && this.cedulaEsValida && this.tipoDeUsuarioEsValido;
   }
 
   Confirmar(){

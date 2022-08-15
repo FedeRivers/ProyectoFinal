@@ -20,7 +20,7 @@ namespace ProyectoFinal._1_Servicios
             {
                 return new CRUDUsuario().AltaUsuario(input);
             }
-            catch
+            catch (Exception ex)
             {
                 return new AltaUsuarioOut();  
             }
