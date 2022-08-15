@@ -159,6 +159,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTipoDeUsuario.dbml</DependentUpon>
     </Compile>
+    <Compile Include="3_Persistencia\Models\ParametroDeTabla\ModulosPDT.cs" />
     <Compile Include="3_Persistencia\PMejorador.cs" />
     <Compile Include="3_Persistencia\PUsuario.cs" />
     <Compile Include="3_Persistencia\PTipoDeUsuario.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\ModificarTipoDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarUsuarioIn.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
+    <Compile Include="Parametros\Salida\ModificarTipoDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ModificarUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
