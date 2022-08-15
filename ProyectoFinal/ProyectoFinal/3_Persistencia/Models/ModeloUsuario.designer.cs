@@ -83,18 +83,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((ISingleResult<LoginResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarUsuarios")]
-		public ISingleResult<ListarUsuariosResult> ListarUsuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
-			return ((ISingleResult<ListarUsuariosResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaUsuario")]
 		public int AltaUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(50)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, apellido, contrasena, mail, cedula, idTipoDeUsuario);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarUsuarios")]
+		public ISingleResult<ListarUsuariosResult> ListarUsuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			return ((ISingleResult<ListarUsuariosResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -291,7 +291,7 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private int _idUsuario;
 		
-		private string _nombre;
+		private string _NombreUsuario;
 		
 		private string _apellido;
 		
@@ -308,6 +308,10 @@ namespace ProyectoFinal._3_Persistencia.Models
 		private bool _activo;
 		
 		private int _idTipoDeUsuario;
+		
+		private string _NombreTipoDeUsuario;
+		
+		private bool _activo1;
 		
 		public ListarUsuariosResult()
 		{
@@ -329,18 +333,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string nombre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreUsuario", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string NombreUsuario
 		{
 			get
 			{
-				return this._nombre;
+				return this._NombreUsuario;
 			}
 			set
 			{
-				if ((this._nombre != value))
+				if ((this._NombreUsuario != value))
 				{
-					this._nombre = value;
+					this._NombreUsuario = value;
 				}
 			}
 		}
@@ -469,6 +473,38 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._idTipoDeUsuario != value))
 				{
 					this._idTipoDeUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreTipoDeUsuario", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string NombreTipoDeUsuario
+		{
+			get
+			{
+				return this._NombreTipoDeUsuario;
+			}
+			set
+			{
+				if ((this._NombreTipoDeUsuario != value))
+				{
+					this._NombreTipoDeUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo1", DbType="Bit NOT NULL")]
+		public bool activo1
+		{
+			get
+			{
+				return this._activo1;
+			}
+			set
+			{
+				if ((this._activo1 != value))
+				{
+					this._activo1 = value;
 				}
 			}
 		}

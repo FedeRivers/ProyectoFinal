@@ -114,7 +114,7 @@ export class TipoDeUsuarioComponent implements OnInit {
   ModificarTipoDeUsuario()
   {
     let modificarTipoDeUsuarioIn:ModificarTipoDeUsuarioIn = new ModificarTipoDeUsuarioIn();
-    modificarTipoDeUsuarioIn.Modulos = this.tipoDeUsuario.Modulos;
+    modificarTipoDeUsuarioIn.TipoDeUsuario = this.tipoDeUsuario;
     this.tipoDeUsuarioService.ModificarTipoDeUsuario(modificarTipoDeUsuarioIn)
     .subscribe( tipoDeUsuario => {
       this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.TipoDeUsuario.Modificar.EXITO;
