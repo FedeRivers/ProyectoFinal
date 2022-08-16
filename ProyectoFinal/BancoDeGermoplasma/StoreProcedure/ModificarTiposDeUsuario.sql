@@ -1,10 +1,14 @@
-﻿CREATE PROCEDURE ModificarTiposDeUsuario
-	@IdTipoDeUsuario INT,
-	@ModulosPDT ModulosPDT READONLY
+﻿CREATE PROCEDURE [dbo].[ModificarTiposDeUsuario]
+	@IdModulo INT,
+	@IdTipoDeUsuario INT
 AS
 BEGIN
-	INSERT INTO ModulosPorTiposDeUsuario(idModulo, idTipoDeUsuario)
-	VALUES((SELECT mpdt.idModulo
-			FROM @ModulosPDT mpdt), @IdTipoDeUsuario)
+	BEGIN TRY
+		UPDATE ModulosPorTiposDeUsuario SET idModulo = @IdModulo WHERE idTipoDeUsuario = @IdTipoDeUsuario
+		RETURN 0
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RETURN -1
+	END CATCH
 END
-GO
