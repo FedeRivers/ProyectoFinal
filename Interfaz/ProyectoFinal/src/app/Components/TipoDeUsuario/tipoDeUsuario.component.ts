@@ -135,9 +135,7 @@ export class TipoDeUsuarioComponent implements OnInit {
 
   Seleccionar(tipoDeUsuario:TipoDeUsuario)
   {
-    this.tipoDeUsuario.IdTipoDeUsuario = tipoDeUsuario.IdTipoDeUsuario;
-    this.tipoDeUsuario.Nombre = tipoDeUsuario.Nombre;
-    this.tipoDeUsuario.Active = tipoDeUsuario.Active;
+    this.tipoDeUsuario = tipoDeUsuario
     this.ListarModulosPorTipoDeUsuario(tipoDeUsuario);
     this.Ocultar();
   }

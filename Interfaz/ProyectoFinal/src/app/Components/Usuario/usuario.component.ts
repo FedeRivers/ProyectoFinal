@@ -43,7 +43,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   private mensajeNombreInvalido: string = '';
   private mensajeApellidoInvalido: string = '';
   private mensajeMailInvalido: string = '';
-  private mensajeCedulaInvalido: string = '';
+  private mensajeCedulaInvalida: string = '';
   private mensajeTipoDeUsuarioInvalido: string = '';
   
   @ViewChild("modal") modal: ModalComponent;
@@ -174,11 +174,11 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   public set MensajeMailInvalido(value: string) {
     this.mensajeMailInvalido = value;
   }
-  public get MensajeCedulaInvalido(): string {
-    return this.mensajeCedulaInvalido;
+  public get MensajeCedulaInvalida(): string {
+    return this.mensajeCedulaInvalida;
   }
-  public set MensajeCedulaInvalido(value: string) {
-    this.mensajeCedulaInvalido = value;
+  public set MensajeCedulaInvalida(value: string) {
+    this.mensajeCedulaInvalida = value;
   }
   //#endregion
   
@@ -199,13 +199,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
     this.usuarioServicio.Baja(this.bajaUsuarioIn)
     .subscribe( usuario => {
-      this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Baja.EXITO;
-      this.modal.Error = false;
-      this.modal.open(); 
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
      }, err => {
-       this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Baja.ERROR;
-       this.modal.Error = true;
-       this.modal.open(); 
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
      });
   }
 
@@ -214,13 +210,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.modificarUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
-        this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO;
-        this.modal.Error = false;
-        this.modal.open(); 
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
        }, err => {
-         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR;
-         this.modal.Error = true;
-         this.modal.open(); 
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
        });
   }
 
@@ -247,6 +239,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
       .subscribe( lista =>{
         if(lista.TiposDeUsuario!=undefined) {
           this.tiposDeUsuario = lista.TiposDeUsuario;
+          this.tiposDeUsuario = this.tiposDeUsuario.filter(tipo => tipo.IdTipoDeUsuario != this.usuario.TipoDeUsuario.IdTipoDeUsuario);
         }
       }, err => {
         this.modal.Error = true;
@@ -288,6 +281,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
         break;
       case "Modificar":
         this.btnModificar = true;
+        this.ListarTiposDeUsuario();
         break;
     }
   }
@@ -316,8 +310,8 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
 
   ValidarCedulaUsuario():boolean
   {
-    this.mensajeCedulaInvalido = this.ValidarCedula(this.usuario.Cedula);
-    this.mensajeCedulaInvalido != '' ? this.cedulaEsValida = false : this.cedulaEsValida = true;
+    this.mensajeCedulaInvalida = this.ValidarCedula(this.usuario.Cedula);
+    this.mensajeCedulaInvalida != '' ? this.cedulaEsValida = false : this.cedulaEsValida = true;
     return this.cedulaEsValida;
   }
 
@@ -353,8 +347,4 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.modal.open();
   }
 
-  SeleccionarTipoDeUsuario(tipoDeUsuario:TipoDeUsuario)
-  {
-    this.usuario.TipoDeUsuario = tipoDeUsuario;
-  }
 }

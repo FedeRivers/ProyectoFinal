@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AltaMejoradorIn } from '../../Parametros/Entrada/AltaMejoradorIn';
 import { MejoradorService } from '../../Services/mejorador.service';
 import { Mejorador } from './class/mejorador';
@@ -6,7 +6,8 @@ import { BajaMejoradorIn } from '../../Parametros/Entrada/BajaMejoradorIn';
 import { ModificarMejoradorIn } from '../../Parametros/Entrada/ModificarMejoradorIn';
 import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
 import { ModalComponent } from '../Modal/modal.component';
-import { ExpresionesRegulares, RecursosDeIdioma } from '../Constantes/constantes';
+import { RecursosDeIdioma } from '../Constantes/constantes';
+import { FormularioBase } from '../FormularioBase/class/formularioBase';
 
 
 
@@ -15,7 +16,7 @@ import { ExpresionesRegulares, RecursosDeIdioma } from '../Constantes/constantes
   templateUrl: './mejorador.component.html',
   styleUrls: ['./mejorador.component.css']
 })
-export class MejoradorComponent implements OnInit  {
+export class MejoradorComponent extends FormularioBase implements OnInit  {
   private altaMejoradorIn:AltaMejoradorIn;
   private bajaMejoradorIn:BajaMejoradorIn;
   private modificarMejoradorIn:ModificarMejoradorIn;
@@ -37,6 +38,7 @@ export class MejoradorComponent implements OnInit  {
   @ViewChild("modal") modal: ModalComponent;
 
   constructor(private mejoradorServicio:MejoradorService) {
+    super();
     this.altaMejoradorIn = new AltaMejoradorIn();
     this.bajaMejoradorIn = new BajaMejoradorIn();
     this.modificarMejoradorIn = new ModificarMejoradorIn();
@@ -141,73 +143,59 @@ export class MejoradorComponent implements OnInit  {
   }
   //#endregion
   
-  AltaMejorador(){
+  AltaMejorador()
+  {
     this.altaMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
-         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO;
-         this.modal.Error = false;
-         this.modal.open(); 
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
         }, err => {
-          this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR;
-          this.modal.Error = true;
-          this.modal.open(); 
-        }
-        );
+          this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
+      });
   }
 
-  BajaMejorador(){
+  BajaMejorador()
+  {
     this.bajaMejoradorIn.idMejorador = this.mejorador.IdMejorador;
     this.mejoradorServicio.Baja(this.bajaMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Mejorador.Baja.EXITO;
-        this.modal.Error = false;
-        this.modal.open(); 
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
        }, err => {
-         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Mejorador.Baja.ERROR;
-         this.modal.Error = true;
-         this.modal.open(); 
-       }
-       );
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
+      });
   }
 
-  ModificarMejorador(){
+  ModificarMejorador()
+  {
     this.modificarMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXITO;
-        this.modal.Error = false;
-        this.modal.open(); 
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
        }, err => {
-         this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.ERROR;
-         this.modal.Error = true;
-         this.modal.open(); 
-       }
-       );
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
+      });
   }
 
-  Listar(){
+  Listar()
+  {
     let listarMejoradorIn:ListarMejoradorIn;
     listarMejoradorIn = new ListarMejoradorIn();
     listarMejoradorIn.terminoDeBusqueda = this.terminoDeBusqueda;
     this.mejoradores = [];
     this.mejoradorServicio.Listar(listarMejoradorIn)
-    .subscribe( mejorador => {
-      if(mejorador.Mejoradores!=undefined){
-        mejorador.Mejoradores.forEach(( valor : Mejorador)=>{
-          this.mejoradores.push(valor);
-        })
-      }
-    }
-      )
+    .subscribe( lista => {
+      if(lista.Mejoradores!=undefined){
+          this.mejoradores = lista.Mejoradores;
+        }
+    }, err => {
+      this.modal.Error = true;
+      this.modal.open();
+    });
   }
 
   Seleccionar(mejorador:Mejorador)
   {
-    this.mejorador.IdMejorador = mejorador.IdMejorador;
-    this.mejorador.Nombre = mejorador.Nombre;
-    this.mejorador.Mail = mejorador.Mail;
-    this.mejorador.Direccion = mejorador.Direccion;  
+    this.mejorador = mejorador;
     this.Ocultar();
   }
 
@@ -238,78 +226,53 @@ export class MejoradorComponent implements OnInit  {
         this.btnModificar = true;
         break;
     }
-    
   }
  
   ValidarNombre():boolean
   {
-    if(this.mejorador.Nombre != '')
-    {
-      if(ExpresionesRegulares.LETRAS_Y_ESPACIOS.test(this.mejorador.Nombre))
-      {
-        this.nombreEsValido = true;
-      }
-      else
-      {
-        this.nombreEsValido = false;
-        this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }
-    }
-    else
-    {
-      this.nombreEsValido = false;
-      this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-    }
+    this.mensajeNombreInvalido = this.ValidarLetras(this.mejorador.Nombre);
+    this.mensajeNombreInvalido != '' ? this.nombreEsValido = false : this.nombreEsValido = true;
     return this.nombreEsValido;
   }
 
-  ValidarMail():boolean
+  ValidarMailMejorador():boolean
   {
-    if(this.mejorador.Mail != '')
-    {
-      if(ExpresionesRegulares.MAIL.test(this.mejorador.Mail))
-      {
-        this.mailEsValido = true;
-      }
-      else
-      {
-        this.mailEsValido = false;
-        this.mensajeMailInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }
-    }
-    else
-    {
-      this.mailEsValido = false;
-      this.mensajeNombreInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-    }
+    this.mensajeMailInvalido = this.ValidarMail(this.mejorador.Mail);
+    this.mensajeMailInvalido != '' ? this.mailEsValido = false : this.mailEsValido = true;
     return this.mailEsValido;
   }
 
   ValidarDireccion():boolean
   {
-    if(this.mejorador.Direccion != '')
-    {
-      if(ExpresionesRegulares.LETRAS_NUMEROS_Y_ESPACIOS.test(this.mejorador.Direccion))
-      {
-        this.direccionEsValido = true;
-      }
-      else
-      {
-        this.direccionEsValido = false;
-        this.mensajeDireccionInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
-      }
-    }
-    else
-    {
-      this.DireccionEsValido = false;
-      this.mensajeDireccionInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
-    }
-  return this.direccionEsValido;
+    this.mensajeDireccionInvalido =  this.ValidarLetrasNumerosEspaciosYPunto(this.mejorador.Direccion);
+    this.mensajeDireccionInvalido != '' ? this.direccionEsValido = false : this.direccionEsValido = true;
+    return this.direccionEsValido;
   }
 
   ValidarFormulario():boolean
   {
     return this.nombreEsValido && this.mailEsValido && this.direccionEsValido;
   }
+
+  Confirmar(){
+    if(this.btnAlta)
+    {
+      this.AltaMejorador();
+    }
+    else if(this.btnBaja)
+    {
+      this.BajaMejorador();
+    }
+    else
+    {
+      this.ModificarMejorador();
+    }
+  }
+
+  AbrirModal(){
+    this.modal.open();
+  }
+
+
 
 }

@@ -20,7 +20,8 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMail">Mail:</span>
-                    <input name="txtMail" class="form-control" [(ngModel)]="Mejorador.Mail" [ngClass]="Mejorador.Mail!=undefined ? ValidarMail() ? 'is-valid':'is-invalid':'form-control'" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail" required>
+                    <input name="txtMail" class="form-control" [(ngModel)]="Mejorador.Mail" [ngClass]="Mejorador.Mail!=undefined ? ValidarMailMejorador() ? 'is-valid':'is-invalid':'form-control'" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail"
+                        required>
                     <div class="invalid-feedback">{{MensajeMailInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">

@@ -34,12 +34,15 @@
                     <span class="input-group-text" id="spanCedula">Cédula:</span>
                     <input name="txtCedula" [(ngModel)]="Usuario.Cedula" [ngClass]="Usuario.Cedula!=undefined ? ValidarCedulaUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese cédula de identidad" aria-label="txtCedula" aria-describedby="spanCedula"
                         required>
-                    <div class="invalid-feedback">{{CedulaEsValida}}</div>
+                    <div class="invalid-feedback">{{MensajeCedulaInvalida}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanTipoDeUsuario">Tipo de usuario:</span>
                     <select name="txtTipoDeUsuario" class="form-select" [(ngModel)]="Usuario.TipoDeUsuario.IdTipoDeUsuario" [ngClass]="Usuario.TipoDeUsuario.IdTipoDeUsuario != undefined ? ValidarTipoDeUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
                         aria-label="txtTipoDeUsuario" aria-describedby="spanTipoDeUsuario">
+                        <option selected value="{{Usuario.TipoDeUsuario.IdTipoDeUsuario}}">
+                            {{Usuario.TipoDeUsuario.Nombre}}
+                        </option>
                         <option *ngFor="let tipoDeUsuario of TiposDeUsuario"  value="{{tipoDeUsuario.IdTipoDeUsuario}}">
                             {{tipoDeUsuario.Nombre}}
                         </option>
