@@ -1,6 +1,5 @@
 ﻿using ProyectoFinal._2_Dominio.Entidades;
 using ProyectoFinal._3_Persistencia.Models;
-using ProyectoFinal._3_Persistencia.Models.ParametroDeTabla;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -65,19 +64,39 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
-        public ModificarTipoDeUsuarioOut ModificarTipoDeUsuario(ModificarTipoDeUsuarioIn input)
+        public AgregarModuloOut AgregarModulo(AgregarModuloIn input)
         {
-            var output = new ModificarTipoDeUsuarioOut { Status = new HttpStatusCodeResult(404) };
+            var output = new AgregarModuloOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloTipoDeUsuarioDataContext())
             {
-                var result = 0;
-                foreach (var modulo in input.TipoDeUsuario.Modulos)
+                try
                 {
-                    result = dataContext.ModificarTiposDeUsuario(modulo.IdModulo, input.TipoDeUsuario.IdTipoDeUsuario);
-                }
-                if (result == 0)
-                {
+                    var result = dataContext.AgregarModulo(input.TipoDeUsuario.IdTipoDeUsuario, input.Modulo.IdModulo);
                     output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(400);
+                }
+            }
+
+            return output;
+        }
+
+
+        public EliminarModuloOut EliminarModulo(EliminarModuloIn input)
+        {
+            var output = new EliminarModuloOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloTipoDeUsuarioDataContext())
+            {
+                try
+                {
+                    var result = dataContext.EliminarModulo(input.TipoDeUsuario.IdTipoDeUsuario, input.Modulo.IdModulo);
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(400);
                 }
             }
 
