@@ -6,8 +6,10 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Entrada
 {
-    public class ModificarTipoDeUsuarioIn
+    public class AgregarModuloIn
     {
         public TipoDeUsuario TipoDeUsuario { get; set; }
+
+        public Modulo Modulo { get; set; }
     }
 }

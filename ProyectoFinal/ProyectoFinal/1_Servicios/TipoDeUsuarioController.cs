@@ -26,9 +26,15 @@ namespace ProyectoFinal._1_Servicios
         }
 
         [HttpPost]
-        public ModificarTipoDeUsuarioOut ModificarTipoDeUsuario(ModificarTipoDeUsuarioIn input)
+        public AgregarModuloOut AgregarModulo(AgregarModuloIn input)
         {
-            return new CRUDTipoDeUsuario().ModificarTipoDeUsuario(input);
+            return new CRUDTipoDeUsuario().AgregarModulo(input);
+        }
+
+        [HttpPost]
+        public EliminarModuloOut EliminarModulo(EliminarModuloIn input)
+        {
+            return new CRUDTipoDeUsuario().EliminarModulo(input);
         }
 
         // POST: api/TipoDeUsuario

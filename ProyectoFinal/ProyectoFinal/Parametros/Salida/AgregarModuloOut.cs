@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class ModificarTipoDeUsuarioOut : ParametroBaseOut
+    public class AgregarModuloOut : ParametroBaseOut
     {
     }
 }
