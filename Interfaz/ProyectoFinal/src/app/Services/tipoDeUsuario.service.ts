@@ -5,7 +5,8 @@ import { ListarTiposDeUsuarioOut } from '../Parametros/Salida/ListarTiposDeUsuar
 import { ListarTipoDeUsuarioIn } from '../Parametros/Entrada/ListarTipoDeUsuarioIn';
 import { ListarModulosPorTipoDeUsuarioOut } from '../Parametros/Salida/ListarModulosPorTipoDeUsuarioOut';
 import { ListarModulosPorTipoDeUsuarioIn } from 'src/app/Parametros/Entrada/ListarModulosPorTipoDeUsuarioIn';
-import { ModificarTipoDeUsuarioIn } from '../Parametros/Entrada/ModificarTipoDeUsuario';
+import { AgregarModuloIn } from '../Parametros/Entrada/AgregarModuloIn';
+import { EliminarModuloIn } from '../Parametros/Entrada/EliminarModuloIn';
 
 
 
@@ -28,10 +29,17 @@ export class TipoDeUsuarioService {
     return this.http.get<ListarModulosPorTipoDeUsuarioOut>(`${this.baseUrl+MetodosUrl.TiposDeUsuario.LISTARMODULOSPORTIPODEUSUARIO}?IdTipoDeUsuario=${listarModulosPorTipoDeUsuario.IdTipoDeUsuario}`);
   }
 
-  public ModificarTipoDeUsuario(modificarTipoDeUsuarioIn:ModificarTipoDeUsuarioIn)
+  public AgregarModulo(agregarModuloIn:AgregarModuloIn)
   {
-    return this.http.post(`${this.baseUrl+MetodosUrl.TiposDeUsuario.MODIFICARTIPODEUSUARIO}`,modificarTipoDeUsuarioIn);
+    return this.http.post(`${this.baseUrl+MetodosUrl.TiposDeUsuario.AGREGARMODULO}`,agregarModuloIn);
   }
+
+  public EliminarModulo(eliminarModuloIn:EliminarModuloIn)
+  {
+    return this.http.post(`${this.baseUrl+MetodosUrl.TiposDeUsuario.ELIMINARMODULO}`,eliminarModuloIn);
+  }
+
+  
 
   
 

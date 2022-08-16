@@ -1,12 +1,15 @@
+import { Modulo } from 'src/app/Components/Modulo/class/modulo';
 import { TipoDeUsuario } from '../../Components/TipoDeUsuario/class/tipoDeUsuario';
 
-export class ModificarTipoDeUsuarioIn{
+export class EliminarModuloIn{
     
     private tipoDeUsuario: TipoDeUsuario;
+    private modulo: Modulo;
 
     constructor()
     {
         this.tipoDeUsuario = new TipoDeUsuario();
+        this.modulo = new Modulo();
     }
 
     public get TipoDeUsuario(): TipoDeUsuario {
@@ -14,6 +17,12 @@ export class ModificarTipoDeUsuarioIn{
     }
     public set TipoDeUsuario(value: TipoDeUsuario) {
         this.tipoDeUsuario = value;
+    }
+    public get Modulo(): Modulo {
+        return this.modulo;
+    }
+    public set Modulo(value: Modulo) {
+        this.modulo = value;
     }
 
 }

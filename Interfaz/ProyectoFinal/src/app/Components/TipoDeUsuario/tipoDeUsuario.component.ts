@@ -5,8 +5,9 @@ import { TipoDeUsuario } from './class/tipoDeUsuario';
 import { ListarTipoDeUsuarioIn } from '../../Parametros/Entrada/ListarTipoDeUsuarioIn';
 import { ListarModulosPorTipoDeUsuarioIn } from 'src/app/Parametros/Entrada/ListarModulosPorTipoDeUsuarioIn';
 import { Modulo } from '../Modulo/class/modulo';
-import { ModificarTipoDeUsuarioIn } from 'src/app/Parametros/Entrada/ModificarTipoDeUsuario';
 import { RecursosDeIdioma } from '../Constantes/constantes';
+import { AgregarModuloIn } from 'src/app/Parametros/Entrada/AgregarModuloIn';
+import { EliminarModuloIn } from 'src/app/Parametros/Entrada/EliminarModuloIn';
 
 
 @Component({
@@ -111,21 +112,32 @@ export class TipoDeUsuarioComponent implements OnInit {
     });
   }
 
-  ModificarTipoDeUsuario()
+  AgregarModulo(modulo:Modulo)
   {
-    let modificarTipoDeUsuarioIn:ModificarTipoDeUsuarioIn = new ModificarTipoDeUsuarioIn();
-    modificarTipoDeUsuarioIn.TipoDeUsuario = this.tipoDeUsuario;
-    this.tipoDeUsuarioService.ModificarTipoDeUsuario(modificarTipoDeUsuarioIn)
-    .subscribe( tipoDeUsuario => {
-      this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.TipoDeUsuario.Modificar.EXITO;
-      this.modal.Error = false;
-      this.modal.open(); 
+    let agregarModuloIn:AgregarModuloIn = new AgregarModuloIn();
+    agregarModuloIn.TipoDeUsuario = this.tipoDeUsuario;
+    agregarModuloIn.Modulo = modulo;
+    this.tipoDeUsuarioService.AgregarModulo(agregarModuloIn)
+    .subscribe( resp => {
+      this.tipoDeUsuario.Modulos.push(modulo);
+      this.modulos = this.Modulos.filter(moduloAEliminar => moduloAEliminar.IdModulo != modulo.IdModulo);
      }, err => {
-       this.modal.Mensaje = RecursosDeIdioma.MensajesServicios.TipoDeUsuario.Modificar.ERROR;
-       this.modal.Error = true;
-       this.modal.open(); 
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.TipoDeUsuario.AgregarModulo.ERROR,true);
      });
+  }
 
+  EliminarModulo(modulo:Modulo)
+  {
+    let eliminarModuloIn:EliminarModuloIn = new EliminarModuloIn();
+    eliminarModuloIn.TipoDeUsuario = this.tipoDeUsuario;
+    eliminarModuloIn.Modulo = modulo;
+    this.tipoDeUsuarioService.EliminarModulo(eliminarModuloIn)
+    .subscribe( resp => {
+      this.modulos.push(modulo);
+      this.tipoDeUsuario.Modulos = this.tipoDeUsuario.Modulos.filter( moduloAEliminar => moduloAEliminar.IdModulo != modulo.IdModulo);
+     }, err => {
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.TipoDeUsuario.EliminarModulo.ERROR,true);
+     });
   }
 
   BotonModificar()
@@ -149,19 +161,6 @@ export class TipoDeUsuarioComponent implements OnInit {
   {
     this.EstaSeleccionado = !this.EstaSeleccionado;
   }
-
-  AgregarModuloATipoDeUsuario(modulo:Modulo)//Agrega un módulo a la lista de módulos que tiene un tipo de usuario
-  {
-    this.tipoDeUsuario.Modulos.push(modulo);
-    this.modulos.splice(this.modulos.indexOf(modulo),1);
-  }
-
-  QuitarModuloATipoDeUsuario(modulo:Modulo)//Quita un módulo a la lista de módulos que tiene un tipo de usuario
-  {
-    this.modulos.push(modulo);
-    this.tipoDeUsuario.Modulos.splice(this.tipoDeUsuario.Modulos.indexOf(modulo),1);
-  }
-
 
   FiltrarListaDeModulos()
   {
