@@ -70,30 +70,14 @@ namespace ProyectoFinal._3_Persistencia
             var output = new ModificarTipoDeUsuarioOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloTipoDeUsuarioDataContext())
             {
-                using (var tabla = new DataTable())
+                var result = 0;
+                foreach (var modulo in input.TipoDeUsuario.Modulos)
                 {
-                    foreach (var modulo in input.TipoDeUsuario.Modulos)
-                    {
-                        tabla.Rows.Add(modulo.IdModulo.ToString());
-                    }
-
-                    var pList = new SqlParameter("@parametro", SqlDbType.Structured)
-                    {
-                        TypeName = "dbo.ModulosPDT",
-
-                        Value = tabla
-                    };
-                    //var modulosPDT = input.TipoDeUsuario.Modulos.Select(m =>
-                    //new ModulosPDT
-                    //{
-                    //    IdModulo = m.IdModulo
-                    //}).ToList();
-
-                    var result = dataContext.ExecuteCommand("dbo.ModificarTiposDeUsuario", input.TipoDeUsuario.IdTipoDeUsuario, pList);
-                    if (result != null)
-                    {
-                        output.Status = new HttpStatusCodeResult(200);
-                    }
+                    result = dataContext.ModificarTiposDeUsuario(modulo.IdModulo, input.TipoDeUsuario.IdTipoDeUsuario);
+                }
+                if (result == 0)
+                {
+                    output.Status = new HttpStatusCodeResult(200);
                 }
             }
 
