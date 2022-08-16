@@ -88,6 +88,7 @@ export const ExpresionesRegulares = {
     MAIL : new RegExp("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"),
     LETRAS_NUMEROS_Y_ESPACIOS : new RegExp("^[a-zA-Z0-9 ]+$"),
     NUMEROS: new RegExp("^[0-9]+$"),
+    LETRAS_NUMEROS_ESPACIOS_Y_PUNTOS : new RegExp("^[a-zA-Z0-9 .]+$"),
 }
 
 

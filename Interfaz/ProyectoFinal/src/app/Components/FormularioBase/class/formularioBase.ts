@@ -23,6 +23,18 @@ export class FormularioBase{
         return this.mensaje == '' ? ExpresionesRegulares.LETRAS_Y_ESPACIOS.test(texto) ? ''
          : RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO: this.mensaje;
     }
+    ValidarLetrasNumerosYEspacio(texto:string):string
+    {
+        this.mensaje = this.CampoVacio(texto);
+        return this.mensaje == '' ? ExpresionesRegulares.LETRAS_NUMEROS_Y_ESPACIOS.test(texto) ? ''
+         : RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO: this.mensaje;
+    }
+    ValidarLetrasNumerosEspaciosYPunto(texto:string):string
+    {
+        this.mensaje = this.CampoVacio(texto);
+        return this.mensaje == '' ? ExpresionesRegulares.LETRAS_NUMEROS_ESPACIOS_Y_PUNTOS.test(texto) ? ''
+         : RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO: this.mensaje;
+    }
 
     ValidarNumero(texto:string):string
     {
@@ -48,7 +60,7 @@ export class FormularioBase{
         }
         else
         {
-            let primerNumero = +texto[0] * 2;
+            let primerNumero =+ texto[0] * 2;
             let segundoNumero =+ texto[1] * 9;
             let tercerNumero =+ texto[2] * 8;
             let cuartoNumero =+ texto[3] * 7;
@@ -57,49 +69,91 @@ export class FormularioBase{
             let septimoNumero =+ texto[6] * 4;
             let octavoNumero =+ texto[7];
 
-            if(primerNumero > 10){
+            if(primerNumero > 10)
+            {
                 primerNumero = primerNumero / 10;
-                (primerNumero+"").split('.')[1];
+                primerNumero = Number((primerNumero+"").split('.')[1]);
+            }
+            if(primerNumero == 10)
+            {
+                primerNumero = primerNumero - 10;
             }   
-            if(segundoNumero > 10){
+
+            if(segundoNumero > 10)
+            {
                 segundoNumero = segundoNumero /10;
-                (segundoNumero+"").split('.')[1];
+                segundoNumero = Number((segundoNumero+"").split('.')[1]);
+            }
+            if(segundoNumero == 10)
+            {
+                segundoNumero = segundoNumero - 10;
             }  
-            if(tercerNumero > 10){
+
+            if(tercerNumero > 10)
+            {
                 tercerNumero = tercerNumero / 10;
-                (tercerNumero+"").split('.')[1];
-            }  
-            if(cuartoNumero > 10){
+                tercerNumero = Number((tercerNumero+"").split('.')[1]);
+            }
+            if(tercerNumero == 10)
+            {
+                tercerNumero = tercerNumero - 10;
+            }
+
+            if(cuartoNumero > 10)
+            {
                 cuartoNumero = cuartoNumero / 10;
-                (cuartoNumero+"").split('.')[1];
+                cuartoNumero = Number((cuartoNumero+"").split('.')[1]);
             }  
-            if(quintoNumero > 10){
+            if(cuartoNumero == 10)
+            {
+                cuartoNumero = cuartoNumero - 10;
+            }
+
+            if(quintoNumero > 10)
+            {
                 quintoNumero = quintoNumero / 10 ;
-                (quintoNumero+"").split('.')[1];
-            }  
-            if(sextoNumero > 10){
+                quintoNumero = Number((quintoNumero+"").split('.')[1]);
+            }
+            if(quintoNumero == 10)
+            {
+                quintoNumero - 10;
+            }
+
+            if(sextoNumero > 10)
+            {
                 sextoNumero = sextoNumero / 10;
-                (sextoNumero+"").split('.')[1];
+                sextoNumero = Number((sextoNumero+"").split('.')[1]);
             } 
-            if(septimoNumero > 10){
+            if(sextoNumero == 10)
+            {
+                sextoNumero = sextoNumero - 10;
+            }
+
+            if(septimoNumero > 10)
+            {
                 septimoNumero = septimoNumero / 10;
-                (septimoNumero+"").split('.')[1];
+                septimoNumero = Number((septimoNumero+"").split('.')[1]);
+            }
+            if(septimoNumero == 10)
+            {
+                septimoNumero = septimoNumero - 10;
             }  
 
             let resultado = primerNumero+segundoNumero+tercerNumero+cuartoNumero+quintoNumero+sextoNumero+septimoNumero;
             if(resultado >10)
             {
                 resultado = resultado / 10;
-                (resultado+"").split('.')[1];
+                resultado = Number((resultado+"").split('.')[1]);
+                resultado = 10 - resultado;
             }
 
             if(resultado == octavoNumero)
             {
-                console.log('Numero valido')
+                this.mensaje = '';
             }
             else
             {
-                console.log('Nuemro invalido')
+                this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
             }
         }
 

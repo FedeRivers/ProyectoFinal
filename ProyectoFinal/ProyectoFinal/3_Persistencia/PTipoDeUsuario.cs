@@ -72,8 +72,9 @@ namespace ProyectoFinal._3_Persistencia
             {
                 using (var tabla = new DataTable())
                 {
+                    tabla.Columns.Add(new DataColumn("idModulo", typeof(string)));
                     foreach (var modulo in input.TipoDeUsuario.Modulos)
-                    {
+                    {              
                         tabla.Rows.Add(modulo.IdModulo.ToString());
                     }
 

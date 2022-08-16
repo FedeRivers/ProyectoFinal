@@ -5,7 +5,7 @@ export class TipoDeUsuario{
  
     private nombre!: string;
     
-    private active!: boolean;
+    private activo!: boolean;
    
     private modulos: Modulo[] = [];
 
@@ -23,11 +23,11 @@ export class TipoDeUsuario{
     public set Nombre(value: string) {
         this.nombre = value;
     }
-    public get Active(): boolean {
-        return this.active;
+    public get Activo(): boolean {
+        return this.activo;
     }
-    public set Active(value: boolean) {
-        this.active = value;
+    public set Activo(value: boolean) {
+        this.activo = value;
     }
     public get Modulos(): Modulo[] {
         return this.modulos;
