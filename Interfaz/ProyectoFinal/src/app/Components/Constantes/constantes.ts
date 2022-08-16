@@ -49,11 +49,14 @@ export const RecursosDeIdioma = {
         },
         TipoDeUsuario :
         {
-            Modificar : 
+            AgregarModulo : 
             {
-                ERROR:'Ocurrió un error al modificar el tipo de usuario.',
-                EXITO:'Tipo de usuario modificado con éxito.',
-            }
+                ERROR:'Ocurrió un error al agregar el modulo al tipo de usuario.',
+            },
+            EliminarModulo:
+            {
+                ERROR:'Ocurrió un error al eliminar el modulo al tipo de usuario.',
+            },
         }
     },
 }
@@ -78,7 +81,8 @@ export const MetodosUrl = {
     {
         LISTAR: 'ListarTiposDeUsuario',
         LISTARMODULOSPORTIPODEUSUARIO: 'ListarModulosPorTipoDeUsuario',
-        MODIFICARTIPODEUSUARIO: 'ModificarTipoDeUsuario',
+        AGREGARMODULO: 'AgregarModulo',
+        ELIMINARMODULO: 'EliminarModulo',
     }   
 }
 
