@@ -81,6 +81,10 @@
     <PostDeploy Include="Scripts\CatalogoUsuarios.sql" />
     <Build Include="StoreProcedure\AgregarModulo.sql" />
     <Build Include="StoreProcedure\EliminarModulo.sql" />
+    <Build Include="Tablas\Taxonomias.sql" />
+    <Build Include="StoreProcedure\AltaTaxonomia.sql" />
+    <Build Include="StoreProcedure\BajaTaxonomia.sql" />
+    <Build Include="StoreProcedure\ModificarTaxonomia.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

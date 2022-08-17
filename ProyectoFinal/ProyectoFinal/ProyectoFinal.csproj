@@ -138,12 +138,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="1_Servicios\MejoradorController.cs" />
+    <Compile Include="1_Servicios\TaxonomiaController.cs" />
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
     <Compile Include="2_Dominio\Entidades\Modulo.cs" />
+    <Compile Include="2_Dominio\Entidades\Taxonomia.cs" />
     <Compile Include="2_Dominio\Entidades\TipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
+    <Compile Include="2_Dominio\Logica\CRUDTaxonomia.cs" />
     <Compile Include="2_Dominio\Logica\CRUDTipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDMejorador.cs" />
     <Compile Include="2_Dominio\Logica\CRUDUsuario.cs" />
@@ -154,12 +157,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloMejorador.dbml</DependentUpon>
     </Compile>
+    <Compile Include="3_Persistencia\Models\ModeloTaxonomia.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloTaxonomia.dbml</DependentUpon>
+    </Compile>
     <Compile Include="3_Persistencia\Models\ModeloTipoDeUsuario.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTipoDeUsuario.dbml</DependentUpon>
     </Compile>
     <Compile Include="3_Persistencia\PMejorador.cs" />
+    <Compile Include="3_Persistencia\PTaxonomia.cs" />
     <Compile Include="3_Persistencia\PUsuario.cs" />
     <Compile Include="3_Persistencia\PTipoDeUsuario.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -206,8 +215,10 @@
     </Compile>
     <Compile Include="Parametros\Entrada\AgregarModuloIn.cs" />
     <Compile Include="Parametros\Entrada\AltaMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\AltaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\BajaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarModulosPorTipoDeUsuarioIn.cs" />
@@ -215,11 +226,14 @@
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
+    <Compile Include="Parametros\Entrada\ModificarTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarUsuarioIn.cs" />
     <Compile Include="Parametros\Salida\AgregarModuloOut.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
+    <Compile Include="Parametros\Salida\AltaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
+    <Compile Include="Parametros\Salida\BajaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
@@ -229,6 +243,7 @@
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
+    <Compile Include="Parametros\Salida\ModificarTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\ModificarUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -281,6 +296,14 @@
       <LastGenOutput>ModeloTipoDeUsuario.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="3_Persistencia\Models\ModeloTaxonomia.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ModeloTaxonomia.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="3_Persistencia\Models\ModeloTaxonomia.dbml.layout">
+      <DependentUpon>ModeloTaxonomia.dbml</DependentUpon>
+    </None>
     <None Include="3_Persistencia\Models\ModeloTipoDeUsuario.dbml.layout">
       <DependentUpon>ModeloTipoDeUsuario.dbml</DependentUpon>
     </None>

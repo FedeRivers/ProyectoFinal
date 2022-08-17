@@ -17,10 +17,17 @@ namespace ProyectoFinal._3_Persistencia
             var output = new AltaMejoradorOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloMejoradorDataContext())
             {
-                var result = dataContext.AltaMejorador(input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
-                if (result != -1)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var result = dataContext.AltaMejorador(input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
+                    if (result != -1)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 
@@ -32,10 +39,17 @@ namespace ProyectoFinal._3_Persistencia
             var output = new BajaMejoradorOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloMejoradorDataContext())
             {
-                var result = dataContext.BajaMejorador(input.IdMejorador);
-                if (result != -1)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var result = dataContext.BajaMejorador(input.IdMejorador);
+                    if (result != -1)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 
@@ -47,10 +61,17 @@ namespace ProyectoFinal._3_Persistencia
             var output = new ModificarMejoradorOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloMejoradorDataContext())
             {
-                var result = dataContext.ModificarMejorador(input.Mejorador.IdMejorador, input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
-                if (result != -1)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var result = dataContext.ModificarMejorador(input.Mejorador.IdMejorador, input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
+                    if (result != -1)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 
@@ -62,22 +83,29 @@ namespace ProyectoFinal._3_Persistencia
             var output = new ListarMejoradorOut { Mejoradores=new List<Mejorador>(), Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloMejoradorDataContext())
             {
-                var result = dataContext.ListarMejoradores(input.TerminoDeBusqueda);
-                if (result != null)
+                try
                 {
-                    foreach (var mejorador in result)
+                    var result = dataContext.ListarMejoradores(input.TerminoDeBusqueda);
+                    if (result != null)
                     {
-                        output.Mejoradores.Add(new Mejorador
+                        foreach (var mejorador in result)
                         {
-                            IdMejorador = mejorador.idMejorador,
-                            Nombre = mejorador.nombre,
-                            Mail = mejorador.mail,
-                            Direccion = mejorador.direccion,
-                            Activo = mejorador.activo,
-                            FechaDeIngreso = mejorador.fechaDeIngreso
-                        });
+                            output.Mejoradores.Add(new Mejorador
+                            {
+                                IdMejorador = mejorador.idMejorador,
+                                Nombre = mejorador.nombre,
+                                Mail = mejorador.mail,
+                                Direccion = mejorador.direccion,
+                                Activo = mejorador.activo,
+                                FechaDeIngreso = mejorador.fechaDeIngreso
+                            });
+                        }
+                        output.Status = new HttpStatusCodeResult(200);
                     }
-                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 

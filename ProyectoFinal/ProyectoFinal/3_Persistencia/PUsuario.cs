@@ -15,16 +15,23 @@ namespace ProyectoFinal._3_Persistencia
     {
         public AltaUsuarioOut AltaUsuario(AltaUsuarioIn input)
         {
-            var output = new AltaUsuarioOut{ Status = new HttpStatusCodeResult(404)};
+            var output = new AltaUsuarioOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-               var result =  dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario);
-                if (result != -1)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var result = dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario);
+                    if (result != -1)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
-            
+
             return output;
         }
 
@@ -33,10 +40,17 @@ namespace ProyectoFinal._3_Persistencia
             var output = new BajaUsuarioOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-                var result = dataContext.BajaUsuario(input.IdUsuario);
-                if (result != -1)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var result = dataContext.BajaUsuario(input.IdUsuario);
+                    if (result != -1)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 
@@ -48,10 +62,17 @@ namespace ProyectoFinal._3_Persistencia
             var output = new ModificarUsuarioOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-                var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula);
-                if (result != -1)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
+                    var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula);
+                    if (result != -1)
+                    {
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 
@@ -63,19 +84,26 @@ namespace ProyectoFinal._3_Persistencia
             var output = new LoginOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloUsuarioDataContext())
             {
-                var result = dataContext.Login(input.Mail, input.Contrasena).FirstOrDefault();
-                if (result != null)
+                try
                 {
-                    output.Status = new HttpStatusCodeResult(200);
-                    output.Usuario = new Usuario
+                    var result = dataContext.Login(input.Mail, input.Contrasena).FirstOrDefault();
+                    if (result != null)
                     {
-                        IdUsuario = result.idUsuario,
-                        Nombre = result.nombre,
-                        Apellido = result.apellido,
-                        Mail = result.mail,
-                        Contrasena = result.contrasena,
-                        TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = result.idTipoDeUsuario }
-                    };
+                        output.Status = new HttpStatusCodeResult(200);
+                        output.Usuario = new Usuario
+                        {
+                            IdUsuario = result.idUsuario,
+                            Nombre = result.nombre,
+                            Apellido = result.apellido,
+                            Mail = result.mail,
+                            Contrasena = result.contrasena,
+                            TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = result.idTipoDeUsuario }
+                        };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
 
@@ -85,10 +113,10 @@ namespace ProyectoFinal._3_Persistencia
 
         public ListarUsuariosOut ListarUsuarios(ListarUsuariosIn input)
         {
-            var output = new ListarUsuariosOut { Status = new HttpStatusCodeResult(200) , Usuarios = new List<Usuario>()};
-            try
+            var output = new ListarUsuariosOut { Status = new HttpStatusCodeResult(200), Usuarios = new List<Usuario>() };
+            using (var dataContext = new ModeloUsuarioDataContext())
             {
-                using (var dataContext = new ModeloUsuarioDataContext())
+                try
                 {
                     var result = dataContext.ListarUsuarios(input.TerminoDeBusqueda);
                     if (result != null)
@@ -104,18 +132,21 @@ namespace ProyectoFinal._3_Persistencia
                                 Contrasena = usuario.contrasena,
                                 Cedula = usuario.cedula,
                                 Activo = usuario.activo,
-                                TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = usuario.idTipoDeUsuario,
-                                                                    Nombre = usuario.NombreTipoDeUsuario }
+                                TipoDeUsuario = new TipoDeUsuario
+                                {
+                                    IdTipoDeUsuario = usuario.idTipoDeUsuario,
+                                    Nombre = usuario.NombreTipoDeUsuario
+                                }
                             });
-                        }            
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(400);
+                }
+                return output;
             }
-            catch (Exception ex)
-            {
-                output.Status = new HttpStatusCodeResult(400);
-            }
-            return output;
         }
     }
 }
