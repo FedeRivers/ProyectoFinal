@@ -19,7 +19,7 @@ namespace ProyectoFinal._3_Persistencia
             var output = new ListarTiposDeUsuarioOut { Status = new HttpStatusCodeResult(404) , TiposDeUsuario=new List<TipoDeUsuario>()};
             using (var dataContext = new ModeloTipoDeUsuarioDataContext())
             {
-                var result = dataContext.ListarTiposDeUsuario();
+                var result = dataContext.ListarTiposDeUsuario(input.TerminoDeBusqueda);
                 if (result != null)
                 {
                     

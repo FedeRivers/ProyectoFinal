@@ -29,5 +29,11 @@ namespace ProyectoFinal._1_Servicios
         {
             return new CRUDTaxonomia().ModificarTaxonomia(input);
         }
+
+        [HttpGet]
+        public ListarTaxonomiasOut ListarTaxonomiases([FromUri]ListarTaxonomiasIn input)
+        {
+            return new CRUDTaxonomia().ListarTaxonomias(input);
+        }
     }
 }

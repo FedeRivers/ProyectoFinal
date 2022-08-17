@@ -14,6 +14,7 @@
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ListarTaxonomias" Method="ListarTaxonomias">
+    <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
     <ElementType Name="ListarTaxonomiasResult">
       <Column Name="idTaxonomia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nombre" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />

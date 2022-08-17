@@ -69,13 +69,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((ISingleResult<ListarModulosPorTipoDeUsuarioResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTiposDeUsuario")]
-		public ISingleResult<ListarTiposDeUsuarioResult> ListarTiposDeUsuario()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ListarTiposDeUsuarioResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarModulo")]
 		public int EliminarModulo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdModulo", DbType="Int")] System.Nullable<int> idModulo)
 		{
@@ -88,6 +81,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoDeUsuario, idModulo);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTiposDeUsuario")]
+		public ISingleResult<ListarTiposDeUsuarioResult> ListarTiposDeUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			return ((ISingleResult<ListarTiposDeUsuarioResult>)(result.ReturnValue));
 		}
 	}
 	

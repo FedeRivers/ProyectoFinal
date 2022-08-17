@@ -73,7 +73,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ListarTaxonomias();
+                    var result = dataContext.ListarTaxonomias(input.TerminoDeBusqueda);
                     if (result != null)
                     {
                         foreach (var taxonomia in result)
