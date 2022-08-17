@@ -10,5 +10,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
         public int IdTaxonomia { get; set; }
 
         public string Nombre { get; set; }
+
+        public bool? Activo { get; set; }
     }
 }

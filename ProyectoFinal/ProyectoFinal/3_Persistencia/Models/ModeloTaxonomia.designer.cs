@@ -82,6 +82,75 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTaxonomia, nombre);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTaxonomias")]
+		public ISingleResult<ListarTaxonomiasResult> ListarTaxonomias()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ListarTaxonomiasResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class ListarTaxonomiasResult
+	{
+		
+		private int _idTaxonomia;
+		
+		private string _nombre;
+		
+		private System.Nullable<bool> _activo;
+		
+		public ListarTaxonomiasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTaxonomia", DbType="Int NOT NULL")]
+		public int idTaxonomia
+		{
+			get
+			{
+				return this._idTaxonomia;
+			}
+			set
+			{
+				if ((this._idTaxonomia != value))
+				{
+					this._idTaxonomia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
+		public System.Nullable<bool> activo
+		{
+			get
+			{
+				return this._activo;
+			}
+			set
+			{
+				if ((this._activo != value))
+				{
+					this._activo = value;
+				}
+			}
+		}
 	}
 }
 #pragma warning restore 1591

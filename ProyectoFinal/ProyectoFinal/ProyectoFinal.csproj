@@ -222,6 +222,7 @@
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarModulosPorTipoDeUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarTaxonomiasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTiposDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarModulosPorTipoDeUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\ListarTaxonomiasOut.cs" />
     <Compile Include="Parametros\Salida\ListarTiposDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
