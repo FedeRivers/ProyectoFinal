@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloTaxonomiaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-MMQIAPN;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString1" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.AltaTaxonomia" Method="AltaTaxonomia">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BajaTaxonomia" Method="BajaTaxonomia">
+    <Parameter Name="IdTaxonomia" Parameter="idTaxonomia" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModificarTaxonomia" Method="ModificarTaxonomia">
+    <Parameter Name="IdTaxonomia" Parameter="idTaxonomia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

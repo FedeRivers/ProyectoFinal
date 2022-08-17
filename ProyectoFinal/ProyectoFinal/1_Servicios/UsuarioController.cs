@@ -12,57 +12,29 @@ using System.Web.Http.Cors;
 namespace ProyectoFinal._1_Servicios
 {
     public class UsuarioController : ApiController
-    {  
+    {
         [HttpPost]
         public AltaUsuarioOut AltaUsuario([FromBody]AltaUsuarioIn input)
         {
-            try
-            {
-                return new CRUDUsuario().AltaUsuario(input);
-            }
-            catch (Exception ex)
-            {
-                return new AltaUsuarioOut();  
-            }
+            return new CRUDUsuario().AltaUsuario(input);
         }
 
         [HttpPost]
         public BajaUsuarioOut BajaUsuario(BajaUsuarioIn input)
         {
-            try
-            {
-                return new CRUDUsuario().BajaUsuario(input);
-            }
-            catch (Exception ex)
-            {
-                return new BajaUsuarioOut();
-            }
+            return new CRUDUsuario().BajaUsuario(input);
         }
 
         [HttpPost]
         public ModificarUsuarioOut ModificarUsuario([FromBody]ModificarUsuarioIn input)
         {
-            try
-            {
-                return new CRUDUsuario().ModificarUsuario(input);
-            }
-            catch
-            {
-                return new ModificarUsuarioOut();
-            }
+            return new CRUDUsuario().ModificarUsuario(input);
         }
 
         [HttpGet]
         public LoginOut Login([FromUri]LoginIn input)
         {
-            try
-            {
-                return new CRUDUsuario().Login(input);
-            }
-            catch
-            {
-                return new LoginOut();
-            }
+            return new CRUDUsuario().Login(input);
         }
 
         [HttpGet]
@@ -70,7 +42,5 @@ namespace ProyectoFinal._1_Servicios
         {
             return new CRUDUsuario().ListarUsuarios(input);
         }
-
-
     }
 }
