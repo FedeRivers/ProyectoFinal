@@ -1,9 +1,48 @@
-import { textSpanOverlap } from "typescript";
 import { ExpresionesRegulares, RecursosDeIdioma } from "../../Constantes/constantes";
 
 export class FormularioBase{
+    
     private mensaje : string = '';
+    private estaSeleccionado: boolean = false;
+    private btnAlta: boolean = false;
+    private btnBaja: boolean = false;
+    private btnModificar: boolean = false;
+    
     constructor(){}
+
+    public get EstaSeleccionado(): boolean {
+        return this.estaSeleccionado;
+      }
+    public set EstaSeleccionado(value: boolean) {
+        this.estaSeleccionado = value;
+    }
+
+// #region Get y Set de botones (utilizado para habilitar y deshabilitar los mismos).
+    public get BtnAlta(): boolean {
+        return this.btnAlta;
+    }
+    public set BtnAlta(value: boolean) {
+        this.btnAlta = value;
+    }
+    public get BtnBaja(): boolean {
+        return this.btnBaja;
+    }
+    public set BtnBaja(value: boolean) {
+        this.btnBaja = value;
+    }
+    public get BtnModificar(): boolean {
+        return this.btnModificar;
+    }
+    public set BtnModificar(value: boolean) {
+        this.btnModificar = value;
+    }
+// #endregion
+
+    Ocultar()
+    {
+      this.EstaSeleccionado = !this.EstaSeleccionado;
+    }
+
 
     CampoVacio(texto : string):string
     {

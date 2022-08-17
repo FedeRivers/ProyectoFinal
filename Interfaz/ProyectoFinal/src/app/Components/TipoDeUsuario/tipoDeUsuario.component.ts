@@ -20,6 +20,7 @@ export class TipoDeUsuarioComponent implements OnInit {
   private tipoDeUsuario: TipoDeUsuario;
   private tiposDeUsuario: TipoDeUsuario[];
   private modulos: Modulo[];
+  private modulosFiltrada : Modulo[];
   private estaSeleccionado: boolean = false;
   private mensajeNombreInvalido: string = '';
 
@@ -29,8 +30,9 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.tipoDeUsuario = new TipoDeUsuario();
     this.tiposDeUsuario = [];
     this.modulos = [];
+    this.modulosFiltrada = [];
     this.Listar();
-    this.ListarModulosPorTipoDeUsuario(new TipoDeUsuario());
+    this.ListarModulosPorTipoDeUsuario();
     this.modal = new ModalComponent();
    }
    
@@ -49,11 +51,11 @@ export class TipoDeUsuarioComponent implements OnInit {
   public set TiposDeUsuario(value: TipoDeUsuario[]) {
     this.tiposDeUsuario = value;
   }
-  public get Modulos(): Modulo[] {
-    return this.modulos;
+  public get ModulosFiltrada(): Modulo[] {
+    return this.modulosFiltrada;
   }
-  public set Modulos(value: Modulo[]) {
-    this.modulos = value;
+  public set ModulosFiltrada(value: Modulo[]) {
+    this.modulosFiltrada = value;
   }
   public get EstaSeleccionado(): boolean {
     return this.estaSeleccionado;
@@ -77,9 +79,7 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.tipoDeUsuarioService.ListarTipoDeUsuario(listarTipoDeUsuarioIn)
     .subscribe( lista => {
       if(lista.TiposDeUsuario!=undefined){
-         lista.TiposDeUsuario.forEach(( valor : TipoDeUsuario)=>{
-          this.tiposDeUsuario.push(valor);
-        })
+        this.tiposDeUsuario =  lista.TiposDeUsuario;
       }
     }, err => {
          this.modal.Mensaje = err;
@@ -88,14 +88,14 @@ export class TipoDeUsuarioComponent implements OnInit {
     });
   }
   
-  ListarModulosPorTipoDeUsuario(tipoDeUsuario:TipoDeUsuario){
+  ListarModulosPorTipoDeUsuario(){
     let listarModulosPorTipoDeUsuarioIn:ListarModulosPorTipoDeUsuarioIn = new ListarModulosPorTipoDeUsuarioIn();
-    listarModulosPorTipoDeUsuarioIn.IdTipoDeUsuario = tipoDeUsuario.IdTipoDeUsuario;
+    listarModulosPorTipoDeUsuarioIn.IdTipoDeUsuario = this.tipoDeUsuario.IdTipoDeUsuario;
     this.tipoDeUsuario.Modulos = [];
     this.tipoDeUsuarioService.ListarModulosPorTipoDeUsuario(listarModulosPorTipoDeUsuarioIn)
     .subscribe( lista => {
       if(lista.Modulos!=undefined){
-        if(tipoDeUsuario.IdTipoDeUsuario!=null)
+        if(this.tipoDeUsuario.IdTipoDeUsuario!=null)
         {
           this.tipoDeUsuario.Modulos = lista.Modulos;
           this.FiltrarListaDeModulos();
@@ -103,6 +103,7 @@ export class TipoDeUsuarioComponent implements OnInit {
         else
         {
           this.modulos = lista.Modulos;
+          this.modulosFiltrada = this.modulos;
         }
       }
     },err => {
@@ -120,7 +121,7 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.tipoDeUsuarioService.AgregarModulo(agregarModuloIn)
     .subscribe( resp => {
       this.tipoDeUsuario.Modulos.push(modulo);
-      this.modulos = this.Modulos.filter(moduloAEliminar => moduloAEliminar.IdModulo != modulo.IdModulo);
+      this.modulosFiltrada = this.modulosFiltrada.filter(moduloAEliminar => moduloAEliminar.IdModulo != modulo.IdModulo);
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.TipoDeUsuario.AgregarModulo.ERROR,true);
      });
@@ -133,7 +134,7 @@ export class TipoDeUsuarioComponent implements OnInit {
     eliminarModuloIn.Modulo = modulo;
     this.tipoDeUsuarioService.EliminarModulo(eliminarModuloIn)
     .subscribe( resp => {
-      this.modulos.push(modulo);
+      this.modulosFiltrada.push(modulo);
       this.tipoDeUsuario.Modulos = this.tipoDeUsuario.Modulos.filter( moduloAEliminar => moduloAEliminar.IdModulo != modulo.IdModulo);
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.TipoDeUsuario.EliminarModulo.ERROR,true);
@@ -148,13 +149,14 @@ export class TipoDeUsuarioComponent implements OnInit {
   Seleccionar(tipoDeUsuario:TipoDeUsuario)
   {
     this.tipoDeUsuario = tipoDeUsuario
-    this.ListarModulosPorTipoDeUsuario(tipoDeUsuario);
+    this.ListarModulosPorTipoDeUsuario();
     this.Ocultar();
   }
 
   Regresar()
   {
     this.tipoDeUsuario = new TipoDeUsuario();
+    this.modulosFiltrada = this.modulos;
     this.Ocultar();
   }
   Ocultar()
@@ -165,7 +167,7 @@ export class TipoDeUsuarioComponent implements OnInit {
   FiltrarListaDeModulos()
   {
     this.tipoDeUsuario.Modulos.forEach(moduloTipoUsuario => {
-      this.modulos = this.modulos.filter(modulo => moduloTipoUsuario.IdModulo != modulo.IdModulo);
+      this.modulosFiltrada = this.modulosFiltrada.filter(modulo => moduloTipoUsuario.IdModulo != modulo.IdModulo);
     });
   }
 

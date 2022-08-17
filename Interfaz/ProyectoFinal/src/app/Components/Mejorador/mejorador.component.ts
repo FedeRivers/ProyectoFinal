@@ -23,10 +23,6 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   private mejorador: Mejorador;
   private terminoDeBusqueda: string='';
   private mejoradores: Mejorador[];
-  private estaSeleccionado: boolean = false;
-  private btnAlta: boolean = false;
-  private btnBaja: boolean = false;
-  private btnModificar: boolean = false;
   private nombreEsValido:boolean = false;
   private mailEsValido: boolean = false;
   private direccionEsValido: boolean = false;
@@ -52,13 +48,6 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     
   }
 
-  public get EstaSeleccionado(): boolean {
-    return this.estaSeleccionado;
-  }
-  public set EstaSeleccionado(value: boolean) {
-    this.estaSeleccionado = value;
-  }
-
   public get TerminoDeBusqueda(): string {
     return this.terminoDeBusqueda;
   }
@@ -82,26 +71,6 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.mejoradores = value;
   }
 
-// #region Get y Set de botones (utilizado para habilitar y deshabilitar los mismos).
-  public get BtnAlta(): boolean {
-    return this.btnAlta;
-  }
-  public set BtnAlta(value: boolean) {
-    this.btnAlta = value;
-  }
-  public get BtnBaja(): boolean {
-    return this.btnBaja;
-  }
-  public set BtnBaja(value: boolean) {
-    this.btnBaja = value;
-  }
-  public get BtnModificar(): boolean {
-    return this.btnModificar;
-  }
-  public set BtnModificar(value: boolean) {
-    this.btnModificar = value;
-  }
-  //#endregion
   //#region Get y Set de validar datos introducidos por el usuario.
   public get NombreEsValido(): boolean {
     return this.nombreEsValido;
@@ -148,9 +117,9 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.altaMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
         }, err => {
-          this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
+          this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
       });
   }
 
@@ -159,9 +128,9 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.bajaMejoradorIn.idMejorador = this.mejorador.IdMejorador;
     this.mejoradorServicio.Baja(this.bajaMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
       });
   }
 
@@ -170,9 +139,9 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.modificarMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
       });
   }
 
@@ -202,13 +171,9 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   {
     this.mejorador = new Mejorador();
     this.Ocultar();
-    this.btnAlta = false;
-    this.btnBaja = false;
-    this.btnModificar = false;
-  }
-  Ocultar()
-  {
-    this.EstaSeleccionado = !this.EstaSeleccionado;
+    this.BtnAlta = false;
+    this.BtnBaja = false;
+    this.BtnModificar = false;
   }
 
   BotonSeleccionado(boton:string)
@@ -216,13 +181,13 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     switch(boton)
     {
       case "Alta":
-        this.btnAlta = true;
+        this.BtnAlta = true;
         break;
       case "Baja":
-        this.btnBaja = true;
+        this.BtnBaja = true;
         break;
       case "Modificar":
-        this.btnModificar = true;
+        this.BtnModificar = true;
         break;
     }
   }
@@ -254,11 +219,11 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   }
 
   Confirmar(){
-    if(this.btnAlta)
+    if(this.BtnAlta)
     {
       this.AltaMejorador();
     }
-    else if(this.btnBaja)
+    else if(this.BtnBaja)
     {
       this.BajaMejorador();
     }
@@ -271,7 +236,5 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   AbrirModal(){
     this.modal.open();
   }
-
-
 
 }

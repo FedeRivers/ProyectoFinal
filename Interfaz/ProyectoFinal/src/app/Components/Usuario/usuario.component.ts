@@ -28,11 +28,6 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   private usuarios: Usuario[] = [];
   private tiposDeUsuario: TipoDeUsuario[] = [];
   private terminoDeBusqueda: string = "";
-  private estaSeleccionado: boolean = false;
-  
-  private btnAlta: boolean = false;
-  private btnBaja: boolean = false;
-  private btnModificar: boolean = false;
 
   private nombreEsValido: boolean = false; 
   private apellidoEsValido: boolean = false; 
@@ -60,13 +55,6 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
 
 
   ngOnInit(): void {
-  }
-
-  public get EstaSeleccionado(): boolean {
-    return this.estaSeleccionado;
-  }
-  public set EstaSeleccionado(value: boolean) {
-    this.estaSeleccionado = value;
   }
 
   public get TerminoDeBusqueda(): string {
@@ -106,27 +94,6 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.tiposDeUsuario = value;
   }
   //#endregion
-
-  // #region Get y Set de botones (utilizado para habilitar y deshabilitar los mismos).
-  public get BtnAlta(): boolean {
-    return this.btnAlta;
-  }
-  public set BtnAlta(value: boolean) {
-    this.btnAlta = value;
-  }
-  public get BtnBaja(): boolean {
-    return this.btnBaja;
-  }
-  public set BtnBaja(value: boolean) {
-    this.btnBaja = value;
-  }
-  public get BtnModificar(): boolean {
-    return this.btnModificar;
-  }
-  public set BtnModificar(value: boolean) {
-    this.btnModificar = value;
-  }
-  // #endregion
 
   //#region Get y Set de validar datos introducidos por el usuario.
   public get NombreEsValido(): boolean {
@@ -191,7 +158,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
-       });
+      });
   }
 
   BajaUsuario()
@@ -199,9 +166,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
     this.usuarioServicio.Baja(this.bajaUsuarioIn)
     .subscribe( usuario => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Baja.EXITO,false)
      }, err => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Baja.ERROR,true)
      });
   }
 
@@ -210,10 +177,10 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.modificarUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false)
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
-       });
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true)
+      });
   }
 
   Listar()
@@ -258,34 +225,28 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   {
     this.usuario = new Usuario();
     this.Ocultar();
-    this.btnAlta = false;
-    this.btnBaja = false;
-    this.btnModificar = false;
-  }
-  Ocultar()
-  {
-    this.EstaSeleccionado = !this.EstaSeleccionado;
+    this.BtnAlta = false;
+    this.BtnBaja = false;
+    this.BtnModificar = false;
   }
 
-  
   BotonSeleccionado(boton:string)
   {
     switch(boton)
     {
       case "Alta":
-        this.btnAlta = true;
+        this.BtnAlta = true;
         this.ListarTiposDeUsuario();
         break;
       case "Baja":
-        this.btnBaja = true;
+        this.BtnBaja = true;
         break;
       case "Modificar":
-        this.btnModificar = true;
+        this.BtnModificar = true;
         this.ListarTiposDeUsuario();
         break;
     }
   }
-
 
   ValidarNombre():boolean
   {
@@ -329,11 +290,11 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   }
 
   Confirmar(){
-    if(this.btnAlta)
+    if(this.BtnAlta)
     {
       this.AltaUsuario();
     }
-    else if(this.btnBaja)
+    else if(this.BtnBaja)
     {
       this.BajaUsuario();
     }
