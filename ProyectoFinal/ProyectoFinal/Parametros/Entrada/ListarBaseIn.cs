@@ -5,7 +5,8 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Entrada
 {
-    public class ListarTiposDeUsuarioIn : ListarBaseIn
+    public class ListarBaseIn
     {
+        public string TerminoDeBusqueda { get; set; }
     }
 }

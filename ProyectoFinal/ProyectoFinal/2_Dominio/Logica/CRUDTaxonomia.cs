@@ -24,5 +24,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PTaxonomia().ModificarTaxonomia(input);
         }
+
+        public ListarTaxonomiasOut ListarTaxonomias(ListarTaxonomiasIn input)
+        {
+            return new PTaxonomia().ListarTaxonomias(input);
+        }
     }
 }

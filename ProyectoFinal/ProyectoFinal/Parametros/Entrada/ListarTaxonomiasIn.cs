@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Entrada
 {
-    public class ListarTaxonomiasIn
+    public class ListarTaxonomiasIn : ListarBaseIn
     {
     }
 }
