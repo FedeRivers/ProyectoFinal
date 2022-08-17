@@ -1,3 +1,4 @@
+import { Taxonomia } from '../Taxonomia/class/taxonomia';
 
 export const RecursosDeIdioma = {
     MensajesFormularios :
@@ -57,7 +58,29 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al eliminar el modulo al tipo de usuario.',
             },
-        }
+        },
+        Taxonomia : 
+        {
+            Alta:
+            {
+                ERROR:'Ocurrió un error al ingresar la taxonomía.',
+                EXITO:'Taxonomía ingresada con éxito.',
+            },
+            Baja:
+            {
+                ERROR:'Ocurrió un error al eliminar la taxonomía.',
+                EXITO:'Taxonomía eliminada con éxito.',
+            },
+            Modificar:
+            {
+                ERROR:'Ocurrió un error al modificar la taxonomía.',
+                EXITO:'Taxonomía modificada con éxito.',
+            },
+            Listar:
+            {
+                ERROR:'',
+            },
+        },
     },
 }
 
@@ -83,7 +106,14 @@ export const MetodosUrl = {
         LISTARMODULOSPORTIPODEUSUARIO: 'ListarModulosPorTipoDeUsuario',
         AGREGARMODULO: 'AgregarModulo',
         ELIMINARMODULO: 'EliminarModulo',
-    }   
+    },
+    Taxonomia : 
+    {
+        ALTA : 'AltaTaxonomia',
+        BAJA : 'BajaTaxonomia',
+        MODIFICAR : 'ModificarTaxonomia',
+        LISTAR : 'ListarTaxonomias',
+    },   
 }
 
 export const ExpresionesRegulares = {

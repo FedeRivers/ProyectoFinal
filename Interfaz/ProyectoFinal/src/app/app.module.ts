@@ -11,6 +11,7 @@ import { MejoradorComponent } from './Components/Mejorador/mejorador.component';
 import { UsuarioComponent } from './Components/Usuario/usuario.component';
 import { ModalComponent } from './Components/Modal/modal.component';
 import { TipoDeUsuarioComponent } from './Components/TipoDeUsuario/tipoDeUsuario.component';
+import { TaxonomiaComponent } from './Components/Taxonomia/taxonomia.component';
 
 
 
@@ -28,6 +29,7 @@ import { TipoDeUsuarioComponent } from './Components/TipoDeUsuario/tipoDeUsuario
     MejoradorComponent,
     ModalComponent,
     TipoDeUsuarioComponent,
+    TaxonomiaComponent,
   ],
   imports: [
     BrowserModule,
