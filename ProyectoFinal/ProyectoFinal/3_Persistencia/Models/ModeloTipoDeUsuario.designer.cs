@@ -84,9 +84,9 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTiposDeUsuario")]
-		public ISingleResult<ListarTiposDeUsuarioResult> ListarTiposDeUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		public ISingleResult<ListarTiposDeUsuarioResult> ListarTiposDeUsuario()
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ListarTiposDeUsuarioResult>)(result.ReturnValue));
 		}
 	}

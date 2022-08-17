@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Entrada
 {
-    public class ListarTiposDeUsuarioIn : ListarBaseIn
+    public class ListarTiposDeUsuarioIn
     {
     }
 }
