@@ -81,6 +81,28 @@ export const RecursosDeIdioma = {
                 ERROR:'',
             },
         },
+        Lote : 
+        {
+            Alta:
+            {
+                ERROR:'Ocurrió un error al ingresar el lote.',
+                EXITO:'Lote ingresado con éxito.',
+            },
+            Baja:
+            {
+                ERROR:'Ocurrió un error al eliminar el lote.',
+                EXITO:'Lote eliminado con éxito.',
+            },
+            Modificar:
+            {
+                ERROR:'Ocurrió un error al modificar el lote.',
+                EXITO:'Lote modificada con éxito.',
+            },
+            Listar:
+            {
+                ERROR:'',
+            },
+        }
     },
 }
 
@@ -113,7 +135,18 @@ export const MetodosUrl = {
         BAJA : 'BajaTaxonomia',
         MODIFICAR : 'ModificarTaxonomia',
         LISTAR : 'ListarTaxonomias',
-    },   
+    },
+    Estado :
+    {
+        LISTAR : 'ListarEstados',
+    }, 
+    Lote : 
+    {
+        ALTA : 'AltaLote',
+        BAJA : 'BajaLote',
+        MODIFICAR : 'ModificarLote',
+        LISTAR : 'ListarLotes',
+    },  
 }
 
 export const ExpresionesRegulares = {

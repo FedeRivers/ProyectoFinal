@@ -23,6 +23,12 @@
             <app-taxonomia></app-taxonomia>
         </ng-template>
     </li>
+    <li [ngbNavItem]="5" *ngIf="Lote">
+        <a ngbNavLink><b>Lote</b></a>
+        <ng-template ngbNavContent>
+            <app-lote></app-lote>
+        </ng-template>
+    </li>
     <!-- <li ngbDropdown class="nav-item" *ngIf="Mejorador"> 
         <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
         <div ngbDropdownMenu>

@@ -12,9 +12,10 @@ export class AppComponent {
   Usuario:boolean=false;
   TipoDeUsuario:boolean=false;
   Taxonomia: boolean = false;
+  Lote : boolean = false;
 
   constructor(){
-    this.listaDePermisos = ["1","2","3","4"];
+    this.listaDePermisos = ["1","2","3","4","5"];
     this.ValidarPermisos();
   }
 
@@ -29,6 +30,9 @@ export class AppComponent {
         case "3": this.TipoDeUsuario = true;
           break;
         case "4": this.Taxonomia = true;
+          break;
+        case "5": this.Lote = true;
+          break;
       }
 
     });

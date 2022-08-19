@@ -12,6 +12,7 @@ import { UsuarioComponent } from './Components/Usuario/usuario.component';
 import { ModalComponent } from './Components/Modal/modal.component';
 import { TipoDeUsuarioComponent } from './Components/TipoDeUsuario/tipoDeUsuario.component';
 import { TaxonomiaComponent } from './Components/Taxonomia/taxonomia.component';
+import { LoteComponent } from './Components/Lote/lote.component';
 
 
 
@@ -30,6 +31,7 @@ import { TaxonomiaComponent } from './Components/Taxonomia/taxonomia.component';
     ModalComponent,
     TipoDeUsuarioComponent,
     TaxonomiaComponent,
+    LoteComponent,
   ],
   imports: [
     BrowserModule,
