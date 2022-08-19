@@ -35,7 +35,7 @@ namespace ProyectoFinal._1_Servicios
         [HttpGet]
         public ListarMejoradorOut ListarMejoradores([FromUri]ListarMejoradorIn input)
         {
-            return new CRUDMejorador().ListarMejorador(input);
+            return new CRUDMejorador().ListarMejoradores(input);
         }
 
     }

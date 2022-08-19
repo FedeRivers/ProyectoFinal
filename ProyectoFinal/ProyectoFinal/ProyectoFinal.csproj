@@ -138,17 +138,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="1_Servicios\EstadoController.cs" />
+    <Compile Include="1_Servicios\LoteController.cs" />
     <Compile Include="1_Servicios\MejoradorController.cs" />
     <Compile Include="1_Servicios\TaxonomiaController.cs" />
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
     <Compile Include="2_Dominio\Entidades\Estado.cs" />
+    <Compile Include="2_Dominio\Entidades\Lote.cs" />
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
     <Compile Include="2_Dominio\Entidades\Modulo.cs" />
     <Compile Include="2_Dominio\Entidades\Taxonomia.cs" />
     <Compile Include="2_Dominio\Entidades\TipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDEstado.cs" />
+    <Compile Include="2_Dominio\Logica\CRUDLote.cs" />
     <Compile Include="2_Dominio\Logica\CRUDTaxonomia.cs" />
     <Compile Include="2_Dominio\Logica\CRUDTipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDMejorador.cs" />
@@ -159,6 +162,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloEstado.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="3_Persistencia\Models\ModeloLote.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloLote.dbml</DependentUpon>
     </Compile>
     <Compile Include="3_Persistencia\Models\ModeloMejorador.designer.cs">
       <AutoGen>True</AutoGen>
@@ -176,6 +184,7 @@
       <DependentUpon>ModeloTipoDeUsuario.dbml</DependentUpon>
     </Compile>
     <Compile Include="3_Persistencia\PEstado.cs" />
+    <Compile Include="3_Persistencia\PLote.cs" />
     <Compile Include="3_Persistencia\PMejorador.cs" />
     <Compile Include="3_Persistencia\PTaxonomia.cs" />
     <Compile Include="3_Persistencia\PUsuario.cs" />
@@ -223,39 +232,47 @@
       <DependentUpon>ModeloUsuario.dbml</DependentUpon>
     </Compile>
     <Compile Include="Parametros\Entrada\AgregarModuloIn.cs" />
+    <Compile Include="Parametros\Entrada\AltaLoteIn.cs" />
     <Compile Include="Parametros\Entrada\AltaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\AltaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\BajaLoteIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\BajaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarBaseIn.cs" />
     <Compile Include="Parametros\Entrada\ListarEstadosIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarLotesIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarModulosPorTipoDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTaxonomiasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTiposDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
+    <Compile Include="Parametros\Entrada\ModificarLoteIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarUsuarioIn.cs" />
     <Compile Include="Parametros\Salida\AgregarModuloOut.cs" />
+    <Compile Include="Parametros\Salida\AltaLoteOut.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\AltaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\BajaLoteOut.cs" />
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\BajaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ListarEstadosOut.cs" />
+    <Compile Include="Parametros\Salida\ListarLotesOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarModulosPorTipoDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarTaxonomiasOut.cs" />
     <Compile Include="Parametros\Salida\ListarTiposDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
+    <Compile Include="Parametros\Salida\ModificarLoteOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ModificarTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\ModificarUsuarioOut.cs" />
@@ -309,6 +326,14 @@
     </Content>
     <None Include="3_Persistencia\Models\ModeloEstado.dbml.layout">
       <DependentUpon>ModeloEstado.dbml</DependentUpon>
+    </None>
+    <Content Include="3_Persistencia\Models\ModeloLote.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ModeloLote.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="3_Persistencia\Models\ModeloLote.dbml.layout">
+      <DependentUpon>ModeloLote.dbml</DependentUpon>
     </None>
     <None Include="3_Persistencia\Models\ModeloMejorador.dbml.layout">
       <DependentUpon>ModeloMejorador.dbml</DependentUpon>
