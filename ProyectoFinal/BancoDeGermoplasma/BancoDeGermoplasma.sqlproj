@@ -88,6 +88,11 @@
     <Build Include="StoreProcedure\ListarTaxonomias.sql" />
     <Build Include="Tablas\Estados.sql" />
     <Build Include="StoreProcedure\ListarEstados.sql" />
+    <Build Include="Tablas\Lotes.sql" />
+    <Build Include="StoreProcedure\AltaLote.sql" />
+    <Build Include="StoreProcedure\BajaLote.sql" />
+    <Build Include="StoreProcedure\ModificarLote.sql" />
+    <Build Include="StoreProcedure\ListarLotes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

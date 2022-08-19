@@ -78,7 +78,7 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
-        public ListarMejoradorOut ListarMejorador(ListarMejoradorIn input)
+        public ListarMejoradorOut ListarMejoradores(ListarMejoradorIn input)
         {
             var output = new ListarMejoradorOut { Mejoradores=new List<Mejorador>(), Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloMejoradorDataContext())
