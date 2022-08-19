@@ -31,7 +31,7 @@ namespace ProyectoFinal._1_Servicios
         }
 
         [HttpGet]
-        public ListarTaxonomiasOut ListarTaxonomiases([FromUri]ListarTaxonomiasIn input)
+        public ListarTaxonomiasOut ListarTaxonomias([FromUri]ListarTaxonomiasIn input)
         {
             return new CRUDTaxonomia().ListarTaxonomias(input);
         }

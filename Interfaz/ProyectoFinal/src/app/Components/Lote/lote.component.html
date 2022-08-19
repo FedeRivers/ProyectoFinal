@@ -2,7 +2,7 @@
 <html lang="es-ES">
 
 <head>
-    <title>ABM Taxonomía</title>
+    <title>ABM Lote</title>
 </head>
 
 <body>
@@ -13,15 +13,27 @@
                     <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="spanNombre">Nombre:</span>
-                    <input name="txtNombre" [(ngModel)]="Taxonomia.Nombre" [ngClass]="Taxonomia.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
+                    <span class="input-group-text" id="spanNumero">Numero:</span>
+                    <input name="txtNumero" [(ngModel)]="Lote.Numero" [ngClass]="Lote.Numero!=undefined ? ValidarNumeroLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese numero" aria-label="txtNumero" aria-describedby="spanNumero"
                         required>
-                    <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
+                    <div class="invalid-feedback">{{MensajeNumeroInvalido}}</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanDescripcion">Descripción:</span>
+                    <input name="txtDescripcion" [(ngModel)]="Lote.Descripcion" [ngClass]="Lote.Descripcion!=undefined ? ValidarDescripcion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese descripcion" aria-label="txtDescripcion"
+                        aria-describedby="spanDescripcion" required>
+                    <div class="invalid-feedback">{{MensajeDescripcionInvalido}}</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanMejorador">Mejorador:</span>
+                    <input name="txtMejorador" [(ngModel)]="Lote.Mejorador" [ngClass]="Lote.Mejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Seleccione mejorador" aria-label="txtMejorador" aria-describedby="spanMejorador"
+                        required>
+                    <div class="invalid-feedback">{{MensajeMejoradorInvalido}}</div>
                 </div>
                 <div class="">
-                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaTaxonomia()">Agregar Taxonomía</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaTaxonomia()">Eliminar Taxonomía</button>
-                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarTaxonomia()">Modificar Taxonomía</button>
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaLote()">Agregar Taxonomía</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaLote()">Eliminar Taxonomía</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarLote()">Modificar Taxonomía</button>
                 </div>
             </form>
         </div>
@@ -31,7 +43,7 @@
                 <div class="row mb-1">
                     <div class="col-md-9">
                         <div class="row">
-                            <label for="txtTerminoDeBusqueda" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
+                            <label for="txtTerminoDeBusqueda" class="col-xs-3 col-sm-auto col-form-label">Buscar por numero:</label>
                             <div class="col-xs-3 col-sm-auto">
                                 <input id="txtTerminoDeBusqueda" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
                             </div>
@@ -53,22 +65,28 @@
                 <table class="table table-hover">
                     <thead class="table-primary">
                         <tr>
-                            <th scope="col" sortable="nombre">Nombre</th>
+                            <th scope="col" sortable="numero">Numero</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="pointer" *ngFor="let taxonomia of Taxonomias">
+                        <tr class="pointer" *ngFor="let lote of Lotes">
                             <td>
                                 <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                                <ngb-highlight [result]="taxonomia.Nombre"></ngb-highlight>
+                                <ngb-highlight [result | number]="lote.Numero"></ngb-highlight>
                             </td>
                             <td>
-                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(taxonomia); BotonSeleccionado('Modificar')"></i>
+                                <ngb-highlight [result]="lote.Descripcion"></ngb-highlight>
                             </td>
                             <td>
-                                <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(taxonomia);BotonSeleccionado('Baja')"></i>
+                                <ngb-highlight [result]="lote.Mejorador.Nombre"></ngb-highlight>
+                            </td>
+                            <td>
+                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(lote); BotonSeleccionado('Modificar')"></i>
+                            </td>
+                            <td>
+                                <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(lote);BotonSeleccionado('Baja')"></i>
                             </td>
                         </tr>
                     </tbody>

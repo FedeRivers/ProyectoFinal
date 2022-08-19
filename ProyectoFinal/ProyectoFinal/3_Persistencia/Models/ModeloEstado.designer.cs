@@ -33,7 +33,7 @@ namespace ProyectoFinal._3_Persistencia.Models
     #endregion
 		
 		public ModeloEstadoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeGermoplasmaConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeGermoplasmaConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

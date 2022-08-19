@@ -29,6 +29,7 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
     this.taxonomias = [];
     this.taxonomia = new Taxonomia();
     this.modal = new ModalComponent();
+    this.Listar();
   }
 
   public get Taxonomia(): Taxonomia {
@@ -82,6 +83,7 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
     altaTaxonomiaIn.Taxonomia = this.taxonomia;
     this.taxonomiaServicio.Agregar(altaTaxonomiaIn)
     .subscribe( taxonomia => {
+      this.modal.Confirmado = true;
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Alta.EXITO,false)
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Alta.ERROR,true)
@@ -136,6 +138,7 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
   Regresar()
   {
     this.taxonomia = new Taxonomia();
+    this.Listar();
     this.Ocultar();
     this.BtnAlta = false;
     this.BtnBaja = false;
@@ -160,7 +163,7 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
 
   ValidarNombre():boolean
   {
-    this.mensajeNombreInvalido = this.ValidarLetras(this.Taxonomia.Nombre);
+    this.mensajeNombreInvalido = this.ValidarLetrasNumerosEspaciosYPunto(this.Taxonomia.Nombre);
     this.mensajeNombreInvalido != '' ? this.nombreEsValido = false : this.nombreEsValido = true;
     return this.nombreEsValido;
   }
