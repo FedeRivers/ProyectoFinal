@@ -1,55 +1,64 @@
-<ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content">
-    <li [ngbNavItem]="1" *ngIf="Mejorador">
-        <a ngbNavLink><b>Mejoradores</b></a>
-        <ng-template ngbNavContent>
-            <app-mejorador></app-mejorador>
-        </ng-template>
-    </li>
-    <li [ngbNavItem]="2" *ngIf="Usuario">
-        <a ngbNavLink><b>Usuarios</b></a>
-        <ng-template ngbNavContent>
-            <app-usuario></app-usuario>
-        </ng-template>
-    </li>
-    <li [ngbNavItem]="3" *ngIf="TipoDeUsuario">
-        <a ngbNavLink><b>Tipos de Usuarios</b></a>
-        <ng-template ngbNavContent>
-            <app-tipoDeUsuario></app-tipoDeUsuario>
-        </ng-template>
-    </li>
-    <li [ngbNavItem]="4" *ngIf="Taxonomia">
-        <a ngbNavLink><b>Taxonomía</b></a>
-        <ng-template ngbNavContent>
-            <app-taxonomia></app-taxonomia>
-        </ng-template>
-    </li>
-    <li [ngbNavItem]="5" *ngIf="Lote">
-        <a ngbNavLink><b>Lote</b></a>
-        <ng-template ngbNavContent>
-            <app-lote></app-lote>
-        </ng-template>
-    </li>
-    <!-- <li ngbDropdown class="nav-item" *ngIf="Mejorador"> 
-        <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
-        <div ngbDropdownMenu>
-            <button ngbDropdownItem>Action</button>
-            <button ngbDropdownItem>Another action</button>
-            <button ngbDropdownItem>Something else here</button>
-            <div class="dropdown-divider"></div>
-            <button ngbDropdownItem>Separated link</button>
-            <app-mejorador></app-mejorador>
-        </div>
-    </li>
-    <li ngbNavItem [disabled]="true" class="ms-auto">
-        <a ngbNavLink>Disabled</a>
-        <ng-template ngbNavContent>
-        </ng-template>
-    </li>-->
-</ul>
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
+<div *ngIf="Usuario.IdUsuario==undefined">
+    <app-login (LoginValido)="ListarFormularios($event)"></app-login>
+</div>
+<div *ngIf="Usuario.IdUsuario!=undefined">
+    <ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content">
+        <li [ngbNavItem]="1" *ngIf="ModuloMejorador">
+            <a ngbNavLink><b>Mejoradores</b></a>
+            <ng-template ngbNavContent>
+                <app-mejorador></app-mejorador>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2" *ngIf="ModuloUsuario">
+            <a ngbNavLink><b>Usuarios</b></a>
+            <ng-template ngbNavContent>
+                <app-usuario></app-usuario>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3" *ngIf="ModuloTipoDeUsuario">
+            <a ngbNavLink><b>Tipos de Usuarios</b></a>
+            <ng-template ngbNavContent>
+                <app-tipoDeUsuario></app-tipoDeUsuario>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="4" *ngIf="ModuloTaxonomia">
+            <a ngbNavLink><b>Taxonomía</b></a>
+            <ng-template ngbNavContent>
+                <app-taxonomia></app-taxonomia>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="5" *ngIf="ModuloLote">
+            <a ngbNavLink><b>Lote</b></a>
+            <ng-template ngbNavContent>
+                <app-lote></app-lote>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="6">
+            <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
+        </li>
+
+        <!-- <li ngbDropdown class="nav-item" *ngIf="Mejorador"> 
+            <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
+            <div ngbDropdownMenu>
+                <button ngbDropdownItem>Action</button>
+                <button ngbDropdownItem>Another action</button>
+                <button ngbDropdownItem>Something else here</button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem>Separated link</button>
+                <app-mejorador></app-mejorador>
+            </div>
+        </li>
+        <li ngbNavItem [disabled]="true" class="ms-auto">
+            <a ngbNavLink>Disabled</a>
+            <ng-template ngbNavContent>
+            </ng-template>
+        </li>-->
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
 
 
 
-<!-- <app-modal></app-modal> -->
-<!-- <app-login></app-login> -->
+    <!-- <app-modal></app-modal> -->
+    <!-- <app-login></app-login> -->
+</div>

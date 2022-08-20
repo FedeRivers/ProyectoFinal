@@ -7,6 +7,7 @@ import { ListarUsuariosOut } from '../Parametros/Salida/ListarUsuariosOut';
 import { ModificarUsuarioIn } from '../Parametros/Entrada/ModificarUsuarioIn';
 import { BajaUsuarioIn } from '../Parametros/Entrada/BajaUsuarioIn';
 import { MetodosUrl } from '../Components/Constantes/constantes';
+import { LoginOut } from '../Parametros/Salida/LoginOut';
 
 
 @Injectable({
@@ -30,7 +31,7 @@ export class UsuarioService {
   }
 
   public Login(loginIn:LoginIn){
-    return this.http.get(`${this.baseUrl+MetodosUrl.Usuario.LOGIN}?Mail=${loginIn.mail}&Contrasena=${loginIn.contrasena}`);
+    return this.http.get<LoginOut>(`${this.baseUrl+MetodosUrl.Usuario.LOGIN}?Mail=${loginIn.mail}&Contrasena=${loginIn.contrasena}`);
   }
 
   public Listar(listarUsuariosIn:ListarUsuariosIn){
