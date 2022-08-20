@@ -104,6 +104,14 @@ export const RecursosDeIdioma = {
             },
         }
     },
+    Formularios : 
+    {
+        USUARIO:'Usuario',
+        MEJORADOR:'Mejorador',
+        TIPODEUSUARIO:'Tipo de usuario',
+        TAXONOMIA:'Taxonomia',
+        LOTE: 'Lote',
+    },
 }
 
 export const MetodosUrl = {
@@ -158,6 +166,9 @@ export const ExpresionesRegulares = {
     LETRAS_NUMEROS_ESPACIOS_Y_PUNTOS : new RegExp("^[a-zA-Z0-9 .]+$"),
 }
 
+export const Keys = {
+    USUARIO : 'usuario',
+}
 
 
 

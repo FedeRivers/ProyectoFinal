@@ -2,12 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AltaLoteIn } from 'src/app/Parametros/Entrada/AltaLoteIn';
 import { BajaLoteIn } from 'src/app/Parametros/Entrada/BajaLoteIn';
 import { LoteService } from 'src/app/Services/lote.service';
+import { MejoradorService } from 'src/app/Services/mejorador.service';
 import { RecursosDeIdioma } from '../Constantes/constantes';
 import { FormularioBase } from '../FormularioBase/class/formularioBase';
 import { ModalComponent } from '../Modal/modal.component';
 import { Lote } from './class/lote';
 import { ModificarLoteIn } from '../../Parametros/Entrada/ModicarLoteIn';
 import { ListarLotesIn } from 'src/app/Parametros/Entrada/ListarLotesIn';
+import { Mejorador } from '../Mejorador/class/mejorador';
+import { ListarMejoradorIn } from '../../Parametros/Entrada/ListarMejoradorIn';
 
 @Component({
   selector: 'app-lote',
@@ -18,6 +21,7 @@ export class LoteComponent extends FormularioBase implements OnInit {
   
   private lote: Lote; 
   private lotes: Lote[];
+  private mejoradores: Mejorador[];
   private terminoDeBusqueda: string='';
   private mensajeNumeroInvalido = '';
   private mensajeDescripcionInvalido = '';
@@ -28,10 +32,11 @@ export class LoteComponent extends FormularioBase implements OnInit {
   
   @ViewChild("modal") modal: ModalComponent;
   
-  constructor(private loteServicio: LoteService) {
+  constructor(private loteServicio: LoteService, private mejoradorServicio:MejoradorService) {
     super();
     this.lote = new Lote();
     this.lotes = [];
+    this.mejoradores = [];
     this.modal = new ModalComponent();
   }
 
@@ -102,6 +107,13 @@ export class LoteComponent extends FormularioBase implements OnInit {
     this.mejoradorEsValido = value;
   }
 
+  public get Mejoradores(): Mejorador[] {
+    return this.mejoradores;
+  }
+  public set Mejoradores(value: Mejorador[]) {
+    this.mejoradores = value;
+  }
+
   AltaLote()
   {
     let altaLoteIn : AltaLoteIn = new AltaLoteIn();
@@ -154,6 +166,20 @@ export class LoteComponent extends FormularioBase implements OnInit {
     });
   }
 
+  ListarMejoradores()
+  {
+    this.mejoradores = [];
+    this.mejoradorServicio.Listar(new ListarMejoradorIn())
+      .subscribe( lista =>{
+        if(lista.Mejoradores!=undefined) {
+          this.mejoradores = lista.Mejoradores;
+          this.mejoradores = this.mejoradores.filter(mejorador => mejorador.IdMejorador != this.lote.Mejorador.IdMejorador);
+        }
+      }, err => {
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Listar.ERROR,true)
+    });
+  }
+
   Seleccionar(lote:Lote)
   {
     this.lote = lote;
@@ -176,12 +202,14 @@ export class LoteComponent extends FormularioBase implements OnInit {
     {
       case "Alta":
         this.BtnAlta = true;
+        this.ListarMejoradores();
         break;
       case "Baja":
         this.BtnBaja = true;
         break;
       case "Modificar":
         this.BtnModificar = true;
+        this.ListarMejoradores();
         break;
     }
   }
@@ -202,8 +230,11 @@ export class LoteComponent extends FormularioBase implements OnInit {
 
   ValidarMejorador()
   {
-    this.mensajeMejoradorInvalido = this.ValidarNumero(this.lote.Mejorador.IdMejorador.toString());
+    /*this.mensajeMejoradorInvalido = this.ValidarNumero(this.lote.Mejorador.IdMejorador.toString());
     this.mensajeMejoradorInvalido != '' ? this.mejoradorEsValido = false : this.mejoradorEsValido = true;
+    return this.mejoradorEsValido;*/
+    this.mejoradorEsValido  = this.lote.Mejorador.IdMejorador != undefined;
+    this.mensajeDescripcionInvalido = this.mejoradorEsValido ? '' :RecursosDeIdioma.MensajesFormularios.CAMPO_OBLIGATORIO;
     return this.mejoradorEsValido;
   }
 
