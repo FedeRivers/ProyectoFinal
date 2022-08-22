@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloSemillaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BancoDeGermoplasmaConnectionString;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.AltaSemilla" Method="AltaSemilla">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdTaxonomia" Parameter="idTaxonomia" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BajaSemilla" Method="BajaSemilla">
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModificarSemilla" Method="ModificarSemilla">
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdTaxonomia" Parameter="idTaxonomia" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ListarSemillas" Method="ListarSemillas">
+    <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ListarSemillasResult">
+      <Column Name="idSemilla" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreSemilla" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaDeIngreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activoSemilla" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idTaxonomia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreTaxonomia" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="activoTaxonomia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
