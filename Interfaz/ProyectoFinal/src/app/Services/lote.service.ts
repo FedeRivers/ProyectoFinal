@@ -21,14 +21,14 @@ export class LoteService {
   }
 
   public Baja(bajaLoteIn:BajaLoteIn){
-    return this.http.post(`${this.baseUrl+ MetodosUrl.Lote.ALTA}`,bajaLoteIn);
+    return this.http.post(`${this.baseUrl+ MetodosUrl.Lote.BAJA}`,bajaLoteIn);
   }
 
   public Modificar(modificarLoteIn:ModificarLoteIn){
-    return this.http.post(`${this.baseUrl+ MetodosUrl.Lote.ALTA}`,modificarLoteIn);
+    return this.http.post(`${this.baseUrl+ MetodosUrl.Lote.MODIFICAR}`,modificarLoteIn);
   }
 
   public Listar(listarLoteIn:ListarLotesIn){
-    return this.http.post<ListarLotesOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTAR}`,listarLoteIn);
+    return this.http.get<ListarLotesOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTAR}?TerminoDeBusqueda=${listarLoteIn.terminoDeBusqueda}`);
   }
 }

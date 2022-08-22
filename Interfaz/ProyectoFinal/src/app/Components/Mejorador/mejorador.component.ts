@@ -170,6 +170,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
  Regresar()
   {
     this.mejorador = new Mejorador();
+    this.Listar();
     this.Ocultar();
     this.BtnAlta = false;
     this.BtnBaja = false;

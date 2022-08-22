@@ -19,9 +19,9 @@
                     <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
                 </div>
                 <div class="">
-                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaTaxonomia()">Agregar Taxonomía</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaTaxonomia()">Eliminar Taxonomía</button>
-                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarTaxonomia()">Modificar Taxonomía</button>
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Taxonomía</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Taxonomía</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Taxonomía</button>
                 </div>
             </form>
         </div>
@@ -87,6 +87,6 @@
         </div>
     </div>
 </body>
-<app-modal #modal (Aceptar)="Regresar()" (Cerrar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
+<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
 
 </html>

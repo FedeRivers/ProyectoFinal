@@ -155,9 +155,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
       .subscribe( usuario => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false)
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true)
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
       });
   }
 
@@ -166,9 +166,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.bajaUsuarioIn.IdUsuario = this.usuario.IdUsuario;
     this.usuarioServicio.Baja(this.bajaUsuarioIn)
     .subscribe( usuario => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Baja.EXITO,false)
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Baja.EXITO,false);
      }, err => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Baja.ERROR,true)
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Baja.ERROR,true);
      });
   }
 
@@ -177,9 +177,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.modificarUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false)
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false);
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true)
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
       });
   }
 
@@ -191,7 +191,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.usuarioServicio.Listar(listarUsuariosIn)
       .subscribe(lista => {
         if (lista.Usuarios != undefined) {
-            this.usuarios = lista.Usuarios
+            this.usuarios = lista.Usuarios;
           }
       }, err => {
         this.modal.Error = true;
@@ -206,7 +206,6 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
       .subscribe( lista =>{
         if(lista.TiposDeUsuario!=undefined) {
           this.tiposDeUsuario = lista.TiposDeUsuario;
-          this.tiposDeUsuario = this.tiposDeUsuario.filter(tipo => tipo.IdTipoDeUsuario != this.usuario.TipoDeUsuario.IdTipoDeUsuario);
         }
       }, err => {
         this.modal.Error = true;
@@ -224,6 +223,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
  Regresar()
   {
     this.usuario = new Usuario();
+    this.Listar();
     this.Ocultar();
     this.BtnAlta = false;
     this.BtnBaja = false;

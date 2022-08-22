@@ -10,7 +10,7 @@ export const RecursosDeIdioma = {
     {
         Confirmacion:
         {
-            PREGUNTA:'¿Desea confirmar los cambios?',
+            PREGUNTA:'¿Desea confirmar ésta acción?',
         },
         Usuario :
         {
