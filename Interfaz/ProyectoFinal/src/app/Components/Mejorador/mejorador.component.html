@@ -31,9 +31,9 @@
                     <div class="invalid-feedback">{{MensajeDireccionInvalido}}</div>
                 </div>
                 <div class="">
-                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaMejorador()">Agregar Mejorador</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaMejorador()">Eliminar Mejorador</button>
-                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarMejorador()">Modificar Mejorador</button>
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)=" AbrirModal()">Agregar Mejorador</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)=" AbrirModal()">Eliminar Mejorador</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)=" AbrirModal()">Modificar Mejorador</button>
                 </div>
             </form>
         </div>
@@ -104,6 +104,6 @@
         </div>
     </div>
 </body>
-<app-modal #modal (Aceptar)="Ocultar()" (Cerrar)="Ocultar()"></app-modal>
+<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
 
 </html>

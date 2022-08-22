@@ -22,6 +22,7 @@ export class LoteComponent extends FormularioBase implements OnInit {
   private lote: Lote; 
   private lotes: Lote[];
   private mejoradores: Mejorador[];
+  private mejorador: Mejorador;
   private terminoDeBusqueda: string='';
   private mensajeNumeroInvalido = '';
   private mensajeDescripcionInvalido = '';
@@ -34,10 +35,13 @@ export class LoteComponent extends FormularioBase implements OnInit {
   
   constructor(private loteServicio: LoteService, private mejoradorServicio:MejoradorService) {
     super();
+    this.Listar();
     this.lote = new Lote();
     this.lotes = [];
     this.mejoradores = [];
     this.modal = new ModalComponent();
+    this.mejorador = new Mejorador();
+
   }
 
   ngOnInit(): void {
@@ -114,13 +118,19 @@ export class LoteComponent extends FormularioBase implements OnInit {
     this.mejoradores = value;
   }
 
+  public get Mejorador(): Mejorador {
+    return this.mejorador;
+  }
+  public set Mejorador(value: Mejorador) {
+    this.mejorador = value;
+  }
+
   AltaLote()
   {
     let altaLoteIn : AltaLoteIn = new AltaLoteIn();
     altaLoteIn.Lote = this.lote;
     this.loteServicio.Agregar(altaLoteIn)
     .subscribe( lote => {
-      this.modal.Confirmado = true;
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Alta.EXITO,false);
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Alta.ERROR,true);
@@ -173,7 +183,7 @@ export class LoteComponent extends FormularioBase implements OnInit {
       .subscribe( lista =>{
         if(lista.Mejoradores!=undefined) {
           this.mejoradores = lista.Mejoradores;
-          this.mejoradores = this.mejoradores.filter(mejorador => mejorador.IdMejorador != this.lote.Mejorador.IdMejorador);
+         // this.mejoradores = this.mejoradores.filter(mejorador => mejorador.IdMejorador != this.lote.Mejorador.IdMejorador);
         }
       }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Listar.ERROR,true)
@@ -210,6 +220,7 @@ export class LoteComponent extends FormularioBase implements OnInit {
       case "Modificar":
         this.BtnModificar = true;
         this.ListarMejoradores();
+        this.Mejorador = this.Lote.Mejorador;
         break;
     }
   }
@@ -260,6 +271,12 @@ export class LoteComponent extends FormularioBase implements OnInit {
   ValidarFormulario():boolean
   {
     return this.numeroEsValido && this.DescripcionEsValida && this.mejoradorEsValido;
+  }
+
+  CAMBIO(mejorador:Mejorador)
+  {
+
+    this.Lote.Mejorador = mejorador;
   }
 
 

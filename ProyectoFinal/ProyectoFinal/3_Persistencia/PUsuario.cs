@@ -64,7 +64,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula);
+                    var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);

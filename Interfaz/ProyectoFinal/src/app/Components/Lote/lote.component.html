@@ -24,34 +24,21 @@
                         aria-describedby="spanDescripcion" required>
                     <div class="invalid-feedback">{{MensajeDescripcionInvalido}}</div>
                 </div>
-                <!-- <div class="input-group mb-3">
-                    <span class="input-group-text" id="spanMejorador">Mejorador:</span>
-                    <select name="sltMejorador" class="form-select" [(ngModel)]="Lote.Mejorador" [ngClass]="Lote.Mejorador.IdMejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="sltMejorador" aria-describedby="spanMejorador">
-                        <option selected value="{{Lote.Mejorador.IdMejorador}}"> 
-                            {{Lote.Mejorador.Nombre}}
-                        </option>
-                        <option *ngFor="let mejorador of Mejoradores"  value="{{mejorador}}">
-                            {{mejorador.Nombre}}
-                        </option>
-                    </select>
-                </div> -->
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMejorador">Mejorador:</span>
-                    <select name="sltMejorador" class="form-select" [(ngModel)]="Lote.Mejorador.Nombre" [ngClass]="Lote.Mejorador.Nombre!= undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="sltMejorador" aria-describedby="spanMejorador">
-                        <option *ngIf="Lote.Mejorador.Nombre!=undefined" selected value="{{Lote.Mejorador.Nombre}}">
-                            {{Lote.Mejorador.Nombre}}
-                        </option>
-                        <option *ngFor="let mejorador of Mejoradores"  value="{{mejorador.Nombre}}">
+                    <select name="sltMejorador" class="form-select" [(ngModel)]="Lote.Mejorador.IdMejorador" [ngClass]="Lote.Mejorador.IdMejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="sltMejorador"
+                        aria-describedby="spanMejorador">
+                        <option *ngFor="let mejorador of Mejoradores" [ngValue]="mejorador.IdMejorador" > 
                             {{mejorador.Nombre}}
                         </option>
                     </select>
                 </div>
 
                 <div class="">
-                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AltaLote()">Agregar Taxonomía</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="BajaLote()">Eliminar Taxonomía</button>
-                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="ModificarLote()">Modificar Taxonomía</button>
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Lote</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Lote</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Lote</button>
                 </div>
             </form>
         </div>
@@ -84,6 +71,8 @@
                     <thead class="table-primary">
                         <tr>
                             <th scope="col" sortable="numero">Numero</th>
+                            <th scope="col" sortable="numero">Descripcion</th>
+                            <th scope="col" sortable="numero">Nombre</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -92,7 +81,8 @@
                         <tr class="pointer" *ngFor="let lote of Lotes">
                             <td>
                                 <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                                <ngb-highlight [result | number]="lote.Numero"></ngb-highlight>
+                                <!-- <ngb-highlight lote.Numero></ngb-highlight> -->
+                                {{lote.Numero}}
                             </td>
                             <td>
                                 <ngb-highlight [result]="lote.Descripcion"></ngb-highlight>
@@ -123,6 +113,6 @@
         </div>
     </div>
 </body>
-<app-modal #modal (Aceptar)="Regresar()" (Cerrar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
+<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
 
 </html>

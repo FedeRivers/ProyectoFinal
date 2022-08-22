@@ -62,13 +62,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarUsuario")]
-		public int ModificarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(50)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, nombre, apellido, contrasena, mail, cedula);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaUsuario")]
 		public int BajaUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario)
 		{
@@ -95,6 +88,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
 			return ((ISingleResult<ListarUsuariosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarUsuario")]
+		public int ModificarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(50)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, nombre, apellido, contrasena, mail, cedula, idTipoDeUsuario);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

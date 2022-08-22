@@ -4,12 +4,13 @@
 	@Apellido varchar(100),
 	@Contrasena varchar(50),
 	@Mail varchar(100),
-	@Cedula varchar(10)
+	@Cedula varchar(10),
+	@IdTipoDeUsuario int
 
 AS
 BEGIN
 	BEGIN TRY
-		UPDATE Usuarios SET nombre = @Nombre, apellido = @Apellido, contrasena = @Contrasena, mail = @Mail, cedula = @Cedula, fechaDeModificacion = GETDATE() WHERE idUsuario = @IdUsuario
+		UPDATE Usuarios SET nombre = @Nombre, apellido = @Apellido, contrasena = @Contrasena, mail = @Mail, cedula = @Cedula, idTipoDeUsuario = @IdTipoDeUsuario, fechaDeModificacion = GETDATE() WHERE idUsuario = @IdUsuario
 		return 0
 	END TRY
 	BEGIN CATCH

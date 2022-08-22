@@ -8,7 +8,6 @@ import { RecursosDeIdioma } from '../Constantes/constantes';
 })
 export class ModalComponent implements OnInit {
   closeResult = '';
-  private cancelar: EventEmitter<string>;
   private aceptar: EventEmitter<string>;
   private confirmar: EventEmitter<string>;
   private mensaje: string = '';
@@ -25,7 +24,6 @@ export class ModalComponent implements OnInit {
       config.backdrop = 'static';
       config.keyboard = false;
     }
-    this.cancelar = new EventEmitter();
     this.aceptar = new EventEmitter();
     this.confirmar = new EventEmitter();
   }
@@ -36,7 +34,6 @@ export class ModalComponent implements OnInit {
   public get Mensaje(): string {
     return this.mensaje;
   }
-  @Input()
   public set Mensaje(value: string) {
     this.mensaje = value;
   }
@@ -44,18 +41,10 @@ export class ModalComponent implements OnInit {
   public get Error(): boolean {
     return this.error;
   }
-  @Input()
   public set Error(value: boolean) {
     this.error = value;
   }
   
-  @Output()
-  public get Cancelar(): EventEmitter<string> {
-    return this.cancelar;
-  }
-  public set Cancelar(value: EventEmitter<string>) {
-    this.cancelar = value;
-  }
   @Output()
   public get Aceptar(): EventEmitter<string> {
     return this.aceptar;
@@ -63,14 +52,7 @@ export class ModalComponent implements OnInit {
   public set Aceptar(value: EventEmitter<string>) {
     this.aceptar = value;
   }
-
-  public get Confirmado(): boolean {
-    return this.confirmado;
-  }
-  public set Confirmado(value: boolean) {
-    this.confirmado = value;
-  }
-  
+ 
   @Output()
   public get Confirmar(): EventEmitter<string> {
     return this.confirmar;
@@ -78,7 +60,14 @@ export class ModalComponent implements OnInit {
   public set Confirmar(value: EventEmitter<string>) {
     this.confirmar = value;
   }
-  
+   
+  public get Confirmado(): boolean {
+    return this.confirmado;
+  }
+  public set Confirmado(value: boolean) {
+    this.confirmado = value;
+  }
+
   open() {
     this.modalService!.open(this.content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -94,7 +83,11 @@ export class ModalComponent implements OnInit {
       } 
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      this.cancelar.emit();
+      if(this.confirmado)
+      {
+        this.aceptar.emit();
+        this.confirmado=false;
+      }
     });
   }
 
