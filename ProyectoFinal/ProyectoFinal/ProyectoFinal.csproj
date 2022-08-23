@@ -141,6 +141,7 @@
     <Compile Include="1_Servicios\LoteController.cs" />
     <Compile Include="1_Servicios\MejoradorController.cs" />
     <Compile Include="1_Servicios\SemillaController.cs" />
+    <Compile Include="1_Servicios\SobreController.cs" />
     <Compile Include="1_Servicios\TaxonomiaController.cs" />
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
@@ -149,12 +150,14 @@
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
     <Compile Include="2_Dominio\Entidades\Modulo.cs" />
     <Compile Include="2_Dominio\Entidades\Semilla.cs" />
+    <Compile Include="2_Dominio\Entidades\Sobre.cs" />
     <Compile Include="2_Dominio\Entidades\Taxonomia.cs" />
     <Compile Include="2_Dominio\Entidades\TipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDEstado.cs" />
     <Compile Include="2_Dominio\Logica\CRUDLote.cs" />
     <Compile Include="2_Dominio\Logica\CRUDSemilla.cs" />
+    <Compile Include="2_Dominio\Logica\CRUDSobre.cs" />
     <Compile Include="2_Dominio\Logica\CRUDTaxonomia.cs" />
     <Compile Include="2_Dominio\Logica\CRUDTipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDMejorador.cs" />
@@ -181,6 +184,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloSemilla.dbml</DependentUpon>
     </Compile>
+    <Compile Include="3_Persistencia\Models\ModeloSobre.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloSobre.dbml</DependentUpon>
+    </Compile>
     <Compile Include="3_Persistencia\Models\ModeloTaxonomia.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,6 +203,7 @@
     <Compile Include="3_Persistencia\PLote.cs" />
     <Compile Include="3_Persistencia\PMejorador.cs" />
     <Compile Include="3_Persistencia\PSemilla.cs" />
+    <Compile Include="3_Persistencia\PSobre.cs" />
     <Compile Include="3_Persistencia\PTaxonomia.cs" />
     <Compile Include="3_Persistencia\PUsuario.cs" />
     <Compile Include="3_Persistencia\PTipoDeUsuario.cs" />
@@ -244,11 +253,13 @@
     <Compile Include="Parametros\Entrada\AltaLoteIn.cs" />
     <Compile Include="Parametros\Entrada\AltaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\AltaSemillaIn.cs" />
+    <Compile Include="Parametros\Entrada\AltaSobreIn.cs" />
     <Compile Include="Parametros\Entrada\AltaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\BajaLoteIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\BajaSemillaIn.cs" />
+    <Compile Include="Parametros\Entrada\BajaSobreIn.cs" />
     <Compile Include="Parametros\Entrada\BajaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarBaseIn.cs" />
@@ -257,6 +268,7 @@
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarModulosPorTipoDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarSemillasIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarSobresIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTaxonomiasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTiposDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
@@ -264,17 +276,20 @@
     <Compile Include="Parametros\Entrada\ModificarLoteIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarSemillaIn.cs" />
+    <Compile Include="Parametros\Entrada\ModificarSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarUsuarioIn.cs" />
     <Compile Include="Parametros\Salida\AgregarModuloOut.cs" />
     <Compile Include="Parametros\Salida\AltaLoteOut.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\AltaSemillaOut.cs" />
+    <Compile Include="Parametros\Salida\AltaSobreOut.cs" />
     <Compile Include="Parametros\Salida\AltaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\BajaLoteOut.cs" />
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\BajaSemillaOut.cs" />
+    <Compile Include="Parametros\Salida\BajaSobreOut.cs" />
     <Compile Include="Parametros\Salida\BajaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
@@ -284,6 +299,7 @@
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarModulosPorTipoDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarSemillasOut.cs" />
+    <Compile Include="Parametros\Salida\ListarSobresOut.cs" />
     <Compile Include="Parametros\Salida\ListarTaxonomiasOut.cs" />
     <Compile Include="Parametros\Salida\ListarTiposDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
@@ -291,6 +307,7 @@
     <Compile Include="Parametros\Salida\ModificarLoteOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ModificarSemillaOut.cs" />
+    <Compile Include="Parametros\Salida\ModificarSobreOut.cs" />
     <Compile Include="Parametros\Salida\ModificarTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\ModificarUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />
@@ -372,6 +389,14 @@
     </Content>
     <None Include="3_Persistencia\Models\ModeloSemilla.dbml.layout">
       <DependentUpon>ModeloSemilla.dbml</DependentUpon>
+    </None>
+    <Content Include="3_Persistencia\Models\ModeloSobre.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ModeloSobre.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="3_Persistencia\Models\ModeloSobre.dbml.layout">
+      <DependentUpon>ModeloSobre.dbml</DependentUpon>
     </None>
     <None Include="3_Persistencia\Models\ModeloTaxonomia.dbml.layout">
       <DependentUpon>ModeloTaxonomia.dbml</DependentUpon>

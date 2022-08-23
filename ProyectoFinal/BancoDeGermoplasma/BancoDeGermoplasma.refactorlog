@@ -56,4 +56,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="idLote" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="467d3091-da22-444b-aaf6-6a6a5caf21fb" ChangeDateTime="08/22/2022 23:29:31">
+    <Property Name="ElementName" Value="[dbo].[Sobres].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Sobres]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idSobre" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4d9fb63d-5579-42b1-821d-9052183d4ca7" ChangeDateTime="08/22/2022 23:34:37">
+    <Property Name="ElementName" Value="[dbo].[Sobres].[fechaDeingreso]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Sobres]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="fechaDeIngreso" />
+  </Operation>
 </Operations>

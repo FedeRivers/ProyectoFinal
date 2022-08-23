@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloSobreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BancoDeGermoplasmaConnectionString;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.AltaSobre" Method="AltaSobre">
+    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdLote" Parameter="idLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BajaSobre" Method="BajaSobre">
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdLote" Parameter="idLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ListarSobres" Method="ListarSobres">
+    <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="ListarSobresResult">
+      <Column Name="idSobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ubicacion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="activoSobre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fechaDeDevolucion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ingresoSobre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="humedad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="germinacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="numero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="activoLote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ingresoLote" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idSemilla" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreSemilla" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ingresoSemilla" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activoSemilla" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreEstado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
