@@ -222,12 +222,22 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
 
  Regresar()
   {
-    this.usuario = new Usuario();
     this.Listar();
     this.Ocultar();
+    this.Limpiar();
+  }
+
+  Limpiar()
+  {
+    this.usuario = new Usuario();
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;
+    this.nombreEsValido = false; 
+    this.apellidoEsValido = false; 
+    this.mailEsValido = false; 
+    this.cedulaEsValida = false;
+    this.tipoDeUsuarioEsValido = false; 
   }
 
   BotonSeleccionado(boton:string)
@@ -282,14 +292,14 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.mensajeTipoDeUsuarioInvalido != '' ? this.tipoDeUsuarioEsValido = false: this.tipoDeUsuarioEsValido = true;
     return this.tipoDeUsuarioEsValido;
   }
-
   
   ValidarFormulario():boolean
   {
     return this.nombreEsValido && this.apellidoEsValido && this.mailEsValido && this.cedulaEsValida && this.tipoDeUsuarioEsValido;
   }
 
-  Confirmar(){
+  Confirmar()
+  {
     if(this.BtnAlta)
     {
       this.AltaUsuario();
@@ -304,7 +314,8 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     }
   }
 
-  AbrirModal(){
+  AbrirModal()
+  {
     this.modal.open();
   }
 

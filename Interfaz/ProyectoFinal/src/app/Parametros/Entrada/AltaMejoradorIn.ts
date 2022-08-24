@@ -2,15 +2,17 @@ import { Mejorador } from "src/app/Components/Mejorador/class/mejorador";
 
 export class AltaMejoradorIn {
     
-    private Mejorador!: Mejorador;
+    private mejorador: Mejorador;
 
-    constructor(){}
-
-    public get mejorador(): Mejorador {
-        return this.Mejorador;
+    constructor(){
+        this.mejorador = new Mejorador();
     }
-    public set mejorador(value: Mejorador) {
-        this.Mejorador = value;
+
+    public get Mejorador(): Mejorador {
+        return this.mejorador;
+    }
+    public set Mejorador(value: Mejorador) {
+        this.mejorador = value;
     }
 
 }

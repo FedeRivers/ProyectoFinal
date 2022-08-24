@@ -9,7 +9,8 @@ USING (
 		   (2, N'Mejorador', 1),
 		   (3, N'Usuario', 1),
 		   (4, N'Taxonomia', 1),
-		   (5, N'Lote', 1)
+		   (5, N'Lote', 1),
+		   (6, N'Semilla', 1)
 ) AS SOURCE ( NewIdModulo, NewNombre, NewActivo )
 ON TARGET.[idModulo] = SOURCE.NewIdModulo
 WHEN MATCHED THEN 
