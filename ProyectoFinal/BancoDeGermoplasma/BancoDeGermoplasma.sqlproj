@@ -94,6 +94,16 @@
     <Build Include="StoreProcedure\BajaLote.sql" />
     <Build Include="StoreProcedure\ModificarLote.sql" />
     <Build Include="StoreProcedure\ListarLotes.sql" />
+    <Build Include="Tablas\Semillas.sql" />
+    <Build Include="StoreProcedure\AltaSemilla.sql" />
+    <Build Include="StoreProcedure\BajaSemilla.sql" />
+    <Build Include="StoreProcedure\ModificarSemilla.sql" />
+    <Build Include="StoreProcedure\ListarSemillas.sql" />
+    <Build Include="Tablas\Sobres.sql" />
+    <Build Include="StoreProcedure\AltaSobre.sql" />
+    <Build Include="StoreProcedure\BajaSobre.sql" />
+    <Build Include="StoreProcedure\ModificarSobre.sql" />
+    <Build Include="StoreProcedure\ListarSobres.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />
