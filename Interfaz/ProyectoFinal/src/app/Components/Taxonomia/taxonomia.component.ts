@@ -137,12 +137,18 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
   
   Regresar()
   {
-    this.taxonomia = new Taxonomia();
+    this.Limpiar();
     this.Listar();
     this.Ocultar();
+  }
+
+  Limpiar()
+  {
+    this.taxonomia = new Taxonomia();
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;
+    this.nombreEsValido = false;
   }
 
   BotonSeleccionado(boton:string)

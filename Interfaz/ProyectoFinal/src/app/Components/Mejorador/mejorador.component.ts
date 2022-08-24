@@ -17,15 +17,19 @@ import { FormularioBase } from '../FormularioBase/class/formularioBase';
   styleUrls: ['./mejorador.component.css']
 })
 export class MejoradorComponent extends FormularioBase implements OnInit  {
+  
   private altaMejoradorIn:AltaMejoradorIn;
   private bajaMejoradorIn:BajaMejoradorIn;
   private modificarMejoradorIn:ModificarMejoradorIn;
+
   private mejorador: Mejorador;
   private terminoDeBusqueda: string='';
   private mejoradores: Mejorador[];
+
   private nombreEsValido:boolean = false;
   private mailEsValido: boolean = false;
   private direccionEsValido: boolean = false;
+
   private mensajeNombreInvalido: string = '';
   private mensajeMailInvalido: string = '';
   private mensajeDireccionInvalido: string = '';
@@ -114,7 +118,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   
   AltaMejorador()
   {
-    this.altaMejoradorIn.mejorador = this.mejorador;
+    this.altaMejoradorIn.Mejorador = this.mejorador;
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
@@ -128,9 +132,9 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.bajaMejoradorIn.idMejorador = this.mejorador.IdMejorador;
     this.mejoradorServicio.Baja(this.bajaMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Baja.EXITO,false);
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Baja.ERROR,true);
       });
   }
 
@@ -139,9 +143,9 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.modificarMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXITO,false);
        }, err => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.ERROR,true);
       });
   }
 
@@ -169,12 +173,20 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
 
  Regresar()
   {
-    this.mejorador = new Mejorador();
+    this.Limpiar();
     this.Listar();
     this.Ocultar();
+  }
+
+  Limpiar()
+  {
+    this.mejorador = new Mejorador();
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;
+    this.nombreEsValido = false;
+    this.mailEsValido = false;
+    this.direccionEsValido = false;
   }
 
   BotonSeleccionado(boton:string)
@@ -195,7 +207,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
  
   ValidarNombre():boolean
   {
-    this.mensajeNombreInvalido = this.ValidarLetras(this.mejorador.Nombre);
+    this.mensajeNombreInvalido = this.ValidarLetrasNumerosYEspacio(this.mejorador.Nombre);
     this.mensajeNombreInvalido != '' ? this.nombreEsValido = false : this.nombreEsValido = true;
     return this.nombreEsValido;
   }

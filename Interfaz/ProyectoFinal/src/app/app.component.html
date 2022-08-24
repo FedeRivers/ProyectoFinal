@@ -33,7 +33,13 @@
                 <app-lote></app-lote>
             </ng-template>
         </li>
-        <li [ngbNavItem]="6">
+        <li [ngbNavItem]="6" *ngIf="ModuloSemilla">
+            <a ngbNavLink><b>Semilla</b></a>
+            <ng-template ngbNavContent>
+                <app-semilla></app-semilla>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="7">
             <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
         </li>
 

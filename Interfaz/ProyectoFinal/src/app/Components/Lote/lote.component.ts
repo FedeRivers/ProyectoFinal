@@ -27,9 +27,9 @@ export class LoteComponent extends FormularioBase implements OnInit {
   private mensajeNumeroInvalido = '';
   private mensajeDescripcionInvalido = '';
   private mensajeMejoradorInvalido = '';
-  private numeroEsValido = false;
-  private descripcionEsValida = false;
-  private mejoradorEsValido = false;
+  private numeroEsValido : boolean = false;
+  private descripcionEsValida : boolean = false;
+  private mejoradorEsValido : boolean = false;
   
   @ViewChild("modal") modal: ModalComponent;
   
@@ -183,7 +183,6 @@ export class LoteComponent extends FormularioBase implements OnInit {
       .subscribe( lista =>{
         if(lista.Mejoradores!=undefined) {
           this.mejoradores = lista.Mejoradores;
-         // this.mejoradores = this.mejoradores.filter(mejorador => mejorador.IdMejorador != this.lote.Mejorador.IdMejorador);
         }
       }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Listar.ERROR,true)
@@ -198,13 +197,22 @@ export class LoteComponent extends FormularioBase implements OnInit {
   
   Regresar()
   {
-    this.lote = new Lote();
+    this.Limpiar();
     this.Listar();
     this.Ocultar();
+  }
+
+  Limpiar()
+  {
+    this.lote = new Lote();
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;
+    this.numeroEsValido = false;
+    this.descripcionEsValida = false;
+    this.mejoradorEsValido = false;
   }
+
 
   BotonSeleccionado(boton:string)
   {

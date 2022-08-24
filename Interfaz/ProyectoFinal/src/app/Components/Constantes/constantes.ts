@@ -27,7 +27,7 @@ export const RecursosDeIdioma = {
             Modificar:
             {
                 ERROR:'Ocurrió un error al modificar el usuario',
-                EXITO:'Usuario modiciado con éxito.',
+                EXITO:'Usuario modificado con éxito.',
             },
         }, 
         Mejorador :
@@ -96,7 +96,29 @@ export const RecursosDeIdioma = {
             Modificar:
             {
                 ERROR:'Ocurrió un error al modificar el lote.',
-                EXITO:'Lote modificada con éxito.',
+                EXITO:'Lote modificado con éxito.',
+            },
+            Listar:
+            {
+                ERROR:'',
+            },
+        },
+        Semilla : 
+        {
+            Alta:
+            {
+                ERROR:'Ocurrió un error al ingresar la semilla.',
+                EXITO:'Semilla ingresada con éxito.',
+            },
+            Baja:
+            {
+                ERROR:'Ocurrió un error al eliminar la semilla.',
+                EXITO:'Semilla eliminada con éxito.',
+            },
+            Modificar:
+            {
+                ERROR:'Ocurrió un error al modificar la semilla.',
+                EXITO:'Semilla modificada con éxito.',
             },
             Listar:
             {
@@ -111,6 +133,7 @@ export const RecursosDeIdioma = {
         TIPODEUSUARIO:'Tipo de usuario',
         TAXONOMIA:'Taxonomia',
         LOTE: 'Lote',
+        SEMILLA: 'Semilla',
     },
 }
 
@@ -154,7 +177,14 @@ export const MetodosUrl = {
         BAJA : 'BajaLote',
         MODIFICAR : 'ModificarLote',
         LISTAR : 'ListarLotes',
-    },  
+    },
+    Semilla : 
+    {
+        ALTA : 'AltaSemilla',
+        BAJA : 'BajaSemilla',
+        MODIFICAR : 'ModificarSemilla',
+        LISTAR : 'ListarSemilla',
+    },
 }
 
 export const ExpresionesRegulares = {

@@ -93,7 +93,7 @@ export class FormularioBase{
     {
         this.mensaje = this.ValidarNumero(texto);
 
-        if(this.mensaje == '' && texto.length != 8 )
+        if(this.mensaje == '' && texto.length != 8 || this.mensaje == 'El dato ingresado no es correcto.' )
         {
             this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
         }

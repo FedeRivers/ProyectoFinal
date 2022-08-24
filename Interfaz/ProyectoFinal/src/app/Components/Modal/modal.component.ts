@@ -74,6 +74,7 @@ export class ModalComponent implements OnInit {
       if(this.confirmado)
       {
         this.aceptar.emit();
+        this.Mensaje = RecursosDeIdioma.MensajesServicios.Confirmacion.PREGUNTA;
         this.confirmado=false;
       }
       else
