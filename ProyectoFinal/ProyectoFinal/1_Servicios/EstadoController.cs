@@ -13,7 +13,7 @@ namespace ProyectoFinal._1_Servicios
     public class EstadoController : ApiController
     {
         [HttpGet]
-        public ListarEstadosOut ListarEstadoss([FromUri]ListarEstadosIn input)
+        public ListarEstadosOut ListarEstados([FromUri]ListarEstadosIn input)
         {
             return new CRUDEstado().ListarEstados(input);
         }

@@ -2,16 +2,16 @@ import { Estado } from "src/app/Components/Estado/class/estado";
 
 export class ListarEstadosOut{
 
-    private estado: Estado[];
+    private estados: Estado[];
 
     constructor(){
-        this.estado = [];
+        this.estados = [];
     }
 
-    public get Estado(): Estado[] {
-        return this.estado;
+    public get Estados(): Estado[] {
+        return this.estados;
     }
-    public set Estado(value: Estado[]) {
-        this.estado = value;
+    public set Estados(value: Estado[]) {
+        this.estados = value;
     }
 }

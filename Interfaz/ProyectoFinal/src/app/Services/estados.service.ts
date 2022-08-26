@@ -7,7 +7,7 @@ import { ListarEstadosOut } from '../Parametros/Salida/ListarEstadosOut';
 @Injectable({
   providedIn: 'root'
 })
-export class EstadosService {
+export class EstadoService {
 
   private baseUrl: string = "https://localhost/ProyectoFinal/api/Estado/";
   constructor( private http:HttpClient ) { }

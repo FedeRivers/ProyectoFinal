@@ -73,7 +73,7 @@
                             <ngb-highlight [result]="semilla.Nombre"></ngb-highlight>
                         </td>
                         <td>
-                            {{semilla.FechaDeIngreso}}
+                            {{semilla.FechaDeIngreso | date:'short' }}
                         </td>
                         <td>
                             <ngb-highlight [result]="semilla.Taxonomia.Nombre"></ngb-highlight>

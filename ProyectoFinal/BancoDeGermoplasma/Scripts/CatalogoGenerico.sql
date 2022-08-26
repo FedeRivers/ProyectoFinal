@@ -10,7 +10,8 @@ USING (
 		   (3, N'Usuario', 1),
 		   (4, N'Taxonomia', 1),
 		   (5, N'Lote', 1),
-		   (6, N'Semilla', 1)
+		   (6, N'Semilla', 1),
+		   (7, N'Sobre', 1)
 ) AS SOURCE ( NewIdModulo, NewNombre, NewActivo )
 ON TARGET.[idModulo] = SOURCE.NewIdModulo
 WHEN MATCHED THEN 
@@ -27,8 +28,8 @@ MERGE INTO [dbo].[TiposDeUsuario] AS TARGET
 USING (
 	VALUES (1, N'Admin', 1),
 		   (2, N'Zafral', 1),
-		   (3, N'Tecnico1', 1),
-		   (4, N'Tecnico2', 1)
+		   (3, N'Técnico del laboratorio de semillas', 1),
+		   (4, N'Técnico del laboratorio de calidad de granos', 1)
 ) AS SOURCE ( NewIdTipoDeUsuario, NewNombre, NewActivo )
 ON TARGET.[idTipoDeUsuario] = SOURCE.NewIdTipoDeUsuario 
 WHEN MATCHED THEN 
