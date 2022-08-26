@@ -13,16 +13,6 @@
     <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
-    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdLote" Parameter="idLote" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.ListarSobres" Method="ListarSobres">
     <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
     <ElementType Name="ListarSobresResult">
@@ -33,6 +23,7 @@
       <Column Name="ingresoSobre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="humedad" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="germinacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vigor" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="idLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="numero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
@@ -45,5 +36,16 @@
       <Column Name="idEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nombreEstado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Vigor" Parameter="vigor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdLote" Parameter="idLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
