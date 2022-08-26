@@ -11,7 +11,9 @@ USING (
 		   (4, N'Taxonomia', 1),
 		   (5, N'Lote', 1),
 		   (6, N'Semilla', 1),
-		   (7, N'Sobre', 1)
+		   (7, N'Sobre', 1),
+		   (8, N'Ingresar humedad', 1),
+		   (9, N'Ingresar germinacion', 1)
 ) AS SOURCE ( NewIdModulo, NewNombre, NewActivo )
 ON TARGET.[idModulo] = SOURCE.NewIdModulo
 WHEN MATCHED THEN 
