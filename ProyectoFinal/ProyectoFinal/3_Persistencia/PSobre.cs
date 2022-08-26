@@ -77,6 +77,7 @@ namespace ProyectoFinal._3_Persistencia
                         input.Sobre.Ubicacion,
                         input.Sobre.Humedad,
                         input.Sobre.Germinacion,
+                        input.Sobre.Vigor,
                         input.Sobre.Lote.IdLote,
                         input.Sobre.Semilla.IdSemilla,
                         input.Sobre.Estado.IdEstado
@@ -116,6 +117,7 @@ namespace ProyectoFinal._3_Persistencia
                                 FechaDeDevolucion = sobre.fechaDeDevolucion,
                                 Humedad = sobre.humedad,
                                 Germinacion = sobre.germinacion,
+                                Vigor = sobre.vigor,
                                 Lote = new Lote
                                 {
                                     IdLote = sobre.idLote,

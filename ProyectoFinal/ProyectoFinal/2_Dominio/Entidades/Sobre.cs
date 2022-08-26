@@ -21,6 +21,8 @@ namespace ProyectoFinal._2_Dominio.Entidades
 
         public int? Germinacion { get; set; }
 
+        public int? Vigor { get; set; }
+
         public Lote Lote { get; set; }
 
         public Semilla Semilla { get; set; }
