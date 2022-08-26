@@ -17,6 +17,7 @@ export class AppComponent {
   private moduloLote: boolean = false;
   private moduloLogin: boolean = false;
   private moduloSemilla: boolean = false;
+  private moduloSobre: boolean = false;
 
   constructor(){
     this.usuario = new Usuario();
@@ -82,6 +83,13 @@ export class AppComponent {
     this.moduloSemilla = value;
   }
 
+  public get ModuloSobre(): boolean {
+    return this.moduloSobre;
+  }
+  public set ModuloSobre(value: boolean) {
+    this.moduloSobre = value;
+  }
+
   ListarFormularios(usuario:Usuario)
   {
     if(usuario!=undefined)
@@ -107,6 +115,8 @@ export class AppComponent {
         case RecursosDeIdioma.Formularios.LOTE: this.moduloLote = true;
           break;
         case RecursosDeIdioma.Formularios.SEMILLA: this.moduloSemilla = true;
+          break;
+        case RecursosDeIdioma.Formularios.SOBRE: this.moduloSobre = true;
       }
     });
   }
@@ -121,6 +131,7 @@ export class AppComponent {
     this.moduloTaxonomia = false;
     this.moduloLote= false;
     this.moduloSemilla = false;
+    this.moduloSobre = false;
   }
 
 

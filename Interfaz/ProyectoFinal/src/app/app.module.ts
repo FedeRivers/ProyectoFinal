@@ -14,6 +14,7 @@ import { TipoDeUsuarioComponent } from './Components/TipoDeUsuario/tipoDeUsuario
 import { TaxonomiaComponent } from './Components/Taxonomia/taxonomia.component';
 import { LoteComponent } from './Components/Lote/lote.component';
 import { SemillaComponent } from './Components/Semilla/semilla.component';
+import { SobreComponent } from './Components/Sobre/sobre.component';
 
 
 
@@ -34,6 +35,7 @@ import { SemillaComponent } from './Components/Semilla/semilla.component';
     TaxonomiaComponent,
     LoteComponent,
     SemillaComponent,
+    SobreComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <title>ABM Sobre</title>
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
+            <form class="col-md-8 form border border-5">
+                <div class="col-md-12">
+                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanUbicacion">Ubicación:</span>
+                    <input name="txtUbicacion" [(ngModel)]="Sobre.Ubicacion" [ngClass]="Sobre.Ubicacion!=undefined ? ValidarUbicacion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese ubicacion" aria-label="txtUbicacion" aria-describedby="spanUbicacion"
+                        required>
+                    <div class="invalid-feedback">{{MensajeUbicacionInvalida}}</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanHumedad">Humedad:</span>
+                    <input name="txtHumedad" [(ngModel)]="Sobre.Humedad" [ngClass]="Sobre.Humedad!=undefined ? ValidarHumedad() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese humedad" aria-label="txtHumedad" aria-describedby="spanHumedad"
+                        required>
+                    <div class="invalid-feedback">{{MensajeHumedadInvalida}}</div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanGerminacion">Germinación:</span>
+                    <input name="txtGerminacion" [(ngModel)]="Sobre.Germinacion" [ngClass]="Sobre.Germinacion!=undefined ? ValidarGerminacion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese germinacion" aria-label="txtGerminacion"
+                        aria-describedby="spanGerminacion" required>
+                    <div class="invalid-feedback">{{MensajeGerminacionInvalida}}</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanLote">Lote:</span>
+                    <select name="txtLote" class="form-select" [(ngModel)]="Sobre.Lote.IdLote" [ngClass]="Sobre.Lote.IdLote!= undefined ? ValidarLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtLote" aria-describedby="spanLote">
+                        <option *ngFor="let lote of Lotes" [ngValue]="lote.IdLote" > 
+                            {{lote.Numero}}
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanSemilla">Semilla:</span>
+                    <select name="txtSemilla" class="form-select" [(ngModel)]="Sobre.Semilla.IdSemilla" [ngClass]="Sobre.Semilla.IdSemilla!= undefined ? ValidarSemilla() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtSemilla" aria-describedby="spanSemilla">
+                        <option *ngFor="let semilla of Semillas" [ngValue]="semilla.IdSemilla" > 
+                            {{semilla.Nombre}}
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanEstado">Estado:</span>
+                    <select name="txtEstado" class="form-select" [(ngModel)]="Sobre.Estado.IdEstado" [ngClass]="Sobre.Estado.IdEstado!= undefined ? ValidarEstado() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtEstado" aria-describedby="spanEstado">
+                        <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
+                            {{estado.Nombre}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="">
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Sobre</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Sobre</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Sobre</button>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
+            <div class="row input-group">
+                <div class="row mb-3 col-md-8">
+                    <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
+                    </div>
+                    <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
+                </div>
+                <div class="col-md-2"></div>
+                <div class="mb-3 ml-auto col-md-2">
+                    <span class="input-group">             
+                        <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
+                            <i id="iAgregar" class="bi bi-plus-square"></i>
+                            Agregar                
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col" sortable="ubicacion">Ubicacion</th>
+                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                        <th scope="col" sortable="fechaDeDevolucion">Fecha de Devolución</th>
+                        <th scope="col" sortable="humedad">Humedad</th>
+                        <th scope="col" sortable="germinacion">Germinacion</th>
+                        <th scope="col" sortable="lote">Lote</th>
+                        <th scope="col" sortable="semilla">Semilla</th>
+                        <th scope="col" sortable="estado">Estado</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" *ngFor="let sobre of Sobres">
+                        <td>
+                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
+                            <ngb-highlight [result]="sobre.Ubicacion"></ngb-highlight>
+                        </td>
+                        <td>
+                            {{sobre.FechaDeIngreso | date:'short' }}
+                        </td>
+                        <td>
+                            {{sobre.FechaDeDevolucion | date:'short' }}
+                        </td>
+                        <td>
+                            {{sobre.Humedad }}
+                        </td>
+                        <td>
+                            {{sobre.Germinacion }}
+                        </td>
+                        <td>
+                            {{sobre.Lote.Numero }}
+                        </td>
+                        <td>
+                            {{sobre.Semilla.Nombre }}
+                        </td>
+                        <td>
+                            {{sobre.Estado.Nombre }}
+                        </td>
+                        <td>
+                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
+                        </td>
+                        <td>
+                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(sobre); BotonSeleccionado('Baja')"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
+                <!-- </ngb-pagination> -->
+
+                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
+                <!-- <option [ngValue]="2">2 items per page</option> -->
+                <!-- <option [ngValue]="4">4 items per page</option> -->
+                <!-- <option [ngValue]="6">6 items per page</option> -->
+                <!-- </select> -->
+            </div>
+        </div>
+    </div>
+</body>
+<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
+
+</html>

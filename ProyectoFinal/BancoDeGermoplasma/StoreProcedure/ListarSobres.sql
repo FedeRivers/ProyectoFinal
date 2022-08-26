@@ -49,7 +49,7 @@ BEGIN
 			se.fechaDeIngreso AS ingresoSemilla,
 			se.activo AS activoSemilla,
 			es.idEstado,
-			es.nombre AS nombreSemilla
+			es.nombre AS nombreEstado
 			FROM Sobres so 
 			INNER JOIN Lotes lo ON so.idLote = lo.idLote
 			INNER JOIN Semillas se ON so.idSemilla = se.idSemilla

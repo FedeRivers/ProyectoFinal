@@ -39,7 +39,13 @@
                 <app-semilla></app-semilla>
             </ng-template>
         </li>
-        <li [ngbNavItem]="7">
+        <li [ngbNavItem]="7" *ngIf="ModuloSobre">
+            <a ngbNavLink><b>Sobre</b></a>
+            <ng-template ngbNavContent>
+                <app-sobre></app-sobre>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="8">
             <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
         </li>
 

@@ -124,7 +124,29 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'',
             },
-        }
+        },
+        Sobre:
+        {
+            Alta:
+            {
+                ERROR:'Ocurrió un error al ingresar el sobre.',
+                EXITO:'Sobre ingresado con éxito.',
+            },
+            Baja:
+            {
+                ERROR:'Ocurrió un error al eliminar el sobre.',
+                EXITO:'Sobre eliminado con éxito.',
+            },
+            Modificar:
+            {
+                ERROR:'Ocurrió un error al modificar el sobre.',
+                EXITO:'Sobre modificado con éxito.',
+            },
+            Listar:
+            {
+                ERROR:'',
+            },
+        },
     },
     Formularios : 
     {
@@ -134,6 +156,7 @@ export const RecursosDeIdioma = {
         TAXONOMIA:'Taxonomia',
         LOTE: 'Lote',
         SEMILLA: 'Semilla',
+        SOBRE: 'Sobre',
     },
 }
 
@@ -183,7 +206,14 @@ export const MetodosUrl = {
         ALTA : 'AltaSemilla',
         BAJA : 'BajaSemilla',
         MODIFICAR : 'ModificarSemilla',
-        LISTAR : 'ListarSemilla',
+        LISTAR : 'ListarSemillas',
+    },
+    Sobre:
+    {
+        ALTA : 'AltaSobre',
+        BAJA : 'BajaSobre',
+        MODIFICAR : 'ModificarSobre',
+        LISTAR : 'ListarSobres',
     },
 }
 
