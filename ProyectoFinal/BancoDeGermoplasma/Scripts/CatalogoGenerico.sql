@@ -78,3 +78,22 @@ WHEN NOT MATCHED BY TARGET THEN
 	VALUES (SOURCE.NewIdModulo,SOURCE.NewIdTipoDeUsuario)
 WHEN NOT MATCHED BY SOURCE THEN
 	DELETE;
+
+/*Estados*/
+SET IDENTITY_INSERT [dbo].[Estados] ON 
+MERGE INTO [dbo].[Estados] AS TARGET 
+USING (
+	VALUES (1, N'Recibido'),
+		   (2, N'Devuelto'),
+		   (3, N'Secando'),
+		   (4, N'Germinando'),
+		   (5, N'Analizando humedad'),
+		   (6, N'Destruido')
+) AS SOURCE ( NewIdEstado, NewNombre )
+ON TARGET.[idEstado] = SOURCE.NewIdEstado
+WHEN MATCHED THEN 
+	UPDATE SET [nombre] = SOURCE.NewNombre
+WHEN NOT MATCHED BY TARGET THEN 
+	INSERT ([idEstado],[nombre])
+	VALUES (SOURCE.NewIdEstado,SOURCE.NewNombre);
+SET IDENTITY_INSERT [dbo].[Estados] OFF
