@@ -24,7 +24,7 @@ namespace ProyectoFinal._3_Persistencia
                         input.Sobre.Ubicacion, 
                         input.Sobre.Humedad, 
                         input.Sobre.Germinacion, 
-                        input.Sobre.Lote.IdLote, 
+                        input.Sobre.Lote.NumeroLote, 
                         input.Sobre.Semilla.IdSemilla, 
                         input.Sobre.Estado.IdEstado
                         );
@@ -73,12 +73,12 @@ namespace ProyectoFinal._3_Persistencia
                 {
                     var result = dataContext.ModificarSobre
                         (
-                        input.Sobre.IdSobre,
+                        input.Sobre.NumeroSobre,
                         input.Sobre.Ubicacion,
                         input.Sobre.Humedad,
                         input.Sobre.Germinacion,
                         input.Sobre.Vigor,
-                        input.Sobre.Lote.IdLote,
+                        input.Sobre.Lote.NumeroLote,
                         input.Sobre.Semilla.IdSemilla,
                         input.Sobre.Estado.IdEstado
                         );
@@ -110,7 +110,7 @@ namespace ProyectoFinal._3_Persistencia
                         {
                             output.Sobres.Add(new Sobre
                             {
-                                IdSobre = sobre.idSobre,
+                                NumeroSobre = sobre.idSobre,
                                 Ubicacion = sobre.ubicacion,
                                 Activo = sobre.activoSobre,
                                 FechaDeIngreso = sobre.ingresoSobre,
@@ -120,8 +120,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Vigor = sobre.vigor,
                                 Lote = new Lote
                                 {
-                                    IdLote = sobre.idLote,
-                                    Numero = sobre.numero,
+                                    NumeroLote = sobre.idLote,
                                     Descripcion = sobre.descripcion,
                                     FechaDeIngreso = sobre.ingresoLote,
                                     Activo = sobre.activoLote
@@ -149,6 +148,25 @@ namespace ProyectoFinal._3_Persistencia
                 }
             }
 
+            return output;
+        }
+
+        public ExisteSobreOut ExisteSobre(ExisteSobreIn input)
+        {
+            var output = new ExisteSobreOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ExisteSobre(input.Sobre.NumeroSobre, input.Sobre.Lote.NumeroLote);
+                    output.ExisteSobre = result != -1;
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
             return output;
         }
     }

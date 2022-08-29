@@ -19,7 +19,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AltaLote(input.Lote.Numero, input.Lote.Descripcion, input.Lote.Mejorador.IdMejorador);
+                    var result = dataContext.AltaLote(input.Lote.NumeroLote, input.Lote.Descripcion, input.Lote.Mejorador.IdMejorador);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -63,7 +63,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ModificarLote(input.Lote.IdLote, input.Lote.Numero, input.Lote.Descripcion, input.Lote.Mejorador.IdMejorador);
+                    var result = dataContext.ModificarLote(input.Lote.NumeroLote, input.Lote.NumeroLote, input.Lote.Descripcion, input.Lote.Mejorador.IdMejorador);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -92,8 +92,7 @@ namespace ProyectoFinal._3_Persistencia
                         {
                             output.Lotes.Add(new Lote
                             {
-                                IdLote = lote.idLote,
-                                Numero = lote.numero,
+                                NumeroLote = lote.idLote,
                                 Descripcion = lote.descripcion,
                                 FechaDeIngreso = lote.ingresoLote,
                                 Activo = lote.activoLote,
