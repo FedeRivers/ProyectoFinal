@@ -262,6 +262,7 @@
     <Compile Include="Parametros\Entrada\BajaSobreIn.cs" />
     <Compile Include="Parametros\Entrada\BajaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\ExisteSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ListarBaseIn.cs" />
     <Compile Include="Parametros\Entrada\ListarEstadosIn.cs" />
     <Compile Include="Parametros\Entrada\ListarLotesIn.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
+    <Compile Include="Parametros\Salida\ExisteSobreOut.cs" />
     <Compile Include="Parametros\Salida\ListarEstadosOut.cs" />
     <Compile Include="Parametros\Salida\ListarLotesOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />

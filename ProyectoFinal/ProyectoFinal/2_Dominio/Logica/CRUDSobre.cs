@@ -29,5 +29,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PSobre().ListarSobres(input);
         }
+
+        public ExisteSobreOut ExisteSobre(ExisteSobreIn input)
+        {
+            return new PSobre().ExisteSobre(input);
+        }
     }
 }

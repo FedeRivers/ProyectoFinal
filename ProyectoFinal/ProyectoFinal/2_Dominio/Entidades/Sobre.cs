@@ -7,7 +7,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
 {
     public class Sobre
     {
-        public int IdSobre { get; set; }
+        public int NumeroSobre { get; set; }
 
         public string Ubicacion { get; set; }
 

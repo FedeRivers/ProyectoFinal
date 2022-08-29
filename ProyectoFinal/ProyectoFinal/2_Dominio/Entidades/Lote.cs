@@ -7,9 +7,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
 {
     public class Lote
     {
-        public int IdLote { get; set; }
-
-        public int Numero { get; set; }
+        public int NumeroLote { get; set; }
 
         public string Descripcion { get; set; }
 
