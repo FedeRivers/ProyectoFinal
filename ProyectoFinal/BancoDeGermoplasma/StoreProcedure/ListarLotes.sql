@@ -5,8 +5,7 @@ BEGIN
 	IF (@TerminoDeBusqueda is not null)
 		BEGIN
 			SELECT 
-			lo.idLote,
-			lo.numero,
+			lo.numeroLote,
 			lo.descripcion,
 			lo.fechaDeIngreso AS ingresoLote,
 			lo.activo AS activoLote,
@@ -17,13 +16,12 @@ BEGIN
 			me.mail,
 			me.activo AS activoMejorador
 			FROM Lotes lo INNER JOIN Mejoradores me ON lo.idMejorador = me.idMejorador
-			WHERE numero Like '%'+@TerminoDeBusqueda+'%' and lo.activo = 1
+			WHERE numeroLote Like '%'+@TerminoDeBusqueda+'%' and lo.activo = 1
 		END
 	ELSE
 		BEGIN
 			SELECT 
-			lo.idLote,
-			lo.numero,
+			lo.numeroLote,
 			lo.descripcion,
 			lo.fechaDeIngreso AS ingresoLote,
 			lo.activo AS activoLote,

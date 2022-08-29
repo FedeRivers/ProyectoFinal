@@ -2,14 +2,14 @@
 	@Ubicacion varchar(50),
 	@Humedad int,
 	@Germinacion int,
-	@IdLote int,
+	@NumeroLote int,
 	@IdSemilla int,
 	@IdEstado int
 AS
 BEGIN
 	BEGIN TRY
-		INSERT INTO Sobres(ubicacion, humedad, germinacion, idLote, idSemilla, idEstado) 
-		VALUES (@Ubicacion, @Humedad, @Germinacion, @IdLote, @IdSemilla, @IdEstado)
+		INSERT INTO Sobres(ubicacion, humedad, germinacion, numeroLote, idSemilla, idEstado) 
+		VALUES (@Ubicacion, @Humedad, @Germinacion, @NumeroLote, @IdSemilla, @IdEstado)
 		return 0
 	END TRY
 	BEGIN CATCH
