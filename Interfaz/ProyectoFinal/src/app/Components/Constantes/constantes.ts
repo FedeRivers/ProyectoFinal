@@ -157,6 +157,8 @@ export const RecursosDeIdioma = {
         LOTE: 'Lote',
         SEMILLA: 'Semilla',
         SOBRE: 'Sobre',
+        INGRESARGERMINACION:'Ingresar germinacion',
+        INGRESARHUMEDAD:'Ingresar humedad',
     },
 }
 

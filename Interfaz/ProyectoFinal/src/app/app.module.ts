@@ -15,14 +15,8 @@ import { TaxonomiaComponent } from './Components/Taxonomia/taxonomia.component';
 import { LoteComponent } from './Components/Lote/lote.component';
 import { SemillaComponent } from './Components/Semilla/semilla.component';
 import { SobreComponent } from './Components/Sobre/sobre.component';
-
-
-
-
-
-
-
-
+import { IngresarHumedadComponent } from './Components/ingresarHumedad/ingresarHumedad.component';
+import { IngresarGerminacionComponent } from './Components/ingresarGerminacion/ingresarGerminacion.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +30,8 @@ import { SobreComponent } from './Components/Sobre/sobre.component';
     LoteComponent,
     SemillaComponent,
     SobreComponent,
+    IngresarHumedadComponent,
+    IngresarGerminacionComponent,
   ],
   imports: [
     BrowserModule,

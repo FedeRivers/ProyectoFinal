@@ -18,6 +18,9 @@ export class AppComponent {
   private moduloLogin: boolean = false;
   private moduloSemilla: boolean = false;
   private moduloSobre: boolean = false;
+  private moduloIngresarHumedad: boolean = false;
+  private moduloIngresarGerminacion: boolean = false;
+
 
   constructor(){
     this.usuario = new Usuario();
@@ -90,6 +93,20 @@ export class AppComponent {
     this.moduloSobre = value;
   }
 
+  public get ModuloIngresarHumedad(): boolean {
+    return this.moduloIngresarHumedad;
+  }
+  public set ModuloIngresarHumedad(value: boolean) {
+    this.moduloIngresarHumedad = value;
+  }
+
+  public get ModuloIngresarGerminacion(): boolean {
+    return this.moduloIngresarGerminacion;
+  }
+  public set ModuloIngresarGerminacion(value: boolean) {
+    this.moduloIngresarGerminacion = value;
+  }
+
   ListarFormularios(usuario:Usuario)
   {
     if(usuario!=undefined)
@@ -117,6 +134,10 @@ export class AppComponent {
         case RecursosDeIdioma.Formularios.SEMILLA: this.moduloSemilla = true;
           break;
         case RecursosDeIdioma.Formularios.SOBRE: this.moduloSobre = true;
+          break;
+        case RecursosDeIdioma.Formularios.INGRESARHUMEDAD: this.moduloIngresarHumedad = true;
+          break;
+        case RecursosDeIdioma.Formularios.INGRESARGERMINACION: this.moduloIngresarGerminacion = true;
       }
     });
   }
