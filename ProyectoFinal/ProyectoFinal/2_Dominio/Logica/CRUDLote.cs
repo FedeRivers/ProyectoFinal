@@ -29,5 +29,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PLote().ListarLotes(input);
         }
+
+        public ExisteLoteOut ExisteLote(ExisteLoteIn input)
+        {
+            return new PLote().ExisteLote(input);
+        }
     }
 }

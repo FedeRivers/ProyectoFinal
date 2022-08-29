@@ -7,6 +7,6 @@ namespace ProyectoFinal.Parametros.Entrada
 {
     public class BajaLoteIn
     {
-        public int IdLote { get; set; }
+        public int NumeroLote { get; set; }
     }
 }

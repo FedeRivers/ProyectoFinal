@@ -49,7 +49,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.BajaSobre(input.IdSobre);
+                    var result = dataContext.BajaSobre(input.NumeroSobre);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -110,7 +110,7 @@ namespace ProyectoFinal._3_Persistencia
                         {
                             output.Sobres.Add(new Sobre
                             {
-                                NumeroSobre = sobre.idSobre,
+                                NumeroSobre = sobre.numeroSobre,
                                 Ubicacion = sobre.ubicacion,
                                 Activo = sobre.activoSobre,
                                 FechaDeIngreso = sobre.ingresoSobre,
@@ -120,7 +120,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Vigor = sobre.vigor,
                                 Lote = new Lote
                                 {
-                                    NumeroLote = sobre.idLote,
+                                    NumeroLote = sobre.numeroLote,
                                     Descripcion = sobre.descripcion,
                                     FechaDeIngreso = sobre.ingresoLote,
                                     Activo = sobre.activoLote
