@@ -9,6 +9,7 @@ export class Sobre{
     private fechaDeIngreso!: Date;
     private humedad!: number;
     private germinacion!: number;
+    private vigor!: number;
     private lote: Lote;
     private estado: Estado;
     private semilla: Semilla;
@@ -61,6 +62,12 @@ export class Sobre{
     public set Germinacion(value: number) {
         this.germinacion = value;
     }
+    public get Vigor(): number {
+        return this.vigor;
+    }
+    public set Vigor(value: number) {
+        this.vigor = value;
+    }
 
     public get Lote(): Lote {
         return this.lote;
@@ -89,4 +96,6 @@ export class Sobre{
     public set Activo(value: boolean) {
         this.activo = value;
     }
+
+
 }

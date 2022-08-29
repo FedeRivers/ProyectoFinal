@@ -45,7 +45,19 @@
                 <app-sobre></app-sobre>
             </ng-template>
         </li>
-        <li [ngbNavItem]="8">
+        <li [ngbNavItem]="8" *ngIf="ModuloIngresarGerminacion">
+            <a ngbNavLink><b>Germinacion</b></a>
+            <ng-template ngbNavContent>
+                <app-ingresar-germinacion></app-ingresar-germinacion>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="9" *ngIf="ModuloIngresarHumedad">
+            <a ngbNavLink><b>Humedad</b></a>
+            <ng-template ngbNavContent>
+                <app-ingresarHumedad></app-ingresarHumedad>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="10">
             <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
         </li>
 
