@@ -97,3 +97,28 @@ WHEN NOT MATCHED BY TARGET THEN
 	INSERT ([idEstado],[nombre])
 	VALUES (SOURCE.NewIdEstado,SOURCE.NewNombre);
 SET IDENTITY_INSERT [dbo].[Estados] OFF
+
+/*Coordenadas*/
+MERGE INTO [dbo].[Coordenadas] AS TARGET 
+USING (
+	VALUES (1, 1, 3),
+		   (2, 1, 3),
+		   (3, 1, 3),
+		   (4, 2, 3),
+		   (5, 2, 3),
+		   (6, 2, 3),
+		   (1, 1, 4),
+		   (2, 1, 4),
+		   (3, 1, 4),
+		   (4, 2, 4),
+		   (5, 2, 4),
+		   (6, 2, 4)
+) AS SOURCE ( NewFila, NewColumna, NewIdEstado )
+ON TARGET.[fila] = SOURCE.NewFila AND TARGET.[columna] = SOURCE.NewColumna AND TARGET.[idEstado] = SOURCE.NewIdEstado
+WHEN MATCHED THEN 
+	UPDATE SET [fila] = SOURCE.NewFila,
+			   [columna] = SOURCE.NewColumna,
+			   [idEstado] = SOURCE.NewIdEstado
+WHEN NOT MATCHED BY TARGET THEN 
+	INSERT ([fila],[columna],[idEstado])
+	VALUES (SOURCE.NewFila,SOURCE.NewColumna,SOURCE.NewIdEstado);
