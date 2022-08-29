@@ -48,4 +48,9 @@
     <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.ExisteSobre" Method="ExisteSobre">
+    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

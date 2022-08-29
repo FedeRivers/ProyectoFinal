@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[ModificarSobre] 
-	@IdSobre int,
+	@NumeroSobre int,
 	@Ubicacion varchar(50),
 	@Humedad int,
 	@Germinacion int,
 	@Vigor int,
-	@IdLote int,
+	@NumeroLote int,
 	@IdSemilla int,
 	@IdEstado int
 AS
@@ -15,10 +15,10 @@ BEGIN
 		humedad = @Humedad,
 		germinacion = @Germinacion,
 		vigor = @Vigor, 
-		idLote = @IdLote, 
+		numeroLote = @NumeroLote, 
 		idSemilla = @IdSemilla, 
 		idEstado = @IdEstado 
-		WHERE idSobre = @IdSobre
+		WHERE numeroSobre = @NumeroSobre
 		IF @Humedad IS NOT NULL OR @Germinacion IS NOT NULL OR @Vigor IS NOT NULL
 			UPDATE Sobres SET
 			humedad = @Humedad,

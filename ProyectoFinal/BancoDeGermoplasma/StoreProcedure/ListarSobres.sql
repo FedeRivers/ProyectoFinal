@@ -5,7 +5,7 @@ BEGIN
 	IF (@TerminoDeBusqueda is not null)
 		BEGIN
 			SELECT
-			so.idSobre,
+			so.numeroSobre,
 			so.ubicacion,
 			so.activo AS activoSobre,
 			so.fechaDeDevolucion,
@@ -13,8 +13,7 @@ BEGIN
 			so.humedad,
 			so.germinacion,
 			so.vigor,
-			lo.idLote,
-			lo.numero,
+			lo.numeroLote,
 			lo.descripcion,
 			lo.activo AS activoLote,
 			lo.fechaDeIngreso AS ingresoLote,
@@ -25,7 +24,7 @@ BEGIN
 			es.idEstado,
 			es.nombre AS nombreEstado
 			FROM Sobres so 
-			INNER JOIN Lotes lo ON so.idLote = lo.idLote
+			INNER JOIN Lotes lo ON so.numeroLote = lo.numeroLote
 			INNER JOIN Semillas se ON so.idSemilla = se.idSemilla
 			INNER JOIN Estados es ON so.idEstado = es.idEstado
 			WHERE so.activo = 1
@@ -33,7 +32,7 @@ BEGIN
 	ELSE
 		BEGIN
 			SELECT
-			so.idSobre,
+			so.numeroSobre,
 			so.ubicacion,
 			so.activo AS activoSobre,
 			so.fechaDeDevolucion,
@@ -41,8 +40,7 @@ BEGIN
 			so.humedad,
 			so.germinacion,
 			so.vigor,
-			lo.idLote,
-			lo.numero,
+			lo.numeroLote,
 			lo.descripcion,
 			lo.activo AS activoLote,
 			lo.fechaDeIngreso AS ingresoLote,
@@ -53,7 +51,7 @@ BEGIN
 			es.idEstado,
 			es.nombre AS nombreEstado
 			FROM Sobres so 
-			INNER JOIN Lotes lo ON so.idLote = lo.idLote
+			INNER JOIN Lotes lo ON so.numeroLote = lo.numeroLote
 			INNER JOIN Semillas se ON so.idSemilla = se.idSemilla
 			INNER JOIN Estados es ON so.idEstado = es.idEstado
 			WHERE so.activo = 1
