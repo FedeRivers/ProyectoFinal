@@ -41,7 +41,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.BajaLote(input.IdLote);
+                    var result = dataContext.BajaLote(input.NumeroLote);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -92,7 +92,7 @@ namespace ProyectoFinal._3_Persistencia
                         {
                             output.Lotes.Add(new Lote
                             {
-                                NumeroLote = lote.idLote,
+                                NumeroLote = lote.numeroLote,
                                 Descripcion = lote.descripcion,
                                 FechaDeIngreso = lote.ingresoLote,
                                 Activo = lote.activoLote,
@@ -116,6 +116,25 @@ namespace ProyectoFinal._3_Persistencia
                 }
             }
 
+            return output;
+        }
+
+        public ExisteLoteOut ExisteLote(ExisteLoteIn input)
+        {
+            var output = new ExisteLoteOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloLoteDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ExisteLote(input.Lote.NumeroLote, input.Lote.Mejorador.IdMejorador);
+                    output.ExisteLote = result != -1;
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
             return output;
         }
     }

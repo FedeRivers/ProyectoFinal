@@ -69,20 +69,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaSobre")]
-		public int BajaSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSobre", DbType="Int")] System.Nullable<int> idSobre)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSobre);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
-		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
-			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarSobre")]
 		public int ModificarSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSobre", DbType="Int")] System.Nullable<int> idSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ubicacion", DbType="VarChar(50)")] string ubicacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Humedad", DbType="Int")] System.Nullable<int> humedad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Germinacion", DbType="Int")] System.Nullable<int> germinacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vigor", DbType="Int")] System.Nullable<int> vigor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdLote", DbType="Int")] System.Nullable<int> idLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado)
 		{
@@ -96,12 +82,26 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaSobre")]
+		public int BajaSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
+		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class ListarSobresResult
 	{
 		
-		private int _idSobre;
+		private int _numeroSobre;
 		
 		private string _ubicacion;
 		
@@ -117,9 +117,7 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private System.Nullable<int> _vigor;
 		
-		private int _idLote;
-		
-		private int _numero;
+		private int _numeroLote;
 		
 		private string _descripcion;
 		
@@ -143,18 +141,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSobre", DbType="Int NOT NULL")]
-		public int idSobre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroSobre", DbType="Int NOT NULL")]
+		public int numeroSobre
 		{
 			get
 			{
-				return this._idSobre;
+				return this._numeroSobre;
 			}
 			set
 			{
-				if ((this._idSobre != value))
+				if ((this._numeroSobre != value))
 				{
-					this._idSobre = value;
+					this._numeroSobre = value;
 				}
 			}
 		}
@@ -271,34 +269,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idLote", DbType="Int NOT NULL")]
-		public int idLote
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroLote", DbType="Int NOT NULL")]
+		public int numeroLote
 		{
 			get
 			{
-				return this._idLote;
+				return this._numeroLote;
 			}
 			set
 			{
-				if ((this._idLote != value))
+				if ((this._numeroLote != value))
 				{
-					this._idLote = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero", DbType="Int NOT NULL")]
-		public int numero
-		{
-			get
-			{
-				return this._numero;
-			}
-			set
-			{
-				if ((this._numero != value))
-				{
-					this._numero = value;
+					this._numeroLote = value;
 				}
 			}
 		}

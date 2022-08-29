@@ -69,17 +69,24 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaLote")]
-		public int BajaLote([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdLote", DbType="Int")] System.Nullable<int> idLote)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idLote);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarLote")]
 		public int ModificarLote([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdLote", DbType="Int")] System.Nullable<int> idLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Numero", DbType="Int")] System.Nullable<int> numero, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idLote, numero, descripcion, idMejorador);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteLote")]
+		public int ExisteLote([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroLote, idMejorador);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaLote")]
+		public int BajaLote([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdLote", DbType="Int")] System.Nullable<int> idLote)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idLote);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -89,21 +96,12 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
 			return ((ISingleResult<ListarLotesResult>)(result.ReturnValue));
 		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteLote")]
-		public int ExisteLote([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroLote, idMejorador);
-			return ((int)(result.ReturnValue));
-		}
 	}
 	
 	public partial class ListarLotesResult
 	{
 		
-		private int _idLote;
-		
-		private int _numero;
+		private int _numeroLote;
 		
 		private string _descripcion;
 		
@@ -127,34 +125,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idLote", DbType="Int NOT NULL")]
-		public int idLote
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroLote", DbType="Int NOT NULL")]
+		public int numeroLote
 		{
 			get
 			{
-				return this._idLote;
+				return this._numeroLote;
 			}
 			set
 			{
-				if ((this._idLote != value))
+				if ((this._numeroLote != value))
 				{
-					this._idLote = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero", DbType="Int NOT NULL")]
-		public int numero
-		{
-			get
-			{
-				return this._numero;
-			}
-			set
-			{
-				if ((this._numero != value))
-				{
-					this._numero = value;
+					this._numeroLote = value;
 				}
 			}
 		}
