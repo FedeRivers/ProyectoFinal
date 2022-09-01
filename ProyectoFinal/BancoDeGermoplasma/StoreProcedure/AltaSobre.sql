@@ -1,15 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[AltaSobre] 
-	@Ubicacion varchar(50),
-	@Humedad int,
-	@Germinacion int,
+	@NumeroSobre int,
 	@NumeroLote int,
-	@IdSemilla int,
-	@IdEstado int
+	@IdSemilla int
 AS
 BEGIN
 	BEGIN TRY
-		INSERT INTO Sobres(ubicacion, humedad, germinacion, numeroLote, idSemilla, idEstado) 
-		VALUES (@Ubicacion, @Humedad, @Germinacion, @NumeroLote, @IdSemilla, @IdEstado)
+		INSERT INTO Sobres(numeroSobre, numeroLote, idSemilla) 
+		VALUES (@NumeroSobre, @NumeroLote, @IdSemilla)
 		return 0
 	END TRY
 	BEGIN CATCH

@@ -14,8 +14,8 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNumero">Numero:</span>
-                    <input name="txtNumero" [(ngModel)]="Lote.Numero" [ngClass]="Lote.Numero!=undefined ? ValidarNumeroLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese numero" aria-label="txtNumero" aria-describedby="spanNumero"
-                        required>
+                    <input name="txtNumero" [disabled]="BtnModificar" [(ngModel)]="Lote.NumeroLote" [ngClass]="Lote.NumeroLote!=undefined ? ValidarNumeroLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese numero" aria-label="txtNumero"
+                        aria-describedby="spanNumero" required>
                     <div class="invalid-feedback">{{MensajeNumeroInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
@@ -27,8 +27,8 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMejorador">Mejorador:</span>
-                    <select name="sltMejorador" class="form-select" [(ngModel)]="Lote.Mejorador.IdMejorador" [ngClass]="Lote.Mejorador.IdMejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="sltMejorador"
-                        aria-describedby="spanMejorador">
+                    <select name="sltMejorador" [disabled]="BtnModificar" class="form-select" [(ngModel)]="Lote.Mejorador.IdMejorador" [ngClass]="Lote.Mejorador.IdMejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
+                        aria-label="sltMejorador" aria-describedby="spanMejorador">
                         <option *ngFor="let mejorador of Mejoradores" [ngValue]="mejorador.IdMejorador" > 
                             {{mejorador.Nombre}}
                         </option>
@@ -82,7 +82,7 @@
                             <td>
                                 <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
                                 <!-- <ngb-highlight lote.Numero></ngb-highlight> -->
-                                {{lote.Numero}}
+                                {{lote.NumeroLote}}
                             </td>
                             <td>
                                 <ngb-highlight [result]="lote.Descripcion"></ngb-highlight>

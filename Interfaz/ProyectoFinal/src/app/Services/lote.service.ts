@@ -6,6 +6,8 @@ import { BajaLoteIn } from '../Parametros/Entrada/BajaLoteIn';
 import { ListarLotesIn } from '../Parametros/Entrada/ListarLotesIn';
 import { ModificarLoteIn } from '../Parametros/Entrada/ModicarLoteIn';
 import { ListarLotesOut } from '../Parametros/Salida/ListarLotesOut';
+import { ExisteLoteIn } from '../Parametros/Entrada/ExisteLoteIn';
+import { ExisteLoteOut } from '../Parametros/Salida/ExisteLoteOut';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,9 @@ export class LoteService {
 
   public Listar(listarLoteIn:ListarLotesIn){
     return this.http.get<ListarLotesOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTAR}?TerminoDeBusqueda=${listarLoteIn.terminoDeBusqueda}`);
+  }
+
+  public ExisteLote(existeLoteIn:ExisteLoteIn){
+    return this.http.post<ExisteLoteOut>(`${this.baseUrl+ MetodosUrl.Lote.EXISTELOTE}`,existeLoteIn);
   }
 }

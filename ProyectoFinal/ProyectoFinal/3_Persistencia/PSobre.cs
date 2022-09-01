@@ -21,12 +21,9 @@ namespace ProyectoFinal._3_Persistencia
                 {
                     var result = dataContext.AltaSobre
                         (
-                        input.Sobre.Ubicacion, 
-                        input.Sobre.Humedad, 
-                        input.Sobre.Germinacion, 
+                        input.Sobre.NumeroSobre,
                         input.Sobre.Lote.NumeroLote, 
-                        input.Sobre.Semilla.IdSemilla, 
-                        input.Sobre.Estado.IdEstado
+                        input.Sobre.Semilla.IdSemilla
                         );
                     if (result != -1)
                     {
@@ -159,7 +156,7 @@ namespace ProyectoFinal._3_Persistencia
                 try
                 {
                     var result = dataContext.ExisteSobre(input.Sobre.NumeroSobre, input.Sobre.Lote.NumeroLote);
-                    output.ExisteSobre = result != -1;
+                    output.ExisteSobre = result == 0;
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)

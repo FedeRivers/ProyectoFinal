@@ -2,8 +2,7 @@ import { Mejorador } from "../../Mejorador/class/mejorador";
 
 export class Lote{
 
-    private idLote!: number;
-    private numero!: number;
+    private numeroLote!: number;
     private descripcion!: string;
     private fechaDeIngreso!: Date;
     private mejorador: Mejorador;
@@ -12,19 +11,12 @@ export class Lote{
     constructor(){
         this.mejorador = new Mejorador();
     }
-
-    public get IdLote(): number {
-        return this.idLote;
-    }
-    public set IdLote(value: number) {
-        this.idLote = value;
-    }
     
-    public get Numero(): number {
-        return this.numero;
+    public get NumeroLote(): number {
+        return this.numeroLote;
     }
-    public set Numero(value: number) {
-        this.numero = value;
+    public set NumeroLote(value: number) {
+        this.numeroLote = value;
     }
 
     public get Descripcion(): string {

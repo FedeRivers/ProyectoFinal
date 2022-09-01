@@ -87,6 +87,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el lote.',
                 EXITO:'Lote ingresado con éxito.',
+                EXISTELOTE:'Ya existe el número de lote para el mejorador.',
             },
             Baja:
             {
@@ -202,6 +203,7 @@ export const MetodosUrl = {
         BAJA : 'BajaLote',
         MODIFICAR : 'ModificarLote',
         LISTAR : 'ListarLotes',
+        EXISTELOTE : 'ExisteLote', 
     },
     Semilla : 
     {
@@ -216,6 +218,7 @@ export const MetodosUrl = {
         BAJA : 'BajaSobre',
         MODIFICAR : 'ModificarSobre',
         LISTAR : 'ListarSobres',
+        EXISTESOBRE : 'ExisteSobre',
     },
 }
 
