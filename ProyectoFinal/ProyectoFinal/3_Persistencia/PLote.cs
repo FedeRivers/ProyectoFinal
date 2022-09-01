@@ -63,7 +63,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ModificarLote(input.Lote.NumeroLote, input.Lote.NumeroLote, input.Lote.Descripcion, input.Lote.Mejorador.IdMejorador);
+                    var result = dataContext.ModificarLote(input.Lote.NumeroLote, input.Lote.Descripcion, input.Lote.Mejorador.IdMejorador);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -127,7 +127,7 @@ namespace ProyectoFinal._3_Persistencia
                 try
                 {
                     var result = dataContext.ExisteLote(input.Lote.NumeroLote, input.Lote.Mejorador.IdMejorador);
-                    output.ExisteLote = result != -1;
+                    output.ExisteLote = result == 0;
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)

@@ -39,6 +39,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
 
   private terminoDeBusqueda: string = "";
   
+  private numeroSobreEsValido: boolean = false;
   private ubicacionEsValida: boolean = false; 
   private humedadEsValida: boolean = false;
   private germinacionEsValida: boolean = false; 
@@ -46,6 +47,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private semillaEsValida: boolean = false;
   private estadoEsValido: boolean = false;
 
+  private mensajeNumeroSobreInvalida: string = '';
   private mensajeUbicacionInvalida: string = '';
   private mensajeHumedadInvalida: string = '';
   private mensajeGerminacionInvalida: string = '';
@@ -186,6 +188,20 @@ export class SobreComponent extends FormularioBase implements OnInit {
   //#endregion
 
   //#region Get y Set de mensajes de error para mostrar al usuario
+
+  public get MensajeNumeroSobreInvalida(): string {
+    return this.mensajeNumeroSobreInvalida;
+  }
+  public set MensajeNumeroSobreInvalida(value: string) {
+    this.mensajeNumeroSobreInvalida = value;
+  }
+
+  public get NumeroSobreEsValido(): boolean {
+    return this.numeroSobreEsValido;
+  }
+  public set NumeroSobreEsValido(value: boolean) {
+    this.numeroSobreEsValido = value;
+  }
   
   public get MensajeUbicacionInvalida(): string {
     return this.mensajeUbicacionInvalida;
@@ -246,7 +262,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   BajaSobre()
   {
     let bajaSobreIn: BajaSobreIn = new BajaSobreIn();
-    bajaSobreIn.IdSobre = this.sobre.IdSobre;
+    bajaSobreIn.IdSobre = this.sobre.NumeroSobre;
     this.sobreServicio.Baja(bajaSobreIn)
     .subscribe( sobre => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Baja.EXITO,false);
@@ -359,7 +375,6 @@ export class SobreComponent extends FormularioBase implements OnInit {
       case "Alta":
         this.BtnAlta = true;
         this.ListarSemillas();
-        this.ListarEstados();
         this.ListarLotes();
         break;
       case "Baja":
@@ -374,30 +389,16 @@ export class SobreComponent extends FormularioBase implements OnInit {
     }
   }
 
-  ValidarUbicacion():boolean
+  ValidarNumeroSobre():boolean
   {
-    this.mensajeUbicacionInvalida = this.ValidarLetras(this.sobre.Ubicacion);
-    this.mensajeUbicacionInvalida != '' ? this.ubicacionEsValida = false : this.ubicacionEsValida = true;
-    return this.ubicacionEsValida;
-  }
-
-  ValidarHumedad():boolean
-  {
-    this.mensajeHumedadInvalida = this.ValidarNumero(this.sobre.Humedad.toString());
-    this.mensajeHumedadInvalida != '' ? this.humedadEsValida = false: this.humedadEsValida = true;
-    return this.humedadEsValida;
-  }
-
-  ValidarGerminacion():boolean
-  {
-    this.mensajeGerminacionInvalida = this.ValidarNumero(this.sobre.Germinacion.toString());
-    this.mensajeGerminacionInvalida != '' ? this.germinacionEsValida = false: this.germinacionEsValida = true;
-    return this.germinacionEsValida;
+    this.mensajeNumeroSobreInvalida = this.ValidarNumero(this.sobre.NumeroSobre.toString());
+    this.mensajeNumeroSobreInvalida != '' ? this.numeroSobreEsValido = false : this.numeroSobreEsValido = true;
+    return this.numeroSobreEsValido;
   }
 
   ValidarLote():boolean
   {
-    this.mensajeLoteInvalido = this.ValidarNumero(this.sobre.Lote.IdLote.toString());
+    this.mensajeLoteInvalido = this.ValidarNumero(this.sobre.Lote.NumeroLote.toString());
     this.mensajeLoteInvalido != '' ? this.loteEsValido = false: this.loteEsValido = true;
     return this.loteEsValido;
   }
@@ -408,17 +409,10 @@ export class SobreComponent extends FormularioBase implements OnInit {
     this.mensajeSemillaInvalida != '' ? this.semillaEsValida = false: this.semillaEsValida = true;
     return this.semillaEsValida;
   }
-
-  ValidarEstado():boolean
-  {
-    this.mensajeEstadoInvalida = this.ValidarNumero(this.sobre.Estado.IdEstado.toString());
-    this.mensajeEstadoInvalida != '' ? this.estadoEsValido = false: this.estadoEsValido = true;
-    return this.estadoEsValido;
-  }
   
   ValidarFormulario():boolean
   {
-    return this.ubicacionEsValida && this.humedadEsValida && this.germinacionEsValida && this.loteEsValido && this.semillaEsValida && this.estadoEsValido; 
+    return this.loteEsValido && this.semillaEsValida; 
   }
 
   Confirmar()

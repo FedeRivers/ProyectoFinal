@@ -6,7 +6,7 @@ export class Mejorador{
     private mail!: string;
     private direccion!: string;
     private fechaDeIngreso!: Date;
-    private activo!: Number;
+    private activo!: boolean;
 
 
     constructor(){ }
@@ -48,11 +48,11 @@ export class Mejorador{
         this.fechaDeIngreso = value;
     }
 
-    public get Activo(): Number {
+    public get Activo(): boolean {
         return this.activo;
     }
 
-    public set Activo(value: Number) {
+    public set Activo(value: boolean) {
         this.activo = value;
     }
 

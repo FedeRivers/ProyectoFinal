@@ -38,8 +38,8 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDLote().ListarLotes(input);
         }
 
-        [HttpGet]
-        public ExisteLoteOut ExisteLote([FromUri]ExisteLoteIn input)
+        [HttpPost]
+        public ExisteLoteOut ExisteLote([FromBody]ExisteLoteIn input)
         {
             return new CRUDLote().ExisteLote(input);
         }

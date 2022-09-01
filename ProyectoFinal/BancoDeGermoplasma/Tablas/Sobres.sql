@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Sobres]
 (
 	[numeroSobre] INT PRIMARY KEY, 
-    [ubicacion] VARCHAR(50) NOT NULL, 
+    [ubicacion] VARCHAR(50) NULL, 
     [activo] BIT NULL DEFAULT 1, 
     [fechaDeDevolucion] DATETIME NULL, 
     [fechaDeIngreso] DATETIME NULL DEFAULT GETDATE(), 
@@ -10,7 +10,7 @@
 	[vigor] INT NULL, 
     [numeroLote] INT NOT NULL, 
     [idSemilla] INT NOT NULL, 
-    [idEstado] INT NOT NULL ,
+    [idEstado] INT NULL DEFAULT 1 ,
     CONSTRAINT [FK_Sobres_Lotes] FOREIGN KEY ([numeroLote]) REFERENCES [Lotes]([numeroLote]),
 	CONSTRAINT [FK_Sobres_Semillas] FOREIGN KEY ([idSemilla]) REFERENCES [Semillas]([idSemilla]),
 	CONSTRAINT [FK_Sobres_Estados] FOREIGN KEY ([idEstado]) REFERENCES [Estados]([idEstado]),

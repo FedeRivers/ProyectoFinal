@@ -3,7 +3,7 @@ import { Lote } from '../../Lote/class/lote';
 import { Semilla } from '../../Semilla/class/semilla';
 export class Sobre{
 
-    private idSobre!: number;
+    private numeroSobre!: number;
     private ubicacion!: string;
     private fechaDeDevolucion!: Date;
     private fechaDeIngreso!: Date;
@@ -21,11 +21,11 @@ export class Sobre{
         this.semilla = new Semilla();
     }
 
-    public get IdSobre(): number {
-        return this.idSobre;
+    public get NumeroSobre(): number {
+        return this.numeroSobre;
     }
-    public set IdSobre(value: number) {
-        this.idSobre = value;
+    public set NumeroSobre(value: number) {
+        this.numeroSobre = value;
     }
 
     public get Ubicacion(): string {

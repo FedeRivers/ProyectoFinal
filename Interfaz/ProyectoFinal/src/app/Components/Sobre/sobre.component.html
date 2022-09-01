@@ -13,29 +13,17 @@
                     <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="spanUbicacion">Ubicación:</span>
-                    <input name="txtUbicacion" [(ngModel)]="Sobre.Ubicacion" [ngClass]="Sobre.Ubicacion!=undefined ? ValidarUbicacion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese ubicacion" aria-label="txtUbicacion" aria-describedby="spanUbicacion"
-                        required>
-                    <div class="invalid-feedback">{{MensajeUbicacionInvalida}}</div>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="spanHumedad">Humedad:</span>
-                    <input name="txtHumedad" [(ngModel)]="Sobre.Humedad" [ngClass]="Sobre.Humedad!=undefined ? ValidarHumedad() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese humedad" aria-label="txtHumedad" aria-describedby="spanHumedad"
-                        required>
-                    <div class="invalid-feedback">{{MensajeHumedadInvalida}}</div>
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="spanGerminacion">Germinación:</span>
-                    <input name="txtGerminacion" [(ngModel)]="Sobre.Germinacion" [ngClass]="Sobre.Germinacion!=undefined ? ValidarGerminacion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese germinacion" aria-label="txtGerminacion"
-                        aria-describedby="spanGerminacion" required>
-                    <div class="invalid-feedback">{{MensajeGerminacionInvalida}}</div>
+                    <span class="input-group-text" id="spanNumeroSobre">Número:</span>
+                    <input name="txtNumeroSobre" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.NumeroSobre" [ngClass]="Sobre.NumeroSobre!=undefined ? ValidarNumeroSobre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese número de sobre"
+                        aria-label="txtNumeroSobre" aria-describedby="spanNumeroSobre" required>
+                    <div class="invalid-feedback">{{MensajeNumeroSobreInvalida}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanLote">Lote:</span>
-                    <select name="txtLote" class="form-select" [(ngModel)]="Sobre.Lote.IdLote" [ngClass]="Sobre.Lote.IdLote!= undefined ? ValidarLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtLote" aria-describedby="spanLote">
-                        <option *ngFor="let lote of Lotes" [ngValue]="lote.IdLote" > 
-                            {{lote.Numero}}
+                    <select name="txtLote" class="form-select" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.Lote.NumeroLote" [ngClass]="Sobre.Lote.NumeroLote!= undefined ? ValidarLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtLote"
+                        aria-describedby="spanLote">
+                        <option *ngFor="let lote of Lotes" [ngValue]="lote.NumeroLote" > 
+                            {{lote.NumeroLote}}
                         </option>
                     </select>
                 </div>
@@ -47,9 +35,22 @@
                         </option>
                     </select>
                 </div>
-                <div class="input-group mb-3">
+
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
+                    <span class="input-group-text" id="spanUbicacion">Ubicación:</span>
+                    <input name="txtUbicacion" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Ubicacion" placeholder="Ingrese ubicacion" aria-label="txtUbicacion" aria-describedby="spanUbicacion" required>
+                </div>
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
+                    <span class="input-group-text" id="spanHumedad">Humedad:</span>
+                    <input name="txtHumedad" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Humedad" placeholder="Ingrese humedad" aria-label="txtHumedad" aria-describedby="spanHumedad" required>
+                </div>
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
+                    <span class="input-group-text" id="spanGerminacion">Germinación:</span>
+                    <input name="txtGerminacion" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Germinacion" placeholder="Ingrese germinacion" aria-label="txtGerminacion" aria-describedby="spanGerminacion" required>
+                </div>
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
                     <span class="input-group-text" id="spanEstado">Estado:</span>
-                    <select name="txtEstado" class="form-select" [(ngModel)]="Sobre.Estado.IdEstado" [ngClass]="Sobre.Estado.IdEstado!= undefined ? ValidarEstado() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtEstado" aria-describedby="spanEstado">
+                    <select name="txtEstado" class="form-select form-control" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.Estado.IdEstado" aria-label="txtEstado" aria-describedby="spanEstado">
                         <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
                             {{estado.Nombre}}
                         </option>
@@ -117,7 +118,7 @@
                             {{sobre.Germinacion }}
                         </td>
                         <td>
-                            {{sobre.Lote.Numero }}
+                            {{sobre.Lote.NumeroLote }}
                         </td>
                         <td>
                             {{sobre.Semilla.Nombre }}
