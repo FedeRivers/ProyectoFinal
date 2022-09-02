@@ -14,14 +14,14 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNombre">Nombre:</span>
-                    <input name="txtNombre" [(ngModel)]="Semilla.Nombre" [ngClass]="Semilla.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
+                    <input name="txtNombre" [(ngModel)]="Semilla.Nombre" [ngClass]="Semilla.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
                         required>
                     <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanTaxonomia">Taxonomía:</span>
-                    <select name="txtTaxonomia" class="form-select" [(ngModel)]="Semilla.Taxonomia.IdTaxonomia" [ngClass]="Semilla.Taxonomia.IdTaxonomia != undefined ? ValidarTaxonomia() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtTaxonomia"
+                    <select name="txtTaxonomia" [(ngModel)]="Semilla.Taxonomia.IdTaxonomia" [ngClass]="Semilla.Taxonomia.IdTaxonomia != undefined ? ValidarTaxonomia() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" aria-label="txtTaxonomia"
                         aria-describedby="spanTaxonomia">
                         <option *ngFor="let taxonomia of Taxonomias" [ngValue]="taxonomia.IdTaxonomia" > 
                             {{taxonomia.Nombre}}
@@ -31,7 +31,7 @@
 
                 <div class="">
                     <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Semilla</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Semilla</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-danger mb-3" (click)="AbrirModal()">Eliminar Semilla</button>
                     <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Semilla</button>
                 </div>
             </form>
@@ -49,7 +49,7 @@
                 <div class="col-md-2"></div>
                 <div class="mb-3 ml-auto col-md-2">
                     <span class="input-group">             
-                        <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
+                        <button class="btn btn-success fs-5" (click)="Ocultar();BotonSeleccionado('Alta')">
                             <i id="iAgregar" class="bi bi-plus-square"></i>
                             Agregar                
                         </button>

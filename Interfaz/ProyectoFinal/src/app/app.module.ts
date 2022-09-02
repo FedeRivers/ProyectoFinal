@@ -15,8 +15,9 @@ import { TaxonomiaComponent } from './Components/Taxonomia/taxonomia.component';
 import { LoteComponent } from './Components/Lote/lote.component';
 import { SemillaComponent } from './Components/Semilla/semilla.component';
 import { SobreComponent } from './Components/Sobre/sobre.component';
-import { IngresarHumedadComponent } from './Components/ingresarHumedad/ingresarHumedad.component';
-import { IngresarGerminacionComponent } from './Components/ingresarGerminacion/ingresarGerminacion.component';
+import { IngresarHumedadComponent } from './Components/IngresarHumedad/ingresarHumedad.component';
+import { IngresarGerminacionComponent } from './Components/IngresarGerminacion/ingresarGerminacion.component';
+import { BuscarDuplicadosComponent } from './Components/BuscarDuplicados/buscarDuplicados.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { IngresarGerminacionComponent } from './Components/ingresarGerminacion/i
     SobreComponent,
     IngresarHumedadComponent,
     IngresarGerminacionComponent,
+    BuscarDuplicadosComponent,
   ],
   imports: [
     BrowserModule,

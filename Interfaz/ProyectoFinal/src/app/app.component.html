@@ -57,7 +57,13 @@
                 <app-ingresarHumedad></app-ingresarHumedad>
             </ng-template>
         </li>
-        <li [ngbNavItem]="10">
+        <li [ngbNavItem]="10" *ngIf="ModuloBuscarDuplicados">
+            <a ngbNavLink><b>Buscar duiplicados</b></a>
+            <ng-template ngbNavContent>
+                <app-buscar-duplicados></app-buscar-duplicados>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="11">
             <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
         </li>
 

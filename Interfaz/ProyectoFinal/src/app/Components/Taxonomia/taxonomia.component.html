@@ -20,7 +20,7 @@
                 </div>
                 <div class="">
                     <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Taxonomía</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Taxonomía</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-danger mb-3" (click)="AbrirModal()">Eliminar Taxonomía</button>
                     <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Taxonomía</button>
                 </div>
             </form>

@@ -29,7 +29,8 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanSemilla">Semilla:</span>
-                    <select name="txtSemilla" class="form-select" [(ngModel)]="Sobre.Semilla.IdSemilla" [ngClass]="Sobre.Semilla.IdSemilla!= undefined ? ValidarSemilla() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtSemilla" aria-describedby="spanSemilla">
+                    <select name="txtSemilla" class="form-select" [disabled]="BtnBaja" [(ngModel)]="Sobre.Semilla.IdSemilla" [ngClass]="Sobre.Semilla.IdSemilla!= undefined ? ValidarSemilla() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtSemilla"
+                        aria-describedby="spanSemilla">
                         <option *ngFor="let semilla of Semillas" [ngValue]="semilla.IdSemilla" > 
                             {{semilla.Nombre}}
                         </option>
@@ -87,9 +88,9 @@
             <table class="table table-hover">
                 <thead class="table-primary">
                     <tr>
+                        <th scope="col" sortable="numero">Numero de sobre</th>
                         <th scope="col" sortable="ubicacion">Ubicacion</th>
                         <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
-                        <th scope="col" sortable="fechaDeDevolucion">Fecha de Devolución</th>
                         <th scope="col" sortable="humedad">Humedad</th>
                         <th scope="col" sortable="germinacion">Germinacion</th>
                         <th scope="col" sortable="lote">Lote</th>
@@ -102,14 +103,13 @@
                 <tbody>
                     <tr class="pointer" *ngFor="let sobre of Sobres">
                         <td>
-                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                            <ngb-highlight [result]="sobre.Ubicacion"></ngb-highlight>
+                            {{sobre.NumeroSobre}}
+                        </td>
+                        <td>
+                            {{sobre.Ubicacion}}
                         </td>
                         <td>
                             {{sobre.FechaDeIngreso | date:'short' }}
-                        </td>
-                        <td>
-                            {{sobre.FechaDeDevolucion | date:'short' }}
                         </td>
                         <td>
                             {{sobre.Humedad }}

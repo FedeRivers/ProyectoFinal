@@ -14,33 +14,33 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNombre">Nombre:</span>
-                    <input name="txtNombre" [(ngModel)]="Usuario.Nombre" [ngClass]="Usuario.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
+                    <input name="txtNombre" [(ngModel)]="Usuario.Nombre" [ngClass]="Usuario.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
                         required>
                     <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanApellido">Apellido:</span>
-                    <input name="txtApellido" [(ngModel)]="Usuario.Apellido" [ngClass]="Usuario.Apellido!=undefined ? ValidarApellido() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese apellido" aria-label="txtApellido" aria-describedby="spanApellido"
-                        required>
+                    <input name="txtApellido" [(ngModel)]="Usuario.Apellido" [ngClass]="Usuario.Apellido!=undefined ? ValidarApellido() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese apellido" aria-label="txtApellido"
+                        aria-describedby="spanApellido" required>
                     <div class="invalid-feedback">{{MensajeApellidoInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMail">Mail:</span>
-                    <input name="txtMail" [(ngModel)]="Usuario.Mail" [ngClass]="Usuario.Mail!=undefined ? ValidarMailUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail"
+                    <input name="txtMail" [(ngModel)]="Usuario.Mail" [ngClass]="Usuario.Mail!=undefined ? ValidarMailUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail"
                         required>
                     <div class="invalid-feedback">{{MensajeMailInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanCedula">Cédula:</span>
-                    <input name="txtCedula" [(ngModel)]="Usuario.Cedula" [ngClass]="Usuario.Cedula!=undefined ? ValidarCedulaUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese cédula de identidad" aria-label="txtCedula" aria-describedby="spanCedula"
-                        required>
+                    <input name="txtCedula" [(ngModel)]="Usuario.Cedula" [ngClass]="Usuario.Cedula!=undefined ? ValidarCedulaUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese cédula de identidad" aria-label="txtCedula"
+                        aria-describedby="spanCedula" required>
                     <div class="invalid-feedback">{{MensajeCedulaInvalida}}</div>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanTipoDeUsuario">Tipo de usuario:</span>
                     <select name="txtTipoDeUsuario" class="form-select" [(ngModel)]="Usuario.TipoDeUsuario.IdTipoDeUsuario" [ngClass]="Usuario.TipoDeUsuario.IdTipoDeUsuario != undefined ? ValidarTipoDeUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
-                        aria-label="txtTipoDeUsuario" aria-describedby="spanTipoDeUsuario">
+                        [disabled]="BtnBaja" aria-label="txtTipoDeUsuario" aria-describedby="spanTipoDeUsuario">
                         <option *ngFor="let tipoDeUsuario of TiposDeUsuario" [ngValue]="tipoDeUsuario.IdTipoDeUsuario" > 
                             {{tipoDeUsuario.Nombre}}
                         </option>
@@ -49,7 +49,7 @@
 
                 <div class="">
                     <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Usuario</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Usuario</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-danger mb-3" (click)="AbrirModal()">Eliminar Usuario</button>
                     <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Usuario</button>
                 </div>
             </form>
