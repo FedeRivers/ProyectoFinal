@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <title>Buscar Duplicados</title>
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4 mb-3 ml-auto">
+                <span class="input-group">             
+                    <button class="btn btn-secondary" (click)="BuscarDuplicados()">
+                        <i id="iBuscar" class="bi bi-search"></i>
+                        Buscar duplicados                
+                    </button>
+                </span>
+            </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-3">
+                <textarea [(ngModel)]="TextoIngresado" class="form-label" rows="20" style="width: 100%;">
+
+                </textarea>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="nombre">Nombre Semilla</th>
+                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                            <th scope="col" sortable="Taxonomia">Taxonomía</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer">
+                            <!--*ngFor="let semilla of Semillas"-->
+                            <td>
+                                <!-- {{semilla.Nombre}} -->
+                            </td>
+                            <td>
+                                <!-- {{semilla.FechaDeIngreso | date:'short' }} -->
+                            </td>
+                            <td>
+                                <!-- {{semilla.Taxonomia.Nombre}} -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
