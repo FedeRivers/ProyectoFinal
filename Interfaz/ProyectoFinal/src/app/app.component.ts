@@ -20,7 +20,7 @@ export class AppComponent {
   private moduloSobre: boolean = false;
   private moduloIngresarHumedad: boolean = false;
   private moduloIngresarGerminacion: boolean = false;
-
+  private moduloBuscarDuplicados: boolean = false;
 
   constructor(){
     this.usuario = new Usuario();
@@ -107,6 +107,14 @@ export class AppComponent {
     this.moduloIngresarGerminacion = value;
   }
 
+  public get ModuloBuscarDuplicados(): boolean {
+    return this.moduloBuscarDuplicados;
+  }
+  public set ModuloBuscarDuplicados(value: boolean) {
+    this.moduloBuscarDuplicados = value;
+  }
+
+
   ListarFormularios(usuario:Usuario)
   {
     if(usuario!=undefined)
@@ -138,6 +146,8 @@ export class AppComponent {
         case RecursosDeIdioma.Formularios.INGRESARHUMEDAD: this.moduloIngresarHumedad = true;
           break;
         case RecursosDeIdioma.Formularios.INGRESARGERMINACION: this.moduloIngresarGerminacion = true;
+          break;
+        case RecursosDeIdioma.Formularios.BUSCARDUPLICADOS: this.ModuloBuscarDuplicados = true;
       }
     });
   }

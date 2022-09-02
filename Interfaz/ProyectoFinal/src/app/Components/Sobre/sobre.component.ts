@@ -356,7 +356,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
 
   Limpiar()
   {
-    this.semilla= new Semilla();
+    this.sobre= new Sobre();
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;

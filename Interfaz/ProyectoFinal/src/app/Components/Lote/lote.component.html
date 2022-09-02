@@ -14,20 +14,20 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNumero">Numero:</span>
-                    <input name="txtNumero" [disabled]="BtnModificar" [(ngModel)]="Lote.NumeroLote" [ngClass]="Lote.NumeroLote!=undefined ? ValidarNumeroLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese numero" aria-label="txtNumero"
+                    <input name="txtNumero" [(ngModel)]="Lote.NumeroLote" [ngClass]="Lote.NumeroLote!=undefined ? ValidarNumeroLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja || BtnModificar" placeholder="Ingrese numero" aria-label="txtNumero"
                         aria-describedby="spanNumero" required>
                     <div class="invalid-feedback">{{MensajeNumeroInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanDescripcion">Descripción:</span>
-                    <input name="txtDescripcion" [(ngModel)]="Lote.Descripcion" [ngClass]="Lote.Descripcion!=undefined ? ValidarDescripcion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese descripcion" aria-label="txtDescripcion"
+                    <input name="txtDescripcion" [(ngModel)]="Lote.Descripcion" [ngClass]="Lote.Descripcion!=undefined ? ValidarDescripcion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese descripcion" aria-label="txtDescripcion"
                         aria-describedby="spanDescripcion" required>
                     <div class="invalid-feedback">{{MensajeDescripcionInvalido}}</div>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMejorador">Mejorador:</span>
-                    <select name="sltMejorador" [disabled]="BtnModificar" class="form-select" [(ngModel)]="Lote.Mejorador.IdMejorador" [ngClass]="Lote.Mejorador.IdMejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
+                    <select name="sltMejorador" class="form-select" [(ngModel)]="Lote.Mejorador.IdMejorador" [ngClass]="Lote.Mejorador.IdMejorador!=undefined ? ValidarMejorador() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja || BtnModificar"
                         aria-label="sltMejorador" aria-describedby="spanMejorador">
                         <option *ngFor="let mejorador of Mejoradores" [ngValue]="mejorador.IdMejorador" > 
                             {{mejorador.Nombre}}
@@ -37,7 +37,7 @@
 
                 <div class="">
                     <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Lote</button>
-                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Lote</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-danger mb-3" (click)="AbrirModal()">Eliminar Lote</button>
                     <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Lote</button>
                 </div>
             </form>
