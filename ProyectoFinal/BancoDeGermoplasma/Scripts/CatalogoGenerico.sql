@@ -47,8 +47,8 @@ SET IDENTITY_INSERT [dbo].[TiposDeUsuario] OFF
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
 MERGE INTO [dbo].[Usuarios] AS TARGET 
 USING (
-	VALUES (1, N'juan', N'alvarez', N'U2FsdGVkX1/+7jaCIlj62G+4WdF90fKlJZg6YDyUnfo=', N'juanda_2007@hotmail.es', N'44821864', 1, 1),
-		   (2, N'Federico', N'Rios', N'U2FsdGVkX18xu+XDGrDBA04iBIm5z2SM7X9h1GIQj9w=', N'federico@gmail.com', N'55671228', 1, 1)
+	VALUES (1, N'juan', N'alvarez', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', N'juanda_2007@hotmail.es', N'44821864', 1, 1),
+		   (2, N'Federico', N'Rios', N'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', N'federico@gmail.com', N'55671228', 1, 1)
 ) AS SOURCE ( NewIdUsuario, NewNombre, NewApellido, NewContrasena, NewMail, NewCedula, NewIdTipoDeUsuario, NewActivo )
 ON TARGET.[idUsuario] = SOURCE.NewIdUsuario 
 WHEN MATCHED THEN 
@@ -129,7 +129,7 @@ WHEN NOT MATCHED BY TARGET THEN
 	VALUES (SOURCE.NewFila,SOURCE.NewColumna,SOURCE.NewIdEstado);
 
 --/////////////////////////////////////////////---------DATOS DE PRUEBA--------------------////////////////////////////////////////////////--
-
+/*
 /*Mejoradores*/
 SET IDENTITY_INSERT [dbo].[Mejoradores] ON 
 MERGE INTO [dbo].[Mejoradores] AS TARGET 

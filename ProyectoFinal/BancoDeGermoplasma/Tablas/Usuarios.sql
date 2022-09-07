@@ -2,7 +2,7 @@
     [idUsuario]       INT           IDENTITY (1, 1) NOT NULL,
     [nombre]   VARCHAR (100) NOT NULL,
     [apellido] VARCHAR (100) NOT NULL,
-	[contrasena] VARCHAR(50) NOT NULL,
+	[contrasena] VARCHAR(100) NOT NULL,
     [mail] VARCHAR(100) NOT NULL, 
     [cedula] VARCHAR(10) NOT NULL, 
     [fechaDeIngreso] DATETIME NULL DEFAULT GETDATE(), 

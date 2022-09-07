@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[AltaUsuario] 
 	@Nombre varchar(100),
 	@Apellido varchar(100),
-	@Contrasena varchar(50),
+	@Contrasena varchar(100),
 	@Mail varchar(100),
 	@Cedula varchar(10),
 	@IdTipoDeUsuario int
