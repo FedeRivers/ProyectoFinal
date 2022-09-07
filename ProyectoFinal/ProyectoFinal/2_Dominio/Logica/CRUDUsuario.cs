@@ -13,11 +13,11 @@ namespace ProyectoFinal._2_Dominio.Logica
         public AltaUsuarioOut AltaUsuario(AltaUsuarioIn input)
         {
             var resultado = new PUsuario().AltaUsuario(input);
-            /*if (resultado.Status.StatusCode == 200) {
+            if (resultado.Status.StatusCode == 200) {
 
                 Mail mail = new Mail();
-                mail.EnviarMail(input.Usuario.Mail, "Alta de usuario: " + input.Usuario.Nombre, "Para ingresar a su cuenta ingrese la siguiente contraseña: ");           
-            }*/
+                mail.Enviar(input.Usuario.Mail, input.Usuario.Nombre, input.Usuario.Contrasena);           
+            }
             return resultado;
 
         }

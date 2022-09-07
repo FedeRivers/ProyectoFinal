@@ -47,8 +47,8 @@ SET IDENTITY_INSERT [dbo].[TiposDeUsuario] OFF
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
 MERGE INTO [dbo].[Usuarios] AS TARGET 
 USING (
-	VALUES (1, N'juan', N'alvarez', N'admin', N'juanda_2007@hotmail.es', N'44821864', 1, 1),
-		   (2, N'Federico', N'Rios', N'123456', N'federico@gmail.com', N'55671228', 1, 1)
+	VALUES (1, N'juan', N'alvarez', N'U2FsdGVkX1/+7jaCIlj62G+4WdF90fKlJZg6YDyUnfo=', N'juanda_2007@hotmail.es', N'44821864', 1, 1),
+		   (2, N'Federico', N'Rios', N'U2FsdGVkX18xu+XDGrDBA04iBIm5z2SM7X9h1GIQj9w=', N'federico@gmail.com', N'55671228', 1, 1)
 ) AS SOURCE ( NewIdUsuario, NewNombre, NewApellido, NewContrasena, NewMail, NewCedula, NewIdTipoDeUsuario, NewActivo )
 ON TARGET.[idUsuario] = SOURCE.NewIdUsuario 
 WHEN MATCHED THEN 
@@ -241,3 +241,4 @@ WHEN MATCHED THEN
 WHEN NOT MATCHED BY TARGET THEN 
 	INSERT ([numeroSobre],[ubicacion],[activo],[fechaDeDevolucion],[fechaDeIngreso],[humedad],[germinacion],[vigor],[numeroLote],[idSemilla],[idEstado])
 	VALUES (SOURCE.NewNumeroSobre,SOURCE.NewUbicacion,SOURCE.NewActivo,SOURCE.NewFechaDeDevolucion,SOURCE.NewFechaDeIngreso,SOURCE.NewHumedad,SOURCE.NewGerminacion,SOURCE.NewVigor,SOURCE.NewNumeroLote,SOURCE.NewIdSemilla,SOURCE.NewIdEstado);
+	*/
