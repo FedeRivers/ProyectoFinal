@@ -129,7 +129,7 @@ WHEN NOT MATCHED BY TARGET THEN
 	VALUES (SOURCE.NewFila,SOURCE.NewColumna,SOURCE.NewIdEstado);
 
 --/////////////////////////////////////////////---------DATOS DE PRUEBA--------------------////////////////////////////////////////////////--
-
+/*
 /*Mejoradores*/
 SET IDENTITY_INSERT [dbo].[Mejoradores] ON 
 MERGE INTO [dbo].[Mejoradores] AS TARGET 
