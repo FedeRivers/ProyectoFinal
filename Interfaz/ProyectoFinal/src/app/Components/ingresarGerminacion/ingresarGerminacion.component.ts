@@ -119,7 +119,7 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   Listar()
   {
     let listarSobreIn: ListarSobreIn = new ListarSobreIn();
-    listarSobreIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarSobreIn.IdEstado = 4;
     this.sobres = [];
     this.sobreServicio.Listar(listarSobreIn)
       .subscribe( lista => {
