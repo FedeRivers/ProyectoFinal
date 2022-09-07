@@ -171,7 +171,7 @@
                             </td>
                             <td>
                                 <span class="input-group">             
-                                    <button class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('TomarHumedad')">
+                                    <button [disabled]="sobre.Estado.Nombre=='Analizando humedad'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('TomarHumedad')">
                                         <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
                                         Tomar Humedad             
                                     </button>
@@ -179,15 +179,15 @@
                             </td>
                             <td>
                                 <span class="input-group">             
-                                    <button class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('Germinar')"> 
+                                    <button [disabled]="sobre.Estado.Nombre=='Germinando'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('Germinar')"> 
                                         <i class="bi bi-flower1" style="color: rgb(182, 238, 169);"></i>
                                         Germinar            
                                     </button>
                                 </span>
                             </td>
                             <td>
-                                <span class="input-group" (click)="Seleccionar(sobre); BotonSeleccionado('Secar')">             
-                                    <button class="btn btn-secondary">
+                                <span class="input-group">             
+                                    <button [disabled]="sobre.Humedad<1" (click)="Seleccionar(sobre); BotonSeleccionado('Secar')" class="btn btn-secondary">
                                         <i class="bi bi-speedometer"></i>
                                         Secar            
                                     </button>

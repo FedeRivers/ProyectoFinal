@@ -151,7 +151,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   
   AltaUsuario()
   {
-    this.usuario.Contrasena = '123456789';
+    this.usuario.Contrasena = CryptoJS.SHA256(CryptoJS.AES.encrypt(Math.random().toString(),"123").toString()).toString();
     this.altaUsuarioIn.usuario = this.usuario;
     this.usuarioServicio.Agregar(this.altaUsuarioIn)
       .subscribe( usuario => {

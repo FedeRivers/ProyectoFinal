@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[Login]
 	@Mail VARCHAR(50), 
-	@Contrasena VARCHAR(50)
+	@Contrasena VARCHAR(100)
 AS
 BEGIN
 	SELECT *
