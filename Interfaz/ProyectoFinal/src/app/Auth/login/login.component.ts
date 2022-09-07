@@ -44,7 +44,14 @@ export class LoginComponent implements OnInit {
   }; 
   @Input()
   set Contrasena(value:string){
-    this.loginIn.contrasena = value;
+    if(value!="")
+    {
+      this.loginIn.contrasena = CryptoJS.AES.encrypt(value,"123").toString();
+    }
+    else
+    {
+      this.loginIn.contrasena = value;
+    }
   };
 
   @Output()
@@ -55,28 +62,12 @@ export class LoginComponent implements OnInit {
 
 
   Login(){
-    /*this.loginIn.contrasena = CryptoJS.AES.encrypt(this.loginIn.contrasena,"123").toString();
-    this.usuarioServicio.Login(this.loginIn)
-      .subscribe( usuario => console.log('Respuesta', usuario))*/
     this.usuarioServicio.Login(this.loginIn)
       .subscribe( loginOut => {
         this.loginValido.emit(loginOut.Usuario);
-      })
+    })
+    
   }
-
-  /*
-  AltaLote()
-  {
-    let altaLoteIn : AltaLoteIn = new AltaLoteIn();
-    altaLoteIn.Lote = this.lote;
-    this.loteServicio.Agregar(altaLoteIn)
-    .subscribe( lote => {
-      this.modal.Confirmado = true;
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Alta.EXITO,false);
-     }, err => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Alta.ERROR,true);
-    });
-  }*/
 } 
 
 

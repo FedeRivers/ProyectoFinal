@@ -96,7 +96,7 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
   Listar()
   {
     let listarSobreIn: ListarSobreIn = new ListarSobreIn();
-    listarSobreIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarSobreIn.IdEstado = 5;
     this.sobres = [];
     this.sobreServicio.Listar(listarSobreIn)
       .subscribe( lista => {

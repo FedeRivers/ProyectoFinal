@@ -161,6 +161,7 @@ export const RecursosDeIdioma = {
         INGRESARGERMINACION:'Ingresar germinacion',
         INGRESARHUMEDAD:'Ingresar humedad',
         BUSCARDUPLICADOS: 'Buscar duplicados',
+        ESTADISTICAS: 'Estadistica',
     },
 }
 

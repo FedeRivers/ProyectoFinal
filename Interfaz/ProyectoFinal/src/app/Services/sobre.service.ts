@@ -31,7 +31,7 @@ export class SobreService {
   }
 
   public Listar(listarSobreIn:ListarSobreIn){
-    return this.http.get<ListarSobresOut>(`${this.baseUrl+MetodosUrl.Sobre.LISTAR}?TerminoDeBusqueda=${listarSobreIn.terminoDeBusqueda}`);
+    return this.http.get<ListarSobresOut>(`${this.baseUrl+MetodosUrl.Sobre.LISTAR}?NumeroSobre=${listarSobreIn.NumeroSobre}&NumeroLote=${listarSobreIn.NumeroLote}&NombreSemilla=${listarSobreIn.NombreSemilla}&IdCamara=${listarSobreIn.IdCamara}&IdEstado=${listarSobreIn.IdEstado}`);
   }
 
   public ExisteSobre(existeSobreIn:ExisteSobreIn){

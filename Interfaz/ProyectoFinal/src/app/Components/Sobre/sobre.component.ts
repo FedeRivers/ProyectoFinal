@@ -37,7 +37,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private lote: Lote;
   private lotes: Lote[];
 
-  private terminoDeBusqueda: string = "";
+  private listarSobreIn: ListarSobreIn;
   
   private numeroSobreEsValido: boolean = false;
   private ubicacionEsValida: boolean = false; 
@@ -55,6 +55,10 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private mensajeSemillaInvalida: string = '';
   private mensajeEstadoInvalida: string = '';
 
+  private btnTomarHumedad: boolean = false;
+  private btnGerminar: boolean = false;
+  private btnSecar: boolean = false;
+
 
   @ViewChild("modal") modal: ModalComponent;
   
@@ -62,6 +66,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
 
   constructor(private sobreServicio: SobreService,private semillaServicio: SemillaService,private estadoService: EstadoService,private loteService:LoteService) {
     super();
+    this.listarSobreIn = new ListarSobreIn();
     this.modal = new ModalComponent();
     this.semilla = new Semilla();
     this.estado = new Estado();
@@ -72,17 +77,18 @@ export class SobreComponent extends FormularioBase implements OnInit {
     this.sobres = [];
     this.lotes = [];
     this.Listar();
+    this.ListarEstados();
   }
 
 
   ngOnInit(): void {
   }
 
-  public get TerminoDeBusqueda(): string {
-    return this.terminoDeBusqueda;
+  public get ListarSobreIn(): ListarSobreIn {
+    return this.listarSobreIn;
   }
-  public set TerminoDeBusqueda(value: string) {
-    this.terminoDeBusqueda = value;
+  public set ListarSobreIn(value: ListarSobreIn) {
+    this.listarSobreIn = value;
     setTimeout(() => {
       this.Listar();
     },500)
@@ -185,6 +191,27 @@ export class SobreComponent extends FormularioBase implements OnInit {
     this.estadoEsValido = value;
   }
 
+  public get BtnTomarHumedad(): boolean {
+    return this.btnTomarHumedad;
+  }
+  public set BtnTomarHumedad(value: boolean) {
+    this.btnTomarHumedad = value;
+  }
+
+  public get BtnGerminar(): boolean {
+    return this.btnGerminar;
+  }
+  public set BtnGerminar(value: boolean) {
+    this.btnGerminar = value;
+  }
+  
+  public get BtnSecar(): boolean {
+    return this.btnSecar;
+  }
+  public set BtnSecar(value: boolean) {
+    this.btnSecar = value;
+  }
+
   //#endregion
 
   //#region Get y Set de mensajes de error para mostrar al usuario
@@ -285,10 +312,8 @@ export class SobreComponent extends FormularioBase implements OnInit {
 
   Listar()
   {
-    let listarSobreIn: ListarSobreIn = new ListarSobreIn();
-    listarSobreIn.terminoDeBusqueda = this.terminoDeBusqueda;
     this.sobres = [];
-    this.sobreServicio.Listar(listarSobreIn)
+    this.sobreServicio.Listar(this.listarSobreIn)
       .subscribe( lista => {
         if (lista.Sobres != undefined) {
             this.sobres = lista.Sobres;
@@ -386,6 +411,21 @@ export class SobreComponent extends FormularioBase implements OnInit {
         this.ListarEstados();
         this.ListarLotes();
         break;
+      case "Secar":
+        this.btnSecar = true;
+        this.sobre.Estado.IdEstado = 3;
+        this.AbrirModal();
+        break;
+      case "Germinar":
+        this.btnGerminar = true;
+        this.sobre.Estado.IdEstado = 4;
+        this.AbrirModal();
+        break;
+      case "TomarHumedad":
+        this.btnTomarHumedad = true;
+        this.sobre.Estado.IdEstado = 5;
+        this.AbrirModal();
+        break;
     }
   }
 
@@ -425,7 +465,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
     {
       this.BajaSobre();
     }
-    else
+    else if(this.BtnModificar||this.btnGerminar||this.btnTomarHumedad||this.btnSecar)
     {
       this.ModificarSobre();
     }

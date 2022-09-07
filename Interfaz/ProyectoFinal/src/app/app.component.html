@@ -58,31 +58,25 @@
             </ng-template>
         </li>
         <li [ngbNavItem]="10" *ngIf="ModuloBuscarDuplicados">
-            <a ngbNavLink><b>Buscar duiplicados</b></a>
+            <a ngbNavLink><b>Buscar duplicados</b></a>
             <ng-template ngbNavContent>
                 <app-buscar-duplicados></app-buscar-duplicados>
             </ng-template>
         </li>
-        <li [ngbNavItem]="11">
+        <li [ngbNavItem]="11" *ngIf="ModuloEstadisticas">
+            <a ngbNavLink><b>Estadísticas</b></a>
+            <ng-template ngbNavContent>
+                <app-estadistica></app-estadistica>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="12">
+            <app-alerta></app-alerta>
+        </li>
+        <li [ngbNavItem]="13">
             <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
         </li>
 
-        <!-- <li ngbDropdown class="nav-item" *ngIf="Mejorador"> 
-            <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
-            <div ngbDropdownMenu>
-                <button ngbDropdownItem>Action</button>
-                <button ngbDropdownItem>Another action</button>
-                <button ngbDropdownItem>Something else here</button>
-                <div class="dropdown-divider"></div>
-                <button ngbDropdownItem>Separated link</button>
-                <app-mejorador></app-mejorador>
-            </div>
-        </li>
-        <li ngbNavItem [disabled]="true" class="ms-auto">
-            <a ngbNavLink>Disabled</a>
-            <ng-template ngbNavContent>
-            </ng-template>
-        </li>-->
+
     </ul>
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
 

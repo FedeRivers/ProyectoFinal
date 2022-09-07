@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloSobreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESSFEDE;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
-  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
-    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Vigor" Parameter="vigor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdLote" Parameter="idLote" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESS02;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.ExisteSobre" Method="ExisteSobre">
     <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
     <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
@@ -47,6 +36,17 @@
     <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
     <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
+    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Ubicacion" Parameter="ubicacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Vigor" Parameter="vigor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

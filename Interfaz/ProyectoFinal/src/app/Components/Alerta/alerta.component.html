@@ -1,0 +1,17 @@
+<li ngbDropdown class="nav-item">
+    <!-- <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a> -->
+    <i class="nav-link bi bi-bell " style="color:red;font-size: 18px;" ngbDropdownToggle>
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+        </i>
+    <div ngbDropdownMenu class="pre-scrollable">
+        <div *ngFor="let alerta of Alertas" class="card mb-1" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{alerta.Titulo}}</h5>
+                <p class="card-text">{{alerta.Texto}}</p>
+            </div>
+        </div>
+        <div>
+            <a class="nav-link" style="cursor:pointer;font-size:20px;color:#007bff;" (click)="CargarMas()">Ver más...</a>
+        </div>
+    </div>
+</li>
