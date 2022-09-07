@@ -107,6 +107,7 @@
     <Build Include="Tablas\Coordenadas.sql" />
     <Build Include="StoreProcedure\ExisteLote.sql" />
     <Build Include="StoreProcedure\ExisteSobre.sql" />
+    <Build Include="Tablas\Camaras.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />
