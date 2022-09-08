@@ -108,6 +108,7 @@
     <Build Include="StoreProcedure\ExisteLote.sql" />
     <Build Include="StoreProcedure\ExisteSobre.sql" />
     <Build Include="Tablas\Camaras.sql" />
+    <Build Include="StoreProcedure\ExisteUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

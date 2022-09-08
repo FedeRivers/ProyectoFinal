@@ -148,5 +148,21 @@ namespace ProyectoFinal._3_Persistencia
                 return output;
             }
         }
+
+        public int ExisteUsuario(Usuario usuario)
+        {
+            using (var dataContext = new ModeloUsuarioDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ExisteUsuario(usuario.Mail,usuario.Cedula);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return -1;
+                }
+            }
+        }
     }
 }
