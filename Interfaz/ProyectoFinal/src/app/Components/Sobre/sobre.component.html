@@ -73,17 +73,17 @@
                 <div class="row">
                     <div class="input-group mb-3 col-md-2 col-lg-2">
                         <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
-                        <input name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
+                        <input [(ngModel)]="NumeroSobre" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
                     </div>
 
                     <div class="input-group mb-3 col-md-2 col-lg-2">
                         <span class="input-group-text" id="spanBusquedaNumeroLote">Lote:</span>
-                        <input name="txtBusquedaNumeroLote" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroLote" aria-describedby="spanBusquedaNumeroLote">
+                        <input [(ngModel)]="NumeroLote" name="txtBusquedaNumeroLote" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroLote" aria-describedby="spanBusquedaNumeroLote">
                     </div>
 
                     <div class="input-group mb-3 col-md-3 col-lg-3">
                         <span class="input-group-text" id="spanBusquedaNombreSemilla">Semilla:</span>
-                        <input name="txtBusquedaNombreSemilla" class="form-control" style="height:auto;" placeholder="Buscar por nombre de semilla" aria-label="txtBusquedaNombreSemilla" aria-describedby="spanBusquedaNombreSemilla">
+                        <input [(ngModel)]="NombreSemilla" name="txtBusquedaNombreSemilla" class="form-control" style="height:auto;" placeholder="Buscar por nombre de semilla" aria-label="txtBusquedaNombreSemilla" aria-describedby="spanBusquedaNombreSemilla">
                     </div>
 
                     <div class="input-group mb-3 col-md-2 col-lg-2">
@@ -171,7 +171,7 @@
                             </td>
                             <td>
                                 <span class="input-group">             
-                                    <button [disabled]="sobre.Estado.Nombre=='Analizando humedad'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('TomarHumedad')">
+                                    <button [disabled]="sobre.Estado.Nombre=='Analizando humedad' || sobre.Estado.Nombre=='Germinando'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('TomarHumedad')">
                                         <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
                                         Tomar Humedad             
                                     </button>
@@ -179,7 +179,7 @@
                             </td>
                             <td>
                                 <span class="input-group">             
-                                    <button [disabled]="sobre.Estado.Nombre=='Germinando'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('Germinar')"> 
+                                    <button [disabled]="sobre.Estado.Nombre=='Germinando' || sobre.Estado.Nombre=='Analizando humedad'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('Germinar')"> 
                                         <i class="bi bi-flower1" style="color: rgb(182, 238, 169);"></i>
                                         Germinar            
                                     </button>

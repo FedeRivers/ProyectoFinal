@@ -100,7 +100,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ListarSobres(input.TerminoDeBusqueda);
+                    var result = dataContext.ListarSobres(input.NumeroSobre,input.NumeroLote,input.NombreSemilla,input.IdEstado,input.IdCamara);
                     if (result != null)
                     {
                         foreach (var sobre in result)
