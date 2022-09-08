@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Mvc;
 
 namespace ProyectoFinal._2_Dominio.Logica
 {
@@ -15,13 +16,23 @@ namespace ProyectoFinal._2_Dominio.Logica
     {
         public AltaUsuarioOut AltaUsuario(AltaUsuarioIn input)
         {
-            var contrasena = GenerarContrasena();
-            input.Usuario.Contrasena = ComputeSha256Hash(contrasena);
-            var resultado = new PUsuario().AltaUsuario(input);
-            if (resultado.Status.StatusCode == 200) {
-
-                Mail mail = new Mail();
-                mail.Enviar(input.Usuario.Mail, input.Usuario.Nombre, contrasena);           
+            var resultado = new AltaUsuarioOut { Status = new HttpStatusCodeResult(404) };
+            var existe = new PUsuario().ExisteUsuario(input.Usuario);
+            if (existe == 0)
+            {
+                var contrasena = GenerarContrasena();
+                input.Usuario.Contrasena = ComputeSha256Hash(contrasena);
+                resultado.Status = new PUsuario().AltaUsuario(input).Status;
+                if (resultado.Status.StatusCode == 200)
+                {
+                    Mail mail = new Mail();
+                    mail.Enviar(input.Usuario.Mail, input.Usuario.Nombre, contrasena);
+                }
+            }
+            else
+            {
+                resultado.ExisteMail = existe == 1 || existe == 2;
+                resultado.ExisteCedula = existe == 1 || existe == 3; 
             }
             return resultado;
 

@@ -56,4 +56,9 @@
     <Parameter Name="IdTipoDeUsuario" Parameter="idTipoDeUsuario" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.ExisteUsuario" Method="ExisteUsuario">
+    <Parameter Name="Mail" Parameter="mail" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Cedula" Parameter="cedula" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
