@@ -2,11 +2,13 @@ export class ListarSobreIn{
     
     private numeroSobre!: number;
     private numeroLote!: number;
-    private nombreSemilla!: string;
+    private nombreSemilla: string;
     private idEstado!: number;
     private idCamara!: number;
 
-    constructor(){ }
+    constructor(){
+        this.nombreSemilla='';
+     }
 
     public get NumeroSobre(): number {
         return this.numeroSobre;

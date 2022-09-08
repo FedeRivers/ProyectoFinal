@@ -84,15 +84,28 @@ export class SobreComponent extends FormularioBase implements OnInit {
   ngOnInit(): void {
   }
 
-  public get ListarSobreIn(): ListarSobreIn {
-    return this.listarSobreIn;
-  }
-  public set ListarSobreIn(value: ListarSobreIn) {
-    this.listarSobreIn = value;
+
+  public set NumeroSobre(value: number) {
+    this.listarSobreIn.NumeroSobre = value;
     setTimeout(() => {
       this.Listar();
-    },500)
+    },1000)
   }
+
+  public set NumeroLote(value: number) {
+    this.listarSobreIn.NumeroLote = value;
+    setTimeout(() => {
+      this.Listar();
+    },1000)
+  }
+
+  public set NombreSemilla(value: string) {
+    this.listarSobreIn.NombreSemilla = value;
+    setTimeout(() => {
+      this.Listar();
+    },1000)
+  }
+  
 
 
   // #region Get y Set de usuario y lista de usuarios

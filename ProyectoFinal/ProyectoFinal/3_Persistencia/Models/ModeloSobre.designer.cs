@@ -76,13 +76,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
-		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
-			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaSobre")]
 		public int AltaSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla)
 		{
@@ -95,6 +88,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, ubicacion, humedad, germinacion, vigor, numeroLote, idSemilla, idEstado);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
+		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSemilla", DbType="VarChar(50)")] string nombreSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Decimal(18,0)")] System.Nullable<decimal> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Decimal(18,0)")] System.Nullable<decimal> idCamara)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, nombreSemilla, idEstado, idCamara);
+			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -157,7 +157,7 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ubicacion", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ubicacion", DbType="VarChar(50)")]
 		public string ubicacion
 		{
 			get
