@@ -17,7 +17,7 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
   private sobre: Sobre;
   private sobres: Sobre[];
   
-  private terminoDeBusqueda: string = "";
+  private listarSobreIn: ListarSobreIn;
 
   private humedadEsValida: boolean = false; 
 
@@ -27,24 +27,22 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
 
   constructor(private sobreServicio: SobreService) {
     super();
+    this.listarSobreIn = new ListarSobreIn();
+    this.modal = new ModalComponent();
     this.sobre = new Sobre();
     this.sobres = [];
     this.Listar();
-    this.modal = new ModalComponent();
   }
 
 
   ngOnInit(): void {
   }
 
-  public get TerminoDeBusqueda(): string {
-    return this.terminoDeBusqueda;
-  }
-  public set TerminoDeBusqueda(value: string) {
-    this.terminoDeBusqueda = value;
+  public set NumeroSobre(value: number) {
+    this.listarSobreIn.NumeroSobre = value;
     setTimeout(() => {
       this.Listar();
-    },500)
+    },1000)
   }
 
 
@@ -84,6 +82,8 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
   IngresarHumedad()
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
+    this.sobre.Estado.IdEstado = 6;
+    this.sobre.Estado.IdEstado = 0;
     modificarSobreIn.Sobre = this.sobre;
     this.sobreServicio.Modificar(modificarSobreIn)
       .subscribe( sobre => {
@@ -95,10 +95,9 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
 
   Listar()
   {
-    let listarSobreIn: ListarSobreIn = new ListarSobreIn();
-    listarSobreIn.IdEstado = 5;
+    this.listarSobreIn.IdEstado = 5;
     this.sobres = [];
-    this.sobreServicio.Listar(listarSobreIn)
+    this.sobreServicio.Listar(this.listarSobreIn)
       .subscribe( lista => {
         if (lista.Sobres != undefined) {
             this.sobres = lista.Sobres;
@@ -141,7 +140,7 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
 
   ValidarHumedad():boolean
   {
-    this.mensajeHumedadInvalida = this.ValidarNumero(this.Sobre.Vigor.toString());
+    this.mensajeHumedadInvalida = this.ValidarPorcentaje(this.Sobre.Humedad);
     this.mensajeHumedadInvalida != '' ? this.humedadEsValida = false : this.humedadEsValida = true;
     return this.humedadEsValida;
   }

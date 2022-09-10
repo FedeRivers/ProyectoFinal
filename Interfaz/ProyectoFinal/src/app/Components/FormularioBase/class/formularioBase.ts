@@ -82,6 +82,12 @@ export class FormularioBase{
          : RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO: this.mensaje;
     }
 
+    ValidarPorcentaje(texto:number):string
+    {
+        this.mensaje = this.ValidarNumero(texto.toString());
+        return texto > 100 ? this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO : this.mensaje;
+    }
+
     ValidarMail(texto:string):string
     {
         this.mensaje = this.CampoVacio(texto);

@@ -143,6 +143,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1_Servicios\CamaraController.cs" />
     <Compile Include="1_Servicios\EstadoController.cs" />
     <Compile Include="1_Servicios\LoteController.cs" />
     <Compile Include="1_Servicios\MejoradorController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="1_Servicios\TaxonomiaController.cs" />
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
+    <Compile Include="2_Dominio\Entidades\Camara.cs" />
     <Compile Include="2_Dominio\Entidades\Estado.cs" />
     <Compile Include="2_Dominio\Entidades\Lote.cs" />
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="2_Dominio\Entidades\Taxonomia.cs" />
     <Compile Include="2_Dominio\Entidades\TipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
+    <Compile Include="2_Dominio\Logica\CRUDCamara.cs" />
     <Compile Include="2_Dominio\Logica\CRUDEstado.cs" />
     <Compile Include="2_Dominio\Logica\CRUDLote.cs" />
     <Compile Include="2_Dominio\Logica\CRUDSemilla.cs" />
@@ -170,6 +173,11 @@
     <Compile Include="2_Dominio\Logica\CRUDUsuario.cs" />
     <Compile Include="2_Dominio\Logica\Mail.cs" />
     <Compile Include="2_Dominio\Logica\Seguridad.cs" />
+    <Compile Include="3_Persistencia\Models\ModeloCamara.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloCamara.dbml</DependentUpon>
+    </Compile>
     <Compile Include="3_Persistencia\Models\ModeloEstado.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,6 +213,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTipoDeUsuario.dbml</DependentUpon>
     </Compile>
+    <Compile Include="3_Persistencia\PCamara.cs" />
     <Compile Include="3_Persistencia\PEstado.cs" />
     <Compile Include="3_Persistencia\PLote.cs" />
     <Compile Include="3_Persistencia\PMejorador.cs" />
@@ -271,6 +280,7 @@
     <Compile Include="Parametros\Entrada\ExisteLoteIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ListarBaseIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarCamarasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarEstadosIn.cs" />
     <Compile Include="Parametros\Entrada\ListarLotesIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
@@ -304,6 +314,7 @@
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ExisteLoteOut.cs" />
     <Compile Include="Parametros\Salida\ExisteSobreOut.cs" />
+    <Compile Include="Parametros\Salida\ListarCamarasOut.cs" />
     <Compile Include="Parametros\Salida\ListarEstadosOut.cs" />
     <Compile Include="Parametros\Salida\ListarLotesOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
@@ -368,6 +379,14 @@
       <LastGenOutput>ModeloEstado.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="3_Persistencia\Models\ModeloCamara.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ModeloCamara.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="3_Persistencia\Models\ModeloCamara.dbml.layout">
+      <DependentUpon>ModeloCamara.dbml</DependentUpon>
+    </None>
     <None Include="3_Persistencia\Models\ModeloEstado.dbml.layout">
       <DependentUpon>ModeloEstado.dbml</DependentUpon>
     </None>

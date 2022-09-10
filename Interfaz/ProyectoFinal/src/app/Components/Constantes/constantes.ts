@@ -198,6 +198,10 @@ export const MetodosUrl = {
     Estado :
     {
         LISTAR : 'ListarEstados',
+    },
+    Camara :
+    {
+        LISTAR : 'ListarCamaras'
     }, 
     Lote : 
     {

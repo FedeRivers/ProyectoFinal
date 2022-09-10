@@ -88,18 +88,18 @@
 
                     <div class="input-group mb-3 col-md-2 col-lg-2">
                         <span class="input-group-text" id="spanBusquedaEstado">Estado:</span>
-                        <select name="txtBusquedaEstado" class="form-select form-control" style="height:auto;" aria-label="txtBusquedaEstado" aria-describedby="spanBusquedaEstado">
-                        <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
-                            {{estado.Nombre}}
-                        </option>
+                        <select name="txtBusquedaEstado" class="form-select form-control" [(ngModel)]="EstadoSobre" style="height:auto;" aria-label="txtBusquedaEstado" aria-describedby="spanBusquedaEstado">
+                            <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
+                                {{estado.Nombre}}
+                            </option>
                         </select>
                     </div>
                     <div class="input-group mb-3 col-md-2 col-lg-2">
                         <span class="input-group-text" id="spanBusquedaCamara">Cámara:</span>
-                        <select name="txtBusquedaCamara" class="form-select form-control" style="height:auto;" aria-label="txtBusquedaCamara" aria-describedby="spanBusquedaCamara">
-                        <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
-                            {{estado.Nombre}}
-                        </option>
+                        <select name="txtBusquedaCamara" class="form-select form-control" [(ngModel)]="Camara" style="height:auto;" aria-label="txtBusquedaCamara" aria-describedby="spanBusquedaCamara">
+                            <option *ngFor="let camara of Camaras" [ngValue]="camara.IdCamara" > 
+                                {{camara.Nombre}}
+                            </option>
                         </select>
                     </div>
 
@@ -164,10 +164,10 @@
                                 {{sobre.Estado.Nombre }}
                             </td>
                             <td>
-                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
+                                <i class="bi bi-pencil" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
                             </td>
                             <td>
-                                <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(sobre); BotonSeleccionado('Baja')"></i>
+                                <i class="bi bi-trash3" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(sobre); BotonSeleccionado('Baja')"></i>
                             </td>
                             <td>
                                 <span class="input-group">             

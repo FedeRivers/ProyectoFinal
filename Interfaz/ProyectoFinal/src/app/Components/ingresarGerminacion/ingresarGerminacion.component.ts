@@ -17,7 +17,7 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   private sobre: Sobre;
   private sobres: Sobre[];
   
-  private terminoDeBusqueda: string = "";
+  private listarSobreIn: ListarSobreIn;
 
   private germinacionEsValido: boolean = false; 
   private vigorEsValido: boolean = false;
@@ -29,26 +29,22 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
 
   constructor(private sobreServicio: SobreService) {
     super();
+    this.listarSobreIn = new ListarSobreIn();
+    this.modal = new ModalComponent();
     this.sobre = new Sobre();
     this.sobres = [];
     this.Listar();
-    this.modal = new ModalComponent();
   }
-
 
   ngOnInit(): void {
   }
 
-  public get TerminoDeBusqueda(): string {
-    return this.terminoDeBusqueda;
-  }
-  public set TerminoDeBusqueda(value: string) {
-    this.terminoDeBusqueda = value;
+  public set NumeroSobre(value: number) {
+    this.listarSobreIn.NumeroSobre = value;
     setTimeout(() => {
       this.Listar();
-    },500)
+    },1000)
   }
-
 
   // #region Get y Set de sobre y lista de sobres
   public get Sobre(): Sobre {
