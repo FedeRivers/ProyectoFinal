@@ -71,7 +71,7 @@ namespace ProyectoFinal._3_Persistencia
                     var result = dataContext.ModificarSobre
                         (
                         input.Sobre.NumeroSobre,
-                        input.Sobre.Ubicacion,
+                        string.Empty,
                         input.Sobre.Humedad,
                         input.Sobre.Germinacion,
                         input.Sobre.Vigor,
@@ -108,7 +108,6 @@ namespace ProyectoFinal._3_Persistencia
                             output.Sobres.Add(new Sobre
                             {
                                 NumeroSobre = sobre.numeroSobre,
-                                Ubicacion = sobre.ubicacion,
                                 Activo = sobre.activoSobre,
                                 FechaDeIngreso = sobre.ingresoSobre,
                                 FechaDeDevolucion = sobre.fechaDeDevolucion,
@@ -157,6 +156,47 @@ namespace ProyectoFinal._3_Persistencia
                 {
                     var result = dataContext.ExisteSobre(input.Sobre.NumeroSobre, input.Sobre.Lote.NumeroLote);
                     output.ExisteSobre = result == 0;
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+        }
+
+        public ExisteEspacioLibreOut ExisteEspacioLibre(ExisteEspacioLibreIn input)
+        {
+            var output = new ExisteEspacioLibreOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ExisteEspacioLibre(input.IdCamara).FirstOrDefault();
+                    if (result != null)
+                    {
+                        output.Fila = result.columna;
+                        output.Columna = result.fila;
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+        }
+
+        public AsignarSobreACamaraOut AsignarSobreACamara(AsignarSobreACamaraIn input)
+        {
+            var output = new AsignarSobreACamaraOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.IdCamara, input.NumeroSobre);
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)

@@ -12,6 +12,5 @@ namespace ProyectoFinal.Parametros.Entrada
         public string NombreSemilla { get; set; }
         public int? IdEstado { get; set; }
         public int? IdCamara { get; set; }
-
     }
 }

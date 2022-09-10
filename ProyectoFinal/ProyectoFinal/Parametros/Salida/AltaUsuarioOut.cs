@@ -8,5 +8,8 @@ namespace ProyectoFinal.Parametros.Salida
 {
     public class AltaUsuarioOut : ParametroBaseOut
     {
+        public bool ExisteMail { get; set; }
+
+        public bool ExisteCedula { get; set; }
     }
 }
