@@ -1,7 +1,6 @@
 ﻿CREATE TABLE [dbo].[Sobres]
 (
 	[numeroSobre] INT PRIMARY KEY, 
-    [ubicacion] VARCHAR(50) NULL, 
     [activo] BIT NULL DEFAULT 1, 
     [fechaDeDevolucion] DATETIME NULL, 
     [fechaDeIngreso] DATETIME NULL DEFAULT GETDATE(), 

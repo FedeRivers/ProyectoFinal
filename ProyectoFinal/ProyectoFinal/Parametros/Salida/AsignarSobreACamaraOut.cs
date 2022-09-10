@@ -5,8 +5,7 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class ModificarSobreOut : ParametroBaseOut
+    public class AsignarSobreACamaraOut : ParametroBaseOut
     {
-        public bool CamaraLlena { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[ModificarSobre] 
 	@NumeroSobre int,
-	@Ubicacion varchar(50),
+	@IdCamara int,
 	@Humedad int,
 	@Germinacion int,
 	@Vigor int,
@@ -11,7 +11,6 @@ AS
 BEGIN
 	BEGIN TRY
 		UPDATE Sobres SET 
-		ubicacion = @Ubicacion,
 		humedad = @Humedad,
 		germinacion = @Germinacion,
 		vigor = @Vigor, 

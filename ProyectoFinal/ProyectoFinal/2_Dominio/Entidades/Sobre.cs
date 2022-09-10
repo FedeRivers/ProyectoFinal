@@ -9,7 +9,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
     {
         public int NumeroSobre { get; set; }
 
-        public string Ubicacion { get; set; }
+        public Ubicacion Ubicacion { get; set; }
 
         public bool? Activo { get; set; }
 

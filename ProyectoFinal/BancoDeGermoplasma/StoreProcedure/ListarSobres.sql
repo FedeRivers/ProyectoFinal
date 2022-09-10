@@ -9,7 +9,9 @@ BEGIN
 
 	SELECT
 	so.numeroSobre,
-	so.ubicacion,
+	ub.fila,
+	ub.columna,
+	ca.nombre,
 	so.activo AS activoSobre,
 	so.fechaDeDevolucion,
 	so.fechaDeIngreso AS ingresoSobre,
@@ -30,6 +32,8 @@ BEGIN
 	INNER JOIN Lotes lo ON so.numeroLote = lo.numeroLote
 	INNER JOIN Semillas se ON so.idSemilla = se.idSemilla
 	INNER JOIN Estados es ON so.idEstado = es.idEstado
+	INNER JOIN Ubicaciones ub ON so.numeroSobre = ub.numeroSobre
+	INNER JOIN Camaras ca ON ca.idCamara = ub.idCamara
 	WHERE so.activo = 1 and ((@NumeroSobre is null
 			or so.numeroSobre = @NumeroSobre) and
 			((@NumeroLote is null
@@ -37,5 +41,7 @@ BEGIN
 			((@NombreSemilla is null
 			or se.nombre like @NombreSemilla+'%') and
 			((@IdEstado is null
-			or so.idEstado = @IdEstado)))))
+			or so.idEstado = @IdEstado) and
+			((@IdCamara is null
+			or ub.idCamara = @IdCamara))))))
 END
