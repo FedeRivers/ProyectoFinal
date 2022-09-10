@@ -37,7 +37,7 @@
                 <div class="row mb-3 col-md-8">
                     <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
                     <div class="col-xs-3 col-sm-auto">
-                        <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
+                        <input id="table-complete-search" type="text" [(ngModel)]="NumeroSobre" class="form-control" name="searchTerm">
                     </div>
                     <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
                 </div>
@@ -46,35 +46,26 @@
             <table class="table table-hover">
                 <thead class="table-primary">
                     <tr>
-                        <th scope="col" sortable="ubicacion">Ubicacion</th>
-                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
-                        <th scope="col" sortable="vigor">Vigor</th>
                         <th scope="col" sortable="lote">Lote</th>
+                        <th scope="col" sortable="sobre">Sobre</th>
                         <th scope="col" sortable="semilla">Semilla</th>
-                        <th scope="col" sortable="estado">Estado</th>
+                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="pointer" *ngFor="let sobre of Sobres">
                         <td>
-                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                            <ngb-highlight [result]="sobre.Ubicacion"></ngb-highlight>
-                        </td>
-                        <td>
-                            {{sobre.FechaDeIngreso | date:'short' }}
-                        </td>
-                        <td>
-                            {{sobre.Vigor}}
-                        </td>
-                        <td>
                             {{sobre.Lote.NumeroLote}}
+                        </td>
+                        <td>
+                            {{sobre.NumeroSobre}}
                         </td>
                         <td>
                             {{sobre.Semilla.Nombre}}
                         </td>
                         <td>
-                            {{sobre.Estado.Nombre}}
+                            {{sobre.FechaDeIngreso | date:'short' }}
                         </td>
                         <td>
                             <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>

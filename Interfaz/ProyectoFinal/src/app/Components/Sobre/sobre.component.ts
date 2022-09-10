@@ -17,6 +17,9 @@ import { EstadoService } from '../../Services/estados.service';
 import { ListarEstadosIn } from '../../Parametros/Entrada/ListarEstadosIn';
 import { LoteService } from '../../Services/lote.service';
 import { ListarLotesIn } from '../../Parametros/Entrada/ListarLotesIn';
+import { CamaraService } from '../../Services/camara.service';
+import { Camara } from '../Camara/class/Camara';
+import { ListarCamaraIn } from 'src/app/Parametros/Entrada/ListarCamaraIn';
 
 @Component({
   selector: 'app-sobre',
@@ -34,6 +37,10 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private estado: Estado;
   private estados: Estado[];
   
+  private camara: Camara;
+  private camaras: Camara[];
+
+
   private lote: Lote;
   private lotes: Lote[];
 
@@ -64,20 +71,23 @@ export class SobreComponent extends FormularioBase implements OnInit {
   
 
 
-  constructor(private sobreServicio: SobreService,private semillaServicio: SemillaService,private estadoService: EstadoService,private loteService:LoteService) {
+  constructor(private sobreServicio: SobreService,private semillaServicio: SemillaService,private loteService:LoteService,private estadoService: EstadoService,private camaraService: CamaraService) {
     super();
     this.listarSobreIn = new ListarSobreIn();
     this.modal = new ModalComponent();
     this.semilla = new Semilla();
     this.estado = new Estado();
+    this.camara = new Camara();
     this.sobre = new Sobre();
     this.lote = new Lote();
     this.semillas = [];
     this.estados = [];
+    this.camaras = [];
     this.sobres = [];
     this.lotes = [];
     this.Listar();
     this.ListarEstados();
+    this.ListarCamaras();
   }
 
 
@@ -106,6 +116,19 @@ export class SobreComponent extends FormularioBase implements OnInit {
     },1000)
   }
   
+  public set EstadoSobre(value: number){
+    this.listarSobreIn.IdEstado = value;
+    setTimeout(() => {
+      this.Listar();
+    },1000)
+  }
+
+  public set Camara(value: number){
+    this.listarSobreIn.IdCamara = value;
+    setTimeout(() => {
+      this.Listar();
+    },1000)
+  }
 
 
   // #region Get y Set de usuario y lista de usuarios
@@ -157,7 +180,12 @@ export class SobreComponent extends FormularioBase implements OnInit {
   public set Lotes(value: Lote[]) {
     this.lotes = value;
   }
-
+  public get Camaras(): Camara[] {
+    return this.camaras;
+  }
+  public set Camaras(value: Camara[]) {
+    this.camaras = value;
+  }
   //#endregion
 
   //#region Get y Set de validar datos introducidos por el usuario.
@@ -358,6 +386,20 @@ export class SobreComponent extends FormularioBase implements OnInit {
       .subscribe( lista =>{
         if(lista.Estados!=undefined) {
           this.estados = lista.Estados;
+        }
+      }, err => {
+      this.modal.Error = true;
+      this.modal.open();
+    });
+  }
+
+  ListarCamaras()
+  {
+    this.camaras = [];
+    this.camaraService.Listar(new ListarCamaraIn())
+      .subscribe( lista =>{
+        if(lista.Camaras!=undefined) {
+          this.camaras = lista.Camaras;
         }
       }, err => {
       this.modal.Error = true;

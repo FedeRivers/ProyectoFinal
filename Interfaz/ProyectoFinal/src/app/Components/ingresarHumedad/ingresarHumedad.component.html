@@ -14,7 +14,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanHumedad">Humedad:</span>
-                    <input name="txtHumedad" [(ngModel)]="Sobre.Humedad" [ngClass]="Sobre.Humedad!=undefined ? ValidarHumedad() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese humedad" aria-label="txtHumedad" aria-describedby="spanHumedad"
+                    <input name="txtHumedad" [(ngModel)]="Sobre.Humedad" [ngClass]="Sobre.Humedad!=undefined ? ValidarHumedad() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese porcentaje de humedad" aria-label="txtHumedad" aria-describedby="spanHumedad"
                         required>
                     <div class="invalid-feedback">{{MensajeHumedadInvalida}}</div>
                 </div>
@@ -26,44 +26,36 @@
         </div>
 
         <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
-            <div class="row input-group">
-                <div class="row mb-3 col-md-8">
-                    <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
-                    <div class="col-xs-3 col-sm-auto">
-                        <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
-                    </div>
-                    <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
+            <div class="row">
+                <div class="input-group mb-3 col-md-3 col-lg-3">
+                    <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
+                    <input [(ngModel)]="NumeroSobre" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-9"></div>
             </div>
             <table class="table table-hover">
                 <thead class="table-primary">
                     <tr>
-                        <th scope="col" sortable="ubicacion">Ubicacion</th>
-                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
                         <th scope="col" sortable="lote">Lote</th>
+                        <th scope="col" sortable="sobre">Sobre</th>
                         <th scope="col" sortable="semilla">Semilla</th>
-                        <th scope="col" sortable="estado">Estado</th>
+                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="pointer" *ngFor="let sobre of Sobres">
                         <td>
-                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                            <ngb-highlight [result]="sobre.Ubicacion"></ngb-highlight>
-                        </td>
-                        <td>
-                            {{sobre.FechaDeIngreso | date:'short' }}
-                        </td>
-                        <td>
                             {{sobre.Lote.NumeroLote}}
+                        </td>
+                        <td>
+                            {{sobre.NumeroSobre}}
                         </td>
                         <td>
                             {{sobre.Semilla.Nombre}}
                         </td>
                         <td>
-                            {{sobre.Estado.Nombre}}
+                            {{sobre.FechaDeIngreso | date:'short' }}
                         </td>
                         <td>
                             <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
