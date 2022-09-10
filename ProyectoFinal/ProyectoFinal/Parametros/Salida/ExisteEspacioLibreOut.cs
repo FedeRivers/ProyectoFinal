@@ -5,8 +5,10 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class ModificarSobreOut : ParametroBaseOut
+    public class ExisteEspacioLibreOut : ParametroBaseOut
     {
-        public bool CamaraLlena { get; set; }
+        public int Fila { get; set; }
+
+        public int Columna { get; set; }
     }
 }

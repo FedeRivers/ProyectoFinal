@@ -96,6 +96,20 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, nombreSemilla, idEstado, idCamara);
 			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AsignarSobreACamara")]
+		public int AsignarSobreACamara([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fila", DbType="Int")] System.Nullable<int> fila, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Columna", DbType="Int")] System.Nullable<int> columna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamara, fila, columna, numeroSobre);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteEspacioLibre")]
+		public ISingleResult<ExisteEspacioLibreResult> ExisteEspacioLibre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamara);
+			return ((ISingleResult<ExisteEspacioLibreResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class ListarSobresResult
@@ -425,6 +439,50 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._nombreEstado != value))
 				{
 					this._nombreEstado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ExisteEspacioLibreResult
+	{
+		
+		private int _fila;
+		
+		private int _columna;
+		
+		public ExisteEspacioLibreResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fila", DbType="Int NOT NULL")]
+		public int fila
+		{
+			get
+			{
+				return this._fila;
+			}
+			set
+			{
+				if ((this._fila != value))
+				{
+					this._fila = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_columna", DbType="Int NOT NULL")]
+		public int columna
+		{
+			get
+			{
+				return this._columna;
+			}
+			set
+			{
+				if ((this._columna != value))
+				{
+					this._columna = value;
 				}
 			}
 		}

@@ -151,6 +151,7 @@
     <Compile Include="1_Servicios\TaxonomiaController.cs" />
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
+    <Compile Include="2_Dominio\Entidades\Camara.cs" />
     <Compile Include="2_Dominio\Entidades\Estado.cs" />
     <Compile Include="2_Dominio\Entidades\Lote.cs" />
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="2_Dominio\Entidades\Sobre.cs" />
     <Compile Include="2_Dominio\Entidades\Taxonomia.cs" />
     <Compile Include="2_Dominio\Entidades\TipoDeUsuario.cs" />
+    <Compile Include="2_Dominio\Entidades\Ubicacion.cs" />
     <Compile Include="2_Dominio\Entidades\Usuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDEstado.cs" />
     <Compile Include="2_Dominio\Logica\CRUDLote.cs" />
@@ -262,12 +264,14 @@
     <Compile Include="Parametros\Entrada\AltaSobreIn.cs" />
     <Compile Include="Parametros\Entrada\AltaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\AltaUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\AsignarSobreACamaraIn.cs" />
     <Compile Include="Parametros\Entrada\BajaLoteIn.cs" />
     <Compile Include="Parametros\Entrada\BajaMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\BajaSemillaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaSobreIn.cs" />
     <Compile Include="Parametros\Entrada\BajaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\ExisteEspacioLibreIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteLoteIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ListarBaseIn.cs" />
@@ -294,6 +298,7 @@
     <Compile Include="Parametros\Salida\AltaSobreOut.cs" />
     <Compile Include="Parametros\Salida\AltaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\AltaUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\AsignarSobreACamaraOut.cs" />
     <Compile Include="Parametros\Salida\BajaLoteOut.cs" />
     <Compile Include="Parametros\Salida\BajaMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\BajaSemillaOut.cs" />
@@ -302,6 +307,7 @@
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
+    <Compile Include="Parametros\Salida\ExisteEspacioLibreOut.cs" />
     <Compile Include="Parametros\Salida\ExisteLoteOut.cs" />
     <Compile Include="Parametros\Salida\ExisteSobreOut.cs" />
     <Compile Include="Parametros\Salida\ListarEstadosOut.cs" />

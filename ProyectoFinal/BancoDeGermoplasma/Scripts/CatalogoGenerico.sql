@@ -103,33 +103,55 @@ WHEN NOT MATCHED BY TARGET THEN
 	VALUES (SOURCE.NewIdEstado,SOURCE.NewNombre);
 SET IDENTITY_INSERT [dbo].[Estados] OFF
 
-/*Coordenadas*/
-MERGE INTO [dbo].[Coordenadas] AS TARGET 
+/*Camaras*/
+SET IDENTITY_INSERT [dbo].[Camaras] ON 
+MERGE INTO [dbo].[Camaras] AS TARGET 
 USING (
-	VALUES (1, 1, 3),
+	VALUES (1, N'Secado'),
+		   (2, N'Humedad'),
+		   (3, N'Germinación')
+) AS SOURCE ( NewIdCamara, NewNombre )
+ON TARGET.[idCamara] = SOURCE.NewIdCamara
+WHEN MATCHED THEN 
+	UPDATE SET [nombre] = SOURCE.NewNombre
+WHEN NOT MATCHED BY TARGET THEN 
+	INSERT ([idCamara],[nombre])
+	VALUES (SOURCE.NewIdCamara,SOURCE.NewNombre);
+SET IDENTITY_INSERT [dbo].[Camaras] OFF
+
+/*Ubicaciones*/
+MERGE INTO [dbo].[Ubicaciones] AS TARGET 
+USING (
+	VALUES (1, 1, 1),
+		   (2, 1, 1),
+		   (3, 1, 1),
+		   (4, 2, 1),
+		   (5, 2, 1),
+		   (6, 2, 1),
+		   (1, 1, 2),
+		   (2, 1, 2),
+		   (3, 1, 2),
+		   (4, 2, 2),
+		   (5, 2, 2),
+		   (6, 2, 2),
+		   (1, 1, 3),
 		   (2, 1, 3),
 		   (3, 1, 3),
 		   (4, 2, 3),
 		   (5, 2, 3),
-		   (6, 2, 3),
-		   (1, 1, 4),
-		   (2, 1, 4),
-		   (3, 1, 4),
-		   (4, 2, 4),
-		   (5, 2, 4),
-		   (6, 2, 4)
-) AS SOURCE ( NewFila, NewColumna, NewIdEstado )
-ON TARGET.[fila] = SOURCE.NewFila AND TARGET.[columna] = SOURCE.NewColumna AND TARGET.[idEstado] = SOURCE.NewIdEstado
+		   (6, 2, 3)
+) AS SOURCE (NewFila, NewColumna, NewIdCamara )
+ON TARGET.[fila] = SOURCE.NewFila AND TARGET.[columna] = SOURCE.NewColumna AND TARGET.[idCamara] = SOURCE.NewIdCamara
 WHEN MATCHED THEN 
 	UPDATE SET [fila] = SOURCE.NewFila,
 			   [columna] = SOURCE.NewColumna,
-			   [idEstado] = SOURCE.NewIdEstado
+			   [idCamara] = SOURCE.NewIdCamara
 WHEN NOT MATCHED BY TARGET THEN 
-	INSERT ([fila],[columna],[idEstado])
-	VALUES (SOURCE.NewFila,SOURCE.NewColumna,SOURCE.NewIdEstado);
+	INSERT ([fila],[columna],[idCamara])
+	VALUES (SOURCE.NewFila,SOURCE.NewColumna,SOURCE.NewIdCamara);
 
 --/////////////////////////////////////////////---------DATOS DE PRUEBA--------------------////////////////////////////////////////////////--
-/*
+
 /*Mejoradores*/
 SET IDENTITY_INSERT [dbo].[Mejoradores] ON 
 MERGE INTO [dbo].[Mejoradores] AS TARGET 
@@ -210,26 +232,25 @@ SET IDENTITY_INSERT [dbo].[Semillas] OFF
 /*Sobres*/
 MERGE INTO [dbo].[Sobres] AS TARGET 
 USING (
-	VALUES (1, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:02:27.307' AS DateTime), 0, 0, NULL, 1, 1, 1),
-		   (2, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:04:55.867' AS DateTime), 0, 0, NULL, 3, 3, 1),
-		   (4, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:06:12.267' AS DateTime), 0, 0, NULL, 28, 2, 1),
-		   (5, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:05:39.030' AS DateTime), 0, 0, NULL, 2, 1, 1),
-		   (6, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:07:38.987' AS DateTime), 0, 0, NULL, 4, 1, 1),
-		   (7, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:07:08.963' AS DateTime), 0, 0, NULL, 52, 3, 1),
-		   (9, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:10:19.477' AS DateTime), 0, 0, NULL, 2, 2, 1),
-		   (10, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:10:34.790' AS DateTime), 0, 0, NULL, 28, 3, 1),
-		   (26, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:03:05.177' AS DateTime), 0, 0, NULL, 2, 2, 1),
-		   (45, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 3, 3, 1),
-		   (51, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:09:16.093' AS DateTime), 0, 0, NULL, 28, 1, 1),
-		   (56, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:06:42.553' AS DateTime), 0, 0, NULL, 4, 1, 1),
-		   (69, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:08:20.287' AS DateTime), 0, 0, NULL, 52, 2, 1),
-		   (95, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:07:57.013' AS DateTime), 0, 0, NULL, 1, 3, 1),
-		   (363, N'ubi uwu', 1, NULL, CAST(N'2022-09-01 20:09:50.947' AS DateTime), 0, 0, NULL, 3, 1, 1)
-) AS SOURCE ( NewNumeroSobre, NewUbicacion, NewActivo, NewFechaDeDevolucion, NewFechaDeIngreso, NewHumedad, NewGerminacion, NewVigor, NewNumeroLote, NewIdSemilla, NewIdEstado )
+	VALUES (1, 1, NULL, CAST(N'2022-09-01 20:02:27.307' AS DateTime), 0, 0, NULL, 1, 1, 1),
+		   (2, 1, NULL, CAST(N'2022-09-01 20:04:55.867' AS DateTime), 0, 0, NULL, 3, 3, 1),
+		   (4, 1, NULL, CAST(N'2022-09-01 20:06:12.267' AS DateTime), 0, 0, NULL, 28, 2, 1),
+		   (5, 1, NULL, CAST(N'2022-09-01 20:05:39.030' AS DateTime), 0, 0, NULL, 2, 1, 1),
+		   (6, 1, NULL, CAST(N'2022-09-01 20:07:38.987' AS DateTime), 0, 0, NULL, 4, 1, 1),
+		   (7, 1, NULL, CAST(N'2022-09-01 20:07:08.963' AS DateTime), 0, 0, NULL, 52, 3, 1),
+		   (9, 1, NULL, CAST(N'2022-09-01 20:10:19.477' AS DateTime), 0, 0, NULL, 2, 2, 1),
+		   (10, 1, NULL, CAST(N'2022-09-01 20:10:34.790' AS DateTime), 0, 0, NULL, 28, 3, 1),
+		   (26, 1, NULL, CAST(N'2022-09-01 20:03:05.177' AS DateTime), 0, 0, NULL, 2, 2, 1),
+		   (45, 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 3, 3, 1),
+		   (51, 1, NULL, CAST(N'2022-09-01 20:09:16.093' AS DateTime), 0, 0, NULL, 28, 1, 1),
+		   (56, 1, NULL, CAST(N'2022-09-01 20:06:42.553' AS DateTime), 0, 0, NULL, 4, 1, 1),
+		   (69, 1, NULL, CAST(N'2022-09-01 20:08:20.287' AS DateTime), 0, 0, NULL, 52, 2, 1),
+		   (95, 1, NULL, CAST(N'2022-09-01 20:07:57.013' AS DateTime), 0, 0, NULL, 1, 3, 1),
+		   (363, 1, NULL, CAST(N'2022-09-01 20:09:50.947' AS DateTime), 0, 0, NULL, 3, 1, 1)
+) AS SOURCE ( NewNumeroSobre, NewActivo, NewFechaDeDevolucion, NewFechaDeIngreso, NewHumedad, NewGerminacion, NewVigor, NewNumeroLote, NewIdSemilla, NewIdEstado )
 ON TARGET.[numeroSobre] = SOURCE.NewNumeroSobre
 WHEN MATCHED THEN 
-	UPDATE SET [ubicacion] = SOURCE.NewUbicacion,
-			   [activo] = SOURCE.NewActivo,
+	UPDATE SET [activo] = SOURCE.NewActivo,
 			   [fechaDeDevolucion] = SOURCE.NewFechaDeDevolucion,
 			   [fechaDeIngreso] = SOURCE.NewFechaDeIngreso,
 			   [humedad] = SOURCE.NewHumedad,
@@ -239,6 +260,6 @@ WHEN MATCHED THEN
 			   [idSemilla] = SOURCE.NewIdSemilla,
 			   [idEstado] = SOURCE.NewIdEstado
 WHEN NOT MATCHED BY TARGET THEN 
-	INSERT ([numeroSobre],[ubicacion],[activo],[fechaDeDevolucion],[fechaDeIngreso],[humedad],[germinacion],[vigor],[numeroLote],[idSemilla],[idEstado])
-	VALUES (SOURCE.NewNumeroSobre,SOURCE.NewUbicacion,SOURCE.NewActivo,SOURCE.NewFechaDeDevolucion,SOURCE.NewFechaDeIngreso,SOURCE.NewHumedad,SOURCE.NewGerminacion,SOURCE.NewVigor,SOURCE.NewNumeroLote,SOURCE.NewIdSemilla,SOURCE.NewIdEstado);
-	*/
+	INSERT ([numeroSobre],[activo],[fechaDeDevolucion],[fechaDeIngreso],[humedad],[germinacion],[vigor],[numeroLote],[idSemilla],[idEstado])
+	VALUES (SOURCE.NewNumeroSobre,SOURCE.NewActivo,SOURCE.NewFechaDeDevolucion,SOURCE.NewFechaDeIngreso,SOURCE.NewHumedad,SOURCE.NewGerminacion,SOURCE.NewVigor,SOURCE.NewNumeroLote,SOURCE.NewIdSemilla,SOURCE.NewIdEstado);
+	
