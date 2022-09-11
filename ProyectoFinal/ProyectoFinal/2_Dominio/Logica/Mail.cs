@@ -1,6 +1,8 @@
-﻿using SendGrid;
+﻿using QRCoder;
+using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
+using System.Drawing;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,11 @@ namespace ProyectoFinal._2_Dominio.Logica
             var htmlContent = "<strong>" + contrasena + "</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = client.SendEmailAsync(msg);
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCodeGenerator.ECCLevel.Q);
+            Base64QRCode qrCode = new Base64QRCode(qrCodeData);
+            string qrCodeImageBase64 = "data:image/png;base64," + qrCode.GetGraphic(5);
         }
     }
 }
