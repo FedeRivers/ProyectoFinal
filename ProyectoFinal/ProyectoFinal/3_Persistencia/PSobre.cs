@@ -71,7 +71,7 @@ namespace ProyectoFinal._3_Persistencia
                     var result = dataContext.ModificarSobre
                         (
                         input.Sobre.NumeroSobre,
-                        string.Empty,
+                        input.Sobre.Ubicacion.Camara.IdCamara,
                         input.Sobre.Humedad,
                         input.Sobre.Germinacion,
                         input.Sobre.Vigor,
@@ -132,6 +132,15 @@ namespace ProyectoFinal._3_Persistencia
                                 {
                                     IdEstado = sobre.idEstado,
                                     Nombre = sobre.nombreEstado
+                                },
+                                Ubicacion = new Ubicacion
+                                {
+                                    Camara = new Camara
+                                    {
+                                        Nombre = sobre.nombre
+                                    },
+                                    Fila = sobre.fila,
+                                    Columna = sobre.columna,                               
                                 }
                             });
                         }
@@ -176,8 +185,8 @@ namespace ProyectoFinal._3_Persistencia
                     var result = dataContext.ExisteEspacioLibre(input.IdCamara).FirstOrDefault();
                     if (result != null)
                     {
-                        output.Fila = result.columna;
-                        output.Columna = result.fila;
+                        output.Fila = result.fila;
+                        output.Columna = result.columna;
                         output.Status = new HttpStatusCodeResult(200);
                     }
                 }
@@ -196,7 +205,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.IdCamara, input.NumeroSobre);
+                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.Columna, input.NumeroSobre);
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)

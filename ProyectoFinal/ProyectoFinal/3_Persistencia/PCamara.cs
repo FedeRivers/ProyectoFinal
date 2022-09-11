@@ -27,7 +27,7 @@ namespace ProyectoFinal._3_Persistencia
                             output.Camaras.Add(new Camara
                             {
                                 IdCamara = Camara.idCamara,
-                                Nombre = Camara.nombreCamara
+                                Nombre = Camara.nombre
                             });
                         }
                         output.Status = new HttpStatusCodeResult(200);

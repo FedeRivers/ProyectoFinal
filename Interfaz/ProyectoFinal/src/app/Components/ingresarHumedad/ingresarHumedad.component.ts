@@ -83,7 +83,6 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
     this.sobre.Estado.IdEstado = 6;
-    this.sobre.Estado.IdEstado = 0;
     modificarSobreIn.Sobre = this.sobre;
     this.sobreServicio.Modificar(modificarSobreIn)
       .subscribe( sobre => {

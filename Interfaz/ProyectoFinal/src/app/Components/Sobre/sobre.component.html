@@ -139,11 +139,19 @@
                                 {{sobre.NumeroSobre}}
                             </td>
                             <td>
-                                {{sobre.Ubicacion}}
+                                <div *ngIf="sobre.Ubicacion">
+                                    {{sobre.Ubicacion.Camara.Nombre}}
+                                </div>
                             </td>
                             <td>
+                                <div *ngIf="sobre.Ubicacion">
+                                    {{sobre.Ubicacion.Fila}}
+                                </div>
                             </td>
                             <td>
+                                <div *ngIf="sobre.Ubicacion">
+                                    {{sobre.Ubicacion.Columna}}
+                                </div>
                             </td>
                             <td>
                                 {{sobre.FechaDeIngreso | date:'short' }}

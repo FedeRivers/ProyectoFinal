@@ -17,9 +17,10 @@ import { EstadoService } from '../../Services/estados.service';
 import { ListarEstadosIn } from '../../Parametros/Entrada/ListarEstadosIn';
 import { LoteService } from '../../Services/lote.service';
 import { ListarLotesIn } from '../../Parametros/Entrada/ListarLotesIn';
-import { CamaraService } from '../../Services/camara.service';
+
 import { Camara } from '../Camara/class/Camara';
 import { ListarCamaraIn } from 'src/app/Parametros/Entrada/ListarCamaraIn';
+import { CamaraService } from 'src/app/Services/camara.service';
 
 @Component({
   selector: 'app-sobre',
@@ -469,16 +470,19 @@ export class SobreComponent extends FormularioBase implements OnInit {
       case "Secar":
         this.btnSecar = true;
         this.sobre.Estado.IdEstado = 3;
+        this.sobre.Ubicacion.Camara.IdCamara = 1;
         this.AbrirModal();
         break;
       case "Germinar":
         this.btnGerminar = true;
         this.sobre.Estado.IdEstado = 4;
+        this.sobre.Ubicacion.Camara.IdCamara = 3;
         this.AbrirModal();
         break;
       case "TomarHumedad":
         this.btnTomarHumedad = true;
         this.sobre.Estado.IdEstado = 5;
+        this.sobre.Ubicacion.Camara.IdCamara = 2;
         this.AbrirModal();
         break;
     }
