@@ -3,7 +3,7 @@
   <Function Name="dbo.ListarCamaras" Method="ListarCamaras">
     <ElementType Name="ListarCamarasResult">
       <Column Name="idCamara" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="nombreCamara" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

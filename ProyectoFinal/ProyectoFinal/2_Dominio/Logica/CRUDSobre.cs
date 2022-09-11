@@ -23,23 +23,31 @@ namespace ProyectoFinal._2_Dominio.Logica
 
         public ModificarSobreOut ModificarSobre(ModificarSobreIn input)
         {
+            PSobre instancia = new PSobre();
             var resultado = new ModificarSobreOut { Status = new HttpStatusCodeResult(404) };
-            var existeEspacioLibreOut = new PSobre().ExisteEspacioLibre(new ExisteEspacioLibreIn { IdCamara = input.Sobre.Ubicacion.Camara.IdCamara });
-            resultado.CamaraLlena = existeEspacioLibreOut.Columna == 0;
-            if (!resultado.CamaraLlena)
+            if (input.Sobre.Ubicacion.Camara.IdCamara != 0)
             {
-                resultado.Status = new PSobre().AsignarSobreACamara(new AsignarSobreACamaraIn
+                var existeEspacioLibreOut = instancia.ExisteEspacioLibre(new ExisteEspacioLibreIn { IdCamara = input.Sobre.Ubicacion.Camara.IdCamara });
+                resultado.CamaraLlena = existeEspacioLibreOut.Columna == 0;
+                if (!resultado.CamaraLlena)
                 {
-                  Columna = existeEspacioLibreOut.Columna,
-                  Fila = existeEspacioLibreOut.Fila,
-                  IdCamara = input.Sobre.Ubicacion.Camara.IdCamara,
-                  NumeroSobre = input.Sobre.NumeroSobre
-                }).Status;
+                    resultado.Status = instancia.AsignarSobreACamara(new AsignarSobreACamaraIn
+                    {
+                        Columna = existeEspacioLibreOut.Columna,
+                        Fila = existeEspacioLibreOut.Fila,
+                        IdCamara = input.Sobre.Ubicacion.Camara.IdCamara,
+                        NumeroSobre = input.Sobre.NumeroSobre
+                    }).Status;
 
-                if (resultado.Status != new HttpStatusCodeResult(404))
-                {
-                    resultado.Status = new PSobre().ModificarSobre(input).Status;
+                    if (resultado.Status != new HttpStatusCodeResult(404))
+                    {
+                        resultado.Status = instancia.ModificarSobre(input).Status;
+                    }
                 }
+            }
+            else
+            {
+                resultado.Status = instancia.ModificarSobre(input).Status;
             }
             return resultado;
         }

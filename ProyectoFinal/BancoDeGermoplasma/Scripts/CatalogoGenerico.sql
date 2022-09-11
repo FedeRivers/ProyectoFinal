@@ -93,7 +93,8 @@ USING (
 		   (3, N'Secando'),
 		   (4, N'Germinando'),
 		   (5, N'Analizando humedad'),
-		   (6, N'Destruido')
+		   (6, N'Destruido'),
+		   (7, N'Esperando resultados')
 ) AS SOURCE ( NewIdEstado, NewNombre )
 ON TARGET.[idEstado] = SOURCE.NewIdEstado
 WHEN MATCHED THEN 

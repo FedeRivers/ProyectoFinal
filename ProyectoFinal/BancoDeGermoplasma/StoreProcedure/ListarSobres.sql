@@ -32,8 +32,8 @@ BEGIN
 	INNER JOIN Lotes lo ON so.numeroLote = lo.numeroLote
 	INNER JOIN Semillas se ON so.idSemilla = se.idSemilla
 	INNER JOIN Estados es ON so.idEstado = es.idEstado
-	INNER JOIN Ubicaciones ub ON so.numeroSobre = ub.numeroSobre
-	INNER JOIN Camaras ca ON ca.idCamara = ub.idCamara
+	LEFT OUTER JOIN Ubicaciones ub ON so.numeroSobre = ub.numeroSobre
+	LEFT OUTER JOIN Camaras ca ON ca.idCamara = ub.idCamara
 	WHERE so.activo = 1 and ((@NumeroSobre is null
 			or so.numeroSobre = @NumeroSobre) and
 			((@NumeroLote is null

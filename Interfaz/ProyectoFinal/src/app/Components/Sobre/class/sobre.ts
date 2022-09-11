@@ -1,10 +1,11 @@
 import { Estado } from '../../Estado/class/estado';
 import { Lote } from '../../Lote/class/lote';
 import { Semilla } from '../../Semilla/class/semilla';
+import { Ubicacion } from '../../Ubicacion/class/Ubicacion';
 export class Sobre{
 
     private numeroSobre!: number;
-    private ubicacion!: string;
+    private ubicacion: Ubicacion;
     private fechaDeDevolucion!: Date;
     private fechaDeIngreso!: Date;
     private humedad!: number;
@@ -19,6 +20,7 @@ export class Sobre{
         this.lote = new Lote();
         this.estado = new Estado();
         this.semilla = new Semilla();
+        this.ubicacion = new Ubicacion();
     }
 
     public get NumeroSobre(): number {
@@ -28,10 +30,10 @@ export class Sobre{
         this.numeroSobre = value;
     }
 
-    public get Ubicacion(): string {
+    public get Ubicacion(): Ubicacion {
         return this.ubicacion;
     }
-    public set Ubicacion(value: string) {
+    public set Ubicacion(value: Ubicacion) {
         this.ubicacion = value;
     }
 

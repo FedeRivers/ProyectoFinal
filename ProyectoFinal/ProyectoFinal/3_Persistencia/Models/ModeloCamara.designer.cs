@@ -75,7 +75,7 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private int _idCamara;
 		
-		private string _nombreCamara;
+		private string _nombre;
 		
 		public ListarCamarasResult()
 		{
@@ -97,18 +97,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombreCamara", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string nombreCamara
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre
 		{
 			get
 			{
-				return this._nombreCamara;
+				return this._nombre;
 			}
 			set
 			{
-				if ((this._nombreCamara != value))
+				if ((this._nombre != value))
 				{
-					this._nombreCamara = value;
+					this._nombre = value;
 				}
 			}
 		}

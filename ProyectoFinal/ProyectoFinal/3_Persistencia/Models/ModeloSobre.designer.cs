@@ -83,20 +83,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarSobre")]
-		public int ModificarSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Ubicacion", DbType="VarChar(50)")] string ubicacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Humedad", DbType="Int")] System.Nullable<int> humedad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Germinacion", DbType="Int")] System.Nullable<int> germinacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vigor", DbType="Int")] System.Nullable<int> vigor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, ubicacion, humedad, germinacion, vigor, numeroLote, idSemilla, idEstado);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
-		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSemilla", DbType="VarChar(50)")] string nombreSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Decimal(18,0)")] System.Nullable<decimal> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Decimal(18,0)")] System.Nullable<decimal> idCamara)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, nombreSemilla, idEstado, idCamara);
-			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AsignarSobreACamara")]
 		public int AsignarSobreACamara([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fila", DbType="Int")] System.Nullable<int> fila, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Columna", DbType="Int")] System.Nullable<int> columna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre)
 		{
@@ -110,6 +96,64 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamara);
 			return ((ISingleResult<ExisteEspacioLibreResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
+		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSemilla", DbType="VarChar(50)")] string nombreSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Decimal(18,0)")] System.Nullable<decimal> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Decimal(18,0)")] System.Nullable<decimal> idCamara)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, nombreSemilla, idEstado, idCamara);
+			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarSobre")]
+		public int ModificarSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Humedad", DbType="Int")] System.Nullable<int> humedad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Germinacion", DbType="Int")] System.Nullable<int> germinacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vigor", DbType="Int")] System.Nullable<int> vigor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, idCamara, humedad, germinacion, vigor, numeroLote, idSemilla, idEstado);
+			return ((int)(result.ReturnValue));
+		}
+	}
+	
+	public partial class ExisteEspacioLibreResult
+	{
+		
+		private int _fila;
+		
+		private int _columna;
+		
+		public ExisteEspacioLibreResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fila", DbType="Int NOT NULL")]
+		public int fila
+		{
+			get
+			{
+				return this._fila;
+			}
+			set
+			{
+				if ((this._fila != value))
+				{
+					this._fila = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_columna", DbType="Int NOT NULL")]
+		public int columna
+		{
+			get
+			{
+				return this._columna;
+			}
+			set
+			{
+				if ((this._columna != value))
+				{
+					this._columna = value;
+				}
+			}
+		}
 	}
 	
 	public partial class ListarSobresResult
@@ -117,7 +161,11 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private int _numeroSobre;
 		
-		private string _ubicacion;
+		private System.Nullable<int> _fila;
+		
+		private System.Nullable<int> _columna;
+		
+		private string _nombre;
 		
 		private System.Nullable<bool> _activoSobre;
 		
@@ -171,18 +219,50 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ubicacion", DbType="VarChar(50)")]
-		public string ubicacion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fila", DbType="Int")]
+		public System.Nullable<int> fila
 		{
 			get
 			{
-				return this._ubicacion;
+				return this._fila;
 			}
 			set
 			{
-				if ((this._ubicacion != value))
+				if ((this._fila != value))
 				{
-					this._ubicacion = value;
+					this._fila = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_columna", DbType="Int")]
+		public System.Nullable<int> columna
+		{
+			get
+			{
+				return this._columna;
+			}
+			set
+			{
+				if ((this._columna != value))
+				{
+					this._columna = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(50)")]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
 				}
 			}
 		}
@@ -439,50 +519,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._nombreEstado != value))
 				{
 					this._nombreEstado = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ExisteEspacioLibreResult
-	{
-		
-		private int _fila;
-		
-		private int _columna;
-		
-		public ExisteEspacioLibreResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fila", DbType="Int NOT NULL")]
-		public int fila
-		{
-			get
-			{
-				return this._fila;
-			}
-			set
-			{
-				if ((this._fila != value))
-				{
-					this._fila = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_columna", DbType="Int NOT NULL")]
-		public int columna
-		{
-			get
-			{
-				return this._columna;
-			}
-			set
-			{
-				if ((this._columna != value))
-				{
-					this._columna = value;
 				}
 			}
 		}
