@@ -21,6 +21,7 @@ import { BuscarDuplicadosComponent } from './Components/BuscarDuplicados/buscarD
 import { AlertaComponent } from './Components/Alerta/alerta.component';
 import { EstadisticaComponent } from './Components/Estadistica/estadistica.component';
 import { MoversobresComponent } from './Components/moverSobres/moverSobres.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MoversobresComponent } from './Components/moverSobres/moverSobres.compo
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
