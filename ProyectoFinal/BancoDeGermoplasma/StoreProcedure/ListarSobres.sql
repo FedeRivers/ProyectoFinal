@@ -18,6 +18,7 @@ BEGIN
 	so.humedad,
 	so.germinacion,
 	so.vigor,
+	so.fechaEstimada,
 	lo.numeroLote,
 	lo.descripcion,
 	lo.activo AS activoLote,

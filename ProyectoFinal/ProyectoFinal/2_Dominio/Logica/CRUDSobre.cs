@@ -25,6 +25,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             PSobre instancia = new PSobre();
             var resultado = new ModificarSobreOut { Status = new HttpStatusCodeResult(404) };
+            if (input.Sobre.Humedad > 7)
+            {
+                input.Sobre.FechaEstimada = new Estimaciones().EstimarHumedad(input.Sobre.Humedad);
+            }
             if (input.Sobre.Ubicacion.Camara.IdCamara != 0)
             {
                 var existeEspacioLibreOut = instancia.ExisteEspacioLibre(new ExisteEspacioLibreIn { IdCamara = input.Sobre.Ubicacion.Camara.IdCamara });

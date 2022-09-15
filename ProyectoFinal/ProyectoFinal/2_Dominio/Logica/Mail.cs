@@ -21,6 +21,8 @@ namespace ProyectoFinal._2_Dominio.Logica
             var htmlContent = "<strong>" + contrasena + "</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = client.SendEmailAsync(msg);
+            Estimaciones estimaciones = new Estimaciones();
+            estimaciones.EstimarHumedad(15);
         }
     }
 }

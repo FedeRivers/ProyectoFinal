@@ -112,4 +112,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="nombre" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a0b0426d-c40c-4bb6-afb2-0f647b760400" ChangeDateTime="09/15/2022 01:28:32">
+    <Property Name="ElementName" Value="[dbo].[Alerta].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Alerta]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdAlerta" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fdaa16d0-463f-461b-938c-e4039d83569a" ChangeDateTime="09/15/2022 01:29:49">
+    <Property Name="ElementName" Value="[dbo].[Alerta].[IdAlerta]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Alerta]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idAlerta" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="be2e7dd2-dc26-461e-a686-9945ce023041" ChangeDateTime="09/15/2022 01:30:26">
+    <Property Name="ElementName" Value="[dbo].[Alerta].[idLote]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Alerta]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="numeroLote" />
+  </Operation>
 </Operations>

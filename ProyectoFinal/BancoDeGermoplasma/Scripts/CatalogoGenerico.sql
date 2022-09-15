@@ -242,9 +242,9 @@ USING (
 		   (9, 1, NULL, CAST(N'2022-09-01 20:10:19.477' AS DateTime), 0, 0, NULL, 2, 2, 1),
 		   (10, 1, NULL, CAST(N'2022-09-01 20:10:34.790' AS DateTime), 0, 0, NULL, 28, 3, 1),
 		   (26, 1, NULL, CAST(N'2022-09-01 20:03:05.177' AS DateTime), 0, 0, NULL, 2, 2, 1),
-		   (45, 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 3, 3, 1),
+		   (45, 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 2, 2, 1),
 		   (51, 1, NULL, CAST(N'2022-09-01 20:09:16.093' AS DateTime), 0, 0, NULL, 28, 1, 1),
-		   (56, 1, NULL, CAST(N'2022-09-01 20:06:42.553' AS DateTime), 0, 0, NULL, 4, 1, 1),
+		   (56, 1, NULL, CAST(N'2022-09-01 20:06:42.553' AS DateTime), 0, 0, NULL, 2, 2, 1),
 		   (69, 1, NULL, CAST(N'2022-09-01 20:08:20.287' AS DateTime), 0, 0, NULL, 52, 2, 1),
 		   (95, 1, NULL, CAST(N'2022-09-01 20:07:57.013' AS DateTime), 0, 0, NULL, 1, 3, 1),
 		   (363, 1, NULL, CAST(N'2022-09-01 20:09:50.947' AS DateTime), 0, 0, NULL, 3, 1, 1)

@@ -77,7 +77,8 @@ namespace ProyectoFinal._3_Persistencia
                         input.Sobre.Vigor,
                         input.Sobre.Lote.NumeroLote,
                         input.Sobre.Semilla.IdSemilla,
-                        input.Sobre.Estado.IdEstado
+                        input.Sobre.Estado.IdEstado,
+                        input.Sobre.FechaEstimada
                         );
                     if (result != -1)
                     {
