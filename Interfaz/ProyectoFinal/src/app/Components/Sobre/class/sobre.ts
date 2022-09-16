@@ -8,6 +8,7 @@ export class Sobre{
     private ubicacion: Ubicacion;
     private fechaDeDevolucion!: Date;
     private fechaDeIngreso!: Date;
+    private fechaEstimada!: Date;
     private humedad!: number;
     private germinacion!: number;
     private vigor!: number;
@@ -51,6 +52,13 @@ export class Sobre{
         this.fechaDeIngreso = value;
     }
 
+    public get FechaEstimada(): Date {
+        return this.fechaEstimada;
+    }
+    public set FechaEstimada(value: Date) {
+        this.fechaEstimada = value;
+    }
+    
     public get Humedad(): number {
         return this.humedad;
     }

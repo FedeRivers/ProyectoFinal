@@ -9,12 +9,6 @@
     <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.AltaSobre" Method="AltaSobre">
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.AsignarSobreACamara" Method="AsignarSobreACamara">
     <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
     <Parameter Name="Fila" Parameter="fila" Type="System.Int32" DbType="Int" />
@@ -28,6 +22,24 @@
       <Column Name="fila" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="columna" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.AltaSobre" Method="AltaSobre">
+    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
+    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Humedad" Parameter="humedad" Type="System.Double" DbType="Float" />
+    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Double" DbType="Float" />
+    <Parameter Name="Vigor" Parameter="vigor" Type="System.Double" DbType="Float" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaEstimada" Parameter="fechaEstimada" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ListarSobres" Method="ListarSobres">
     <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Decimal" DbType="Decimal(18,0)" />
@@ -43,9 +55,10 @@
       <Column Name="activoSobre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="fechaDeDevolucion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ingresoSobre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="humedad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="germinacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="vigor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="humedad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="germinacion" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="vigor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fechaEstimada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="numeroLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="activoLote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -57,16 +70,5 @@
       <Column Name="idEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nombreEstado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Humedad" Parameter="humedad" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Vigor" Parameter="vigor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -149,6 +149,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1_Servicios\AlertaController.cs" />
     <Compile Include="1_Servicios\CamaraController.cs" />
     <Compile Include="1_Servicios\EstadoController.cs" />
     <Compile Include="1_Servicios\LoteController.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="1_Servicios\TaxonomiaController.cs" />
     <Compile Include="1_Servicios\TipoDeUsuarioController.cs" />
     <Compile Include="1_Servicios\UsuarioController.cs" />
+    <Compile Include="2_Dominio\Entidades\Alerta.cs" />
     <Compile Include="2_Dominio\Entidades\Camara.cs" />
     <Compile Include="2_Dominio\Entidades\Estado.cs" />
     <Compile Include="2_Dominio\Entidades\Lote.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="2_Dominio\Logica\CRUDTipoDeUsuario.cs" />
     <Compile Include="2_Dominio\Logica\CRUDMejorador.cs" />
     <Compile Include="2_Dominio\Logica\CRUDUsuario.cs" />
+    <Compile Include="2_Dominio\Logica\Estimaciones.cs" />
     <Compile Include="2_Dominio\Logica\Mail.cs" />
     <Compile Include="2_Dominio\Logica\Seguridad.cs" />
     <Compile Include="3_Persistencia\Models\ModeloCamara.designer.cs">

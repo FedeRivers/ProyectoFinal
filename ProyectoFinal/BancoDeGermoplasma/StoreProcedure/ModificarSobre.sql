@@ -1,12 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[ModificarSobre] 
 	@NumeroSobre int,
 	@IdCamara int,
-	@Humedad int,
-	@Germinacion int,
-	@Vigor int,
+	@Humedad float,
+	@Germinacion float,
+	@Vigor float,
 	@NumeroLote int,
 	@IdSemilla int,
-	@IdEstado int
+	@IdEstado int,
+	@FechaEstimada dateTime
 AS
 BEGIN
 	BEGIN TRY
@@ -20,16 +21,17 @@ BEGIN
 				UPDATE Sobres SET
 				humedad = @Humedad,
 				germinacion = @Germinacion,
-				vigor = @Vigor
+				vigor = @Vigor,
+				fechaEstimada = @FechaEstimada
 				WHERE idSemilla = @IdSemilla and numeroLote = @NumeroLote
 			END
-		IF @IdEstado = 4 OR @IdEstado = 5
+		IF @IdEstado = 4 OR @IdEstado = 5 -- Germinando | Analizando humedad
 			BEGIN
 				UPDATE Sobres SET
 				idEstado = 7
 				WHERE idSemilla = @IdSemilla and numeroLote = @NumeroLote and numeroSobre <> @NumeroSobre
 			END
-		IF @IdEstado = 6
+		IF @IdEstado = 6 --Destruido
 			BEGIN
 				UPDATE Sobres SET 
 				activo = 0

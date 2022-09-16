@@ -17,11 +17,13 @@ namespace ProyectoFinal._2_Dominio.Entidades
 
         public DateTime? FechaDeDevolucion { get; set; }
 
-        public int? Humedad { get; set; }
+        public DateTime? FechaEstimada { get; set; }
 
-        public int? Germinacion { get; set; }
+        public double? Humedad { get; set; }
 
-        public int? Vigor { get; set; }
+        public double? Germinacion { get; set; }
+
+        public double? Vigor { get; set; }
 
         public Lote Lote { get; set; }
 
