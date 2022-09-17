@@ -14,7 +14,8 @@ USING (
 		   (7, N'Sobre', 1),
 		   (8, N'Ingresar humedad', 1),
 		   (9, N'Ingresar germinacion', 1),
-		   (10, N'Buscar duplicados', 1)
+		   (10, N'Buscar duplicados', 1),
+		   (11, N'Estadistica', 1)
 ) AS SOURCE ( NewIdModulo, NewNombre, NewActivo )
 ON TARGET.[idModulo] = SOURCE.NewIdModulo
 WHEN MATCHED THEN 
