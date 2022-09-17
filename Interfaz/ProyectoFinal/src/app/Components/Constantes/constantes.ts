@@ -226,6 +226,10 @@ export const MetodosUrl = {
         LISTAR : 'ListarSobres',
         EXISTESOBRE : 'ExisteSobre',
     },
+    Alerta:
+    {
+        LISTAR : 'ListarAlertas', 
+    },
 }
 
 export const ExpresionesRegulares = {

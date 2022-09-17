@@ -113,6 +113,8 @@
     <Build Include="StoreProcedure\AsignarSobreACamara.sql" />
     <Build Include="StoreProcedure\ListarCamaras.sql" />
     <Build Include="Tablas\Alertas.sql" />
+    <Build Include="StoreProcedure\AltaAlerta.sql" />
+    <Build Include="StoreProcedure\ListarAlertas.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

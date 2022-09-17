@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ListarAlertasIn } from 'src/app/Parametros/Entrada/ListarAlertasIn';
+import { AlertaService } from 'src/app/Services/alerta.service';
+import { Usuario } from '../Usuario/class/usuario';
 import { Alerta } from './alerta';
 
 
@@ -11,9 +14,9 @@ export class AlertaComponent implements OnInit {
 
   private alertas: Alerta[];
 
-  constructor() { 
+  constructor(private alertaServicio:AlertaService) { 
     this.alertas = [];
-    this.listar();
+    this.listarAlertas();
   }
 
   ngOnInit(): void {
@@ -26,22 +29,19 @@ export class AlertaComponent implements OnInit {
     this.alertas = value;
   }
 
-  listar()
+  listarAlertas()
   {
-    let alerta : Alerta = new Alerta();
-    alerta.Titulo = "Titulo 1";
-    alerta.Texto = "Texto 1";
-    let alerta2 : Alerta = new Alerta();
-    alerta2.Titulo = "Titulo 2";
-    alerta2.Texto = "Texto 2";
-    this.alertas.push(alerta);
-    this.alertas.push(alerta2);
+    let usuario:Usuario = JSON.parse(sessionStorage.getItem('usuario')!);
+    let listarAlertasIn:ListarAlertasIn = new ListarAlertasIn();
+    listarAlertasIn.IdTipoDeUsuario = usuario.TipoDeUsuario.IdTipoDeUsuario;
+    this.alertaServicio.Listar(listarAlertasIn)
+      .subscribe( lista =>{
+        this.alertas = lista.Alertas;
+      })
   }
 
   CargarMas(){
     let alerta : Alerta = new Alerta();
-    alerta.Titulo = "Cargar más";
-    alerta.Texto = "Texto cargar más";
     this.alertas.push(alerta);
   }
 
