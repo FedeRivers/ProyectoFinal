@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ProyectoFinal._2_Dominio.Entidades
+namespace ProyectoFinal.Parametros.Entrada
 {
-    public class Alerta
+    public class AltaAlertaIn
     {
-        public int IdAlerta { get; set; }
-
-        public DateTime FechaDeCreacion { get; set; }
-
         public DateTime FechaDeEjecucion { get; set; }
 
         public int NumeroLote { get; set; }
@@ -20,7 +16,5 @@ namespace ProyectoFinal._2_Dominio.Entidades
         public int IdCamara { get; set; }
 
         public int IdTipoDeUsuario { get; set; }
-
-        public bool Activo { get; set; }
     }
 }

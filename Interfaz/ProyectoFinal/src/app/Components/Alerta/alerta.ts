@@ -2,8 +2,11 @@ export class Alerta{
     
     private idAlerta!: number;
     private fechaDeCreacion!: Date;
-    private titulo!: string;
-    private texto!: string;
+    private fechaDeEjecucion!: Date;
+    private numeroLote!: number;
+    private idSemilla!: number;
+    private idTipoDeUsuario!: number;
+    private idCamara!: number;
     private activo!: boolean;
 
     constructor(){}
@@ -22,18 +25,39 @@ export class Alerta{
         this.fechaDeCreacion = value;
     }
 
-    public get Titulo(): string {
-        return this.titulo;
+    public get FechaDeEjecucion(): Date {
+        return this.fechaDeEjecucion;
     }
-    public set Titulo(value: string) {
-        this.titulo = value;
+    public set FechaDeEjecucion(value: Date) {
+        this.fechaDeEjecucion = value;
     }
 
-    public get Texto(): string {
-        return this.texto;
+    public get NumeroLote(): number {
+        return this.numeroLote;
     }
-    public set Texto(value: string) {
-        this.texto = value;
+    public set NumeroLote(value: number) {
+        this.numeroLote = value;
+    }
+
+    public get IdSemilla(): number {
+        return this.idSemilla;
+    }
+    public set IdSemilla(value: number) {
+        this.idSemilla = value;
+    }
+
+    public get IdTipoDeUsuario(): number {
+        return this.idTipoDeUsuario;
+    }
+    public set IdTipoDeUsuario(value: number) {
+        this.idTipoDeUsuario = value;
+    }
+    
+    public get IdCamara(): number {
+        return this.idCamara;
+    }
+    public set IdCamara(value: number) {
+        this.idCamara = value;
     }
 
     public get Activo(): boolean {
@@ -42,4 +66,6 @@ export class Alerta{
     public set Activo(value: boolean) {
         this.activo = value;
     }
+
+
 }

@@ -4,7 +4,8 @@ import { LoginIn } from '../../Parametros/Entrada/LoginIn';
 import * as CryptoJS from 'crypto-js';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { Usuario } from 'src/app/Components/Usuario/class/usuario';
-import { Keys } from '../../Components/Constantes/constantes';
+import { AlertaService } from '../../Services/alerta.service';
+import { Alerta } from 'src/app/Components/Alerta/alerta';
 
 /**
  * @title Input with error messages
@@ -59,7 +60,6 @@ export class LoginComponent implements OnInit {
   {
     return this.loginValido;
   }
-
 
   Login(){
     this.usuarioServicio.Login(this.loginIn)

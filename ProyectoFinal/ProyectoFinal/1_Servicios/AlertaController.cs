@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ProyectoFinal._2_Dominio.Logica;
+using ProyectoFinal.Parametros.Entrada;
+using ProyectoFinal.Parametros.Salida;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,7 +15,7 @@ namespace ProyectoFinal._1_Servicios
         [HttpGet]
         public ListarAlertasOut ListarAlertas([FromUri]ListarAlertasIn input)
         {
-            return new CRUDCamara().ListarCamaras(input);
+            return new CRUDAlerta().ListarAlertas(input);
         }
     }
 }
