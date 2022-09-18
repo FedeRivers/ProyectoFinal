@@ -18,7 +18,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AltaAlerta(input.FechaDeEjecucion,input.NumeroLote,input.IdSemilla,input.IdCamara,input.IdTipoDeUsuario);
+                    var result = dataContext.AltaAlerta(input.FechaDeEjecucion,input.Sobre.Lote.NumeroLote,input.Sobre.Semilla.Nombre,input.Sobre.Ubicacion.Camara.IdCamara,input.IdTipoDeUsuario);
 
                 }
                 catch (Exception ex)
@@ -35,7 +35,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ListarAlertas(input.IdTipoDeUsuario);
+                    var result = dataContext.ListarAlertas(input.IdTipoDeUsuario,input.CantidadDeAlertas);
                     if (result != null)
                     {
                         foreach (var alerta in result)
@@ -46,7 +46,7 @@ namespace ProyectoFinal._3_Persistencia
                                 FechaDeCreacion = Convert.ToDateTime(alerta.fechaDeCreacion),
                                 FechaDeEjecucion = Convert.ToDateTime(alerta.fechaDeEjecucion),
                                 NumeroLote = alerta.numeroLote,
-                                IdSemilla = alerta.idSemilla,
+                                NombreSemilla = alerta.nombreSemilla,
                                 IdCamara = alerta.idCamara,
                                 IdTipoDeUsuario = alerta.idTipoDeUsuario,
                                 Activo = Convert.ToBoolean(alerta.activo)

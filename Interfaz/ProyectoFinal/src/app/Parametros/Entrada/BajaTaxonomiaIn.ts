@@ -1,4 +1,3 @@
-import { Taxonomia } from '../../Components/Taxonomia/class/taxonomia';
 export class BajaTaxonomiaIn{
     
     private idTaxonomia!: number;

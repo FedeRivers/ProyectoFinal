@@ -318,6 +318,7 @@
     <Compile Include="Parametros\Entrada\ModificarSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\ParametroBaseIn.cs" />
     <Compile Include="Parametros\Salida\AgregarModuloOut.cs" />
     <Compile Include="Parametros\Salida\AltaLoteOut.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />

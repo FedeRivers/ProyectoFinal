@@ -9,5 +9,6 @@ namespace ProyectoFinal.Parametros.Entrada
     {
         public int IdTipoDeUsuario { get; set; }
 
+        public int CantidadDeAlertas { get; set; }
     }
 }

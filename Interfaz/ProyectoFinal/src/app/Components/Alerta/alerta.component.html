@@ -4,14 +4,15 @@
             <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
         </i>
     <div ngbDropdownMenu class="pre-scrollable">
-        <div *ngFor="let alerta of Alertas" class="card mb-1" style="width: 18rem;">
+        <div *ngFor="let mensaje of ListaMensajesAlertas" class="card mb-1" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">{{alerta.IdAlerta}}</h5>
-                <p class="card-text">{{alerta.FechaDeEjecucion}}</p>
+                <h5 class="card-title">{{mensaje.Titulo}}</h5>
+                <p class="card-text">{{mensaje.Mensaje}}</p>
+                <p class="">{{mensaje.Fecha | date}}</p>
             </div>
         </div>
         <div>
-            <a class="nav-link" style="cursor:pointer;font-size:20px;color:#007bff;" (click)="CargarMas()">Ver más...</a>
+            <a *ngIf="!BotonVisible" class="nav-link" style="cursor:pointer;font-size:20px;color:#007bff;" (click)="ListarAlertas()">Ver más...</a>
         </div>
     </div>
 </li>

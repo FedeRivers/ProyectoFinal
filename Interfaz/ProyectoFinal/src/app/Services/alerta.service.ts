@@ -14,6 +14,6 @@ export class AlertaService {
   constructor( private http:HttpClient ) { }
 
   public Listar(listarAlertasIn:ListarAlertasIn){
-    return this.http.get<ListarAlertasOut>(`${this.baseUrl+MetodosUrl.Alerta.LISTAR}?IdTipoDeUsuario=${listarAlertasIn.IdTipoDeUsuario}`);
+    return this.http.get<ListarAlertasOut>(`${this.baseUrl+MetodosUrl.Alerta.LISTAR}?IdTipoDeUsuario=${listarAlertasIn.IdTipoDeUsuario}&CantidadDeAlertas=${listarAlertasIn.CantidadDeAlertas}`);
   } 
 }
