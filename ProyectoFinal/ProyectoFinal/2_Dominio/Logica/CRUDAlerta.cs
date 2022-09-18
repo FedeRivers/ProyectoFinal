@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal._3_Persistencia;
+using ProyectoFinal.Parametros;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -33,6 +34,11 @@ namespace ProyectoFinal._2_Dominio.Logica
         public ListarAlertasOut ListarAlertas(ListarAlertasIn input)
         {           
             return new PAlerta().ListarAlertas(input);
+        }
+
+        public DesactivarAlertaOut DesactivarAlerta(DesactivarAlertaIn input)
+        {
+            return new PAlerta().DesactivarAlerta(input);
         }
 
     }

@@ -75,6 +75,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoDeUsuario, cantidadDeAlertas);
 			return ((ISingleResult<ListarAlertasResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DesactivarAlerta")]
+		public int DesactivarAlerta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdAlerta", DbType="Int")] System.Nullable<int> idAlerta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idAlerta);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class ListarAlertasResult

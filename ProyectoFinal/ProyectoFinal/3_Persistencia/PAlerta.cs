@@ -1,5 +1,6 @@
 ﻿using ProyectoFinal._2_Dominio.Entidades;
 using ProyectoFinal._3_Persistencia.Models;
+using ProyectoFinal.Parametros;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -62,47 +63,22 @@ namespace ProyectoFinal._3_Persistencia
                  
         }
 
-
-
-       /* public ListarLotesOut ListarLotes(ListarLotesIn input)
+        public DesactivarAlertaOut DesactivarAlerta(DesactivarAlertaIn input)
         {
-            var output = new ListarLotesOut { Lotes = new List<Lote>(), Status = new HttpStatusCodeResult(404) };
-            using (var dataContext = new ModeloLoteDataContext())
+            var output = new DesactivarAlertaOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloAlertaDataContext())
             {
                 try
                 {
-                    var result = dataContext.ListarLotes(input.TerminoDeBusqueda);
-                    if (result != null)
-                    {
-                        foreach (var lote in result)
-                        {
-                            output.Lotes.Add(new Lote
-                            {
-                                NumeroLote = lote.numeroLote,
-                                Descripcion = lote.descripcion,
-                                FechaDeIngreso = lote.ingresoLote,
-                                Activo = lote.activoLote,
-                                Mejorador = new Mejorador
-                                {
-                                    IdMejorador = lote.idMejorador,
-                                    Nombre = lote.nombre,
-                                    Mail = lote.mail,
-                                    Direccion = lote.direccion,
-                                    FechaDeIngreso = lote.ingresoMejorador,
-                                    Activo = lote.activoMejorador
-                                }
-                            });
-                        }
-                        output.Status = new HttpStatusCodeResult(200);
-                    }
+                    dataContext.DesactivarAlerta(input.IdAlerta);
+                    output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)
                 {
                     output.Status = new HttpStatusCodeResult(404);
                 }
             }
-
             return output;
-        }*/
+        }
     }
 }

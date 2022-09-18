@@ -281,6 +281,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloUsuario.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Parametros\Entrada\DesactivarAlertaIn.cs" />
     <Compile Include="Parametros\Entrada\AgregarModuloIn.cs" />
     <Compile Include="Parametros\Entrada\AltaAlertaIn.cs" />
     <Compile Include="Parametros\Entrada\AltaLoteIn.cs" />
@@ -334,6 +335,7 @@
     <Compile Include="Parametros\Salida\BajaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
+    <Compile Include="Parametros\Salida\DesactivarAlertaOut.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ExisteEspacioLibreOut.cs" />
     <Compile Include="Parametros\Salida\ExisteLoteOut.cs" />
