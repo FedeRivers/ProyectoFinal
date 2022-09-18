@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloAlertaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESS02;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESS02;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.AltaAlerta" Method="AltaAlerta">
     <Parameter Name="FechaDeEjecucion" Parameter="fechaDeEjecucion" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreSemilla" Parameter="nombreSemilla" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdTipoDeUsuario" Parameter="idTipoDeUsuario" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ListarAlertas" Method="ListarAlertas">
     <Parameter Name="IdTipoDeUsuario" Parameter="idTipoDeUsuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CantidadDeAlertas" Parameter="cantidadDeAlertas" Type="System.Int32" DbType="Int" />
     <ElementType Name="ListarAlertasResult">
       <Column Name="idAlerta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="fechaDeCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="fechaDeEjecucion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="numeroLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idSemilla" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreSemilla" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="idCamara" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idTipoDeUsuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />

@@ -4,7 +4,7 @@ export class Alerta{
     private fechaDeCreacion!: Date;
     private fechaDeEjecucion!: Date;
     private numeroLote!: number;
-    private idSemilla!: number;
+    private nombreSemilla!: string;
     private idTipoDeUsuario!: number;
     private idCamara!: number;
     private activo!: boolean;
@@ -39,11 +39,11 @@ export class Alerta{
         this.numeroLote = value;
     }
 
-    public get IdSemilla(): number {
-        return this.idSemilla;
+    public get NombreSemilla(): string {
+        return this.nombreSemilla;
     }
-    public set IdSemilla(value: number) {
-        this.idSemilla = value;
+    public set NombreSemilla(value: string) {
+        this.nombreSemilla = value;
     }
 
     public get IdTipoDeUsuario(): number {

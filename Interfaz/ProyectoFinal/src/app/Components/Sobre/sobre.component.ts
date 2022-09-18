@@ -21,6 +21,7 @@ import { ListarLotesIn } from '../../Parametros/Entrada/ListarLotesIn';
 import { Camara } from '../Camara/class/Camara';
 import { ListarCamaraIn } from 'src/app/Parametros/Entrada/ListarCamaraIn';
 import { CamaraService } from 'src/app/Services/camara.service';
+import { Usuario } from '../Usuario/class/usuario';
 
 @Component({
   selector: 'app-sobre',
@@ -40,7 +41,8 @@ export class SobreComponent extends FormularioBase implements OnInit {
   
   private camara: Camara;
   private camaras: Camara[];
-
+  
+  private idTipoDeUsuario:number; 
 
   private lote: Lote;
   private lotes: Lote[];
@@ -68,12 +70,16 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private btnSecar: boolean = false;
 
 
+
+
   @ViewChild("modal") modal: ModalComponent;
   
 
 
   constructor(private sobreServicio: SobreService,private semillaServicio: SemillaService,private loteService:LoteService,private estadoService: EstadoService,private camaraService: CamaraService) {
     super();
+    let usuario:Usuario = JSON.parse(sessionStorage.getItem('usuario')!); 
+    this.idTipoDeUsuario =  usuario.TipoDeUsuario.IdTipoDeUsuario;
     this.listarSobreIn = new ListarSobreIn();
     this.modal = new ModalComponent();
     this.semilla = new Semilla();
@@ -344,6 +350,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
     modificarSobreIn.Sobre = this.sobre;
+    modificarSobreIn.IdTipoDeUsuario = this.idTipoDeUsuario;
     this.sobreServicio.Modificar(modificarSobreIn)
       .subscribe( sobre => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.EXITO,false);
@@ -475,6 +482,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
         break;
       case "Germinar":
         this.btnGerminar = true;
+        this.idTipoDeUsuario = 3;
         this.sobre.Estado.IdEstado = 4;
         this.sobre.Ubicacion.Camara.IdCamara = 3;
         this.AbrirModal();

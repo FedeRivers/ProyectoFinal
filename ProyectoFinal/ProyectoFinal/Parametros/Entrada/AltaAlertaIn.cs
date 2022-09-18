@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoFinal._2_Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,13 +8,9 @@ namespace ProyectoFinal.Parametros.Entrada
 {
     public class AltaAlertaIn
     {
+        public Sobre Sobre { get; set; }
+
         public DateTime FechaDeEjecucion { get; set; }
-
-        public int NumeroLote { get; set; }
-
-        public int IdSemilla { get; set; }
-
-        public int IdCamara { get; set; }
 
         public int IdTipoDeUsuario { get; set; }
     }

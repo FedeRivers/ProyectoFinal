@@ -1,8 +1,11 @@
 export class ListarAlertasIn{
 
     private idTipoDeUsuario!: number;
-
-    constructor(){}
+    private cantidadDeAlertas: number;
+    
+    constructor(){
+        this.cantidadDeAlertas = 0;
+    }
 
     public get IdTipoDeUsuario(): number {
         return this.idTipoDeUsuario;
@@ -11,4 +14,10 @@ export class ListarAlertasIn{
         this.idTipoDeUsuario = value;
     }
     
+    public get CantidadDeAlertas(): number {
+        return this.cantidadDeAlertas;
+    }           
+    public set CantidadDeAlertas(value: number) {
+        this.cantidadDeAlertas = value;
+    }
 }
