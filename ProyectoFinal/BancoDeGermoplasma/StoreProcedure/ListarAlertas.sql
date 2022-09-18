@@ -1,15 +1,18 @@
 ﻿CREATE PROCEDURE [dbo].[ListarAlertas]
-	@IdTipoDeUsuario int
+	@IdTipoDeUsuario int,
+	@CantidadDeAlertas int
 AS
 BEGIN
-	SELECT idAlerta,
+	SELECT Top(@CantidadDeAlertas)
+			idAlerta,
 			fechaDeCreacion,
 			fechaDeEjecucion,
 			numeroLote,
-			idSemilla,
+			nombreSemilla,
 			idCamara,
 			idTipoDeUsuario,
 			activo
 	FROM Alertas
-	WHERE idTipoDeUsuario = @IdTipoDeUsuario and activo = 1 and fechaDeEjecucion >= GETDATE() 
+	WHERE idTipoDeUsuario = @IdTipoDeUsuario and activo = 1 and fechaDeEjecucion <= GETDATE()
+	ORDER BY fechaDeEjecucion DESC
 END

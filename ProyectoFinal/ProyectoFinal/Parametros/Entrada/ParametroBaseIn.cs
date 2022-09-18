@@ -1,4 +1,4 @@
-﻿using ProyectoFinal._2_Dominio.Entidades;
+﻿using ProyectoFinal._2_Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +6,8 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Entrada
 {
-    public class ModificarSobreIn : ParametroBaseIn
+    public class ParametroBaseIn
     {
-        public Sobre Sobre { get; set; }
+        public int IdTipoDeUsuario { get; set; } 
     }
 }

@@ -1,5 +1,3 @@
-import { Taxonomia } from '../Taxonomia/class/taxonomia';
-
 export const RecursosDeIdioma = {
     MensajesFormularios :
     {
@@ -149,6 +147,23 @@ export const RecursosDeIdioma = {
             },
         },
     },
+    Alertas : 
+    {
+        Mensajes:
+        {
+            Titulo:
+            {
+                HUMEDAD:'Tomar Humedad',
+                GERMINACION: 'Tomar Germinación',
+            },
+            Cuerpo: 
+            {
+                HUMEDAD:'Las semillas de %s del lote %s se encuentran próximas a su porcentaje de humedad óptimo.',
+                GERMINACION: 'Las semillas de %s del lote %s se encuentran listas para contabilizar su germinación.'
+            },
+        },
+    
+    },
     Formularios : 
     {
         USUARIO:'Usuario',
@@ -230,6 +245,11 @@ export const MetodosUrl = {
     {
         LISTAR : 'ListarAlertas', 
     },
+}
+export const Camaras = {
+    SECADO : 1,
+    HUMEDAD : 2,
+    GERMINACION : 3,
 }
 
 export const ExpresionesRegulares = {

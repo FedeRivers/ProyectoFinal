@@ -15,7 +15,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
 
         public int NumeroLote { get; set; }
 
-        public int IdSemilla { get; set; }
+        public string NombreSemilla { get; set; }
 
         public int IdCamara { get; set; }
 

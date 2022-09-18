@@ -25,18 +25,7 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             PSobre instancia = new PSobre();
             var resultado = new ModificarSobreOut { Status = new HttpStatusCodeResult(404) };
-            if (input.Sobre.Humedad > 7)
-            {
-                input.Sobre.FechaEstimada = new Estimaciones().EstimarHumedad(input.Sobre.Humedad);
-                new CRUDAlerta().AltaSobre(new AltaAlertaIn()
-                {
-                    FechaDeEjecucion = Convert.ToDateTime(input.Sobre.FechaEstimada),
-                    NumeroLote = input.Sobre.Lote.NumeroLote,
-                    IdSemilla = input.Sobre.Semilla.IdSemilla,
-                    IdCamara = 2,
-                    IdTipoDeUsuario = 1
-                });
-            }
+            new CRUDAlerta().AltaAlerta(new AltaAlertaIn() { Sobre = input.Sobre, IdTipoDeUsuario = input.IdTipoDeUsuario });
             if (input.Sobre.Ubicacion.Camara.IdCamara != 0)
             {
                 var existeEspacioLibreOut = instancia.ExisteEspacioLibre(new ExisteEspacioLibreIn { IdCamara = input.Sobre.Ubicacion.Camara.IdCamara });

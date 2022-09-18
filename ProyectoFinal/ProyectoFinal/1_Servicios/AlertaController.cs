@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal._2_Dominio.Logica;
+using ProyectoFinal.Parametros;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
 using System;
@@ -16,6 +17,12 @@ namespace ProyectoFinal._1_Servicios
         public ListarAlertasOut ListarAlertas([FromUri]ListarAlertasIn input)
         {
             return new CRUDAlerta().ListarAlertas(input);
+        }
+
+        [HttpPost]
+        public DesactivarAlertaOut DesactivarAlerta([FromBody]DesactivarAlertaIn input)
+        {
+            return new CRUDAlerta().DesactivarAlerta(input);
         }
     }
 }

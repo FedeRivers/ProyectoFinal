@@ -33,7 +33,7 @@ namespace ProyectoFinal._3_Persistencia.Models
     #endregion
 		
 		public ModeloAlertaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeGermoplasmaConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["BancoDeGermoplasmaConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -63,17 +63,24 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaAlerta")]
-		public int AltaAlerta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDeEjecucion", DbType="DateTime")] System.Nullable<System.DateTime> fechaDeEjecucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
+		public int AltaAlerta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaDeEjecucion", DbType="DateTime")] System.Nullable<System.DateTime> fechaDeEjecucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSemilla", DbType="VarChar(50)")] string nombreSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDeEjecucion, numeroLote, idSemilla, idCamara, idTipoDeUsuario);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDeEjecucion, numeroLote, nombreSemilla, idCamara, idTipoDeUsuario);
 			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarAlertas")]
-		public ISingleResult<ListarAlertasResult> ListarAlertas([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
+		public ISingleResult<ListarAlertasResult> ListarAlertas([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CantidadDeAlertas", DbType="Int")] System.Nullable<int> cantidadDeAlertas)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoDeUsuario);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoDeUsuario, cantidadDeAlertas);
 			return ((ISingleResult<ListarAlertasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DesactivarAlerta")]
+		public int DesactivarAlerta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdAlerta", DbType="Int")] System.Nullable<int> idAlerta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idAlerta);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -88,7 +95,7 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private int _numeroLote;
 		
-		private int _idSemilla;
+		private string _nombreSemilla;
 		
 		private int _idCamara;
 		
@@ -164,18 +171,18 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSemilla", DbType="Int NOT NULL")]
-		public int idSemilla
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombreSemilla", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombreSemilla
 		{
 			get
 			{
-				return this._idSemilla;
+				return this._nombreSemilla;
 			}
 			set
 			{
-				if ((this._idSemilla != value))
+				if ((this._nombreSemilla != value))
 				{
-					this._idSemilla = value;
+					this._nombreSemilla = value;
 				}
 			}
 		}
