@@ -6,6 +6,7 @@ import { Alerta } from './alerta';
 import { MensajeAlerta } from './class/mensajeAlerta';
 import { Camaras, RecursosDeIdioma } from '../Constantes/constantes';
 import {sprintf} from "sprintf-js";
+import { DesactivarAlertaIn } from 'src/app/Parametros/Entrada/DesactivarAlertaIn';
 
 @Component({
   selector: 'app-alerta',
@@ -70,14 +71,14 @@ export class AlertaComponent implements OnInit {
       {
         mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.HUMEDAD;
         mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.HUMEDAD,alerta.NombreSemilla,alerta.NumeroLote.toString());
-        mensajeAlerta.Fecha = alerta.FechaDeEjecucion;
       }
       else
       {
         mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.GERMINACION;
         mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.GERMINACION,alerta.NombreSemilla,alerta.NumeroLote.toString());
-        mensajeAlerta.Fecha = alerta.FechaDeEjecucion;
       }
+      mensajeAlerta.Fecha = alerta.FechaDeEjecucion;
+      mensajeAlerta.IdAlerta = alerta.IdAlerta;
       this.listaMensajesAlertas.push(mensajeAlerta);
     });
   }
@@ -85,5 +86,15 @@ export class AlertaComponent implements OnInit {
   CargarMas(){
     let alerta : Alerta = new Alerta();
     this.alertas.push(alerta);
+  }
+
+  DesactivarAlerta(mensajeAlerta:MensajeAlerta)
+  {
+    let desactivarAlertaIn:DesactivarAlertaIn = new DesactivarAlertaIn();
+    desactivarAlertaIn.IdAlerta = mensajeAlerta.IdAlerta;
+    this.alertaServicio.DesactivarAlerta(desactivarAlertaIn)
+      .subscribe( alerta =>{
+        this.ListarAlertas();
+      });
   }
 }

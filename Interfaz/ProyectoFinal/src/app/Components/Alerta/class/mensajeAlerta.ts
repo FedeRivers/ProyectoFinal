@@ -3,6 +3,7 @@ export class MensajeAlerta{
     private titulo!: string;
     private mensaje!: string;
     private fecha!: Date;
+    private idAlerta!: number;
 
     constructor(){}
 
@@ -25,5 +26,12 @@ export class MensajeAlerta{
     }
     public set Fecha(value: Date) {
         this.fecha = value;
+    }
+
+    public get IdAlerta(): number {
+        return this.idAlerta;
+    }
+    public set IdAlerta(value: number) {
+        this.idAlerta = value;
     }
 }

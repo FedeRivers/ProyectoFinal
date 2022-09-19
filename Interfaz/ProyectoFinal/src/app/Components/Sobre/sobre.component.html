@@ -6,217 +6,209 @@
 </head>
 
 <body>
-    <div class="container-fluid ">
-        <div class="row text-center justify-content-md-center">
+    <div class="container-fluid text-center">
+        <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
+            <form class="col-md-4 form border border-5">
+                <div class="col-md-12">
+                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanNumeroSobre">Número:</span>
+                    <input name="txtNumeroSobre" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.NumeroSobre" [ngClass]="Sobre.NumeroSobre!=undefined ? ValidarNumeroSobre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese número de sobre"
+                        aria-label="txtNumeroSobre" aria-describedby="spanNumeroSobre" required>
+                    <div class="invalid-feedback">{{MensajeNumeroSobreInvalida}}</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanLote">Lote:</span>
+                    <select name="txtLote" class="form-select" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.Lote.NumeroLote" [ngClass]="Sobre.Lote.NumeroLote!= undefined ? ValidarLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtLote"
+                        aria-describedby="spanLote">
+                    <option *ngFor="let lote of Lotes" [ngValue]="lote.NumeroLote" > 
+                        {{lote.NumeroLote}}
+                    </option>
+                </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanSemilla">Semilla:</span>
+                    <select name="txtSemilla" class="form-select" [disabled]="BtnBaja" [(ngModel)]="Sobre.Semilla.IdSemilla" [ngClass]="Sobre.Semilla.IdSemilla!= undefined ? ValidarSemilla() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtSemilla"
+                        aria-describedby="spanSemilla">
+                    <option *ngFor="let semilla of Semillas" [ngValue]="semilla.IdSemilla" > 
+                        {{semilla.Nombre}}
+                    </option>
+                </select>
+                </div>
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
+                    <span class="input-group-text" id="spanHumedad">Humedad:</span>
+                    <input name="txtHumedad" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Humedad" placeholder="Ingrese humedad" aria-label="txtHumedad" aria-describedby="spanHumedad" required>
+                </div>
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
+                    <span class="input-group-text" id="spanGerminacion">Germinación:</span>
+                    <input name="txtGerminacion" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Germinacion" placeholder="Ingrese germinacion" aria-label="txtGerminacion" aria-describedby="spanGerminacion" required>
+                </div>
+                <div class="input-group mb-3" *ngIf="!BtnAlta">
+                    <span class="input-group-text" id="spanEstado">Estado:</span>
+                    <select name="txtEstado" class="form-select form-control" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.Estado.IdEstado" aria-label="txtEstado" aria-describedby="spanEstado">
+                    <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
+                        {{estado.Nombre}}
+                    </option>
+                </select>
+                </div>
 
+                <div class="">
+                    <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Sobre</button>
+                    <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Sobre</button>
+                    <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Sobre</button>
+                </div>
+            </form>
+        </div>
 
-            <div class="row" *ngIf="EstaSeleccionado">
-                <form class="col-md-8 form border border-5">
-                    <div class="col-md-12">
-                        <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="spanNumeroSobre">Número:</span>
-                        <input name="txtNumeroSobre" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.NumeroSobre" [ngClass]="Sobre.NumeroSobre!=undefined ? ValidarNumeroSobre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese número de sobre"
-                            aria-label="txtNumeroSobre" aria-describedby="spanNumeroSobre" required>
-                        <div class="invalid-feedback">{{MensajeNumeroSobreInvalida}}</div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="spanLote">Lote:</span>
-                        <select name="txtLote" class="form-select" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.Lote.NumeroLote" [ngClass]="Sobre.Lote.NumeroLote!= undefined ? ValidarLote() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtLote"
-                            aria-describedby="spanLote">
-                        <option *ngFor="let lote of Lotes" [ngValue]="lote.NumeroLote" > 
-                            {{lote.NumeroLote}}
-                        </option>
-                    </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="spanSemilla">Semilla:</span>
-                        <select name="txtSemilla" class="form-select" [disabled]="BtnBaja" [(ngModel)]="Sobre.Semilla.IdSemilla" [ngClass]="Sobre.Semilla.IdSemilla!= undefined ? ValidarSemilla() ? 'form-control is-valid':'form-control is-invalid':'form-control'" aria-label="txtSemilla"
-                            aria-describedby="spanSemilla">
-                        <option *ngFor="let semilla of Semillas" [ngValue]="semilla.IdSemilla" > 
-                            {{semilla.Nombre}}
-                        </option>
-                    </select>
-                    </div>
+        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
+            <div class="row">
+                <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
+                    <input [(ngModel)]="NumeroSobre" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
+                </div>
 
-                    <div class="input-group mb-3" *ngIf="!BtnAlta">
-                        <span class="input-group-text" id="spanUbicacion">Ubicación:</span>
-                        <input name="txtUbicacion" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Ubicacion" placeholder="Ingrese ubicacion" aria-label="txtUbicacion" aria-describedby="spanUbicacion" required>
-                    </div>
-                    <div class="input-group mb-3" *ngIf="!BtnAlta">
-                        <span class="input-group-text" id="spanHumedad">Humedad:</span>
-                        <input name="txtHumedad" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Humedad" placeholder="Ingrese humedad" aria-label="txtHumedad" aria-describedby="spanHumedad" required>
-                    </div>
-                    <div class="input-group mb-3" *ngIf="!BtnAlta">
-                        <span class="input-group-text" id="spanGerminacion">Germinación:</span>
-                        <input name="txtGerminacion" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Germinacion" placeholder="Ingrese germinacion" aria-label="txtGerminacion" aria-describedby="spanGerminacion" required>
-                    </div>
-                    <div class="input-group mb-3" *ngIf="!BtnAlta">
-                        <span class="input-group-text" id="spanEstado">Estado:</span>
-                        <select name="txtEstado" class="form-select form-control" [disabled]="BtnModificar || BtnBaja" [(ngModel)]="Sobre.Estado.IdEstado" aria-label="txtEstado" aria-describedby="spanEstado">
+                <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <span class="input-group-text" id="spanBusquedaNumeroLote">Lote:</span>
+                    <input [(ngModel)]="NumeroLote" name="txtBusquedaNumeroLote" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroLote" aria-describedby="spanBusquedaNumeroLote">
+                </div>
+
+                <div class="input-group mb-3 col-md-3 col-lg-3">
+                    <span class="input-group-text" id="spanBusquedaNombreSemilla">Semilla:</span>
+                    <input [(ngModel)]="NombreSemilla" name="txtBusquedaNombreSemilla" class="form-control" style="height:auto;" placeholder="Buscar por nombre de semilla" aria-label="txtBusquedaNombreSemilla" aria-describedby="spanBusquedaNombreSemilla">
+                </div>
+
+                <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <span class="input-group-text" id="spanBusquedaEstado">Estado:</span>
+                    <select name="txtBusquedaEstado" class="form-select form-control" [(ngModel)]="EstadoSobre" style="height:auto;" aria-label="txtBusquedaEstado" aria-describedby="spanBusquedaEstado">
                         <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
                             {{estado.Nombre}}
                         </option>
                     </select>
-                    </div>
+                </div>
+                <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <span class="input-group-text" id="spanBusquedaCamara">Cámara:</span>
+                    <select name="txtBusquedaCamara" class="form-select form-control" [(ngModel)]="Camara" style="height:auto;" aria-label="txtBusquedaCamara" aria-describedby="spanBusquedaCamara">
+                        <option *ngFor="let camara of Camaras" [ngValue]="camara.IdCamara" > 
+                            {{camara.Nombre}}
+                        </option>
+                    </select>
+                </div>
 
-                    <div class="">
-                        <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Agregar Sobre</button>
-                        <button *ngIf="BtnBaja" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Eliminar Sobre</button>
-                        <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar Sobre</button>
-                    </div>
-                </form>
+                <div class="mb-3 col-md-1 col-lg-1">
+                    <span>             
+                        <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
+                            <i id="iAgregar" class="bi bi-plus-square"></i>
+                            Agregar                
+                        </button>
+                    </span>
+                </div>
+
             </div>
+            <table class="table table-hover col-md-12 col-lg-12">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col" sortable="numero">Numero de sobre</th>
+                        <th scope="col" sortable="camara">Cámara</th>
+                        <th scope="col" sortable="Fila">Fila</th>
+                        <th scope="col" sortable="ubicacion">Columna</th>
+                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                        <th scope="col" sortable="humedad">Humedad</th>
+                        <th scope="col" sortable="germinacion">Germinacion</th>
+                        <th scope="col" sortable="lote">Lote</th>
+                        <th scope="col" sortable="semilla">Semilla</th>
+                        <th scope="col" sortable="estado">Estado</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" *ngFor="let sobre of Sobres">
+                        <td>
+                            {{sobre.NumeroSobre}}
+                        </td>
+                        <td>
+                            <div *ngIf="sobre.Ubicacion">
+                                {{sobre.Ubicacion.Camara.Nombre}}
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="sobre.Ubicacion">
+                                {{sobre.Ubicacion.Fila}}
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="sobre.Ubicacion">
+                                {{sobre.Ubicacion.Columna}}
+                            </div>
+                        </td>
+                        <td>
+                            {{sobre.FechaDeIngreso | date:'short' }}
+                        </td>
+                        <td>
+                            {{sobre.Humedad }}
+                        </td>
+                        <td>
+                            {{sobre.Germinacion }}
+                        </td>
+                        <td>
+                            {{sobre.Lote.NumeroLote }}
+                        </td>
+                        <td>
+                            {{sobre.Semilla.Nombre }}
+                        </td>
+                        <td>
+                            {{sobre.Estado.Nombre }}
+                        </td>
+                        <td>
+                            <i class="bi bi-pencil" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre,'Modificar')"></i>
+                        </td>
+                        <td>
+                            <i class="bi bi-trash3" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(sobre,'Baja')"></i>
+                        </td>
+                        <td>
+                            <span class="input-group">             
+                                <button [disabled]="sobre.Estado.Nombre=='Analizando humedad' || sobre.Estado.Nombre=='Germinando'" class="btn btn-secondary" (click)="Seleccionar(sobre,'TomarHumedad')">
+                                    <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
+                                    Tomar Humedad             
+                                </button>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="input-group">             
+                                <button [disabled]="sobre.Estado.Nombre=='Germinando' || sobre.Estado.Nombre=='Analizando humedad'" class="btn btn-secondary" (click)="Seleccionar(sobre,'Germinar')"> 
+                                    <i class="bi bi-flower1" style="color: rgb(182, 238, 169);"></i>
+                                    Germinar            
+                                </button>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="input-group">             
+                                <button [disabled]="sobre.Humedad<1" (click)="Seleccionar(sobre,'Secar')" class="btn btn-secondary">
+                                    <i class="bi bi-speedometer"></i>
+                                    Secar            
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between p-2">
+                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
+                <!-- </ngb-pagination> -->
 
-            <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
-                <div class="row">
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
-                        <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
-                        <input [(ngModel)]="NumeroSobre" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
-                    </div>
-
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
-                        <span class="input-group-text" id="spanBusquedaNumeroLote">Lote:</span>
-                        <input [(ngModel)]="NumeroLote" name="txtBusquedaNumeroLote" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroLote" aria-describedby="spanBusquedaNumeroLote">
-                    </div>
-
-                    <div class="input-group mb-3 col-md-3 col-lg-3">
-                        <span class="input-group-text" id="spanBusquedaNombreSemilla">Semilla:</span>
-                        <input [(ngModel)]="NombreSemilla" name="txtBusquedaNombreSemilla" class="form-control" style="height:auto;" placeholder="Buscar por nombre de semilla" aria-label="txtBusquedaNombreSemilla" aria-describedby="spanBusquedaNombreSemilla">
-                    </div>
-
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
-                        <span class="input-group-text" id="spanBusquedaEstado">Estado:</span>
-                        <select name="txtBusquedaEstado" class="form-select form-control" [(ngModel)]="EstadoSobre" style="height:auto;" aria-label="txtBusquedaEstado" aria-describedby="spanBusquedaEstado">
-                            <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
-                                {{estado.Nombre}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
-                        <span class="input-group-text" id="spanBusquedaCamara">Cámara:</span>
-                        <select name="txtBusquedaCamara" class="form-select form-control" [(ngModel)]="Camara" style="height:auto;" aria-label="txtBusquedaCamara" aria-describedby="spanBusquedaCamara">
-                            <option *ngFor="let camara of Camaras" [ngValue]="camara.IdCamara" > 
-                                {{camara.Nombre}}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3 col-md-1 col-lg-1">
-                        <span>             
-                            <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
-                                <i id="iAgregar" class="bi bi-plus-square"></i>
-                                Agregar                
-                            </button>
-                        </span>
-                    </div>
-
-                </div>
-                <table class="table table-hover col-md-12 col-lg-12">
-                    <thead class="table-primary">
-                        <tr>
-                            <th scope="col" sortable="numero">Numero de sobre</th>
-                            <th scope="col" sortable="camara">Cámara</th>
-                            <th scope="col" sortable="Fila">Fila</th>
-                            <th scope="col" sortable="ubicacion">Columna</th>
-                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
-                            <th scope="col" sortable="humedad">Humedad</th>
-                            <th scope="col" sortable="germinacion">Germinacion</th>
-                            <th scope="col" sortable="lote">Lote</th>
-                            <th scope="col" sortable="semilla">Semilla</th>
-                            <th scope="col" sortable="estado">Estado</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="pointer" *ngFor="let sobre of Sobres">
-                            <td>
-                                {{sobre.NumeroSobre}}
-                            </td>
-                            <td>
-                                <div *ngIf="sobre.Ubicacion">
-                                    {{sobre.Ubicacion.Camara.Nombre}}
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngIf="sobre.Ubicacion">
-                                    {{sobre.Ubicacion.Fila}}
-                                </div>
-                            </td>
-                            <td>
-                                <div *ngIf="sobre.Ubicacion">
-                                    {{sobre.Ubicacion.Columna}}
-                                </div>
-                            </td>
-                            <td>
-                                {{sobre.FechaDeIngreso | date:'short' }}
-                            </td>
-                            <td>
-                                {{sobre.Humedad }}
-                            </td>
-                            <td>
-                                {{sobre.Germinacion }}
-                            </td>
-                            <td>
-                                {{sobre.Lote.NumeroLote }}
-                            </td>
-                            <td>
-                                {{sobre.Semilla.Nombre }}
-                            </td>
-                            <td>
-                                {{sobre.Estado.Nombre }}
-                            </td>
-                            <td>
-                                <i class="bi bi-pencil" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
-                            </td>
-                            <td>
-                                <i class="bi bi-trash3" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(sobre); BotonSeleccionado('Baja')"></i>
-                            </td>
-                            <td>
-                                <span class="input-group">             
-                                    <button [disabled]="sobre.Estado.Nombre=='Analizando humedad' || sobre.Estado.Nombre=='Germinando'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('TomarHumedad')">
-                                        <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
-                                        Tomar Humedad             
-                                    </button>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="input-group">             
-                                    <button [disabled]="sobre.Estado.Nombre=='Germinando' || sobre.Estado.Nombre=='Analizando humedad'" class="btn btn-secondary" (click)="Seleccionar(sobre); BotonSeleccionado('Germinar')"> 
-                                        <i class="bi bi-flower1" style="color: rgb(182, 238, 169);"></i>
-                                        Germinar            
-                                    </button>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="input-group">             
-                                    <button [disabled]="sobre.Humedad<1" (click)="Seleccionar(sobre); BotonSeleccionado('Secar')" class="btn btn-secondary">
-                                        <i class="bi bi-speedometer"></i>
-                                        Secar            
-                                    </button>
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="d-flex justify-content-between p-2">
-                    <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-                    <!-- </ngb-pagination> -->
-
-                    <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-                    <!-- <option [ngValue]="2">2 items per page</option> -->
-                    <!-- <option [ngValue]="4">4 items per page</option> -->
-                    <!-- <option [ngValue]="6">6 items per page</option> -->
-                    <!-- </select> -->
-                </div>
+                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
+                <!-- <option [ngValue]="2">2 items per page</option> -->
+                <!-- <option [ngValue]="4">4 items per page</option> -->
+                <!-- <option [ngValue]="6">6 items per page</option> -->
+                <!-- </select> -->
             </div>
         </div>
     </div>
+
 </body>
 <app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
 

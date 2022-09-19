@@ -8,6 +8,7 @@ import { ModificarUsuarioIn } from '../Parametros/Entrada/ModificarUsuarioIn';
 import { BajaUsuarioIn } from '../Parametros/Entrada/BajaUsuarioIn';
 import { MetodosUrl } from '../Components/Constantes/constantes';
 import { LoginOut } from '../Parametros/Salida/LoginOut';
+import { AltaUsuarioOut } from '../Parametros/Salida/AltaUsuarioOut';
 
 
 @Injectable({
@@ -19,7 +20,7 @@ export class UsuarioService {
   constructor( private http:HttpClient ) {   }
 
   public Agregar(altaUsuarioIn:AltaUsuarioIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.Usuario.ALTA}`,altaUsuarioIn);
+    return this.http.post<AltaUsuarioOut>(`${this.baseUrl+MetodosUrl.Usuario.ALTA}`,altaUsuarioIn);
   }
 
   public Baja(bajaUsuarioIn:BajaUsuarioIn){
@@ -37,4 +38,5 @@ export class UsuarioService {
   public Listar(listarUsuariosIn:ListarUsuariosIn){
     return this.http.get<ListarUsuariosOut>(`${this.baseUrl+MetodosUrl.Usuario.LISTAR}?TerminoDeBusqueda=${listarUsuariosIn.terminoDeBusqueda}`);
   }
+
 }

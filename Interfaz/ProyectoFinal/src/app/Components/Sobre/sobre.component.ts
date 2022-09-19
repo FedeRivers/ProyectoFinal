@@ -429,17 +429,24 @@ export class SobreComponent extends FormularioBase implements OnInit {
     });
   }
 
-  Seleccionar(sobre:Sobre)
+  Seleccionar(sobre:Sobre,btnSeleccionado:string)
   {
     this.sobre = sobre;
-    this.Ocultar();
+    this.BotonSeleccionado(btnSeleccionado);
+    if(!this.btnGerminar && !this.btnTomarHumedad && !this.btnSecar)
+    {
+      this.Ocultar();
+    }
   }
 
  Regresar()
   {
     this.Listar();
-    this.Ocultar();
     this.Limpiar();
+    if(!this.btnGerminar && !this.btnTomarHumedad && !this.btnSecar)
+    {
+      this.Ocultar();
+    }
   }
 
   Limpiar()
