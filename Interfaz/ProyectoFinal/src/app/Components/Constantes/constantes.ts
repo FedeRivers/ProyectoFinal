@@ -16,6 +16,9 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el usuario.',
                 EXITO:'Usuario ingresado con éxito.',
+                EXISTEMAIL : 'El mail que desea ingresar ya existe.',
+                EXISTECEDULA : 'La cédula que desea ingresar ya existe.',
+                
             },
             Baja:
             {
@@ -244,6 +247,7 @@ export const MetodosUrl = {
     Alerta:
     {
         LISTAR : 'ListarAlertas', 
+        DESACTIVARALERTA: 'DesactivarAlerta',
     },
 }
 export const Camaras = {

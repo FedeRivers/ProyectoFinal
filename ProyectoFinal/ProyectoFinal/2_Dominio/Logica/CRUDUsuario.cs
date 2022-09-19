@@ -16,7 +16,7 @@ namespace ProyectoFinal._2_Dominio.Logica
     {
         public AltaUsuarioOut AltaUsuario(AltaUsuarioIn input)
         {
-            var resultado = new AltaUsuarioOut { Status = new HttpStatusCodeResult(404) };
+            var resultado = new AltaUsuarioOut { Status = new HttpStatusCodeResult(500) };
             var existe = new PUsuario().ExisteUsuario(input.Usuario);
             if (existe == 0)
             {

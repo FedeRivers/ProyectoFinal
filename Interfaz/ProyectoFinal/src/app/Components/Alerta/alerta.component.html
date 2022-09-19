@@ -8,7 +8,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{mensaje.Titulo}}</h5>
                 <p class="card-text">{{mensaje.Mensaje}}</p>
-                <p class="">{{mensaje.Fecha | date}}</p>
+                <p class="card-text">{{mensaje.Fecha | date}}</p>
+                <i class="bi bi-trash3"><a class="card-text" (click)="DesactivarAlerta(mensaje)" style="cursor:pointer">Tarea realizada</a></i>
             </div>
         </div>
         <div>
