@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { MetodosUrl } from '../Components/Constantes/constantes';
 import { AltaSobreIn } from '../Parametros/Entrada/AltaSobreIn';
 import { BajaSobreIn } from '../Parametros/Entrada/BajaSobre';
+import { BuscarDuplicadosIn } from '../Parametros/Entrada/BuscarDuplicadosIn';
 import { ExisteSobreIn } from '../Parametros/Entrada/ExisteSobreIn';
 import { ListarSobreIn } from '../Parametros/Entrada/ListarSobreIn';
 import { ModificarSobreIn } from '../Parametros/Entrada/ModificarSobre';
+import { BuscarDuplicadosOut } from '../Parametros/Salida/BuscarDuplicadosOut';
 import { ExisteSobreOut } from '../Parametros/Salida/ExisteSobreOut';
 import { ListarSobresOut } from '../Parametros/Salida/ListarSobresOut';
 
@@ -36,5 +38,10 @@ export class SobreService {
 
   public ExisteSobre(existeSobreIn:ExisteSobreIn){
     return this.http.get<ExisteSobreOut>(`${this.baseUrl+ MetodosUrl.Sobre.EXISTESOBRE}?Sobre=${existeSobreIn.Sobre}`)
+  }
+
+  public BuscarDuplicados(buscarDuplicadosIn:BuscarDuplicadosIn)
+  {
+    return this.http.post<BuscarDuplicadosOut>(`${this.baseUrl+ MetodosUrl.Sobre.BUSCARDUPLICADOS}`,buscarDuplicadosIn);
   }
 }

@@ -22,6 +22,7 @@ import { AlertaComponent } from './Components/Alerta/alerta.component';
 import { EstadisticaComponent } from './Components/Estadistica/estadistica.component';
 import { MoversobresComponent } from './Components/moverSobres/moverSobres.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DatosPersonalesComponent } from './Components/DatosPersonales/datosPersonales.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AlertaComponent,
     EstadisticaComponent,
     MoversobresComponent,
+    DatosPersonalesComponent,
   ],
   imports: [
     BrowserModule,

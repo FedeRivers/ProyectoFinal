@@ -216,5 +216,38 @@ namespace ProyectoFinal._3_Persistencia
             }
             return output;
         }
+
+
+        public BuscarDuplicadosOut BuscarDuplicados(BuscarDuplicadosIn input)
+        {
+            var output = new BuscarDuplicadosOut { Status = new HttpStatusCodeResult(404), Sobres = new List<Sobre>() };       
+            using (var dataContext = new ModeloBuscarDuplicadosDataContext())
+            {
+                try
+                {
+                    foreach (var semilla in input.NombresDeSemillas)
+                    {
+                        var result = dataContext.BuscarDuplicados(semilla.Nombre).FirstOrDefault();
+                        if (result != null)
+                        {
+                            output.Sobres.Add(new Sobre
+                            {
+                                Semilla = new Semilla
+                                {
+                                    Nombre = result.plant_name,
+                                    FechaDeIngreso = result.tested_date
+                                },
+                                Germinacion = result.percent_viable                            
+                            });
+                        }
+                    }
+                            output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            return output;
+        }
     }
 }

@@ -175,7 +175,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
 
   ModificarUsuario()
   {
-    this.modificarUsuarioIn.usuario = this.usuario;
+    this.modificarUsuarioIn.Usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false);

@@ -68,5 +68,80 @@ namespace ProyectoFinal._2_Dominio.Logica
             DateTime fechaActual = DateTime.Now;
             return fechaActual.AddDays(dias);
         }
+
+
+        public double EstimarGerminacion(DateTime? pFecha)
+        {
+            //Variables De Entrada
+            double a, b, fx, Sxy = 0, Sxx = 0, n = 9, Px = 0, Py = 0;
+
+            //Vectores para los datos.
+            double[] x = new double[18];
+            double[] y = new double[18];
+
+            //Vamos a inicializar valores:
+            #region xvalores
+            x[0] = 41174;
+            x[1] = 41539;
+            x[2] = 41905;
+            x[3] = 42271;
+            x[4] = 42638;
+            x[5] = 43004;
+            x[6] = 43370;
+            x[7] = 43736;
+            x[8] = 44103;
+
+
+            #endregion
+            #region yvalores
+            y[0] = 98;
+            y[1] = 95;
+            y[2] = 88;
+            y[3] = 75;
+            y[4] = 61;
+            y[5] = 48;
+            y[6] = 31;
+            y[7] = 16;
+            y[8] = 3;
+
+            double fechaOA = Convert.ToDateTime(pFecha).ToOADate();
+            double diferenciaDeFechas = fechaOA - x[0];
+            for (var i = 0; i <= 8; i++)
+            {
+                x[i] = x[i] + diferenciaDeFechas;
+            }
+
+            #endregion
+
+            //Metodos para sumatorias
+
+            for (int i = 0; i <= 8; i++)
+            {
+                //Sumatoria de XY
+                Sxy = Sxy + (x[i] * y[i]);
+                Sxx = Sxx + (x[i] * x[i]);
+            }
+
+            //Metodos para promedio:
+            for (int i = 0; i <= 8; i++)
+            {
+                Px = Px + x[i];
+                Py = Py + y[i];
+            }
+            Px = Px / n;
+            Py = Py / n;
+
+            //Calculamos a y b para obtener la funcion lineal
+            a = (Sxy - (n * Px * Py)) / (Sxx - (n * Px * Px));
+            b = Py - (a * Px);
+
+            DateTime fechaActual = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 0, 0, 0);
+            double fechaActualOA = fechaActual.ToOADate();
+
+            fx = a * fechaActualOA + b;
+
+            double germinacionActual = fx > 100 ? 100 : fx < 0 ? 0 : double.Parse(fx.ToString().Substring(0, 5));
+            return germinacionActual;
+        }
     }
 }

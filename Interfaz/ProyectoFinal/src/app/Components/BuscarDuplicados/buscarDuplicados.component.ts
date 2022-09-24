@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SobreService } from 'src/app/Services/sobre.service';
+import { BuscarDuplicadosIn } from '../../Parametros/Entrada/BuscarDuplicadosIn';
+import { Sobre } from '../Sobre/class/sobre';
+import { Semilla } from 'src/app/Components/Semilla/class/semilla';
 
 @Component({
   selector: 'app-buscar-duplicados',
@@ -9,10 +13,15 @@ export class BuscarDuplicadosComponent implements OnInit {
 
   private textoIngresado: string = '';
   private listaDeBusqueda: string[] ;
+  private sobres: Sobre[];
+  private sobre: Sobre;
+  private mostrarTabla: boolean = false;
 
 
-  constructor(){
+  constructor( private sobreServicio: SobreService ){
     this.listaDeBusqueda = [];
+    this.sobres = [];
+    this.sobre = new Sobre();
   }
 
   ngOnInit(): void {
@@ -33,11 +42,47 @@ export class BuscarDuplicadosComponent implements OnInit {
     this.textoIngresado = value;
   }
 
+  public get Sobres(): Sobre[] {
+    return this.sobres;
+  }
+  public set Sobres(value: Sobre[]) {
+    this.sobres = value;
+  }
 
+  public get Sobre(): Sobre {
+    return this.sobre;
+  }
+  public set Sobre(value: Sobre) {
+    this.sobre = value;
+  }
 
+  public get MostrarTabla(): boolean {
+    return this.mostrarTabla;
+  }
+  public set MostrarTabla(value: boolean) {
+    this.mostrarTabla = value;
+  }
 
   BuscarDuplicados()
   {
+    let buscarDuplicadosIn:BuscarDuplicadosIn = new BuscarDuplicadosIn();
     this.listaDeBusqueda = this.textoIngresado.trim().split(/\r\n|\r|\n/);
+    this.listaDeBusqueda.forEach( nombre => {
+      let semilla:Semilla = new Semilla();
+      semilla.Nombre = nombre;
+      buscarDuplicadosIn.NombresDeSemillas.push(semilla);
+    });
+    
+    this.sobreServicio.BuscarDuplicados(buscarDuplicadosIn)
+    .subscribe( sobres => {
+      this.Sobres = sobres.Sobres;
+     }, err => {
+      //this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
+    });
+  }
+
+  VerDetalle(sobre:Sobre)
+  {
+    this.sobre = sobre;
   }
 }

@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-4 mb-3 ml-auto">
                 <span class="input-group">             
-                    <button class="btn btn-secondary" (click)="BuscarDuplicados()">
+                    <button class="btn btn-secondary" (click)="BuscarDuplicados();MostrarTabla = true">
                         <i id="iBuscar" class="bi bi-search"></i>
                         Buscar duplicados                
                     </button>
@@ -18,9 +18,28 @@
             </div>
             <div class="col-md-8"></div>
             <div class="col-md-3">
-                <textarea [(ngModel)]="TextoIngresado" class="form-label" rows="20" style="width: 100%;">
+                <textarea [(ngModel)]="TextoIngresado" class="form-label" rows="20" style="width: 100%;" *ngIf="!MostrarTabla">
 
                 </textarea>
+                <table *ngIf="MostrarTabla">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="nombre">Nombre Semilla</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let sobre of Sobres">
+                            <td>
+                                {{sobre.Semilla.Nombre}}
+                            </td>
+                            <td>
+                                <a (click)="VerDetalle(sobre)">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col-md-9">
                 <table class="table table-hover">
@@ -33,12 +52,11 @@
                     </thead>
                     <tbody>
                         <tr class="pointer">
-                            <!--*ngFor="let semilla of Semillas"-->
                             <td>
-                                <!-- {{semilla.Nombre}} -->
+                                {{Sobre.Semilla.Nombre}}
                             </td>
                             <td>
-                                <!-- {{semilla.FechaDeIngreso | date:'short' }} -->
+                                {{Sobre.Semilla.FechaDeIngreso | date:'short' }}
                             </td>
                             <td>
                                 <!-- {{semilla.Taxonomia.Nombre}} -->

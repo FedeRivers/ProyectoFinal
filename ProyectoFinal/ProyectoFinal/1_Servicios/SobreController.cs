@@ -43,5 +43,11 @@ namespace ProyectoFinal._1_Servicios
         {
             return new CRUDSobre().ExisteSobre(input);
         }
+
+        [HttpPost]
+        public BuscarDuplicadosOut BuscarDuplicados([FromBody]BuscarDuplicadosIn input)
+        {
+            return new CRUDSobre().BuscarDuplicados(input);
+        }
     }
 }

@@ -1,15 +1,18 @@
 import { Usuario } from '../../Components/Usuario/class/usuario';
-
 export class ModificarUsuarioIn{
-    private Usuario!: Usuario;
+    
+    private usuario: Usuario;
    
-    constructor(){}
-
-    public get usuario(): Usuario {
-        return this.Usuario;
+    constructor()
+    {
+        this.usuario = new Usuario();
     }
-    public set usuario(value: Usuario) {
-        this.Usuario = value;
+
+    public get Usuario(): Usuario {
+        return this.usuario;
+    }
+    public set Usuario(value: Usuario) {
+        this.usuario = value;
     }
 
 
