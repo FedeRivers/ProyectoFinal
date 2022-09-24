@@ -96,6 +96,7 @@ namespace ProyectoFinal._3_Persistencia
                             Nombre = result.nombre,
                             Apellido = result.apellido,
                             Mail = result.mail,
+                            Cedula = result.cedula,
                             Contrasena = result.contrasena,
                             TipoDeUsuario = new TipoDeUsuario { IdTipoDeUsuario = result.idTipoDeUsuario }
                         };

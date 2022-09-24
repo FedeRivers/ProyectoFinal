@@ -3,6 +3,8 @@ export const RecursosDeIdioma = {
     {
         CAMPO_OBLIGATORIO:'Este campo es obligatorio.',
         CAMPO_INVALIDO: 'El dato ingresado no es correcto.',
+        CONTRASENA_INVALIDA: 'La contraseña no es correcta.',
+        CONTRASENA_NUEVA: 'Las contraseñas no coinciden.',
     },
     MensajesServicios : 
     {
@@ -243,6 +245,7 @@ export const MetodosUrl = {
         MODIFICAR : 'ModificarSobre',
         LISTAR : 'ListarSobres',
         EXISTESOBRE : 'ExisteSobre',
+        BUSCARDUPLICADOS: 'BuscarDuplicados',
     },
     Alerta:
     {

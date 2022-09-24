@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <title>Datos personales</title>
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <form class="col-md-8 form border border-5">
+
+                <div class="input-group mb-3">
+                    <p class="h1">Datos Personales:</p>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanNombre">Nombre:</span>
+                    <input name="txtNombre" [(ngModel)]="Usuario.Nombre" class="form-control" readonly aria-label="txtNombre" aria-describedby="spanNombre">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanMail">Mail:</span>
+                    <input name="txtMail" [(ngModel)]="Usuario.Mail" class="form-control" readonly aria-label="txtMail" aria-describedby="spanMail">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanContrasena">Contraseña:</span>
+                    <input name="txtContrasena" type="password" [(ngModel)]="Contrasena" [disabled]="!CambiarContrasena" [ngClass]="Contrasena!=undefined || CambiarContrasena == true ? ValidarContrasena() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
+                        [placeholder]="Placeholder" aria-label="txtContrasena" aria-describedby="spanContrasena">
+                    <a class="input-group-text" (click)="CambiarContrasena = true"><i class="bi bi-pencil"></i></a>
+                    <div class="invalid-feedback">{{MensajeContrasenaInvalida}}</div>
+                </div>
+
+                <div class="input-group mb-3" *ngIf="CambiarContrasena">
+                    <span class="input-group-text" id="spanNuevaContrasena">Contraseña nueva:</span>
+                    <input name="txtNuevaContrasena" type="password" [(ngModel)]="ContrasenaNueva" [ngClass]="ContrasenaNueva!=undefined ? ValidarContrasenaNueva() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nueva contraseña"
+                        aria-label="txtNuevaContrasena" aria-describedby="spanNuevaContrasena">
+                    <div class="invalid-feedback">{{MensajeContrasenaNuevaInvalida}}</div>
+                </div>
+
+                <div class="input-group mb-3" *ngIf="CambiarContrasena">
+                    <span class="input-group-text" id="spanNuevaContrasenaConfirmar">Confirmar contraseña nueva:</span>
+                    <input name="txtNuevaContrasenaConfirmar" type="password" [(ngModel)]="ConfirmarContrasenaNueva" [ngClass]="ConfirmarContrasenaNueva!=undefined ? ValidarConfirmarContrasenaNueva() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Confirmar contraseña nueva"
+                        aria-label="txtNuevaContrasenaConfirmar" aria-describedby="spanNuevaContrasenaConfirmar">
+                    <div class="invalid-feedback">{{MensajeConfirmarContrasenaNuevaInvalida}}</div>
+                </div>
+
+                <div class="input-group mb-3" *ngIf="CambiarContrasena">
+                    <button [disabled]="!ValidarFormulario()" class="btn btn-outline-success mb-3" (click)="AbrirModal()">Cambiar Contraseña</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+<app-modal #modal (Aceptar)="CambiarContrasena = false" (Confirmar)="ModificarUsuario()"></app-modal>
+
+</html>

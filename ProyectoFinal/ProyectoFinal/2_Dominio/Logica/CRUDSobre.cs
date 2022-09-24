@@ -62,5 +62,15 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PSobre().ExisteSobre(input);
         }
+
+        public BuscarDuplicadosOut BuscarDuplicados(BuscarDuplicadosIn input)
+        {
+            var buscarDuplicadosOut =  new PSobre().BuscarDuplicados(input);
+            foreach (var sobre in buscarDuplicadosOut.Sobres)
+            {
+                sobre.Germinacion = new Estimaciones().EstimarGerminacion(sobre.Semilla.FechaDeIngreso);
+            }
+            return buscarDuplicadosOut;
+        }
     }
 }

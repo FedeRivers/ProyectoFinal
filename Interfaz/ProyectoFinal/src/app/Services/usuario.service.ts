@@ -10,7 +10,6 @@ import { MetodosUrl } from '../Components/Constantes/constantes';
 import { LoginOut } from '../Parametros/Salida/LoginOut';
 import { AltaUsuarioOut } from '../Parametros/Salida/AltaUsuarioOut';
 
-
 @Injectable({
   providedIn: 'root'
 })

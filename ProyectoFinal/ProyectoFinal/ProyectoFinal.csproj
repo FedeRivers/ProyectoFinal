@@ -189,6 +189,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloAlerta.dbml</DependentUpon>
     </Compile>
+    <Compile Include="3_Persistencia\Models\ModeloBuscarDuplicados.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloBuscarDuplicados.dbml</DependentUpon>
+    </Compile>
     <Compile Include="3_Persistencia\Models\ModeloCamara.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,6 +286,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloUsuario.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Parametros\Entrada\BuscarDuplicadosIn.cs" />
     <Compile Include="Parametros\Entrada\DesactivarAlertaIn.cs" />
     <Compile Include="Parametros\Entrada\AgregarModuloIn.cs" />
     <Compile Include="Parametros\Entrada\AltaAlertaIn.cs" />
@@ -335,6 +341,7 @@
     <Compile Include="Parametros\Salida\BajaTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\BajaUsuarioOut.cs" />
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
+    <Compile Include="Parametros\Salida\BuscarDuplicadosOut.cs" />
     <Compile Include="Parametros\Salida\DesactivarAlertaOut.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ExisteEspacioLibreOut.cs" />
@@ -418,6 +425,14 @@
     </Content>
     <None Include="3_Persistencia\Models\ModeloAlerta.dbml.layout">
       <DependentUpon>ModeloAlerta.dbml</DependentUpon>
+    </None>
+    <Content Include="3_Persistencia\Models\ModeloBuscarDuplicados.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ModeloBuscarDuplicados.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="3_Persistencia\Models\ModeloBuscarDuplicados.dbml.layout">
+      <DependentUpon>ModeloBuscarDuplicados.dbml</DependentUpon>
     </None>
     <None Include="3_Persistencia\Models\ModeloCamara.dbml.layout">
       <DependentUpon>ModeloCamara.dbml</DependentUpon>
