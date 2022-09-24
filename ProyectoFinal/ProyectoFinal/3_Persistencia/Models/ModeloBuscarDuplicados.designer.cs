@@ -79,6 +79,10 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private System.DateTime _tested_date;
 		
+		private System.Nullable<decimal> _quantity_on_hand;
+		
+		private string _species_name;
+		
 		public BuscarDuplicadosResult()
 		{
 		}
@@ -127,6 +131,38 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._tested_date != value))
 				{
 					this._tested_date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity_on_hand", DbType="Decimal(18,5)")]
+		public System.Nullable<decimal> quantity_on_hand
+		{
+			get
+			{
+				return this._quantity_on_hand;
+			}
+			set
+			{
+				if ((this._quantity_on_hand != value))
+				{
+					this._quantity_on_hand = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_species_name", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string species_name
+		{
+			get
+			{
+				return this._species_name;
+			}
+			set
+			{
+				if ((this._species_name != value))
+				{
+					this._species_name = value;
 				}
 			}
 		}

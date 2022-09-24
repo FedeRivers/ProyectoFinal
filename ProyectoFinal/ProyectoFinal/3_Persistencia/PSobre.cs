@@ -78,7 +78,8 @@ namespace ProyectoFinal._3_Persistencia
                         input.Sobre.Lote.NumeroLote,
                         input.Sobre.Semilla.IdSemilla,
                         input.Sobre.Estado.IdEstado,
-                        input.Sobre.FechaEstimada
+                        input.Sobre.FechaEstimada,
+                        input.Sobre.Peso
                         );
                     if (result != -1)
                     {
@@ -115,6 +116,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Humedad = sobre.humedad,
                                 Germinacion = sobre.germinacion,
                                 Vigor = sobre.vigor,
+                                Peso = sobre.peso,
                                 Lote = new Lote
                                 {
                                     NumeroLote = sobre.numeroLote,
@@ -227,6 +229,7 @@ namespace ProyectoFinal._3_Persistencia
                 {
                     foreach (var semilla in input.NombresDeSemillas)
                     {
+
                         var result = dataContext.BuscarDuplicados(semilla.Nombre).FirstOrDefault();
                         if (result != null)
                         {
@@ -235,9 +238,27 @@ namespace ProyectoFinal._3_Persistencia
                                 Semilla = new Semilla
                                 {
                                     Nombre = result.plant_name,
-                                    FechaDeIngreso = result.tested_date
+                                    FechaDeIngreso = result.tested_date,
+                                    Taxonomia = new Taxonomia
+                                    {
+                                        Nombre = result.species_name
+                                    }
                                 },
-                                Germinacion = result.percent_viable                            
+                                Germinacion = result.percent_viable,
+                                Peso = result.quantity_on_hand,
+                            });
+                        }
+                        else
+                        {
+                            output.Sobres.Add(new Sobre
+                            {
+                                Semilla = new Semilla
+                                {
+                                    Nombre = semilla.Nombre,
+                                    Taxonomia = new Taxonomia()   
+                                },
+                                Germinacion = 0,
+                                Peso = 0,
                             });
                         }
                     }

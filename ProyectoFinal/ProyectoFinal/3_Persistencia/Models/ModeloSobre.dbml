@@ -39,6 +39,7 @@
     <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
     <Parameter Name="FechaEstimada" Parameter="fechaEstimada" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="peso" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ListarSobres" Method="ListarSobres">
@@ -49,6 +50,7 @@
     <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Decimal" DbType="Decimal(18,0)" />
     <ElementType Name="ListarSobresResult">
       <Column Name="numeroSobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="peso" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
       <Column Name="fila" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="columna" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
