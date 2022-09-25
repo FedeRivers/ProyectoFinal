@@ -6,8 +6,9 @@
 </head>
 
 <body>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <div class="row">
+            <div class="col-md-2"></div>
             <div class="col-md-4 mb-3 ml-auto">
                 <span class="input-group">             
                     <button class="btn btn-secondary" (click)="BuscarDuplicados();MostrarTabla = true">
@@ -16,50 +17,65 @@
                     </button>
                 </span>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-6"></div>
+
+
+            <div class="col-md-2 card mb-3" style="max-height:200px">
+                <div class="card-body">
+                    <h3 class="card-text"><i class="bi bi-file-fill" style="font-size: 30px;Color:#c3e6cb;"></i>No duplicado</h3>
+                    <h3 class="card-text"><i class="bi bi-file-fill" style="font-size: 30px;Color:#f5c6cb;"></i>Duplicado</h3>
+                    <h3 class="card-text"><i class="bi bi-file-fill" style="font-size: 30px;Color:#b8daff;"></i>No existe</h3>
+                </div>
+            </div>
+
+
             <div class="col-md-3">
                 <textarea [(ngModel)]="TextoIngresado" class="form-label" rows="20" style="width: 100%;" *ngIf="!MostrarTabla">
 
                 </textarea>
-                <table *ngIf="MostrarTabla">
-                    <thead class="table-primary">
+                <table *ngIf="MostrarTabla" class="table table-hover">
+                    <thead class="table">
                         <tr>
                             <th scope="col" sortable="nombre">Nombre Semilla</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="pointer" *ngFor="let sobre of Sobres">
-                            <td>
+                        <tr #TablaD class="pointer" *ngFor="let sobre of Sobres; let i = index">
+                            <td [ngClass]="ValidarDuplicado(sobre)">
                                 {{sobre.Semilla.Nombre}}
                             </td>
                             <td>
-                                <a (click)="VerDetalle(sobre)">
-                                    <i class="bi bi-eye-fill"></i>
+                                <a (click)="VerDetalle(sobre)" *ngIf="sobre.Semilla.Taxonomia.Nombre!=null">
+                                    <i class="bi bi-eye-fill" data-toggle="tooltip" data-placement="top" title="Ver detalles"></i>
                                 </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <table class="table table-hover">
                     <thead class="table-primary">
                         <tr>
-                            <th scope="col" sortable="nombre">Nombre Semilla</th>
-                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
                             <th scope="col" sortable="Taxonomia">Taxonomía</th>
+                            <th scope="col" sortable="germinacion">Germinación actual</th>
+                            <th scope="col" sortable="Peso">Peso</th>
+                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="pointer">
                             <td>
-                                {{Sobre.Semilla.Nombre}}
+                                {{Sobre.Semilla.Taxonomia.Nombre}}
+                            </td>
+                            <td>
+                                {{Sobre.Germinacion}}
+                            </td>
+                            <td>
+                                {{Sobre.Peso}}
                             </td>
                             <td>
                                 {{Sobre.Semilla.FechaDeIngreso | date:'short' }}
-                            </td>
-                            <td>
-                                <!-- {{semilla.Taxonomia.Nombre}} -->
                             </td>
                         </tr>
                     </tbody>

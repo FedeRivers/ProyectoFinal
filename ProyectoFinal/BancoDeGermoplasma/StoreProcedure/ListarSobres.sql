@@ -9,6 +9,7 @@ BEGIN
 
 	SELECT
 	so.numeroSobre,
+	so.peso,
 	ub.fila,
 	ub.columna,
 	ca.nombre,

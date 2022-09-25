@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gringlobal" Class="ModeloBuscarDuplicadosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESS02;Initial Catalog=gringlobal;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GrinGlobalConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESS02;Initial Catalog=gringlobal;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GrinGlobalConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.BuscarDuplicados" Method="BuscarDuplicados">
     <Parameter Name="nombre" Type="System.String" DbType="VarChar(100)" />
     <ElementType Name="BuscarDuplicadosResult">
       <Column Name="plant_name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="percent_viable" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="tested_date" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="quantity_on_hand" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
+      <Column Name="species_name" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

@@ -13,6 +13,7 @@ export class Sobre{
     private germinacion!: number;
     private vigor!: number;
     private lote: Lote;
+    private peso!: number;
     private estado: Estado;
     private semilla: Semilla;
     private activo!: boolean;
@@ -84,6 +85,13 @@ export class Sobre{
     }
     public set Lote(value: Lote) {
         this.lote = value;
+    }
+
+    public get Peso(): number {
+        return this.peso;
+    }
+    public set Peso(value: number) {
+        this.peso = value;
     }
     
     public get Estado(): Estado {

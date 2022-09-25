@@ -27,6 +27,8 @@ namespace ProyectoFinal._2_Dominio.Entidades
 
         public Lote Lote { get; set; }
 
+        public decimal? Peso { get; set; }
+
         public Semilla Semilla { get; set; }
 
         public Estado Estado { get; set; }

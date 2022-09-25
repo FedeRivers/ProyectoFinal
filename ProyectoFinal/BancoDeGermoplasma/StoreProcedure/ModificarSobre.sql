@@ -7,14 +7,16 @@
 	@NumeroLote int,
 	@IdSemilla int,
 	@IdEstado int,
-	@FechaEstimada dateTime
+	@FechaEstimada dateTime,
+	@peso decimal
 AS
 BEGIN
 	BEGIN TRY
 		UPDATE Sobres SET 
 		numeroLote = @NumeroLote, 
 		idSemilla = @IdSemilla, 
-		idEstado = @IdEstado 
+		idEstado = @IdEstado,
+		peso = @peso
 		WHERE numeroSobre = @NumeroSobre
 		IF @Humedad IS NOT NULL OR @Germinacion IS NOT NULL OR @Vigor IS NOT NULL
 			BEGIN

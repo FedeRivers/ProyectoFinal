@@ -10,7 +10,9 @@
 	[vigor] FLOAT NULL, 
     [numeroLote] INT NOT NULL, 
     [idSemilla] INT NOT NULL, 
-    [idEstado] INT NULL DEFAULT 1 ,
+    [idEstado] INT NULL DEFAULT 1,
+	[peso] DECIMAL(18, 5) NULL, 
+
     CONSTRAINT [FK_Sobres_Lotes] FOREIGN KEY ([numeroLote]) REFERENCES [Lotes]([numeroLote]),
 	CONSTRAINT [FK_Sobres_Semillas] FOREIGN KEY ([idSemilla]) REFERENCES [Semillas]([idSemilla]),
 	CONSTRAINT [FK_Sobres_Estados] FOREIGN KEY ([idEstado]) REFERENCES [Estados]([idEstado]),
