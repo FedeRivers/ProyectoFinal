@@ -26,14 +26,8 @@ BEGIN
 				vigor = @Vigor,
 				fechaEstimada = @FechaEstimada
 				WHERE idSemilla = @IdSemilla and numeroLote = @NumeroLote
-			END
-		IF @IdEstado = 4 OR @IdEstado = 5 -- Germinando | Analizando humedad
-			BEGIN
-				UPDATE Sobres SET
-				idEstado = 7
-				WHERE idSemilla = @IdSemilla and numeroLote = @NumeroLote and numeroSobre <> @NumeroSobre
-			END
-		IF @IdEstado = 6 --Destruido
+			END		
+		IF @IdEstado = 4 --Destruido
 			BEGIN
 				UPDATE Sobres SET 
 				activo = 0

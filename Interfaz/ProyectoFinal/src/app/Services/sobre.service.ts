@@ -10,6 +10,7 @@ import { ModificarSobreIn } from '../Parametros/Entrada/ModificarSobre';
 import { BuscarDuplicadosOut } from '../Parametros/Salida/BuscarDuplicadosOut';
 import { ExisteSobreOut } from '../Parametros/Salida/ExisteSobreOut';
 import { ListarSobresOut } from '../Parametros/Salida/ListarSobresOut';
+import { ModificarSobreOut } from '../Parametros/Salida/ModificarSobreOut';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class SobreService {
   }
 
   public Modificar(modificarSobreIn:ModificarSobreIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.Sobre.MODIFICAR}`,modificarSobreIn);
+    return this.http.post<ModificarSobreOut>(`${this.baseUrl+MetodosUrl.Sobre.MODIFICAR}`,modificarSobreIn);
   }
 
   public Listar(listarSobreIn:ListarSobreIn){

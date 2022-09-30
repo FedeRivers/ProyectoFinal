@@ -145,6 +145,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al modificar el sobre.',
                 EXITO:'Sobre modificado con éxito.',
+                CAMARALLENA: 'La cámara a la cual envía el sobre, está llena.'
             },
             Listar:
             {
@@ -182,6 +183,7 @@ export const RecursosDeIdioma = {
         INGRESARHUMEDAD:'Ingresar humedad',
         BUSCARDUPLICADOS: 'Buscar duplicados',
         ESTADISTICAS: 'Estadistica',
+        SECADO: 'Secado',
     },
 }
 
@@ -257,6 +259,21 @@ export const Camaras = {
     SECADO : 1,
     HUMEDAD : 2,
     GERMINACION : 3,
+}
+
+export const Estados = {
+    RECIBIDO : 1,
+	ANALIZANDOHUMEDAD : 2,
+    GERMINANDO : 3,
+    DESTRUIDO : 4,
+    ESPERANDOHUMEDAD : 5,
+    HUMEDADINGRESADA : 6,
+    ESPERANDOGERMINACION : 7,
+	GERMINACIONINGRESADA : 8,	   
+    ESPERANDOHUMEDADYGERMINACION : 9,
+    LISTOPARASECAR : 10,
+	SECANDO : 11,
+    DEVUELTO : 12,
 }
 
 export const ExpresionesRegulares = {

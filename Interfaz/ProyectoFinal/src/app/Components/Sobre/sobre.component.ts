@@ -7,7 +7,7 @@ import { Lote } from '../Lote/class/lote';
 import { SobreService } from 'src/app/Services/sobre.service';
 import { AltaSobreIn } from 'src/app/Parametros/Entrada/AltaSobreIn';
 import { Sobre } from './class/sobre';
-import { RecursosDeIdioma } from '../Constantes/constantes';
+import { Camaras, Estados, RecursosDeIdioma } from '../Constantes/constantes';
 import { BajaSobreIn } from 'src/app/Parametros/Entrada/BajaSobre';
 import { ModificarSobreIn } from 'src/app/Parametros/Entrada/ModificarSobre';
 import { ListarSobreIn } from 'src/app/Parametros/Entrada/ListarSobreIn';
@@ -163,12 +163,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   public set Semillas(value: Semilla[]) {
     this.semillas = value;
   }
-  public get Estado(): Estado {
-    return this.estado;
-  }
-  public set Estado(value: Estado) {
-    this.estado = value;
-  }
+
   public get Estados(): Estado[] {
     return this.estados;
   }
@@ -349,11 +344,13 @@ export class SobreComponent extends FormularioBase implements OnInit {
   ModificarSobre()
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
+    this.sobre.Estado = this.estado;
     modificarSobreIn.Sobre = this.sobre;
     modificarSobreIn.IdTipoDeUsuario = this.idTipoDeUsuario;
     this.sobreServicio.Modificar(modificarSobreIn)
-      .subscribe( sobre => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.EXITO,false);
+      .subscribe( resp => {
+        resp.CamaraLlena ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.CAMARALLENA,true) 
+         : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.EXITO,false);
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.ERROR,true);
       });
@@ -483,21 +480,21 @@ export class SobreComponent extends FormularioBase implements OnInit {
         break;
       case "Secar":
         this.btnSecar = true;
-        this.sobre.Estado.IdEstado = 3;
-        this.sobre.Ubicacion.Camara.IdCamara = 1;
+        this.estado.IdEstado = Estados.SECANDO;
+        this.sobre.Ubicacion.Camara.IdCamara = Camaras.SECADO;
         this.AbrirModal();
         break;
       case "Germinar":
         this.btnGerminar = true;
         this.idTipoDeUsuario = 3;
-        this.sobre.Estado.IdEstado = 4;
-        this.sobre.Ubicacion.Camara.IdCamara = 3;
+        this.estado.IdEstado = Estados.GERMINANDO;
+        this.sobre.Ubicacion.Camara.IdCamara = Camaras.GERMINACION;
         this.AbrirModal();
         break;
       case "TomarHumedad":
         this.btnTomarHumedad = true;
-        this.sobre.Estado.IdEstado = 5;
-        this.sobre.Ubicacion.Camara.IdCamara = 2;
+        this.estado.IdEstado = Estados.ANALIZANDOHUMEDAD;
+        this.sobre.Ubicacion.Camara.IdCamara = Camaras.HUMEDAD;
         this.AbrirModal();
         break;
     }

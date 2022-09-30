@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListarSobreIn } from 'src/app/Parametros/Entrada/ListarSobreIn';
 import { ModificarSobreIn } from 'src/app/Parametros/Entrada/ModificarSobre';
 import { SobreService } from 'src/app/Services/sobre.service';
-import { RecursosDeIdioma } from '../Constantes/constantes';
+import { RecursosDeIdioma, Estados } from '../Constantes/constantes';
 import { FormularioBase } from '../FormularioBase/class/formularioBase';
 import { ModalComponent } from '../Modal/modal.component';
 import { Sobre } from '../Sobre/class/sobre';
@@ -103,6 +103,11 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   IngresarGerminacion()
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
+    if(this.vigorDeshabilitado)
+    {
+      this.sobre.Estado.IdEstado = Estados.DESTRUIDO;
+      this.sobre.Ubicacion.Camara.IdCamara = 3; 
+    }
     modificarSobreIn.Sobre = this.sobre;
     this.sobreServicio.Modificar(modificarSobreIn)
       .subscribe( sobre => {
@@ -115,7 +120,7 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   Listar()
   {
     let listarSobreIn: ListarSobreIn = new ListarSobreIn();
-    listarSobreIn.IdEstado = 4;
+    listarSobreIn.IdEstado = Estados.GERMINANDO;
     this.sobres = [];
     this.sobreServicio.Listar(listarSobreIn)
       .subscribe( lista => {

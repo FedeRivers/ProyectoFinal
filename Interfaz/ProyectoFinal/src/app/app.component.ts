@@ -22,6 +22,8 @@ export class AppComponent {
   private moduloIngresarGerminacion: boolean = false;
   private moduloBuscarDuplicados: boolean = false;
   private moduloEstadisticas: boolean = false;
+  private moduloSecado: boolean = false;
+
 
   constructor(){
     this.usuario = new Usuario();
@@ -122,6 +124,13 @@ export class AppComponent {
     this.moduloEstadisticas = value;
   }
 
+  public get ModuloSecado(): boolean {
+    return this.moduloSecado;
+  }
+  public set ModuloSecado(value: boolean) {
+    this.moduloSecado = value;
+  }
+
 
   ListarFormularios(usuario:Usuario)
   {
@@ -159,6 +168,8 @@ export class AppComponent {
           break;
         case RecursosDeIdioma.Formularios.ESTADISTICAS: this.ModuloEstadisticas = true;
           break;
+        case RecursosDeIdioma.Formularios.SECADO: this.moduloSecado = true;
+          break;
       }
     });
   }
@@ -178,6 +189,7 @@ export class AppComponent {
     this.moduloIngresarGerminacion = false;
     this.moduloBuscarDuplicados = false;
     this.moduloEstadisticas = false;
+    this.moduloSecado = false;
   }
 
 

@@ -113,6 +113,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Activo = sobre.activoSobre,
                                 FechaDeIngreso = sobre.ingresoSobre,
                                 FechaDeDevolucion = sobre.fechaDeDevolucion,
+                                FechaEstimada = sobre.fechaEstimada,
                                 Humedad = sobre.humedad,
                                 Germinacion = sobre.germinacion,
                                 Vigor = sobre.vigor,
@@ -208,7 +209,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.Columna, input.NumeroSobre);
+                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.Columna, input.NumeroSobre, input.IdEstado);
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)
@@ -266,6 +267,70 @@ namespace ProyectoFinal._3_Persistencia
                 }
                 catch (Exception ex)
                 {
+                }
+            }
+            return output;
+        }
+
+
+        public ObtenerSobreOut ObtenerSobre(ObtenerSobreIn input)
+        {
+            var output = new ObtenerSobreOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ObtenerSobre(input.NumeroLote,input.IdSemilla).FirstOrDefault();
+                    if (result != null)
+                    {
+                        output.Sobre = new Sobre
+                        {
+                            NumeroSobre = result.numeroSobre,
+                            Activo = result.activo,
+                            FechaDeDevolucion = result.fechaDeDevolucion,
+                            FechaDeIngreso = result.fechaDeIngreso,
+                            Humedad = result.humedad,
+                            Germinacion = result.germinacion,
+                            Vigor = result.vigor,
+                            Lote = new Lote
+                            {
+                                NumeroLote = result.numeroLote
+                            },
+                            Semilla = new Semilla
+                            {
+                                IdSemilla = result.idSemilla
+                            },
+                            Estado = new Estado
+                            {
+                                IdEstado = int.Parse(result.idEstado.ToString())
+                            },
+                            Peso = result.peso                  
+                        };
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+
+        }
+
+        public ModificarEstadosOut ModificarEstados(ModificarEstadosIn input)
+        {
+            var output = new ModificarEstadosOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ModificarEstados(input.Sobre.Lote.NumeroLote, input.Sobre.Semilla.IdSemilla,input.Sobre.Estado.IdEstado);               
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
                 }
             }
             return output;

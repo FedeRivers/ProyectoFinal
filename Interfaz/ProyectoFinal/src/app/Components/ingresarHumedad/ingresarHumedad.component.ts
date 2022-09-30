@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListarSobreIn } from 'src/app/Parametros/Entrada/ListarSobreIn';
 import { ModificarSobreIn } from 'src/app/Parametros/Entrada/ModificarSobre';
 import { SobreService } from 'src/app/Services/sobre.service';
-import { RecursosDeIdioma } from '../Constantes/constantes';
+import { Estados, RecursosDeIdioma } from '../Constantes/constantes';
 import { FormularioBase } from '../FormularioBase/class/formularioBase';
 import { ModalComponent } from '../Modal/modal.component';
 import { Sobre } from '../Sobre/class/sobre';
@@ -82,7 +82,8 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
   IngresarHumedad()
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
-    this.sobre.Estado.IdEstado = 6;
+    this.sobre.Estado.IdEstado = Estados.DESTRUIDO;
+    this.sobre.Ubicacion.Camara.IdCamara = 2;
     modificarSobreIn.Sobre = this.sobre;
     this.sobreServicio.Modificar(modificarSobreIn)
       .subscribe( sobre => {
@@ -94,7 +95,7 @@ export class IngresarHumedadComponent extends FormularioBase implements OnInit {
 
   Listar()
   {
-    this.listarSobreIn.IdEstado = 5;
+    this.listarSobreIn.IdEstado = Estados.ANALIZANDOHUMEDAD;
     this.sobres = [];
     this.sobreServicio.Listar(this.listarSobreIn)
       .subscribe( lista => {

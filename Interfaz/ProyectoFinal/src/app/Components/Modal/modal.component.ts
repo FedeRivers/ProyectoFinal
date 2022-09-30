@@ -11,7 +11,7 @@ export class ModalComponent implements OnInit {
   private aceptar: EventEmitter<string>;
   private confirmar: EventEmitter<string>;
   private mensaje: string = '';
-  private error: boolean = false;
+  private error: boolean;
   private confirmado: boolean = false;
  
   @ViewChild("content") content!: TemplateRef<any>;
@@ -19,6 +19,7 @@ export class ModalComponent implements OnInit {
  
   constructor(config?: NgbModalConfig,private modalService?: NgbModal) { 
     this.Mensaje = RecursosDeIdioma.MensajesServicios.Confirmacion.PREGUNTA;
+    this.error = false;
     if(config!=undefined)
     {
       config.backdrop = 'static';
@@ -82,6 +83,7 @@ export class ModalComponent implements OnInit {
         this.confirmar.emit();
         this.confirmado=true;
       } 
+      this.error = false;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       if(this.confirmado)
@@ -89,6 +91,7 @@ export class ModalComponent implements OnInit {
         this.aceptar.emit();
         this.confirmado=false;
       }
+      this.error = false;
     });
   }
 
