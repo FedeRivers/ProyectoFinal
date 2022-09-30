@@ -90,12 +90,17 @@ SET IDENTITY_INSERT [dbo].[Estados] ON
 MERGE INTO [dbo].[Estados] AS TARGET 
 USING (
 	VALUES (1, N'Recibido'),
-		   (2, N'Devuelto'),
-		   (3, N'Secando'),
-		   (4, N'Germinando'),
-		   (5, N'Analizando humedad'),
-		   (6, N'Destruido'),
-		   (7, N'Esperando resultados')
+		   (2, N'Analizando humedad'),
+		   (3, N'Germinando'),
+		   (4, N'Destruido'),
+		   (5, N'Esperando humedad'),
+		   (6, N'Humedad ingresada'),
+		   (7, N'Esperando germinación'),
+		   (8, N'Germinación ingresada'),
+		   (9, N'Esperando humedad y germinación'),
+		   (10, N'Listo para secar'),
+		   (11, N'Secando'),
+		   (12, N'Devuelto')
 ) AS SOURCE ( NewIdEstado, NewNombre )
 ON TARGET.[idEstado] = SOURCE.NewIdEstado
 WHEN MATCHED THEN 
@@ -248,7 +253,11 @@ USING (
 		   (56, 1, NULL, CAST(N'2022-09-01 20:06:42.553' AS DateTime), 0, 0, NULL, 2, 2, 1),
 		   (69, 1, NULL, CAST(N'2022-09-01 20:08:20.287' AS DateTime), 0, 0, NULL, 52, 2, 1),
 		   (95, 1, NULL, CAST(N'2022-09-01 20:07:57.013' AS DateTime), 0, 0, NULL, 1, 3, 1),
-		   (363, 1, NULL, CAST(N'2022-09-01 20:09:50.947' AS DateTime), 0, 0, NULL, 3, 1, 1)
+		   (363, 1, NULL, CAST(N'2022-09-01 20:09:50.947' AS DateTime), 0, 0, NULL, 3, 1, 1),
+		   (48, 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 2, 2, 1),
+		   (49, 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 2, 2, 1),
+		   (50, 1, NULL, CAST(N'2022-09-01 20:03:34.167' AS DateTime), 0, 0, NULL, 2, 2, 1)
+
 ) AS SOURCE ( NewNumeroSobre, NewActivo, NewFechaDeDevolucion, NewFechaDeIngreso, NewHumedad, NewGerminacion, NewVigor, NewNumeroLote, NewIdSemilla, NewIdEstado )
 ON TARGET.[numeroSobre] = SOURCE.NewNumeroSobre
 WHEN MATCHED THEN 

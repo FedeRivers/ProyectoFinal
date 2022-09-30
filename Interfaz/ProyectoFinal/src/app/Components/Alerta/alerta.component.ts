@@ -67,7 +67,7 @@ export class AlertaComponent implements OnInit {
     this.listaMensajesAlertas = [];
     this.alertas.forEach(alerta => {
       let mensajeAlerta:MensajeAlerta = new MensajeAlerta();
-      if( alerta.IdCamara == Camaras.HUMEDAD )
+      if( alerta.IdCamara == Camaras.SECADO )
       {
         mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.HUMEDAD;
         mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.HUMEDAD,alerta.NombreSemilla,alerta.NumeroLote.toString());

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <title>Secado</title>
+</head>
+
+<body>
+    <div class="container-fluid text-center">
+        <div class="row" *ngIf="!EstaSeleccionado">
+            <div class="col-md-12 border p-3 border-opacity-10 mt-5 ">
+                <div class="row">
+                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                        <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
+                        <input [(ngModel)]="NumeroSobre" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
+                    </div>
+
+                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                        <span class="input-group-text" id="spanBusquedaNumeroLote">Lote:</span>
+                        <input [(ngModel)]="NumeroLote" name="txtBusquedaNumeroLote" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroLote" aria-describedby="spanBusquedaNumeroLote">
+                    </div>
+
+                    <div class="input-group mb-3 col-md-3 col-lg-3">
+                        <span class="input-group-text" id="spanBusquedaNombreSemilla">Semilla:</span>
+                        <input [(ngModel)]="NombreSemilla" name="txtBusquedaNombreSemilla" class="form-control" style="height:auto;" placeholder="Buscar por nombre de semilla" aria-label="txtBusquedaNombreSemilla" aria-describedby="spanBusquedaNombreSemilla">
+                    </div>
+
+                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                        <span class="input-group-text" id="spanBusquedaEstado">Estado:</span>
+                        <select name="txtBusquedaEstado" class="form-select form-control" [(ngModel)]="EstadoSobre" style="height:auto;" aria-label="txtBusquedaEstado" aria-describedby="spanBusquedaEstado">
+                        <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
+                            {{estado.Nombre}}
+                        </option>
+                    </select>
+                    </div>
+
+                    <div class="mb-3 col-md-1 col-lg-1">
+                        <span>             
+                        <button [disabled]="SobresAExportar.length == 0" class="btn btn-success" (click)="exportarExcel()">
+                            <i id="iAgregar" class="bi bi-filetype-xls"></i>
+                            Exportar                
+                        </button>
+                    </span>
+                    </div>
+
+                </div>
+                <table class="table table-hover col-md-12 col-lg-12">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" sortable="numero">Numero de sobre</th>
+                            <th scope="col" sortable="lote">Lote</th>
+                            <th scope="col" sortable="Fila">Fila</th>
+                            <th scope="col" sortable="ubicacion">Columna</th>
+                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                            <th scope="col" sortable="humedad">Humedad</th>
+                            <th scope="col" sortable="germinacion">Germinacion</th>
+                            <th scope="col" sortable="peso">Peso</th>
+                            <th scope="col" sortable="semilla">Semilla</th>
+                            <th scope="col" sortable="estado">Estado</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let sobre of Sobres">
+                            <td>
+                                <div *ngIf="sobre.Humedad < 7">
+                                    <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="Seleccionar($event,'Check',sobre)">
+                                </div>
+                            </td>
+                            <td>
+                                {{sobre.NumeroSobre}}
+                            </td>
+                            <td>
+                                {{sobre.Lote.NumeroLote }}
+                            </td>
+                            <td>
+                                {{sobre.Ubicacion.Fila}}
+                            </td>
+                            <td>
+                                {{sobre.Ubicacion.Columna}}
+                            </td>
+                            <td>
+                                {{sobre.FechaDeIngreso | date:'short' }}
+                            </td>
+                            <td>
+                                {{sobre.Humedad }}
+                            </td>
+                            <td>
+                                {{sobre.Germinacion }}
+                            </td>
+                            <td>
+                                {{sobre.Peso}}
+                            </td>
+                            <td>
+                                {{sobre.Semilla.Nombre }}
+                            </td>
+                            <td>
+                                {{sobre.Estado.Nombre }}
+                            </td>
+                            <td>
+                                <a (click)="Seleccionar($event,'Editar',sobre)"><i class="bi bi-pencil" *ngIf="sobre.Humedad <= 7" data-toggle="tooltip" data-placement="top" title="Ingresar peso"></i></a>
+                            </td>
+                            <td>
+                                <span class="input-group">             
+                                <button class="btn btn-secondary" (click)="BotonSeleccionado('TomarHumedad')">
+                                    <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
+                                    Tomar Humedad             
+                                </button>
+                            </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between p-2">
+                    <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
+                    <!-- </ngb-pagination> -->
+
+                    <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
+                    <!-- <option [ngValue]="2">2 items per page</option> -->
+                    <!-- <option [ngValue]="4">4 items per page</option> -->
+                    <!-- <option [ngValue]="6">6 items per page</option> -->
+                    <!-- </select> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
+            <form class="col-md-4 form border border-5">
+                <div class="col-md-12">
+                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanPeso">Peso:</span>
+                    <input [(ngModel)]="Sobre.Peso" name="txtPeso" class="form-control" style="height:auto;" [ngClass]="Sobre.Peso!=undefined ? ValidarPeso() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese peso" aria-label="txtPeso"
+                        aria-describedby="spanPeso">
+                    <div class="invalid-feedback">{{MensajePesoInvalido}}</div>
+                </div>
+
+                <div class="">
+                    <button [disabled]="!ValidarFormulario()" (click)="Seleccionar($event,'IngresarPeso')" class="btn btn-outline-success mr-1 mb-3">Ingresar peso</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+<app-modal #modal (Confirmar)="Confirmar()"></app-modal>
+
+</html>

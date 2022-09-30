@@ -161,6 +161,7 @@
     <Compile Include="1_Servicios\UsuarioController.cs" />
     <Compile Include="2_Dominio\Entidades\Alerta.cs" />
     <Compile Include="2_Dominio\Entidades\Camara.cs" />
+    <Compile Include="2_Dominio\Entidades\EnumeradoEstados.cs" />
     <Compile Include="2_Dominio\Entidades\Estado.cs" />
     <Compile Include="2_Dominio\Entidades\Lote.cs" />
     <Compile Include="2_Dominio\Entidades\Mejorador.cs" />
@@ -319,12 +320,14 @@
     <Compile Include="Parametros\Entrada\ListarTiposDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
     <Compile Include="Parametros\Entrada\LoginIn.cs" />
+    <Compile Include="Parametros\Entrada\ModificarEstadosIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarLoteIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarSemillaIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\ModificarUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\ObtenerSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ParametroBaseIn.cs" />
     <Compile Include="Parametros\Salida\AgregarModuloOut.cs" />
     <Compile Include="Parametros\Salida\AltaLoteOut.cs" />
@@ -359,12 +362,14 @@
     <Compile Include="Parametros\Salida\ListarTiposDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
     <Compile Include="Parametros\Salida\LoginOut.cs" />
+    <Compile Include="Parametros\Salida\ModificarEstadosOut.cs" />
     <Compile Include="Parametros\Salida\ModificarLoteOut.cs" />
     <Compile Include="Parametros\Salida\ModificarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ModificarSemillaOut.cs" />
     <Compile Include="Parametros\Salida\ModificarSobreOut.cs" />
     <Compile Include="Parametros\Salida\ModificarTaxonomiaOut.cs" />
     <Compile Include="Parametros\Salida\ModificarUsuarioOut.cs" />
+    <Compile Include="Parametros\Salida\ObtenerSobreOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

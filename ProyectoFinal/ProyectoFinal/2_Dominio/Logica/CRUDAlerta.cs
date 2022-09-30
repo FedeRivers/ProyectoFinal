@@ -23,12 +23,15 @@ namespace ProyectoFinal._2_Dominio.Logica
                 input.FechaDeEjecucion = DateTime.Now.AddDays(7);
                 input.Sobre.Ubicacion.Camara.IdCamara = 3;
             }
-            else if (input.Sobre.Humedad > 7 && input.IdTipoDeUsuario == 1)//Cuando se envía a analizar la humedad.
+            else if (input.Sobre.Humedad > 7 && input.IdTipoDeUsuario == 4)//Cuando se ingresa la humedad al sobre.
             {
                 input.FechaDeEjecucion = Convert.ToDateTime(new Estimaciones().EstimarHumedad(input.Sobre.Humedad));//Cálculo para estimar la fecha
-                input.Sobre.Ubicacion.Camara.IdCamara = 2;
+                input.Sobre.Ubicacion.Camara.IdCamara = 1;
             }
-            new PAlerta().AltaAlerta(input);
+            if (input.FechaDeEjecucion > DateTime.Now)//No crear alerta repetida.
+            {
+                new PAlerta().AltaAlerta(input);
+            }
         }
 
         public ListarAlertasOut ListarAlertas(ListarAlertasIn input)

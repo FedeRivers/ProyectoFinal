@@ -23,6 +23,7 @@ import { EstadisticaComponent } from './Components/Estadistica/estadistica.compo
 import { MoversobresComponent } from './Components/moverSobres/moverSobres.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DatosPersonalesComponent } from './Components/DatosPersonales/datosPersonales.component';
+import { SecadoComponent } from './Components/secado/secado.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DatosPersonalesComponent } from './Components/DatosPersonales/datosPers
     EstadisticaComponent,
     MoversobresComponent,
     DatosPersonalesComponent,
+    SecadoComponent,
   ],
   imports: [
     BrowserModule,
