@@ -13,6 +13,7 @@ import { Semilla } from '../Semilla/class/semilla';
 import { Usuario } from '../Usuario/class/usuario';
 import { Sobre } from 'src/app/Components/Sobre/class/sobre';
 import * as XLSX from 'xlsx';
+import { ExportarExcelIn } from '../../Parametros/Entrada/ExportarExcelIn';
 
 @Component({
   selector: 'app-secado',
@@ -168,6 +169,7 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
       .subscribe( resp => {
         resp.CamaraLlena ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.CAMARALLENA,true) 
          : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.EXITO,false);
+         this.ListarSobres();
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.ERROR,true);
       });
@@ -202,13 +204,22 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
     });
   }
 
-  exportarExcel(): void {
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
+  exportarExcel():void {
+    let exportarExcelIn = new ExportarExcelIn();
+    exportarExcelIn.Sobres = this.sobresAExportar;
+    this.sobreServicio.ExportarExcel(exportarExcelIn)
+    .subscribe( resp =>{
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
 
-    const book: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+      const book: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+  
+      XLSX.writeFile(book, 'pruebaExcel.xlsx');
+      }, err => {
+      this.modal.Error = true;
+      this.modal.open();
+    });
 
-    XLSX.writeFile(book, 'pruebaExcel.xlsx');
   }
 
 
@@ -243,13 +254,14 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
     {
       case "IngresarPeso":
         this.btnIngresarPeso = true;
+        this.estado.IdEstado = Estados.LISTOPARAEXPORTAR;
         this.AbrirModal();
         break;
-      case "TomarHumedad":
-        this.btnTomarHumedad = true;
-        this.estado.IdEstado = Estados.ANALIZANDOHUMEDAD;
-        this.sobre.Ubicacion.Camara.IdCamara = Camaras.HUMEDAD;
-        this.AbrirModal();
+        case "TomarHumedad":
+          this.btnTomarHumedad = true;
+          this.estado.IdEstado = Estados.ANALIZANDOHUMEDAD;
+          this.sobre.Ubicacion.Camara.IdCamara = Camaras.HUMEDAD;
+          this.AbrirModal();
         break;
       case "Editar":
         this.EstaSeleccionado = true;
@@ -265,14 +277,18 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
 
   Regresar()
   {
-    this.sobre= new Sobre();
-    this.Ocultar();
+    if(this.btnIngresarPeso)
+    {
+      this.sobre= new Sobre();
+      this.Ocultar();
+    }
+    this.ListarSobres();
   }
 
   ValidarPeso()
   {
     this.mensajePesoInvalido = this.ValidarNumero(this.sobre.Peso.toString());
-    this.mensajePesoInvalido != '' ? this.pesoEsValido = false : this.pesoEsValido = true;
+    this.mensajePesoInvalido == '' && (this.sobre.Peso > 0 && this.sobre.Peso < 1000) ? this.pesoEsValido = true : this.pesoEsValido = false;
     return this.pesoEsValido;
   }
 
@@ -283,7 +299,7 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
 
   Confirmar()
   {
-    if(this.BtnModificar || this.btnIngresarPeso)
+    if(this.BtnModificar ||  this.btnTomarHumedad || this.btnIngresarPeso)
     {
       this.ModificarSobre();
     }

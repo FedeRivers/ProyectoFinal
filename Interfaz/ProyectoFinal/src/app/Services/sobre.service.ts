@@ -11,6 +11,7 @@ import { BuscarDuplicadosOut } from '../Parametros/Salida/BuscarDuplicadosOut';
 import { ExisteSobreOut } from '../Parametros/Salida/ExisteSobreOut';
 import { ListarSobresOut } from '../Parametros/Salida/ListarSobresOut';
 import { ModificarSobreOut } from '../Parametros/Salida/ModificarSobreOut';
+import { ExportarExcelIn } from '../Parametros/Entrada/ExportarExcelIn';
 
 @Injectable({
   providedIn: 'root'
@@ -21,28 +22,38 @@ export class SobreService {
   
   constructor( private http:HttpClient ) { }
 
-  public Agregar(altaSobreIn:AltaSobreIn){
+  public Agregar(altaSobreIn:AltaSobreIn)
+  {
     return this.http.post(`${this.baseUrl+ MetodosUrl.Sobre.ALTA}`,altaSobreIn);
   }
 
-  public Baja(bajaSobreIn:BajaSobreIn){
+  public Baja(bajaSobreIn:BajaSobreIn)
+  {
     return this.http.post(`${this.baseUrl+MetodosUrl.Sobre.BAJA}`,bajaSobreIn);
   }
 
-  public Modificar(modificarSobreIn:ModificarSobreIn){
+  public Modificar(modificarSobreIn:ModificarSobreIn)
+  {
     return this.http.post<ModificarSobreOut>(`${this.baseUrl+MetodosUrl.Sobre.MODIFICAR}`,modificarSobreIn);
   }
 
-  public Listar(listarSobreIn:ListarSobreIn){
+  public Listar(listarSobreIn:ListarSobreIn)
+  {
     return this.http.get<ListarSobresOut>(`${this.baseUrl+MetodosUrl.Sobre.LISTAR}?NumeroSobre=${listarSobreIn.NumeroSobre}&NumeroLote=${listarSobreIn.NumeroLote}&NombreSemilla=${listarSobreIn.NombreSemilla}&IdCamara=${listarSobreIn.IdCamara}&IdEstado=${listarSobreIn.IdEstado}&IdCamara=${listarSobreIn.IdCamara}`);
   }
 
-  public ExisteSobre(existeSobreIn:ExisteSobreIn){
+  public ExisteSobre(existeSobreIn:ExisteSobreIn)
+  {
     return this.http.get<ExisteSobreOut>(`${this.baseUrl+ MetodosUrl.Sobre.EXISTESOBRE}?Sobre=${existeSobreIn.Sobre}`)
   }
 
   public BuscarDuplicados(buscarDuplicadosIn:BuscarDuplicadosIn)
   {
     return this.http.post<BuscarDuplicadosOut>(`${this.baseUrl+ MetodosUrl.Sobre.BUSCARDUPLICADOS}`,buscarDuplicadosIn);
+  }
+
+  public ExportarExcel(exportarExcelIn:ExportarExcelIn)
+  {
+    return this.http.post(`${this.baseUrl+MetodosUrl.Sobre.EXPORTAREXCEL}`,exportarExcelIn);
   }
 }

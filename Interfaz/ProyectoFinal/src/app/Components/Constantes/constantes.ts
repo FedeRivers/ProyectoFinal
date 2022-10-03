@@ -248,6 +248,7 @@ export const MetodosUrl = {
         LISTAR : 'ListarSobres',
         EXISTESOBRE : 'ExisteSobre',
         BUSCARDUPLICADOS: 'BuscarDuplicados',
+        EXPORTAREXCEL: 'ExportarExcel',
     },
     Alerta:
     {
@@ -274,6 +275,9 @@ export const Estados = {
     LISTOPARASECAR : 10,
 	SECANDO : 11,
     DEVUELTO : 12,
+    ESPERANDOPESAJE : 13,
+    LISTOPARAEXPORTAR : 14,
+    ALMACENADO : 15,
 }
 
 export const ExpresionesRegulares = {

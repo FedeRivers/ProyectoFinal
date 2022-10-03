@@ -18,6 +18,9 @@ namespace ProyectoFinal._2_Dominio.Entidades
 	    EsperandoHumedadYGerminacion = 9,
 	    ListoParaSecar = 10,
 	    Secando = 11,
-	    Devuelto = 12      
+	    Devuelto = 12,
+        EsperandoPesaje = 13,
+        ListoParaExportar = 14,
+        Almacenado = 15
     }
 }
