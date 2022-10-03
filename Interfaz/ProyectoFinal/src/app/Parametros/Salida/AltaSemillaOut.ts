@@ -1,5 +1,9 @@
-export class AltaSemillaOut {
+import { ParametroBaseOut } from "./ParametroBaseOut";
+
+export class AltaSemillaOut extends ParametroBaseOut{
  
-   constructor(){}
+   constructor(){
+      super();
+   }
 
 }

@@ -1,10 +1,13 @@
-export class ModificarSobreOut{
+import { ParametroBaseOut } from "./ParametroBaseOut";
+
+export class ModificarSobreOut extends ParametroBaseOut{
     
     private camaraLlena: boolean;
     
 
     constructor()
     {
+        super();
         this.camaraLlena = false;
     }
 

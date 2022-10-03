@@ -39,6 +39,8 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
   
   private btnTomarHumedad: boolean = false;
   private btnIngresarPeso: boolean = false;
+  private btnEditar: boolean = false;
+  private btnExportar: boolean = false;
   private pesoEsValido: boolean = false;
 
   private mensajePesoInvalido: string = '';
@@ -204,17 +206,22 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
     });
   }
 
-  exportarExcel():void {
+  ExportarExcel():void {
     let exportarExcelIn = new ExportarExcelIn();
     exportarExcelIn.Sobres = this.sobresAExportar;
     this.sobreServicio.ExportarExcel(exportarExcelIn)
     .subscribe( resp =>{
-      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
+      if(resp.Status.StatusCode != 404)
+      {
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
 
-      const book: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
-  
-      XLSX.writeFile(book, 'pruebaExcel.xlsx');
+        const book: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+    
+        XLSX.writeFile(book, 'pruebaExcel.xlsx');
+        this.ListarSobres();
+      }
+      
       }, err => {
       this.modal.Error = true;
       this.modal.open();
@@ -264,7 +271,12 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
           this.AbrirModal();
         break;
       case "Editar":
-        this.EstaSeleccionado = true;
+        this.btnEditar = true;
+        this.Ocultar();
+        break;
+      case "Exportar":
+        this.btnExportar = true;
+        this.AbrirModal();
         break;
     }
   }
@@ -277,9 +289,9 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
 
   Regresar()
   {
-    if(this.btnIngresarPeso)
+    if(this.btnIngresarPeso || this.btnEditar)
     {
-      this.sobre= new Sobre();
+      this.sobre = new Sobre();
       this.Ocultar();
     }
     this.ListarSobres();
@@ -302,6 +314,10 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
     if(this.BtnModificar ||  this.btnTomarHumedad || this.btnIngresarPeso)
     {
       this.ModificarSobre();
+    }
+    else if(this.btnExportar)
+    {
+      this.ExportarExcel();
     }
   }
 

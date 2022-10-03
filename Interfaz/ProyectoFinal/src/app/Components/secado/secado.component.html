@@ -36,7 +36,7 @@
 
                     <div class="mb-3 col-md-1 col-lg-1">
                         <span>             
-                        <button [disabled]="SobresAExportar.length == 0" class="btn btn-success" (click)="exportarExcel()">
+                        <button [disabled]="SobresAExportar.length == 0" class="btn btn-success" (click)="BotonSeleccionado('Exportar')">
                             <i id="iAgregar" class="bi bi-filetype-xls"></i>
                             Exportar                
                         </button>
@@ -129,7 +129,7 @@
         <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
             <form class="col-md-4 form border border-5">
                 <div class="col-md-12">
-                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                    <a (click)="Regresar()" class="pointer"><i class="bi bi-arrow-90deg-left"></i></a>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanPeso">Peso:</span>

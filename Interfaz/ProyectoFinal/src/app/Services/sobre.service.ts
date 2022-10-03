@@ -12,6 +12,7 @@ import { ExisteSobreOut } from '../Parametros/Salida/ExisteSobreOut';
 import { ListarSobresOut } from '../Parametros/Salida/ListarSobresOut';
 import { ModificarSobreOut } from '../Parametros/Salida/ModificarSobreOut';
 import { ExportarExcelIn } from '../Parametros/Entrada/ExportarExcelIn';
+import { ExportarExcelOut } from '../Parametros/Salida/ExportarExcelOut';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,6 @@ export class SobreService {
 
   public ExportarExcel(exportarExcelIn:ExportarExcelIn)
   {
-    return this.http.post(`${this.baseUrl+MetodosUrl.Sobre.EXPORTAREXCEL}`,exportarExcelIn);
+    return this.http.post<ExportarExcelOut>(`${this.baseUrl+MetodosUrl.Sobre.EXPORTAREXCEL}`,exportarExcelIn);
   }
 }

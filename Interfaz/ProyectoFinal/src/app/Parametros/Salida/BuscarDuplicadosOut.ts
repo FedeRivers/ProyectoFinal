@@ -1,10 +1,13 @@
 import { Sobre } from "src/app/Components/Sobre/class/sobre";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class BuscarDuplicadosOut{
+export class BuscarDuplicadosOut extends ParametroBaseOut{
     
     private sobres: Sobre[];
 
-    constructor(){
+    constructor()
+    {
+        super();
         this.sobres = [];
     }
 

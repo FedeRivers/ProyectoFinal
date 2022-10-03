@@ -1,10 +1,13 @@
 import { Lote } from "src/app/Components/Lote/class/lote";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarLotesOut{  
+export class ListarLotesOut extends ParametroBaseOut{  
 
     private lotes: Lote[];
     
-    constructor(){
+    constructor()
+    {
+        super();
         this.lotes = [];
     }
 

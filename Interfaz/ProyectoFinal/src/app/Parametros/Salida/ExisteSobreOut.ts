@@ -1,8 +1,13 @@
-export class ExisteSobreOut{
+import { ParametroBaseOut } from "./ParametroBaseOut";
+
+export class ExisteSobreOut extends ParametroBaseOut{
 
     private existeSobre!: boolean;
 
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
 
     public get ExisteSobre(): boolean {
         return this.existeSobre;

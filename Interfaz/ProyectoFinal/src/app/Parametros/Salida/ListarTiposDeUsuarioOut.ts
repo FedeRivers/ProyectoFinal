@@ -1,10 +1,13 @@
 import { TipoDeUsuario } from "src/app/Components/TipoDeUsuario/class/tipoDeUsuario";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarTiposDeUsuarioOut{
+export class ListarTiposDeUsuarioOut extends ParametroBaseOut{
     
     private tiposDeUsuario: TipoDeUsuario[] = [];
    
-    constructor(){
+    constructor()
+    {
+        super();
     }
 
     public get TiposDeUsuario(): TipoDeUsuario[] {

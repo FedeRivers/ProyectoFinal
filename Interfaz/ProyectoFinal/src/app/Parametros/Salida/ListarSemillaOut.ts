@@ -1,10 +1,14 @@
 import { Semilla } from "src/app/Components/Semilla/class/semilla";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarSemillaOut{
+export class ListarSemillaOut extends ParametroBaseOut{
 
     private semillas : Semilla[] = [] ;
 
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
 
     public get Semillas(): Semilla[] {
         return this.semillas;

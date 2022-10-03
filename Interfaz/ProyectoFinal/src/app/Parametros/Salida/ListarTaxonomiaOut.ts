@@ -1,9 +1,13 @@
 import { Taxonomia } from '../../Components/Taxonomia/class/taxonomia';
-export class ListarTaxonomiaOut {
+import { ParametroBaseOut } from './ParametroBaseOut';
+export class ListarTaxonomiaOut extends ParametroBaseOut{
     
     private taxonomias:Taxonomia[]= [] ;
 
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
 
     public get Taxonomias(): Taxonomia[] {
         return this.taxonomias;

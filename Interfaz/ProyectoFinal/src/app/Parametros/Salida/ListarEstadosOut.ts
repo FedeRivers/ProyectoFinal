@@ -1,10 +1,13 @@
 import { Estado } from "src/app/Components/Estado/class/estado";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarEstadosOut{
+export class ListarEstadosOut extends ParametroBaseOut{
 
     private estados: Estado[];
 
-    constructor(){
+    constructor()
+    {
+        super();
         this.estados = [];
     }
 
