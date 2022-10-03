@@ -49,5 +49,11 @@ namespace ProyectoFinal._1_Servicios
         {
             return new CRUDSobre().BuscarDuplicados(input);
         }
+
+        [HttpPost]
+        public ExportarExcelOut ExportarExcel([FromBody]ExportarExcelIn input)
+        {
+            return new CRUDSobre().ExportarExcel(input);
+        }
     }
 }

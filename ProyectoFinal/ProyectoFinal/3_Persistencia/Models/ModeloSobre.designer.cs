@@ -124,6 +124,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamara, fila, columna, numeroSobre, idEstado);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExportarExcel")]
+		public int ExportarExcel([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class ExisteEspacioLibreResult

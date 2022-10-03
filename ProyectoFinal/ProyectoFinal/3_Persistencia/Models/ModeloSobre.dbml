@@ -98,4 +98,8 @@
     <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.ExportarExcel" Method="ExportarExcel">
+    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

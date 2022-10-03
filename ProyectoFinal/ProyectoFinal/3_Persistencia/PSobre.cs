@@ -335,5 +335,29 @@ namespace ProyectoFinal._3_Persistencia
             }
             return output;
         }
+
+        public ExportarExcelOut ExportarExcel(ExportarExcelIn input)
+        {
+            var output = new ExportarExcelOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            using (var dbContextTransaction = dataContext.Transaction)
+            {
+                try
+                {
+                    foreach (var sobre in input.Sobres)
+                    {
+                        var result = dataContext.ExportarExcel(sobre.NumeroSobre);
+                    }
+                    dbContextTransaction.Commit();
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+        }
     }
 }

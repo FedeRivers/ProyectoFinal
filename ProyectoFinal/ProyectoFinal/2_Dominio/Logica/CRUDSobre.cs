@@ -151,5 +151,10 @@ namespace ProyectoFinal._2_Dominio.Logica
                 Status = new HttpStatusCodeResult(200)
             };
         }
+
+        public ExportarExcelOut ExportarExcel(ExportarExcelIn input)
+        {
+            return new PSobre().ExportarExcel(input);
+        }
     }
 }

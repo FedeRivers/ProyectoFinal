@@ -118,6 +118,7 @@
     <Build Include="StoreProcedure\DesactivarAlerta.sql" />
     <Build Include="StoreProcedure\ObtenerSobre.sql" />
     <Build Include="StoreProcedure\ModificarEstados.sql" />
+    <Build Include="StoreProcedure\ExportarExcel.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />
