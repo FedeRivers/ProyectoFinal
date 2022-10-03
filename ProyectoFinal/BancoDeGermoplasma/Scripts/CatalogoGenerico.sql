@@ -15,7 +15,9 @@ USING (
 		   (8, N'Ingresar humedad', 1),
 		   (9, N'Ingresar germinacion', 1),
 		   (10, N'Buscar duplicados', 1),
-		   (11, N'Estadistica', 1)
+		   (11, N'Estadistica', 1),
+		   (12, N'Secado', 1)
+
 ) AS SOURCE ( NewIdModulo, NewNombre, NewActivo )
 ON TARGET.[idModulo] = SOURCE.NewIdModulo
 WHEN MATCHED THEN 
@@ -100,7 +102,10 @@ USING (
 		   (9, N'Esperando humedad y germinación'),
 		   (10, N'Listo para secar'),
 		   (11, N'Secando'),
-		   (12, N'Devuelto')
+		   (12, N'Devuelto'),
+		   (13, N'Esperando pesaje'),
+		   (14, N'Listo para exportar'),
+		   (15, N'Almacenado')
 ) AS SOURCE ( NewIdEstado, NewNombre )
 ON TARGET.[idEstado] = SOURCE.NewIdEstado
 WHEN MATCHED THEN 

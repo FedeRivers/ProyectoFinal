@@ -65,8 +65,8 @@
                     <tbody>
                         <tr class="pointer" *ngFor="let sobre of Sobres">
                             <td>
-                                <div *ngIf="sobre.Humedad < 7">
-                                    <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="Seleccionar($event,'Check',sobre)">
+                                <div>
+                                    <input [disabled]="!(sobre.Peso > 0)" class="form-check-input ml-3 mt-2" type="checkbox" (click)="Seleccionar($event,'Check',sobre)">
                                 </div>
                             </td>
                             <td>
@@ -104,7 +104,7 @@
                             </td>
                             <td>
                                 <span class="input-group">             
-                                <button class="btn btn-secondary" (click)="BotonSeleccionado('TomarHumedad')">
+                                <button class="btn btn-secondary" [disabled]="!(sobre.Estado.IdEstado == 11)" (click)="Seleccionar($event,'TomarHumedad',sobre)">
                                     <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
                                     Tomar Humedad             
                                 </button>
@@ -147,6 +147,6 @@
 
 </body>
 
-<app-modal #modal (Confirmar)="Confirmar()"></app-modal>
+<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
 
 </html>

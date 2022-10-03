@@ -169,14 +169,14 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
 
   ValidarVigor():boolean
   {
-    this.mensajeGerminacionInvalida = this.ValidarNumero(this.Sobre.Vigor.toString());
+    this.mensajeGerminacionInvalida = this.ValidarPorcentaje(this.Sobre.Vigor);
     this.mensajeGerminacionInvalida != '' ? this.vigorEsValido = false : this.vigorEsValido = true;
     return this.vigorEsValido;
   }
 
   ValidarGerminacion():boolean
   {
-    this.mensajeGerminacionInvalida = this.ValidarNumero(this.sobre.Germinacion.toString());
+    this.mensajeGerminacionInvalida = this.ValidarPorcentaje(this.sobre.Germinacion);
     this.mensajeGerminacionInvalida != '' ? this.germinacionEsValido = false: this.germinacionEsValido = true;
     return this.germinacionEsValido;
   }

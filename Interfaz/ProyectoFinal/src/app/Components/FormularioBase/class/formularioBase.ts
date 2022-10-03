@@ -85,7 +85,7 @@ export class FormularioBase{
     ValidarPorcentaje(texto:number):string
     {
         this.mensaje = this.ValidarNumero(texto.toString());
-        return texto > 100 ? this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO : this.mensaje;
+        return (texto > 0 && texto < 101) ? this.mensaje : this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
     }
 
     ValidarMail(texto:string):string

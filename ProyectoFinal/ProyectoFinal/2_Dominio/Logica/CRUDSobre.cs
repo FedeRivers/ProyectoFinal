@@ -91,7 +91,7 @@ namespace ProyectoFinal._2_Dominio.Logica
             };
 
             Sobre sobre = new PSobre().ObtenerSobre(obtenerSobreIn).Sobre;
-            if (sobre != null)
+            if (sobre != null && input.Sobre.Estado.IdEstado != (int)EnumeradoEstados.ListoParaExportar)
             {
 
                 if (sobre.Estado.IdEstado == (int)EnumeradoEstados.Recibido
@@ -136,11 +136,19 @@ namespace ProyectoFinal._2_Dominio.Logica
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.HumedadIngresada;
                 }
+                else if (sobre.Estado.IdEstado == (int)EnumeradoEstados.Secando && input.Sobre.Estado.IdEstado == (int)EnumeradoEstados.AnalizandoHumedad)//Sí el sobre de base de datos esta secando y el que te envían es analizando humedad
+                {
+                    input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.EsperandoHumedad;
+                }
                 else if (input.Sobre.Estado.IdEstado == (int)EnumeradoEstados.Secando)
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Secando;
                 }
-                else if (sobre.Humedad > 0 && sobre.Germinacion > 0)
+                else if (sobre.Humedad <= 7 && sobre.Germinacion > 85 && input.Sobre.Peso == 0)//Si la humedad y la germinación son óptimas
+                {
+                    input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.EsperandoPesaje;//el estado de los sobres es esperando pesaje.
+                }
+                else if (sobre.Humedad > 0 && sobre.Germinacion > 0 && input.Sobre.Peso == 0)
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.ListoParaSecar;
                 }
