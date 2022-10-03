@@ -340,20 +340,21 @@ namespace ProyectoFinal._3_Persistencia
         {
             var output = new ExportarExcelOut { Status = new HttpStatusCodeResult(404) };
             using (var dataContext = new ModeloSobreDataContext())
-            using (var dbContextTransaction = dataContext.Transaction)
             {
                 try
                 {
+                    dataContext.Connection.Open();
+                    dataContext.Transaction = dataContext.Connection.BeginTransaction();
                     foreach (var sobre in input.Sobres)
                     {
                         var result = dataContext.ExportarExcel(sobre.NumeroSobre);
                     }
-                    dbContextTransaction.Commit();
+                    dataContext.Transaction.Commit();
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)
                 {
-                    dbContextTransaction.Rollback();
+                    dataContext.Transaction.Rollback();
                     output.Status = new HttpStatusCodeResult(404);
                 }
             }

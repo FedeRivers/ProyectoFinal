@@ -1,9 +1,13 @@
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ExisteLoteOut{  
+export class ExisteLoteOut extends ParametroBaseOut{  
 
     private existeLote!: boolean;
     
-    constructor(){ }
+    constructor()
+    {
+        super();
+    }
     
     public get ExisteLote(): boolean {
         return this.existeLote;

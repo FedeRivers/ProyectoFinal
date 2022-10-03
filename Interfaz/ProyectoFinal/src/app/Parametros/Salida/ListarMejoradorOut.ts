@@ -1,11 +1,15 @@
 import { Mejorador } from "src/app/Components/Mejorador/class/mejorador";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarMejoradorOut {
+export class ListarMejoradorOut extends ParametroBaseOut{
     
     private mejoradores:Mejorador[]= [] ;
 
 
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
 
     public get Mejoradores(): Mejorador[] {
         return this.mejoradores;

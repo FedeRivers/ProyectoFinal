@@ -1,9 +1,14 @@
-export class AltaUsuarioOut{
+import { ParametroBaseOut } from "./ParametroBaseOut";
+
+export class AltaUsuarioOut extends ParametroBaseOut{
     
     private existeMail!: boolean;
     private existeCedula!: boolean;
 
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
 
     public get ExisteMail(): boolean {
         return this.existeMail;

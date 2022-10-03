@@ -1,5 +1,10 @@
-export class AltaTaxonomiaOut {
+import { ParametroBaseOut } from "./ParametroBaseOut";
+
+export class AltaTaxonomiaOut extends ParametroBaseOut{
     
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
     
     }

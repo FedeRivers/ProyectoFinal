@@ -1,10 +1,12 @@
 import { Camara } from "src/app/Components/Camara/class/Camara";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarCamarasOut{
+export class ListarCamarasOut extends ParametroBaseOut{
 
     private camaras: Camara[];
 
     constructor(){
+        super();
         this.camaras = [];
     }
 

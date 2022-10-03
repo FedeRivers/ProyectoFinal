@@ -1,5 +1,10 @@
-export class ModificarMejoradorOut{
+import { ParametroBaseOut } from "./ParametroBaseOut";
+
+export class ModificarMejoradorOut extends ParametroBaseOut{
     
-constructor(){}
+constructor()
+{
+    super();
+}
 
 }

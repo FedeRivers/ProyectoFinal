@@ -1,10 +1,14 @@
 import { Usuario } from "src/app/Components/Usuario/class/usuario";
+import { ParametroBaseOut } from "./ParametroBaseOut";
 
-export class ListarUsuariosOut{
+export class ListarUsuariosOut extends ParametroBaseOut{
 
     private usuarios: Usuario[] = [];
 
-    constructor(){}
+    constructor()
+    {
+        super();
+    }
 
     public get Usuarios(): Usuario[] {
         return this.usuarios;

@@ -1,8 +1,14 @@
 import { Modulo } from "src/app/Components/Modulo/class/modulo";
-
-export class ListarModulosPorTipoDeUsuarioOut{
+import { ParametroBaseOut } from "./ParametroBaseOut";
+export class ListarModulosPorTipoDeUsuarioOut extends ParametroBaseOut{
+    
     private modulos: Modulo[] = [];
-    constructor(){}
+
+    constructor()
+    {
+        super();
+    }
+
     public get Modulos(): Modulo[] {
         return this.modulos;
     }
