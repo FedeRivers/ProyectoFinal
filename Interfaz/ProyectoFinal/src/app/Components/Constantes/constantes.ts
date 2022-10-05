@@ -255,6 +255,10 @@ export const MetodosUrl = {
         LISTAR : 'ListarAlertas', 
         DESACTIVARALERTA: 'DesactivarAlerta',
     },
+    Estadistica:
+    {
+        OBTENERESTADISTICAS : 'ObtenerEstadisticas',
+    },
 }
 export const Camaras = {
     SECADO : 1,
