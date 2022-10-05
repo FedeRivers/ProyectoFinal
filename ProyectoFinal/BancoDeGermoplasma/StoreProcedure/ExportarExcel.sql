@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE ExportarExcel 
-	@NumeroSobre int
+	@IdSobre int
 AS
 BEGIN
-	UPDATE Sobres SET idEstado = 15, activo = 0 WHERE numeroSobre = @NumeroSobre
+	UPDATE Sobres SET idEstado = 15, activo = 0 WHERE idSobre = @IdSobre
 END

@@ -45,7 +45,7 @@ export class SobreService {
 
   public ExisteSobre(existeSobreIn:ExisteSobreIn)
   {
-    return this.http.get<ExisteSobreOut>(`${this.baseUrl+ MetodosUrl.Sobre.EXISTESOBRE}?Sobre=${existeSobreIn.Sobre}`)
+    return this.http.post<ExisteSobreOut>(`${this.baseUrl+ MetodosUrl.Sobre.EXISTESOBRE}`,existeSobreIn);
   }
 
   public BuscarDuplicados(buscarDuplicadosIn:BuscarDuplicadosIn)

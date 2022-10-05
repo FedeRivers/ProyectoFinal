@@ -7,6 +7,6 @@ namespace ProyectoFinal.Parametros.Entrada
 {
     public class BajaSobreIn
     {
-        public int NumeroSobre { get; set; }
+        public int IdSobre { get; set; }
     }
 }

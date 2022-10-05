@@ -38,7 +38,7 @@ namespace ProyectoFinal._2_Dominio.Logica
                         Columna = existeEspacioLibreOut.Columna,
                         Fila = existeEspacioLibreOut.Fila,
                         IdCamara = input.Sobre.Ubicacion.Camara.IdCamara,
-                        NumeroSobre = input.Sobre.NumeroSobre,
+                        IdSobre = input.Sobre.NumeroSobre,
                         IdEstado = input.Sobre.Estado.IdEstado
                     }).Status;
 

@@ -2,17 +2,17 @@
 	@IdCamara int,
 	@Fila int,
 	@Columna int,
-	@NumeroSobre int,
+	@IdSobre int,
 	@IdEstado int
 AS
 BEGIN
 	UPDATE Ubicaciones
-	SET numeroSobre = NULL
-	WHERE numeroSobre = @NumeroSobre
+	SET idSobre = NULL
+	WHERE idSobre = @IdSobre
 	IF @IdEstado <> 4
 	BEGIN	
 		UPDATE Ubicaciones 
-		SET numeroSobre = @NumeroSobre 
+		SET idSobre = @IdSobre 
 		WHERE fila = @Fila AND columna = @Columna AND idCamara = @IdCamara 
 	END
 END

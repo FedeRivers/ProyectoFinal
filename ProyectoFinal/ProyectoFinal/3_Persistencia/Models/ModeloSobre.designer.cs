@@ -69,13 +69,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaSobre")]
-		public int BajaSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteEspacioLibre")]
 		public ISingleResult<ExisteEspacioLibreResult> ExisteEspacioLibre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara)
 		{
@@ -88,13 +81,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, idSemilla);
 			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
-		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSemilla", DbType="VarChar(50)")] string nombreSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Decimal(18,0)")] System.Nullable<decimal> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Decimal(18,0)")] System.Nullable<decimal> idCamara)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, nombreSemilla, idEstado, idCamara);
-			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerSobre")]
@@ -111,24 +97,38 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarSobre")]
-		public int ModificarSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Humedad", DbType="Float")] System.Nullable<double> humedad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Germinacion", DbType="Float")] System.Nullable<double> germinacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vigor", DbType="Float")] System.Nullable<double> vigor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEstimada", DbType="DateTime")] System.Nullable<System.DateTime> fechaEstimada, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(18,0)")] System.Nullable<decimal> peso)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AsignarSobreACamara")]
+		public int AsignarSobreACamara([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fila", DbType="Int")] System.Nullable<int> fila, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Columna", DbType="Int")] System.Nullable<int> columna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSobre", DbType="Int")] System.Nullable<int> idSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, idCamara, humedad, germinacion, vigor, numeroLote, idSemilla, idEstado, fechaEstimada, peso);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamara, fila, columna, idSobre, idEstado);
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AsignarSobreACamara")]
-		public int AsignarSobreACamara([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fila", DbType="Int")] System.Nullable<int> fila, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Columna", DbType="Int")] System.Nullable<int> columna, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaSobre")]
+		public int BajaSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSobre", DbType="Int")] System.Nullable<int> idSobre)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamara, fila, columna, numeroSobre, idEstado);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSobre);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarSobre")]
+		public int ModificarSobre([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSobre", DbType="Int")] System.Nullable<int> idSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Int")] System.Nullable<int> idCamara, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Humedad", DbType="Float")] System.Nullable<double> humedad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Germinacion", DbType="Float")] System.Nullable<double> germinacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vigor", DbType="Float")] System.Nullable<double> vigor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSemilla", DbType="Int")] System.Nullable<int> idSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Int")] System.Nullable<int> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FechaEstimada", DbType="DateTime")] System.Nullable<System.DateTime> fechaEstimada, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Decimal(18,0)")] System.Nullable<decimal> peso)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSobre, idCamara, humedad, germinacion, vigor, numeroLote, idSemilla, idEstado, fechaEstimada, peso);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarSobres")]
+		public ISingleResult<ListarSobresResult> ListarSobres([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroSobre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Decimal(18,0)")] System.Nullable<decimal> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSemilla", DbType="VarChar(50)")] string nombreSemilla, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdEstado", DbType="Decimal(18,0)")] System.Nullable<decimal> idEstado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamara", DbType="Decimal(18,0)")] System.Nullable<decimal> idCamara)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre, numeroLote, nombreSemilla, idEstado, idCamara);
+			return ((ISingleResult<ListarSobresResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExportarExcel")]
-		public int ExportarExcel([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroSobre", DbType="Int")] System.Nullable<int> numeroSobre)
+		public int ExportarExcel([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSobre", DbType="Int")] System.Nullable<int> idSobre)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroSobre);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSobre);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -177,8 +177,234 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 	}
 	
+	public partial class ObtenerSobreResult
+	{
+		
+		private int _numeroSobre;
+		
+		private System.Nullable<bool> _activo;
+		
+		private System.Nullable<System.DateTime> _fechaDeDevolucion;
+		
+		private System.Nullable<System.DateTime> _fechaDeIngreso;
+		
+		private System.Nullable<System.DateTime> _fechaEstimada;
+		
+		private System.Nullable<double> _humedad;
+		
+		private System.Nullable<double> _germinacion;
+		
+		private System.Nullable<double> _vigor;
+		
+		private int _numeroLote;
+		
+		private int _idSemilla;
+		
+		private System.Nullable<int> _idEstado;
+		
+		private System.Nullable<decimal> _peso;
+		
+		public ObtenerSobreResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroSobre", DbType="Int NOT NULL")]
+		public int numeroSobre
+		{
+			get
+			{
+				return this._numeroSobre;
+			}
+			set
+			{
+				if ((this._numeroSobre != value))
+				{
+					this._numeroSobre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
+		public System.Nullable<bool> activo
+		{
+			get
+			{
+				return this._activo;
+			}
+			set
+			{
+				if ((this._activo != value))
+				{
+					this._activo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeDevolucion", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaDeDevolucion
+		{
+			get
+			{
+				return this._fechaDeDevolucion;
+			}
+			set
+			{
+				if ((this._fechaDeDevolucion != value))
+				{
+					this._fechaDeDevolucion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeIngreso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaDeIngreso
+		{
+			get
+			{
+				return this._fechaDeIngreso;
+			}
+			set
+			{
+				if ((this._fechaDeIngreso != value))
+				{
+					this._fechaDeIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaEstimada", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaEstimada
+		{
+			get
+			{
+				return this._fechaEstimada;
+			}
+			set
+			{
+				if ((this._fechaEstimada != value))
+				{
+					this._fechaEstimada = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_humedad", DbType="Float")]
+		public System.Nullable<double> humedad
+		{
+			get
+			{
+				return this._humedad;
+			}
+			set
+			{
+				if ((this._humedad != value))
+				{
+					this._humedad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_germinacion", DbType="Float")]
+		public System.Nullable<double> germinacion
+		{
+			get
+			{
+				return this._germinacion;
+			}
+			set
+			{
+				if ((this._germinacion != value))
+				{
+					this._germinacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vigor", DbType="Float")]
+		public System.Nullable<double> vigor
+		{
+			get
+			{
+				return this._vigor;
+			}
+			set
+			{
+				if ((this._vigor != value))
+				{
+					this._vigor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroLote", DbType="Int NOT NULL")]
+		public int numeroLote
+		{
+			get
+			{
+				return this._numeroLote;
+			}
+			set
+			{
+				if ((this._numeroLote != value))
+				{
+					this._numeroLote = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSemilla", DbType="Int NOT NULL")]
+		public int idSemilla
+		{
+			get
+			{
+				return this._idSemilla;
+			}
+			set
+			{
+				if ((this._idSemilla != value))
+				{
+					this._idSemilla = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEstado", DbType="Int")]
+		public System.Nullable<int> idEstado
+		{
+			get
+			{
+				return this._idEstado;
+			}
+			set
+			{
+				if ((this._idEstado != value))
+				{
+					this._idEstado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_peso", DbType="Decimal(18,5)")]
+		public System.Nullable<decimal> peso
+		{
+			get
+			{
+				return this._peso;
+			}
+			set
+			{
+				if ((this._peso != value))
+				{
+					this._peso = value;
+				}
+			}
+		}
+	}
+	
 	public partial class ListarSobresResult
 	{
+		
+		private int _idsobre;
 		
 		private int _numeroSobre;
 		
@@ -226,6 +452,22 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		public ListarSobresResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idsobre", DbType="Int NOT NULL")]
+		public int idsobre
+		{
+			get
+			{
+				return this._idsobre;
+			}
+			set
+			{
+				if ((this._idsobre != value))
+				{
+					this._idsobre = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroSobre", DbType="Int NOT NULL")]
@@ -576,230 +818,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._nombreEstado != value))
 				{
 					this._nombreEstado = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ObtenerSobreResult
-	{
-		
-		private int _numeroSobre;
-		
-		private System.Nullable<bool> _activo;
-		
-		private System.Nullable<System.DateTime> _fechaDeDevolucion;
-		
-		private System.Nullable<System.DateTime> _fechaDeIngreso;
-		
-		private System.Nullable<System.DateTime> _fechaEstimada;
-		
-		private System.Nullable<double> _humedad;
-		
-		private System.Nullable<double> _germinacion;
-		
-		private System.Nullable<double> _vigor;
-		
-		private int _numeroLote;
-		
-		private int _idSemilla;
-		
-		private System.Nullable<int> _idEstado;
-		
-		private System.Nullable<decimal> _peso;
-		
-		public ObtenerSobreResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroSobre", DbType="Int NOT NULL")]
-		public int numeroSobre
-		{
-			get
-			{
-				return this._numeroSobre;
-			}
-			set
-			{
-				if ((this._numeroSobre != value))
-				{
-					this._numeroSobre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
-		public System.Nullable<bool> activo
-		{
-			get
-			{
-				return this._activo;
-			}
-			set
-			{
-				if ((this._activo != value))
-				{
-					this._activo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeDevolucion", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fechaDeDevolucion
-		{
-			get
-			{
-				return this._fechaDeDevolucion;
-			}
-			set
-			{
-				if ((this._fechaDeDevolucion != value))
-				{
-					this._fechaDeDevolucion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeIngreso", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fechaDeIngreso
-		{
-			get
-			{
-				return this._fechaDeIngreso;
-			}
-			set
-			{
-				if ((this._fechaDeIngreso != value))
-				{
-					this._fechaDeIngreso = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaEstimada", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fechaEstimada
-		{
-			get
-			{
-				return this._fechaEstimada;
-			}
-			set
-			{
-				if ((this._fechaEstimada != value))
-				{
-					this._fechaEstimada = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_humedad", DbType="Float")]
-		public System.Nullable<double> humedad
-		{
-			get
-			{
-				return this._humedad;
-			}
-			set
-			{
-				if ((this._humedad != value))
-				{
-					this._humedad = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_germinacion", DbType="Float")]
-		public System.Nullable<double> germinacion
-		{
-			get
-			{
-				return this._germinacion;
-			}
-			set
-			{
-				if ((this._germinacion != value))
-				{
-					this._germinacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vigor", DbType="Float")]
-		public System.Nullable<double> vigor
-		{
-			get
-			{
-				return this._vigor;
-			}
-			set
-			{
-				if ((this._vigor != value))
-				{
-					this._vigor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroLote", DbType="Int NOT NULL")]
-		public int numeroLote
-		{
-			get
-			{
-				return this._numeroLote;
-			}
-			set
-			{
-				if ((this._numeroLote != value))
-				{
-					this._numeroLote = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idSemilla", DbType="Int NOT NULL")]
-		public int idSemilla
-		{
-			get
-			{
-				return this._idSemilla;
-			}
-			set
-			{
-				if ((this._idSemilla != value))
-				{
-					this._idSemilla = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idEstado", DbType="Int")]
-		public System.Nullable<int> idEstado
-		{
-			get
-			{
-				return this._idEstado;
-			}
-			set
-			{
-				if ((this._idEstado != value))
-				{
-					this._idEstado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_peso", DbType="Decimal(18,5)")]
-		public System.Nullable<decimal> peso
-		{
-			get
-			{
-				return this._peso;
-			}
-			set
-			{
-				if ((this._peso != value))
-				{
-					this._peso = value;
 				}
 			}
 		}

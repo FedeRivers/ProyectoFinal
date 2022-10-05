@@ -240,7 +240,7 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
       }
       else
       {
-        this.sobresAExportar = this.sobresAExportar.filter( sobreEnLista => sobreEnLista.NumeroSobre != sobre.NumeroSobre );
+        this.sobresAExportar = this.sobresAExportar.filter( sobreEnLista => sobreEnLista.IdSobre!= sobre.IdSobre );
       }
     }
     else

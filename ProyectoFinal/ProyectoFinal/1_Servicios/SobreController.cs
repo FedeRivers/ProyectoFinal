@@ -38,8 +38,8 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDSobre().ListarSobres(input);
         }
 
-        [HttpGet]
-        public ExisteSobreOut ExisteSobre(ExisteSobreIn input)
+        [HttpPost]
+        public ExisteSobreOut ExisteSobre([FromBody]ExisteSobreIn input)
         {
             return new CRUDSobre().ExisteSobre(input);
         }

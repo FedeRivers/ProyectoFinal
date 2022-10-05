@@ -135,6 +135,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el sobre.',
                 EXITO:'Sobre ingresado con éxito.',
+                EXISTESOBRE:'El sobre que desea ingresar, ya existe en este lote.'
             },
             Baja:
             {

@@ -22,6 +22,7 @@ import { Camara } from '../Camara/class/Camara';
 import { ListarCamaraIn } from 'src/app/Parametros/Entrada/ListarCamaraIn';
 import { CamaraService } from 'src/app/Services/camara.service';
 import { Usuario } from '../Usuario/class/usuario';
+import { ExisteSobreIn } from 'src/app/Parametros/Entrada/ExisteSobreIn';
 
 @Component({
   selector: 'app-sobre',
@@ -332,7 +333,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   BajaSobre()
   {
     let bajaSobreIn: BajaSobreIn = new BajaSobreIn();
-    bajaSobreIn.IdSobre = this.sobre.NumeroSobre;
+    bajaSobreIn.IdSobre = this.sobre.IdSobre;
     this.sobreServicio.Baja(bajaSobreIn)
     .subscribe( sobre => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Baja.EXITO,false);
@@ -354,6 +355,16 @@ export class SobreComponent extends FormularioBase implements OnInit {
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.ERROR,true);
       });
+  }
+
+  ExisteSobre()
+  {
+    let existeSobreIn:ExisteSobreIn = new ExisteSobreIn();
+    existeSobreIn.Sobre = this.sobre;
+    this.sobreServicio.ExisteSobre(existeSobreIn)
+    .subscribe( resp => {
+      resp.ExisteSobre ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Alta.EXISTESOBRE,true) : this.AltaSobre();
+    })
   }
 
   Listar()
@@ -500,6 +511,28 @@ export class SobreComponent extends FormularioBase implements OnInit {
     }
   }
 
+  Confirmar()
+  {
+    if(this.BtnAlta)
+    {
+      this.ExisteSobre();
+    }
+    else if(this.BtnBaja)
+    {
+      this.BajaSobre();
+    }
+    else if(this.BtnModificar||this.btnGerminar||this.btnTomarHumedad||this.btnSecar)
+    {
+      this.ModificarSobre();
+    }
+  }
+
+  AbrirModal()
+  {
+    this.modal.open();
+  }
+
+  //#region Validaciones
   ValidarNumeroSobre():boolean
   {
     this.mensajeNumeroSobreInvalida = this.ValidarNumero(this.sobre.NumeroSobre.toString());
@@ -525,26 +558,6 @@ export class SobreComponent extends FormularioBase implements OnInit {
   {
     return this.loteEsValido && this.semillaEsValida; 
   }
-
-  Confirmar()
-  {
-    if(this.BtnAlta)
-    {
-      this.AltaSobre();
-    }
-    else if(this.BtnBaja)
-    {
-      this.BajaSobre();
-    }
-    else if(this.BtnModificar||this.btnGerminar||this.btnTomarHumedad||this.btnSecar)
-    {
-      this.ModificarSobre();
-    }
-  }
-
-  AbrirModal()
-  {
-    this.modal.open();
-  }
+  //#endregion
 
 }

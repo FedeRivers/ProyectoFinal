@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[BajaSobre]
-	 @NumeroSobre INT
+	 @IdSobre INT
 AS
 BEGIN
-	UPDATE Sobres SET activo = 0 WHERE numeroSobre = @NumeroSobre
+	UPDATE Sobres SET activo = 0 WHERE idSobre = @IdSobre
 END
