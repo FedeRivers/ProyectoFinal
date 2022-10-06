@@ -46,7 +46,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.BajaSobre(input.NumeroSobre);
+                    var result = dataContext.BajaSobre(input.IdSobre);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -70,7 +70,7 @@ namespace ProyectoFinal._3_Persistencia
                 {
                     var result = dataContext.ModificarSobre
                         (
-                        input.Sobre.NumeroSobre,
+                        input.Sobre.IdSobre,
                         input.Sobre.Ubicacion.Camara.IdCamara,
                         input.Sobre.Humedad,
                         input.Sobre.Germinacion,
@@ -95,6 +95,31 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
+        public DevolverSobresOut DevolverSobres(DevolverSobresIn input)
+        {
+            var output = new DevolverSobresOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    dataContext.Connection.Open();
+                    dataContext.Transaction = dataContext.Connection.BeginTransaction();
+                    foreach (var sobre in input.Sobres)
+                    {
+                        var result = dataContext.DevolverSobres(sobre.IdSobre, sobre.Lote.NumeroLote);
+                    }
+                    dataContext.Transaction.Commit();
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    dataContext.Transaction.Rollback();
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+        }
+
         public ListarSobresOut ListarSobres(ListarSobresIn input)
         {
             var output = new ListarSobresOut { Sobres = new List<Sobre>(), Status = new HttpStatusCodeResult(404) };
@@ -109,6 +134,7 @@ namespace ProyectoFinal._3_Persistencia
                         {
                             output.Sobres.Add(new Sobre
                             {
+                                IdSobre = sobre.idsobre,
                                 NumeroSobre = sobre.numeroSobre,
                                 Activo = sobre.activoSobre,
                                 FechaDeIngreso = sobre.ingresoSobre,
@@ -160,6 +186,56 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
+        public ListarSobresParaDevolucionOut ListarSobresParaDevolucion(ListarSobresParaDevolucionIn input)
+        {
+            var output = new ListarSobresParaDevolucionOut { Sobres = new List<Sobre>(), Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSobreDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ListarSobresParaDevolucion();
+                    if (result != null)
+                    {
+                        foreach (var sobre in result)
+                        {
+                            output.Sobres.Add(new Sobre
+                            {
+                                IdSobre = sobre.idsobre,
+                                NumeroSobre = sobre.numeroSobre,
+                                Activo = sobre.activo,
+                                FechaDeIngreso = sobre.fechaDeIngreso,
+                                FechaDeDevolucion = sobre.fechaDeDevolucion,
+                                FechaEstimada = sobre.fechaEstimada,
+                                Humedad = sobre.humedad,
+                                Germinacion = sobre.germinacion,
+                                Vigor = sobre.vigor,
+                                Peso = sobre.peso,
+                                Lote = new Lote
+                                {
+                                    NumeroLote = sobre.numeroLote
+                                },
+                                Semilla = new Semilla
+                                {
+                                    IdSemilla = sobre.idSemilla,
+                                    Nombre = sobre.nombre,
+                                }
+                            });
+                        }
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+
+            return output;
+        }
+
+
+
+
         public ExisteSobreOut ExisteSobre(ExisteSobreIn input)
         {
             var output = new ExisteSobreOut { Status = new HttpStatusCodeResult(404) };
@@ -209,7 +285,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.Columna, input.NumeroSobre, input.IdEstado);
+                    var result = dataContext.AsignarSobreACamara(input.IdCamara, input.Fila, input.Columna, input.IdSobre, input.IdEstado);
                     output.Status = new HttpStatusCodeResult(200);
                 }
                 catch (Exception ex)
@@ -347,7 +423,7 @@ namespace ProyectoFinal._3_Persistencia
                     dataContext.Transaction = dataContext.Connection.BeginTransaction();
                     foreach (var sobre in input.Sobres)
                     {
-                        var result = dataContext.ExportarExcel(sobre.NumeroSobre);
+                        var result = dataContext.ExportarExcel(sobre.IdSobre);
                     }
                     dataContext.Transaction.Commit();
                     output.Status = new HttpStatusCodeResult(200);

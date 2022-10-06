@@ -62,22 +62,29 @@ namespace ProyectoFinal._3_Persistencia.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerEstadisticas")]
-		public ISingleResult<ObtenerEstadisticasResult> ObtenerEstadisticas([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> fechaHasta)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerCantidadesPorEspecie")]
+		public ISingleResult<ObtenerCantidadesPorEspecieResult> ObtenerCantidadesPorEspecie([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> fechaHasta)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta);
-			return ((ISingleResult<ObtenerEstadisticasResult>)(result.ReturnValue));
+			return ((ISingleResult<ObtenerCantidadesPorEspecieResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ObtenerDevueltosYAlmacenados")]
+		public ISingleResult<ObtenerDevueltosYAlmacenadosResult> ObtenerDevueltosYAlmacenados([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> fechaDesde, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> fechaHasta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechaDesde, fechaHasta);
+			return ((ISingleResult<ObtenerDevueltosYAlmacenadosResult>)(result.ReturnValue));
 		}
 	}
 	
-	public partial class ObtenerEstadisticasResult
+	public partial class ObtenerCantidadesPorEspecieResult
 	{
 		
 		private System.Nullable<int> _valor;
 		
 		private string _nombre;
 		
-		public ObtenerEstadisticasResult()
+		public ObtenerCantidadesPorEspecieResult()
 		{
 		}
 		
@@ -98,6 +105,50 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ObtenerDevueltosYAlmacenadosResult
+	{
+		
+		private System.Nullable<int> _valor;
+		
+		private string _nombre;
+		
+		public ObtenerDevueltosYAlmacenadosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valor", DbType="Int")]
+		public System.Nullable<int> valor
+		{
+			get
+			{
+				return this._valor;
+			}
+			set
+			{
+				if ((this._valor != value))
+				{
+					this._valor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string nombre
 		{
 			get

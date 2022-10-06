@@ -102,9 +102,14 @@ export const RecursosDeIdioma = {
                 ERROR:'Ocurrió un error al modificar el lote.',
                 EXITO:'Lote modificado con éxito.',
             },
+            Devolucion:
+            {
+                ERROR:'Ocurrió un error al devolver los lotes.',
+                EXITO:'Lotes devueltos con éxito.',
+            },
             Listar:
             {
-                ERROR:'',
+                ERROR:'Ocurrió un error al listar los lotes.',
             },
         },
         Semilla : 
@@ -135,6 +140,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el sobre.',
                 EXITO:'Sobre ingresado con éxito.',
+                EXISTESOBRE:'El sobre que desea ingresar, ya existe en este lote.'
             },
             Baja:
             {
@@ -146,6 +152,11 @@ export const RecursosDeIdioma = {
                 ERROR:'Ocurrió un error al modificar el sobre.',
                 EXITO:'Sobre modificado con éxito.',
                 CAMARALLENA: 'La cámara a la cual envía el sobre, está llena.'
+            },
+            Devolucion:
+            {
+                ERROR:'Ocurrió un error al devolver los sobres.',
+                EXITO:'Sobres devueltos con éxito.',
             },
             Listar:
             {
@@ -184,6 +195,7 @@ export const RecursosDeIdioma = {
         BUSCARDUPLICADOS: 'Buscar duplicados',
         ESTADISTICAS: 'Estadistica',
         SECADO: 'Secado',
+        DEVOLUCION: 'Devolucion',
     },
 }
 
@@ -230,7 +242,9 @@ export const MetodosUrl = {
         ALTA : 'AltaLote',
         BAJA : 'BajaLote',
         MODIFICAR : 'ModificarLote',
+        DEVOLVERLOTES : 'DevolverLotes',
         LISTAR : 'ListarLotes',
+        LISTARLOTEPARADEVOLUCION : 'ListarLotesParaDevolucion',
         EXISTELOTE : 'ExisteLote', 
     },
     Semilla : 
@@ -245,7 +259,9 @@ export const MetodosUrl = {
         ALTA : 'AltaSobre',
         BAJA : 'BajaSobre',
         MODIFICAR : 'ModificarSobre',
+        DEVOLVERSOBRES : 'DevolverSobres',
         LISTAR : 'ListarSobres',
+        LISTARSOBRESPARADEVOLUCION : 'ListarSobresParaDevolucion',
         EXISTESOBRE : 'ExisteSobre',
         BUSCARDUPLICADOS: 'BuscarDuplicados',
         EXPORTAREXCEL: 'ExportarExcel',
@@ -297,5 +313,10 @@ export const Keys = {
     USUARIO : 'usuario',
 }
 
+
+export const Graficas = {
+    ObtenerCantidadesPorEspecie : 1,
+    ObtenerDevueltosYAlmacenados : 2,
+}
 
 

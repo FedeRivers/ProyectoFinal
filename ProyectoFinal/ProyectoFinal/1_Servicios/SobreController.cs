@@ -32,6 +32,12 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDSobre().ModificarSobre(input);
         }
 
+        [HttpPost]
+        public DevolverSobresOut DevolverSobres([FromBody]DevolverSobresIn input)
+        {
+            return new CRUDSobre().DevolverSobres(input);
+        }
+
         [HttpGet]
         public ListarSobresOut ListarSobres([FromUri]ListarSobresIn input)
         {
@@ -39,7 +45,13 @@ namespace ProyectoFinal._1_Servicios
         }
 
         [HttpGet]
-        public ExisteSobreOut ExisteSobre(ExisteSobreIn input)
+        public ListarSobresParaDevolucionOut ListarSobresParaDevolucion([FromUri]ListarSobresParaDevolucionIn input)
+        {
+            return new CRUDSobre().ListarSobresParaDevolucion(input);
+        }
+
+        [HttpPost]
+        public ExisteSobreOut ExisteSobre([FromBody]ExisteSobreIn input)
         {
             return new CRUDSobre().ExisteSobre(input);
         }

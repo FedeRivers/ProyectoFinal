@@ -1,5 +1,6 @@
 export class ObtenerEstadisticasIn{
     
+    private enumeradoGrafica!: number;
     private fechaDesde!: Date;
     private fechaHasta!: Date;
 
@@ -16,5 +17,11 @@ export class ObtenerEstadisticasIn{
     }
     public set FechaHasta(value: Date) {
         this.fechaHasta = value;
+    }
+    public get EnumeradoGrafica(): number {
+        return this.enumeradoGrafica;
+    }
+    public set EnumeradoGrafica(value: number) {
+        this.enumeradoGrafica = value;
     }
 }

@@ -5,10 +5,6 @@
     <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.BajaSobre" Method="BajaSobre">
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.ExisteEspacioLibre" Method="ExisteEspacioLibre">
     <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
     <ElementType Name="ExisteEspacioLibreResult">
@@ -21,37 +17,6 @@
     <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.ListarSobres" Method="ListarSobres">
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="NombreSemilla" Parameter="nombreSemilla" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <ElementType Name="ListarSobresResult">
-      <Column Name="numeroSobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="peso" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
-      <Column Name="fila" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="columna" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="activoSobre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="fechaDeDevolucion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ingresoSobre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="humedad" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="germinacion" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="vigor" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="fechaEstimada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="numeroLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="activoLote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ingresoLote" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="idSemilla" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="nombreSemilla" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ingresoSemilla" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="activoSemilla" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="idEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="nombreEstado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-    </ElementType>
   </Function>
   <Function Name="dbo.ObtenerSobre" Method="ObtenerSobre">
     <Parameter Name="numeroLote" Type="System.Int32" DbType="Int" />
@@ -77,8 +42,20 @@
     <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.AsignarSobreACamara" Method="AsignarSobreACamara">
+    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fila" Parameter="fila" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Columna" Parameter="columna" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BajaSobre" Method="BajaSobre">
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
     <Parameter Name="Humedad" Parameter="humedad" Type="System.Double" DbType="Float" />
     <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Double" DbType="Float" />
@@ -90,16 +67,67 @@
     <Parameter Name="peso" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.AsignarSobreACamara" Method="AsignarSobreACamara">
-    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Fila" Parameter="fila" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Columna" Parameter="columna" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
+  <Function Name="dbo.ListarSobres" Method="ListarSobres">
+    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="NombreSemilla" Parameter="nombreSemilla" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <ElementType Name="ListarSobresResult">
+      <Column Name="idsobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="numeroSobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="peso" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
+      <Column Name="fila" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="columna" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="activoSobre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fechaDeDevolucion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ingresoSobre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="humedad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="germinacion" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="vigor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fechaEstimada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="numeroLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="activoLote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ingresoLote" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idSemilla" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreSemilla" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ingresoSemilla" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activoSemilla" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreEstado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
   <Function Name="dbo.ExportarExcel" Method="ExportarExcel">
-    <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DevolverSobres" Method="DevolverSobres">
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ListarSobresParaDevolucion" Method="ListarSobresParaDevolucion">
+    <ElementType Name="ListarSobresParaDevolucionResult">
+      <Column Name="idsobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="numeroSobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fechaDeDevolucion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fechaDeIngreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fechaEstimada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="humedad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="germinacion" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="vigor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="numeroLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idSemilla" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idEstado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="peso" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
+      <Column Name="idSemilla1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaDeIngreso1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activo1" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idTaxonomia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

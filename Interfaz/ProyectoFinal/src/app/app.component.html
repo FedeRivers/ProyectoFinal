@@ -75,16 +75,22 @@
                 <app-secado></app-secado>
             </ng-template>
         </li>
-        <li [ngbNavItem]="13">
-            <app-alerta></app-alerta>
+        <li [ngbNavItem]="13" *ngIf="ModuloDevolucion">
+            <a ngbNavLink><b>Devolución</b></a>
+            <ng-template ngbNavContent>
+                <app-devolucion></app-devolucion>
+            </ng-template>
         </li>
         <li [ngbNavItem]="14">
+            <app-alerta></app-alerta>
+        </li>
+        <li [ngbNavItem]="15">
             <a ngbNavLink><i class="bi bi-person-circle" style="font-size: 18px;"></i></a>
             <ng-template ngbNavContent>
                 <app-datos-personales></app-datos-personales>
             </ng-template>
         </li>
-        <li [ngbNavItem]="15">
+        <li [ngbNavItem]="16">
             <a ngbNavLink (click)="CerrarSesion()"><b>Cerrar Sesión</b></a>
         </li>
 

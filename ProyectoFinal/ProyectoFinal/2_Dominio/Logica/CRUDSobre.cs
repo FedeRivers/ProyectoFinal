@@ -38,7 +38,7 @@ namespace ProyectoFinal._2_Dominio.Logica
                         Columna = existeEspacioLibreOut.Columna,
                         Fila = existeEspacioLibreOut.Fila,
                         IdCamara = input.Sobre.Ubicacion.Camara.IdCamara,
-                        NumeroSobre = input.Sobre.NumeroSobre,
+                        IdSobre = input.Sobre.IdSobre,
                         IdEstado = input.Sobre.Estado.IdEstado
                     }).Status;
 
@@ -62,9 +62,19 @@ namespace ProyectoFinal._2_Dominio.Logica
             return resultado;
         }
 
+        public DevolverSobresOut DevolverSobres(DevolverSobresIn input)
+        {
+            return new PSobre().DevolverSobres(input);
+        }
+
         public ListarSobresOut ListarSobres(ListarSobresIn input)
         {
             return new PSobre().ListarSobres(input);
+        }
+
+        public ListarSobresParaDevolucionOut ListarSobresParaDevolucion(ListarSobresParaDevolucionIn input)
+        {
+            return new PSobre().ListarSobresParaDevolucion(input);
         }
 
         public ExisteSobreOut ExisteSobre(ExisteSobreIn input)

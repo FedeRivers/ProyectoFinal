@@ -8,6 +8,10 @@ import { ModificarLoteIn } from '../Parametros/Entrada/ModicarLoteIn';
 import { ListarLotesOut } from '../Parametros/Salida/ListarLotesOut';
 import { ExisteLoteIn } from '../Parametros/Entrada/ExisteLoteIn';
 import { ExisteLoteOut } from '../Parametros/Salida/ExisteLoteOut';
+import { ListarLotesParaDevolucionOut } from '../Parametros/Salida/ListarLotesParaDevolucionOut';
+import { ListarLotesParaDevolucionIn } from '../Parametros/Entrada/ListarLotesParaDevolucionIn';
+import { DevolverLotesOut } from '../Parametros/Salida/DevolverLotesOut';
+import { DevolverLotesIn } from '../Parametros/Entrada/DevolverLotesIn';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +34,23 @@ export class LoteService {
     return this.http.post(`${this.baseUrl+ MetodosUrl.Lote.MODIFICAR}`,modificarLoteIn);
   }
 
+  public DevolverLotes(devolverLotesIn:DevolverLotesIn)
+  {
+    return this.http.post<DevolverLotesOut>(`${this.baseUrl+MetodosUrl.Lote.DEVOLVERLOTES}`,devolverLotesIn);
+  }
+
   public Listar(listarLoteIn:ListarLotesIn){
     return this.http.get<ListarLotesOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTAR}?TerminoDeBusqueda=${listarLoteIn.terminoDeBusqueda}`);
+  }
+
+  public ListarLotesParaDevolucion(listarLotesParaDevolucionIn:ListarLotesParaDevolucionIn)
+  {
+    return this.http.get<ListarLotesParaDevolucionOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTARLOTEPARADEVOLUCION}`);
   }
 
   public ExisteLote(existeLoteIn:ExisteLoteIn){
     return this.http.post<ExisteLoteOut>(`${this.baseUrl+ MetodosUrl.Lote.EXISTELOTE}`,existeLoteIn);
   }
+
+
 }

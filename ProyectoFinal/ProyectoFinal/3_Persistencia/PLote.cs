@@ -78,6 +78,31 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
+        public DevolverLotesOut DevolverLotes(DevolverLotesIn input)
+        {
+            var output = new DevolverLotesOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloLoteDataContext())
+            {
+                try
+                {
+                    dataContext.Connection.Open();
+                    dataContext.Transaction = dataContext.Connection.BeginTransaction();
+                    foreach (var sobre in input.Lotes)
+                    {
+                        var result = dataContext.DevolverLotes(sobre.NumeroLote);
+                    }
+                    dataContext.Transaction.Commit();
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    dataContext.Transaction.Rollback();
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+        }
+
         public ListarLotesOut ListarLotes(ListarLotesIn input)
         {
             var output = new ListarLotesOut { Lotes = new List<Lote>(), Status = new HttpStatusCodeResult(404) };
@@ -105,6 +130,38 @@ namespace ProyectoFinal._3_Persistencia
                                     FechaDeIngreso = lote.ingresoMejorador,
                                     Activo = lote.activoMejorador
                                 }
+                            });
+                        }
+                        output.Status = new HttpStatusCodeResult(200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+
+            return output;
+        }
+
+        public ListarLotesParaDevolucionOut ListarLotesParaDevolucion(ListarLotesParaDevolucionIn input)
+        {
+            var output = new ListarLotesParaDevolucionOut { Lotes = new List<Lote>(), Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloLoteDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ListarLotesParaDevolucion();
+                    if (result != null)
+                    {
+                        foreach (var lote in result)
+                        {
+                            output.Lotes.Add(new Lote
+                            {
+                                NumeroLote = lote.numeroLote,
+                                Descripcion = lote.descripcion,
+                                FechaDeIngreso = lote.fechaDeIngreso,
+                                Activo = lote.activo                
                             });
                         }
                         output.Status = new HttpStatusCodeResult(200);

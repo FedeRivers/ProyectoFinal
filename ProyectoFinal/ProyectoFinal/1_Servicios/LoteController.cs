@@ -32,10 +32,21 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDLote().ModificarLote(input);
         }
 
+        public DevolverLotesOut DevolverLotes([FromBody]DevolverLotesIn input)
+        {
+            return new CRUDLote().DevolverLotes(input);
+        }
+
         [HttpGet]
         public ListarLotesOut ListarLotes([FromUri]ListarLotesIn input)
         {
             return new CRUDLote().ListarLotes(input);
+        }
+
+        [HttpGet]
+        public ListarLotesParaDevolucionOut ListarLotesParaDevolucion([FromUri]ListarLotesParaDevolucionIn input)
+        {
+            return new CRUDLote().ListarLotesParaDevolucion(input);
         }
 
         [HttpPost]

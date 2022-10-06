@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <title>Devolucion</title>
+</head>
+
+<body>
+    <div class="container card card-body">
+        <div class="row">
+
+            <div class="col-md-10 mb-3">
+                <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content">
+                    <li [ngbNavItem]="1">
+                        <a ngbNavLink (click)="CambiarTab(false)"><b>Devolución por lote</b></a>
+                    </li>
+                    <li [ngbNavItem]="2">
+                        <a ngbNavLink (click)="CambiarTab(true)"><b>Devolución por sobre</b></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <button [disabled]="(SobresSeleccionados.length == 0 && DevolucionPorSobre) || (LotesSeleccionados.length == 0 && !DevolucionPorSobre)" class="btn btn-success" (click)="AbrirModal()">
+                    <i class="bi bi-box-arrow-in-up"></i>
+                Devolver                
+            </button>
+            </div>
+
+            <table class="table table-hover col-md-12 col-lg-12" *ngIf="!DevolucionPorSobre">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col" sortable="numero">Numero</th>
+                        <th scope="col" sortable="numero">Descripcion</th>
+                        <th scope="col" sortable="numero">Fecha de ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" *ngFor="let lote of Lotes">
+                        <td>
+                            <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="SeleccionarLote($event,lote)">
+                        </td>
+                        <td>
+                            {{lote.NumeroLote}}
+                        </td>
+                        <td>
+                            {{lote.Descripcion}}
+                        </td>
+                        <td>
+                            {{lote.FechaDeIngreso | date:'short'}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover col-md-12 col-lg-12" *ngIf="DevolucionPorSobre">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col" sortable="numero">Numero de sobre</th>
+                        <th scope="col" sortable="lote">Lote</th>
+                        <th scope="col" sortable="semilla">Semilla</th>
+                        <th scope="col" sortable="germinacion">Germinacion</th>
+                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pointer" *ngFor="let sobre of Sobres">
+                        <td>
+                            <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="SeleccionarSobre($event,sobre)">
+                        </td>
+                        <td>
+                            {{sobre.NumeroSobre}}
+                        </td>
+                        <td>
+                            {{sobre.Lote.NumeroLote }}
+                        </td>
+                        <td>
+                            {{sobre.Semilla.Nombre }}
+                        </td>
+                        <td>
+                            {{sobre.Germinacion }}
+                        </td>
+                        <td>
+                            {{sobre.FechaDeIngreso | date:'short' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<app-modal #modal (Aceptar)="Limpiar()" (Confirmar)="Confirmar()"></app-modal>
+
+</html>

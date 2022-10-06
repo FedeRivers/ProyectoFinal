@@ -119,7 +119,12 @@
     <Build Include="StoreProcedure\ObtenerSobre.sql" />
     <Build Include="StoreProcedure\ModificarEstados.sql" />
     <Build Include="StoreProcedure\ExportarExcel.sql" />
-    <Build Include="StoreProcedure\ObtenerEstadisticas.sql" />
+    <Build Include="StoreProcedure\ObtenerCantidadesPorEspecie.sql" />
+    <Build Include="StoreProcedure\ObtenerDevueltosYAlmacenados.sql" />
+    <Build Include="StoreProcedure\ListarLotesParaDevolucion.sql" />
+    <Build Include="StoreProcedure\ListarSobresParaDevolucion.sql" />
+    <Build Include="StoreProcedure\DevolverSobres.sql" />
+    <Build Include="StoreProcedure\DevolverLotes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

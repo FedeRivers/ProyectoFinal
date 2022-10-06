@@ -13,6 +13,10 @@ import { ListarSobresOut } from '../Parametros/Salida/ListarSobresOut';
 import { ModificarSobreOut } from '../Parametros/Salida/ModificarSobreOut';
 import { ExportarExcelIn } from '../Parametros/Entrada/ExportarExcelIn';
 import { ExportarExcelOut } from '../Parametros/Salida/ExportarExcelOut';
+import { ListarSobresParaDevolucionOut } from '../Parametros/Salida/ListarSobresParaDevolucionOut';
+import { ListarSobresParaDevolucionIn } from '../Parametros/Entrada/ListarSobresParaDevolucionIn';
+import { DevolverSobresIn } from '../Parametros/Entrada/DevolverSobresIn';
+import { DevolverSobresOut } from '../Parametros/Salida/DevolverSobresOut';
 
 @Injectable({
   providedIn: 'root'
@@ -38,14 +42,24 @@ export class SobreService {
     return this.http.post<ModificarSobreOut>(`${this.baseUrl+MetodosUrl.Sobre.MODIFICAR}`,modificarSobreIn);
   }
 
+  public DevolverSobres(devolverSobresIn:DevolverSobresIn)
+  {
+    return this.http.post<DevolverSobresOut>(`${this.baseUrl+MetodosUrl.Sobre.DEVOLVERSOBRES}`,devolverSobresIn);
+  }
+
   public Listar(listarSobreIn:ListarSobreIn)
   {
     return this.http.get<ListarSobresOut>(`${this.baseUrl+MetodosUrl.Sobre.LISTAR}?NumeroSobre=${listarSobreIn.NumeroSobre}&NumeroLote=${listarSobreIn.NumeroLote}&NombreSemilla=${listarSobreIn.NombreSemilla}&IdCamara=${listarSobreIn.IdCamara}&IdEstado=${listarSobreIn.IdEstado}&IdCamara=${listarSobreIn.IdCamara}`);
   }
 
+  public ListarSobresParaDevolucion(listarSobresParaDevolucionIn:ListarSobresParaDevolucionIn)
+  {
+    return this.http.get<ListarSobresParaDevolucionOut>(`${this.baseUrl+MetodosUrl.Sobre.LISTARSOBRESPARADEVOLUCION}`)
+  }
+
   public ExisteSobre(existeSobreIn:ExisteSobreIn)
   {
-    return this.http.get<ExisteSobreOut>(`${this.baseUrl+ MetodosUrl.Sobre.EXISTESOBRE}?Sobre=${existeSobreIn.Sobre}`)
+    return this.http.post<ExisteSobreOut>(`${this.baseUrl+ MetodosUrl.Sobre.EXISTESOBRE}`,existeSobreIn);
   }
 
   public BuscarDuplicados(buscarDuplicadosIn:BuscarDuplicadosIn)

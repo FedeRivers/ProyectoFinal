@@ -5,6 +5,7 @@ import { ItemValor } from './class/itemValor';
 import { ItemColor } from './class/itemColor';
 import { EstadisticaService } from 'src/app/Services/estadistica.service';
 import { ObtenerEstadisticasIn } from 'src/app/Parametros/Entrada/obtenerEstadisticasIn';
+import { Graficas } from '../Constantes/constantes';
 
 @Component({
   selector: 'app-estadistica',
@@ -12,6 +13,8 @@ import { ObtenerEstadisticasIn } from 'src/app/Parametros/Entrada/obtenerEstadis
   styleUrls: ['./estadistica.component.css']
 })
 export class EstadisticaComponent implements OnInit {
+
+  private graficaSeleccionada: number = Graficas.ObtenerCantidadesPorEspecie;
 
   //#region Calendario
   private hoveredDate: NgbDate | null = null;
@@ -46,8 +49,9 @@ export class EstadisticaComponent implements OnInit {
   //#endregion
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private estadisticaServicio: EstadisticaService) {
-    this.fromDate = calendar.getToday();
+    this.fromDate = calendar.getNext(calendar.getToday(), 'd', -60) //.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    
     this.Listar();
   }
 
@@ -163,11 +167,18 @@ export class EstadisticaComponent implements OnInit {
   public set BarPadding(value) {
     this.barPadding = value;
   }
+  public get GraficaSeleccionada(): number {
+    return this.graficaSeleccionada;
+  }
+  public set GraficaSeleccionada(value: number) {
+    this.graficaSeleccionada = value;
+  }
   //#endregion
 
   Listar()
   {
     let obtenerEstadisticasIn = new ObtenerEstadisticasIn();
+    obtenerEstadisticasIn.EnumeradoGrafica = this.graficaSeleccionada;
     obtenerEstadisticasIn.FechaDesde = new Date(this.fromDate!.year,this.fromDate!.month - 1,this.fromDate!.day);
     obtenerEstadisticasIn.FechaHasta = new Date(this.toDate!.year,this.toDate!.month - 1,this.toDate!.day);
     this.estadisticaServicio.ObtenerEstadisticas(obtenerEstadisticasIn)
@@ -245,7 +256,18 @@ export class EstadisticaComponent implements OnInit {
     }
   //#endregion
 
-
+  SeleccionarGrafica(graficaSeleccionada:number)
+  {
+    switch(graficaSeleccionada)
+    {
+      case 1 : this.graficaSeleccionada = Graficas.ObtenerCantidadesPorEspecie;
+        break;
+      case 2 : this.graficaSeleccionada = Graficas.ObtenerDevueltosYAlmacenados;
+        break;
+    }
+    this.Limpiar();
+    this.Listar();
+  }
 
 
 }

@@ -1,11 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BancoDeGermoplasma" Class="ModeloEstadisticaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=FEDE-PC\SQLEXPRESS02;Initial Catalog=BancoDeGermoplasma;Integrated Security=False;User ID=proyecto" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BancoDeGermoplasmaConnectionString" Provider="System.Data.SqlClient" />
-  <Function Name="dbo.ObtenerEstadisticas" Method="ObtenerEstadisticas">
+  <Function Name="dbo.ObtenerCantidadesPorEspecie" Method="ObtenerCantidadesPorEspecie">
     <Parameter Name="fechaDesde" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="fechaHasta" Type="System.DateTime" DbType="DateTime" />
-    <ElementType Name="ObtenerEstadisticasResult">
+    <ElementType Name="ObtenerCantidadesPorEspecieResult">
       <Column Name="valor" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ObtenerDevueltosYAlmacenados" Method="ObtenerDevueltosYAlmacenados">
+    <Parameter Name="fechaDesde" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaHasta" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="ObtenerDevueltosYAlmacenadosResult">
+      <Column Name="valor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

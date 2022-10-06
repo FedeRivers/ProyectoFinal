@@ -13,7 +13,7 @@ namespace ProyectoFinal.Parametros.Entrada
 
         public int Columna { get; set; }
 
-        public int NumeroSobre { get; set; }
+        public int IdSobre { get; set; }
 
         public int IdEstado { get; set; }
     }

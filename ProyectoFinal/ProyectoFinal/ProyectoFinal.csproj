@@ -163,6 +163,7 @@
     <Compile Include="2_Dominio\Entidades\Alerta.cs" />
     <Compile Include="2_Dominio\Entidades\Camara.cs" />
     <Compile Include="2_Dominio\Entidades\EnumeradoEstados.cs" />
+    <Compile Include="2_Dominio\Entidades\EnumeradoGraficas.cs" />
     <Compile Include="2_Dominio\Entidades\Estado.cs" />
     <Compile Include="2_Dominio\Entidades\ItemValor.cs" />
     <Compile Include="2_Dominio\Entidades\Lote.cs" />
@@ -313,6 +314,8 @@
     <Compile Include="Parametros\Entrada\BajaSobreIn.cs" />
     <Compile Include="Parametros\Entrada\BajaTaxonomiaIn.cs" />
     <Compile Include="Parametros\Entrada\BajaUsuarioIn.cs" />
+    <Compile Include="Parametros\Entrada\DevolverLotesIn.cs" />
+    <Compile Include="Parametros\Entrada\DevolverSobresIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteEspacioLibreIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteLoteIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteSobreIn.cs" />
@@ -322,10 +325,12 @@
     <Compile Include="Parametros\Entrada\ListarCamarasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarEstadosIn.cs" />
     <Compile Include="Parametros\Entrada\ListarLotesIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarLotesParaDevolucionIn.cs" />
     <Compile Include="Parametros\Entrada\ListarMejoradorIn.cs" />
     <Compile Include="Parametros\Entrada\ListarModulosPorTipoDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarSemillasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarSobresIn.cs" />
+    <Compile Include="Parametros\Entrada\ListarSobresParaDevolucionIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTaxonomiasIn.cs" />
     <Compile Include="Parametros\Entrada\ListarTiposDeUsuarioIn.cs" />
     <Compile Include="Parametros\Entrada\ListarUsuariosIn.cs" />
@@ -357,6 +362,8 @@
     <Compile Include="Parametros\Entrada\EliminarModuloIn.cs" />
     <Compile Include="Parametros\Salida\BuscarDuplicadosOut.cs" />
     <Compile Include="Parametros\Salida\DesactivarAlertaOut.cs" />
+    <Compile Include="Parametros\Salida\DevolverLotesOut.cs" />
+    <Compile Include="Parametros\Salida\DevolverSobresOut.cs" />
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ExisteEspacioLibreOut.cs" />
     <Compile Include="Parametros\Salida\ExisteLoteOut.cs" />
@@ -366,10 +373,12 @@
     <Compile Include="Parametros\Salida\ListarCamarasOut.cs" />
     <Compile Include="Parametros\Salida\ListarEstadosOut.cs" />
     <Compile Include="Parametros\Salida\ListarLotesOut.cs" />
+    <Compile Include="Parametros\Salida\ListarLotesParaDevolucionOut.cs" />
     <Compile Include="Parametros\Salida\ListarMejoradorOut.cs" />
     <Compile Include="Parametros\Salida\ListarModulosPorTipoDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarSemillasOut.cs" />
     <Compile Include="Parametros\Salida\ListarSobresOut.cs" />
+    <Compile Include="Parametros\Salida\ListarSobresParaDevolucionOut.cs" />
     <Compile Include="Parametros\Salida\ListarTaxonomiasOut.cs" />
     <Compile Include="Parametros\Salida\ListarTiposDeUsuarioOut.cs" />
     <Compile Include="Parametros\Salida\ListarUsuariosOut.cs" />
