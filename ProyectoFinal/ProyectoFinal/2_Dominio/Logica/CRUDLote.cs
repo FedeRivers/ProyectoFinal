@@ -25,9 +25,19 @@ namespace ProyectoFinal._2_Dominio.Logica
             return new PLote().ModificarLote(input);
         }
 
+        public DevolverLotesOut DevolverLotes(DevolverLotesIn input)
+        {
+            return new PLote().DevolverLotes(input);
+        }
+
         public ListarLotesOut ListarLotes(ListarLotesIn input)
         {
             return new PLote().ListarLotes(input);
+        }
+
+        public ListarLotesParaDevolucionOut ListarLotesParaDevolucion(ListarLotesParaDevolucionIn input)
+        {
+            return new PLote().ListarLotesParaDevolucion(input);
         }
 
         public ExisteLoteOut ExisteLote(ExisteLoteIn input)

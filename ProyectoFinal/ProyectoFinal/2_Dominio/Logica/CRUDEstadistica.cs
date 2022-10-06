@@ -13,7 +13,14 @@ namespace ProyectoFinal._2_Dominio.Logica
 
         public ObtenerEstadisticasOut ObtenerEstadisticas(ObtenerEstadisticasIn input)
         {
-            return new PEstadistica().ObtenerEstadisticas(input);
+            if (input.EnumeradoGrafica == Entidades.EnumeradoGraficas.ObtenerCantidadesPorEspecie)
+            {
+                return new PEstadistica().ObtenerCantidadesPorEspecie(input);
+            }
+            else
+            {
+                return new PEstadistica().ObtenerDevueltosYAlmacenados(input);
+            }
         }
     }
 }

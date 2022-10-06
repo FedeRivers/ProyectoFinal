@@ -70,9 +70,6 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private btnGerminar: boolean = false;
   private btnSecar: boolean = false;
 
-
-
-
   @ViewChild("modal") modal: ModalComponent;
   
 

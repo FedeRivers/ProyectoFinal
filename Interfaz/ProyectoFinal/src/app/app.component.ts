@@ -23,7 +23,7 @@ export class AppComponent {
   private moduloBuscarDuplicados: boolean = false;
   private moduloEstadisticas: boolean = false;
   private moduloSecado: boolean = false;
-
+  private moduloDevolucion: boolean = false;
 
   constructor(){
     this.usuario = new Usuario();
@@ -130,6 +130,12 @@ export class AppComponent {
   public set ModuloSecado(value: boolean) {
     this.moduloSecado = value;
   }
+  public get ModuloDevolucion(): boolean {
+    return this.moduloDevolucion;
+  }
+  public set ModuloDevolucion(value: boolean) {
+    this.moduloDevolucion = value;
+  }
 
 
   ListarFormularios(usuario:Usuario)
@@ -170,6 +176,8 @@ export class AppComponent {
           break;
         case RecursosDeIdioma.Formularios.SECADO: this.moduloSecado = true;
           break;
+        case RecursosDeIdioma.Formularios.DEVOLUCION: this.moduloDevolucion = true;
+          break;
       }
     });
   }
@@ -190,6 +198,7 @@ export class AppComponent {
     this.moduloBuscarDuplicados = false;
     this.moduloEstadisticas = false;
     this.moduloSecado = false;
+    this.moduloDevolucion = false;
   }
 
 

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[ObtenerEstadisticas]
+﻿CREATE PROCEDURE [dbo].[ObtenerCantidadesPorEspecie]
 	@fechaDesde DateTime,
 	@fechaHasta DateTime
 AS

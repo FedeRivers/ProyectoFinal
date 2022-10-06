@@ -32,10 +32,22 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDSobre().ModificarSobre(input);
         }
 
+        [HttpPost]
+        public DevolverSobresOut DevolverSobres([FromBody]DevolverSobresIn input)
+        {
+            return new CRUDSobre().DevolverSobres(input);
+        }
+
         [HttpGet]
         public ListarSobresOut ListarSobres([FromUri]ListarSobresIn input)
         {
             return new CRUDSobre().ListarSobres(input);
+        }
+
+        [HttpGet]
+        public ListarSobresParaDevolucionOut ListarSobresParaDevolucion([FromUri]ListarSobresParaDevolucionIn input)
+        {
+            return new CRUDSobre().ListarSobresParaDevolucion(input);
         }
 
         [HttpPost]
