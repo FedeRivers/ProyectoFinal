@@ -34,5 +34,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
         public Semilla Semilla { get; set; }
 
         public Estado Estado { get; set; }
+
+        public string CodigoQR { get; set; }
     }
 }

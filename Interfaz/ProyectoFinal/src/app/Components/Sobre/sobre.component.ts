@@ -23,11 +23,12 @@ import { ListarCamaraIn } from 'src/app/Parametros/Entrada/ListarCamaraIn';
 import { CamaraService } from 'src/app/Services/camara.service';
 import { Usuario } from '../Usuario/class/usuario';
 import { ExisteSobreIn } from 'src/app/Parametros/Entrada/ExisteSobreIn';
+import { ModalqrComponent } from '../Modal/modalqr/modalqr.component';
 
 @Component({
   selector: 'app-sobre',
   templateUrl: './sobre.component.html',
-  styleUrls: ['./sobre.component.css']
+  styleUrls: ['./sobre.component.css'],
 })
 export class SobreComponent extends FormularioBase implements OnInit {
   
@@ -71,7 +72,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private btnSecar: boolean = false;
 
   @ViewChild("modal") modal: ModalComponent;
-  
+  @ViewChild("modalQR") modalQR: ModalqrComponent;
 
 
   constructor(private sobreServicio: SobreService,private semillaServicio: SemillaService,private loteService:LoteService,private estadoService: EstadoService,private camaraService: CamaraService) {
@@ -79,6 +80,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
     let usuario:Usuario = JSON.parse(sessionStorage.getItem('usuario')!); 
     this.idTipoDeUsuario =  usuario.TipoDeUsuario.IdTipoDeUsuario;
     this.listarSobreIn = new ListarSobreIn();
+    this.modalQR = new ModalqrComponent();
     this.modal = new ModalComponent();
     this.semilla = new Semilla();
     this.estado = new Estado();
@@ -444,30 +446,6 @@ export class SobreComponent extends FormularioBase implements OnInit {
     }
   }
 
- Regresar()
-  {
-    this.Listar();
-    this.Limpiar();
-    if(!this.btnGerminar && !this.btnTomarHumedad && !this.btnSecar)
-    {
-      this.Ocultar();
-    }
-  }
-
-  Limpiar()
-  {
-    this.sobre= new Sobre();
-    this.BtnAlta = false;
-    this.BtnBaja = false;
-    this.BtnModificar = false;
-    this.mensajeUbicacionInvalida = '';
-    this.mensajeHumedadInvalida = '';
-    this.mensajeGerminacionInvalida = '';
-    this.mensajeLoteInvalido = '';
-    this.mensajeSemillaInvalida = '';
-    this.mensajeEstadoInvalida = '';
-  }
-
   BotonSeleccionado(boton:string)
   {
     switch(boton)
@@ -524,9 +502,39 @@ export class SobreComponent extends FormularioBase implements OnInit {
     }
   }
 
+  Regresar()
+  {
+    this.Listar();
+    this.Limpiar();
+    if(!this.btnGerminar && !this.btnTomarHumedad && !this.btnSecar)
+    {
+      this.Ocultar();
+    }
+  }
+
+  Limpiar()
+  {
+    this.sobre= new Sobre();
+    this.BtnAlta = false;
+    this.BtnBaja = false;
+    this.BtnModificar = false;
+    this.mensajeUbicacionInvalida = '';
+    this.mensajeHumedadInvalida = '';
+    this.mensajeGerminacionInvalida = '';
+    this.mensajeLoteInvalido = '';
+    this.mensajeSemillaInvalida = '';
+    this.mensajeEstadoInvalida = '';
+  }
+
   AbrirModal()
   {
     this.modal.open();
+  }
+
+  AbrirModalQR(sobre:Sobre)
+  {
+    this.modalQR.Imagen = sobre.CodigoQR;
+    this.modalQR.open();
   }
 
   //#region Validaciones

@@ -23,7 +23,8 @@ namespace ProyectoFinal._3_Persistencia
                         (
                         input.Sobre.NumeroSobre,
                         input.Sobre.Lote.NumeroLote, 
-                        input.Sobre.Semilla.IdSemilla
+                        input.Sobre.Semilla.IdSemilla,
+                        input.Sobre.CodigoQR
                         );
                     if (result != -1)
                     {
@@ -144,6 +145,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Germinacion = sobre.germinacion,
                                 Vigor = sobre.vigor,
                                 Peso = sobre.peso,
+                                CodigoQR = sobre.codigoQR,
                                 Lote = new Lote
                                 {
                                     NumeroLote = sobre.numeroLote,

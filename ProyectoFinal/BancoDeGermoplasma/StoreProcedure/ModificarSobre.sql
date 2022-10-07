@@ -8,7 +8,8 @@
 	@IdSemilla int,
 	@IdEstado int,
 	@FechaEstimada dateTime,
-	@peso decimal
+	@peso decimal,
+	@CodigoQR varchar(max)
 AS
 BEGIN
 	BEGIN TRY
@@ -16,7 +17,8 @@ BEGIN
 		numeroLote = @NumeroLote, 
 		idSemilla = @IdSemilla, 
 		idEstado = @IdEstado,
-		peso = @peso
+		peso = @peso,
+		codigoQR = @CodigoQR
 		WHERE idSobre = @IdSobre
 		IF @Humedad IS NOT NULL OR @Germinacion IS NOT NULL OR @Vigor IS NOT NULL
 			BEGIN

@@ -11,6 +11,7 @@ BEGIN
 	so.idsobre,
 	so.numeroSobre,
 	so.peso,
+	so.codigoQR,
 	ub.fila,
 	ub.columna,
 	ca.nombre,

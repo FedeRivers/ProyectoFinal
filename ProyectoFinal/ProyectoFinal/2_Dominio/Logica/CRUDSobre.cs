@@ -2,6 +2,7 @@
 using ProyectoFinal._3_Persistencia;
 using ProyectoFinal.Parametros.Entrada;
 using ProyectoFinal.Parametros.Salida;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ProyectoFinal._2_Dominio.Logica
     {
         public AltaSobreOut AltaSobre(AltaSobreIn input)
         {
+            input.Sobre.CodigoQR = GenerarQR(input.Sobre);
             return new PSobre().AltaSobre(input);
         }
 
@@ -26,6 +28,7 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             PSobre instancia = new PSobre();
             var resultado = new ModificarSobreOut { Status = new HttpStatusCodeResult(404) };
+            input.Sobre.CodigoQR = GenerarQR(input.Sobre);
             new CRUDAlerta().AltaAlerta(new AltaAlertaIn() { Sobre = input.Sobre, IdTipoDeUsuario = input.IdTipoDeUsuario });
             if (input.Sobre.Ubicacion.Camara.IdCamara != 0)
             {
@@ -127,7 +130,14 @@ namespace ProyectoFinal._2_Dominio.Logica
                 {
                     if (sobre.Germinacion > 0)
                     {
-                        input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.EsperandoHumedad;
+                        if (sobre.Germinacion < 85)
+                        {
+                            input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Devolver;
+                        }
+                        else
+                        {
+                            input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.EsperandoHumedad;
+                        }
                     }
                     else
                     {
@@ -140,7 +150,14 @@ namespace ProyectoFinal._2_Dominio.Logica
                 }
                 else if (sobre.Estado.IdEstado == (int)EnumeradoEstados.EsperandoGerminacion && sobre.Germinacion > 0 && sobre.Humedad == 0)
                 {
-                    input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.GerminacionIngresada;
+                    if (sobre.Germinacion < 85)
+                    {
+                        input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Devolver;
+                    }
+                    else
+                    {
+                        input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.GerminacionIngresada;
+                    }
                 }
                 else if (sobre.Estado.IdEstado == (int)EnumeradoEstados.EsperandoHumedad && sobre.Humedad > 0 && sobre.Germinacion == 0)
                 {
@@ -154,13 +171,24 @@ namespace ProyectoFinal._2_Dominio.Logica
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Secando;
                 }
-                else if (sobre.Humedad <= 7 && sobre.Germinacion > 85 && input.Sobre.Peso == 0)//Si la humedad y la germinación son óptimas
+                else if (sobre.Humedad <= 7 && sobre.Germinacion > 84 && input.Sobre.Peso == 0)//Si la humedad y la germinación son óptimas
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.EsperandoPesaje;//el estado de los sobres es esperando pesaje.
                 }
                 else if (sobre.Humedad > 0 && sobre.Germinacion > 0 && input.Sobre.Peso == 0)
                 {
-                    input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.ListoParaSecar;
+                    if (input.Sobre.Germinacion < 85)
+                    {
+                        input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Devolver;
+                    }
+                    else
+                    {
+                        input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.ListoParaSecar;
+                    }
+                }
+                else if (sobre.Estado.IdEstado == (int)EnumeradoEstados.Devolver)
+                {
+                    input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Devolver;
                 }
                 return new PSobre().ModificarEstados(input);
             }
@@ -174,5 +202,15 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PSobre().ExportarExcel(input);
         }
+
+        public string GenerarQR(Sobre input)
+        {
+            string qrCodeImageBase64 = string.Empty;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("Número de lote: "+input.Lote.NumeroLote.ToString()+ "\n" + "Número de sobre: "+input.NumeroSobre.ToString(), QRCodeGenerator.ECCLevel.Q);
+            Base64QRCode qrCode = new Base64QRCode(qrCodeData);
+            return qrCodeImageBase64 = "data:image/png;base64," + qrCode.GetGraphic(5);  
+        }
+
     }
 }

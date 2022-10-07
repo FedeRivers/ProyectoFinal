@@ -106,7 +106,9 @@ USING (
 		   (12, N'Devuelto'),
 		   (13, N'Esperando pesaje'),
 		   (14, N'Listo para exportar'),
-		   (15, N'Almacenado')
+		   (15, N'Almacenado'),
+		   (16, N'Devolver')
+
 ) AS SOURCE ( NewIdEstado, NewNombre )
 ON TARGET.[idEstado] = SOURCE.NewIdEstado
 WHEN MATCHED THEN 
