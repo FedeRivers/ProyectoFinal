@@ -1,12 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[AltaSobre] 
 	@NumeroSobre int,
 	@NumeroLote int,
-	@IdSemilla int
+	@IdSemilla int,
+	@CodigoQR varchar(max)
 AS
 BEGIN
 	BEGIN TRY
-		INSERT INTO Sobres(numeroSobre, numeroLote, idSemilla) 
-		VALUES (@NumeroSobre, @NumeroLote, @IdSemilla)
+		INSERT INTO Sobres(numeroSobre, numeroLote, idSemilla,codigoQR) 
+		VALUES (@NumeroSobre, @NumeroLote, @IdSemilla,@CodigoQR)
 		return 0
 	END TRY
 	BEGIN CATCH

@@ -17,6 +17,7 @@ export class Sobre{
     private peso!: number;
     private estado: Estado;
     private semilla: Semilla;
+    private codigoQR!: string;
     private activo!: boolean;
     
     constructor(){
@@ -121,6 +122,12 @@ export class Sobre{
     }
     public set Activo(value: boolean) {
         this.activo = value;
+    }
+    public get CodigoQR(): string {
+        return this.codigoQR;
+    }
+    public set CodigoQR(value: string) {
+        this.codigoQR = value;
     }
 
 

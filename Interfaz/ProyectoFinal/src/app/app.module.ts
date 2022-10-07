@@ -25,6 +25,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DatosPersonalesComponent } from './Components/DatosPersonales/datosPersonales.component';
 import { SecadoComponent } from './Components/secado/secado.component';
 import { DevolucionComponent } from './Components/Devolucion/devolucion.component';
+import { ModalqrComponent } from './Components/Modal/modalqr/modalqr.component';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { DevolucionComponent } from './Components/Devolucion/devolucion.componen
     DatosPersonalesComponent,
     SecadoComponent,
     DevolucionComponent,
+    ModalqrComponent,
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
 	    Devuelto = 12,
         EsperandoPesaje = 13,
         ListoParaExportar = 14,
-        Almacenado = 15
+        Almacenado = 15,
+        Devolver = 16
     }
 }

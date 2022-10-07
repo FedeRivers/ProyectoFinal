@@ -121,8 +121,6 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -169,30 +167,34 @@
                         <td>
                             <i class="bi bi-trash3" *ngIf="sobre.Estado.Nombre=='Recibido'" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(sobre,'Baja')"></i>
                         </td>
+
                         <td>
-                            <span class="input-group">             
-                                <button [disabled]="!(sobre.Estado.IdEstado== 1 || (sobre.Estado.IdEstado==7 && sobre.Humedad == 0) || sobre.Estado.IdEstado==8)" class="btn btn-secondary" (click)="Seleccionar(sobre,'TomarHumedad')">
-                                    <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
-                                    Tomar Humedad             
+                            <ng-template #popContent>
+
+                                <button [disabled]="!(sobre.Estado.IdEstado== 1 || (sobre.Estado.IdEstado==7 && sobre.Humedad == 0) || sobre.Estado.IdEstado==8)" class="btn btn-secondary mr-1" (click)="Seleccionar(sobre,'TomarHumedad')" data-toggle="tooltip" data-placement="top" title="Tomar Humedad">
+                                    <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>    
                                 </button>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="input-group">             
-                                <button [disabled]="!(sobre.Estado.IdEstado== 1 || (sobre.Estado.IdEstado==5 && sobre.Germinacion == 0) || sobre.Estado.IdEstado==6) " class="btn btn-secondary" (click)="Seleccionar(sobre,'Germinar')"> 
+
+                                <button [disabled]="!(sobre.Estado.IdEstado== 1 || (sobre.Estado.IdEstado==5 && sobre.Germinacion == 0) || sobre.Estado.IdEstado==6) " class="btn btn-secondary mr-1" (click)="Seleccionar(sobre,'Germinar')" data-toggle="tooltip" data-placement="top" title="Germinar"> 
                                     <i class="bi bi-flower1" style="color: rgb(182, 238, 169);"></i>
-                                    Germinar            
                                 </button>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="input-group">             
-                                <button [disabled]="sobre.Estado.IdEstado != 10" (click)="Seleccionar(sobre,'Secar')" class="btn btn-secondary">
-                                    <i class="bi bi-speedometer"></i>
-                                    Secar            
+
+                                <button [disabled]="sobre.Estado.IdEstado != 10" (click)="Seleccionar(sobre,'Secar')" class="btn btn-secondary mr-1" data-toggle="tooltip" data-placement="top" title="Secar">
+                                    <i class="bi bi-speedometer"></i>                    
                                 </button>
-                            </span>
+
+                                <button (click)="AbrirModalQR(sobre)" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver QR">
+                                        <i class="bi bi-qr-code"></i>               
+                                </button>
+
+                            </ng-template>
+                            <button type="button" class="btn btn-outline-secondary" [ngbPopover]="popContent" placement="left">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
                         </td>
+
+
+
                     </tr>
                 </tbody>
             </table>
@@ -211,5 +213,6 @@
 
 </body>
 <app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
+<app-modalQR #modalQR></app-modalQR>
 
 </html>
