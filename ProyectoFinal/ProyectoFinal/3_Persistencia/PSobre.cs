@@ -80,7 +80,8 @@ namespace ProyectoFinal._3_Persistencia
                         input.Sobre.Semilla.IdSemilla,
                         input.Sobre.Estado.IdEstado,
                         input.Sobre.FechaEstimada,
-                        input.Sobre.Peso
+                        input.Sobre.Peso,
+                        input.Sobre.CodigoQR
                         );
                     if (result != -1)
                     {
