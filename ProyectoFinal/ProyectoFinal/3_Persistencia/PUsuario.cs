@@ -156,7 +156,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ExisteUsuario(usuario.Mail,usuario.Cedula);
+                    var result = dataContext.ExisteUsuario(usuario.Mail, usuario.Cedula, usuario.IdUsuario);
                     return result;
                 }
                 catch (Exception ex)

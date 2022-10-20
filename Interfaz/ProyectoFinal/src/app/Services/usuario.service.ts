@@ -9,6 +9,7 @@ import { BajaUsuarioIn } from '../Parametros/Entrada/BajaUsuarioIn';
 import { MetodosUrl } from '../Components/Constantes/constantes';
 import { LoginOut } from '../Parametros/Salida/LoginOut';
 import { AltaUsuarioOut } from '../Parametros/Salida/AltaUsuarioOut';
+import { ModificarUsuarioOut } from '../Parametros/Salida/ModificarUsuarioOut';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class UsuarioService {
   }
 
   public Modificar(modificarUsuarioIn:ModificarUsuarioIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.Usuario.MODIFICAR}`,modificarUsuarioIn);
+    return this.http.post<ModificarUsuarioOut>(`${this.baseUrl+MetodosUrl.Usuario.MODIFICAR}`,modificarUsuarioIn);
   }
 
   public Login(loginIn:LoginIn){

@@ -178,7 +178,9 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.modificarUsuarioIn.Usuario = this.usuario;
     this.usuarioServicio.Modificar(this.modificarUsuarioIn)
       .subscribe( usuario => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false);
+        usuario.ExisteCedula ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTECEDULA,true) 
+        : usuario.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTEMAIL,true)
+        : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false);
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
       });

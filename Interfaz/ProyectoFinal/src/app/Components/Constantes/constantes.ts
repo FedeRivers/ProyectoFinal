@@ -39,6 +39,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el mejorador.',
                 EXITO:'Mejorador ingresado con éxito.',
+                EXISTEMAIL:'El mail ingresado ya existe.'
             },
             Baja :
             {
@@ -49,6 +50,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al modificar el mejorador.',
                 EXITO:'Mejorador modificado con éxito.',
+                EXISTEMAIL:'El mail ingresado ya existe.',
             },
         },
         TipoDeUsuario :
@@ -118,6 +120,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar la semilla.',
                 EXITO:'Semilla ingresada con éxito.',
+                EXISTESEMILLA:'La semilla ya existe',
             },
             Baja:
             {
@@ -253,6 +256,7 @@ export const MetodosUrl = {
         BAJA : 'BajaSemilla',
         MODIFICAR : 'ModificarSemilla',
         LISTAR : 'ListarSemillas',
+        EXISTESEMILLA : 'ExisteSemilla',
     },
     Sobre:
     {

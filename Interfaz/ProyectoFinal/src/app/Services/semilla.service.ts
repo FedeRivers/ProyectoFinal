@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { MetodosUrl } from '../Components/Constantes/constantes';
 import { AltaSemillaIn } from '../Parametros/Entrada/AltaSemillaIn';
 import { BajaSemillaIn } from '../Parametros/Entrada/BajaSemillaIn';
+import { ExisteSemillaIn } from '../Parametros/Entrada/ExisteSemillaIn';
 import { ListarSemillaIn } from '../Parametros/Entrada/ListarSemillaIn';
 import { ModificarSemillaIn } from '../Parametros/Entrada/ModificarSemillaIn';
 import { AltaSemillaOut } from '../Parametros/Salida/AltaSemillaOut';
+import { ExisteSemillaOut } from '../Parametros/Salida/ExisteSemillaOut';
 import { ListarSemillaOut } from '../Parametros/Salida/ListarSemillaOut';
 
 @Injectable({
@@ -31,5 +33,10 @@ export class SemillaService {
 
   public Listar(listarSemillaIn:ListarSemillaIn){
     return this.http.get<ListarSemillaOut>(`${this.baseUrl+MetodosUrl.Semilla.LISTAR}?TerminoDeBusqueda=${listarSemillaIn.terminoDeBusqueda}`);
+  }
+
+  public ExisteSemilla(existeSemillaIn:ExisteSemillaIn)
+  {
+    return this.http.post<ExisteSemillaOut>(`${this.baseUrl+ MetodosUrl.Semilla.EXISTESEMILLA}`,existeSemillaIn);
   }
 }

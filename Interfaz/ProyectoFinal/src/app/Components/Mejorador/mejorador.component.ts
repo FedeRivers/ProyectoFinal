@@ -121,7 +121,8 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.altaMejoradorIn.Mejorador = this.mejorador;
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
+        mejorador.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXISTEMAIL,true) 
+        : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
         }, err => {
           this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
       });
@@ -143,7 +144,8 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.modificarMejoradorIn.mejorador = this.mejorador;
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => {
-        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXITO,false);
+        mejorador.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXISTEMAIL,true) 
+        : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXITO,false);
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.ERROR,true);
       });

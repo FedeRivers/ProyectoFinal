@@ -125,6 +125,8 @@
     <Build Include="StoreProcedure\ListarSobresParaDevolucion.sql" />
     <Build Include="StoreProcedure\DevolverSobres.sql" />
     <Build Include="StoreProcedure\DevolverLotes.sql" />
+    <Build Include="StoreProcedure\ExisteSemilla.sql" />
+    <Build Include="StoreProcedure\ExisteMejorador.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

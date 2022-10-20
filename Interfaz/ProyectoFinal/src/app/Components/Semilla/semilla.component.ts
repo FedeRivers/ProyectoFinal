@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AltaSemillaIn } from 'src/app/Parametros/Entrada/AltaSemillaIn';
 import { BajaSemillaIn } from 'src/app/Parametros/Entrada/BajaSemillaIn';
+import { ExisteSemillaIn } from 'src/app/Parametros/Entrada/ExisteSemillaIn';
 import { ListarSemillaIn } from 'src/app/Parametros/Entrada/ListarSemillaIn';
 import { ListarTaxonomiaIn } from 'src/app/Parametros/Entrada/ListarTaxonomiaIn';
 import { ModificarSemillaIn } from 'src/app/Parametros/Entrada/ModificarSemillaIn';
@@ -123,6 +124,17 @@ export class SemillaComponent extends FormularioBase implements OnInit {
       });
   }
 
+  ExisteSemilla()
+  {
+    let existeSemillaIn:ExisteSemillaIn = new ExisteSemillaIn();
+    existeSemillaIn.Semilla = this.semilla;
+    this.semillaServicio.ExisteSemilla(existeSemillaIn)
+    .subscribe( resp => {
+      resp.ExisteSemilla ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Semilla.Alta.EXISTESEMILLA,true)
+       : this.BtnAlta ? this.AltaSemilla() : this.ModificarSemilla();
+    })
+  }
+
   BajaSemilla()
   {
     let bajaSemillaIn: BajaSemillaIn = new BajaSemillaIn();
@@ -241,7 +253,7 @@ export class SemillaComponent extends FormularioBase implements OnInit {
   {
     if(this.BtnAlta)
     {
-      this.AltaSemilla();
+      this.ExisteSemilla();
     }
     else if(this.BtnBaja)
     {
@@ -249,7 +261,7 @@ export class SemillaComponent extends FormularioBase implements OnInit {
     }
     else
     {
-      this.ModificarSemilla();
+      this.ExisteSemilla();
     }
   }
 

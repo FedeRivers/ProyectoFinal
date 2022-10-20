@@ -98,9 +98,9 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteUsuario")]
-		public int ExisteUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula)
+		public int ExisteUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idUsuario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mail, cedula);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mail, cedula, idUsuario);
 			return ((int)(result.ReturnValue));
 		}
 	}

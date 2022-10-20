@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ProyectoFinal._2_Dominio.Logica
 {
@@ -12,7 +13,17 @@ namespace ProyectoFinal._2_Dominio.Logica
     {
         public AltaMejoradorOut AltaMejorador(AltaMejoradorIn input)
         {
-            return new PMejorador().AltaMejorador(input);
+            var resultado = new AltaMejoradorOut { Status = new HttpStatusCodeResult(500) };
+            var existe = new PMejorador().ExisteMejorador(input.Mejorador);
+            if (existe == 0)
+            {
+                return new PMejorador().AltaMejorador(input);
+            }
+            else
+            {
+                resultado.ExisteMail = existe == 1;
+                return resultado;
+            }
         }
 
         public BajaMejoradorOut BajaMejorador(BajaMejoradorIn input)
@@ -22,7 +33,17 @@ namespace ProyectoFinal._2_Dominio.Logica
 
         public ModificarMejoradorOut ModificarMejorador(ModificarMejoradorIn input)
         {
-            return new PMejorador().ModificarMejorador(input);
+            var resultado = new ModificarMejoradorOut { Status = new HttpStatusCodeResult(500) };
+            var existe = new PMejorador().ExisteMejorador(input.Mejorador);
+            if (existe == 0)
+            {
+                return new PMejorador().ModificarMejorador(input);
+            }
+            else
+            {
+                resultado.ExisteMail = existe == 1;
+                return resultado;
+            }
         }
 
         public ListarMejoradorOut ListarMejoradores(ListarMejoradorIn input)

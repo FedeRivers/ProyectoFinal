@@ -5,8 +5,8 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class AltaMejoradorOut : ParametroBaseOut
+    public class ExisteSemillaOut : ParametroBaseOut
     {
-        public bool ExisteMail { get; set; }
+        public bool ExisteSemilla { get; set; }
     }
 }

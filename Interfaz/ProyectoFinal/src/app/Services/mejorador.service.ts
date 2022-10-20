@@ -7,6 +7,7 @@ import { ListarMejoradorIn } from '../Parametros/Entrada/ListarMejoradorIn';
 import { ListarMejoradorOut } from '../Parametros/Salida/ListarMejoradorOut';
 import { AltaMejoradorOut } from '../Parametros/Salida/AltaMejoradorOut';
 import { MetodosUrl } from '../Components/Constantes/constantes';
+import { ModificarMejoradorOut } from '../Parametros/Salida/ModificarMejoradorOut';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class MejoradorService {
   }
 
   public Modificar(modificarMejoradorIn:ModificarMejoradorIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.Mejorador.MODIFICAR}`,modificarMejoradorIn);
+    return this.http.post<ModificarMejoradorOut>(`${this.baseUrl+MetodosUrl.Mejorador.MODIFICAR}`,modificarMejoradorIn);
   }
 
   public Listar(listarMejoradorIn:ListarMejoradorIn){
