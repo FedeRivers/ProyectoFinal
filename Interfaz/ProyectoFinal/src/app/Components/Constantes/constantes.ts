@@ -70,6 +70,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar la taxonomía.',
                 EXITO:'Taxonomía ingresada con éxito.',
+                EXISTENOMBRE: 'La taxonomía ingresada ya existe.',
             },
             Baja:
             {
@@ -80,6 +81,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al modificar la taxonomía.',
                 EXITO:'Taxonomía modificada con éxito.',
+                EXISTENOMBRE: 'El nombre de esta taxonomía ya existe.',
             },
             Listar:
             {

@@ -84,7 +84,14 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
     this.taxonomiaServicio.Agregar(altaTaxonomiaIn)
     .subscribe( taxonomia => {
       this.modal.Confirmado = true;
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Alta.EXITO,false)
+      if(taxonomia.Status.StatusCode == 200)
+      {
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Alta.EXITO,false)
+      }
+      else
+      {
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Alta.EXISTENOMBRE,true)
+      }
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Alta.ERROR,true)
     });
@@ -108,7 +115,14 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
     modificarTaxonomiaIn.Taxonomia = this.taxonomia;
     this.taxonomiaServicio.Modificar(modificarTaxonomiaIn)
     .subscribe( taxonomia => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Modificar.EXITO,false)
+      if(taxonomia.Status.StatusCode == 200)
+      {
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Modificar.EXITO,false)
+      }
+      else
+      {
+        this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Modificar.EXISTENOMBRE,true)
+      }
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Taxonomia.Modificar.ERROR,true)
     });
