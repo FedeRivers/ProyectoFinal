@@ -116,5 +116,25 @@ namespace ProyectoFinal._3_Persistencia
 
             return output;
         }
+
+        public ExisteSemillaOut ExisteSemilla(ExisteSemillaIn input)
+        {
+            var output = new ExisteSemillaOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloSemillaDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ExisteSemilla(input.Semilla.Nombre, input.Semilla.Taxonomia.IdTaxonomia);
+                    output.ExisteSemilla = result == 1;
+                    output.Status = new HttpStatusCodeResult(200);
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+
+            return output;
+        }
     }
 }

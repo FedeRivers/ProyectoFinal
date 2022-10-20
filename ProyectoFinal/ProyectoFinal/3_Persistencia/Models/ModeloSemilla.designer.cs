@@ -89,6 +89,13 @@ namespace ProyectoFinal._3_Persistencia.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
 			return ((ISingleResult<ListarSemillasResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteSemilla")]
+		public int ExisteSemilla([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Taxonomia", DbType="Int")] System.Nullable<int> taxonomia)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, taxonomia);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class ListarSemillasResult

@@ -29,5 +29,10 @@ namespace ProyectoFinal._2_Dominio.Logica
         {
             return new PSemilla().ListarSemillas(input);
         }
+
+        public ExisteSemillaOut ExisteSemilla(ExisteSemillaIn input)
+        {
+            return new PSemilla().ExisteSemilla(input);
+        }
     }
 }

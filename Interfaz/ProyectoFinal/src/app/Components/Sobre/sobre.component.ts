@@ -344,6 +344,11 @@ export class SobreComponent extends FormularioBase implements OnInit {
   ModificarSobre()
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
+    if(!this.estado.IdEstado)
+    {
+      this.estado = new Estado();
+      this.estado.IdEstado = Estados.RECIBIDO;
+    }
     this.sobre.Estado = this.estado;
     modificarSobreIn.Sobre = this.sobre;
     modificarSobreIn.IdTipoDeUsuario = this.idTipoDeUsuario;

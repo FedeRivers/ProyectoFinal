@@ -40,7 +40,18 @@ namespace ProyectoFinal._2_Dominio.Logica
 
         public ModificarUsuarioOut ModificarUsuario(ModificarUsuarioIn input)
         {
-            return new PUsuario().ModificarUsuario(input);
+            var resultado = new ModificarUsuarioOut { Status = new HttpStatusCodeResult(500) };
+            var existe = new PUsuario().ExisteUsuario(input.Usuario);
+            if (existe == 0)
+            {
+                return new PUsuario().ModificarUsuario(input);
+            }
+            else
+            {
+                resultado.ExisteMail = existe == 1 || existe == 2;
+                resultado.ExisteCedula = existe == 1 || existe == 3;
+            }
+            return resultado;
         }
 
         public BajaUsuarioOut BajaUsuario(BajaUsuarioIn input)

@@ -318,6 +318,7 @@
     <Compile Include="Parametros\Entrada\DevolverSobresIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteEspacioLibreIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteLoteIn.cs" />
+    <Compile Include="Parametros\Entrada\ExisteSemillaIn.cs" />
     <Compile Include="Parametros\Entrada\ExisteSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ExportarExcelIn.cs" />
     <Compile Include="Parametros\Entrada\ListarAlertasIn.cs" />
@@ -367,6 +368,7 @@
     <Compile Include="Parametros\Salida\EliminarModuloOut.cs" />
     <Compile Include="Parametros\Salida\ExisteEspacioLibreOut.cs" />
     <Compile Include="Parametros\Salida\ExisteLoteOut.cs" />
+    <Compile Include="Parametros\Salida\ExisteSemillaOut.cs" />
     <Compile Include="Parametros\Salida\ExisteSobreOut.cs" />
     <Compile Include="Parametros\Salida\ExportarExcelOut.cs" />
     <Compile Include="Parametros\Salida\ListarAlertasOut.cs" />

@@ -111,5 +111,21 @@ namespace ProyectoFinal._3_Persistencia
 
             return output;
         }
+
+        public int ExisteMejorador(Mejorador input)
+        {
+            using (var dataContext = new ModeloMejoradorDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ExisteMejorador(input.Mail ,input.IdMejorador);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return -1;
+                }
+            }
+        }
     }
 }

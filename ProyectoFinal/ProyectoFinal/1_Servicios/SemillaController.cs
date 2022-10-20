@@ -37,5 +37,11 @@ namespace ProyectoFinal._1_Servicios
         {
             return new CRUDSemilla().ListarSemillas(input);
         }
+
+        [HttpPost]
+        public ExisteSemillaOut ExisteSemilla([FromBody]ExisteSemillaIn input)
+        {
+            return new CRUDSemilla().ExisteSemilla(input);
+        }
     }
 }
