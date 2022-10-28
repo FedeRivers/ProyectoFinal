@@ -1,14 +1,14 @@
 export class BajaLoteIn{
     
-    private idLote!: number;
+    private numeroLote!: number;
     
     constructor(){}
     
-    public get IdLote(): number {
-        return this.idLote;
+    public get NumeroLote(): number {
+        return this.numeroLote;
     }
     
-    public set IdLote(value: number) {
-        this.idLote = value;
+    public set NumeroLote(value: number) {
+        this.numeroLote = value;
     }
 }

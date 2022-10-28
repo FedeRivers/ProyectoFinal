@@ -11,10 +11,6 @@
     <Parameter Name="IdMejorador" Parameter="idMejorador" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.BajaLote" Method="BajaLote">
-    <Parameter Name="IdLote" Parameter="idLote" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.ListarLotes" Method="ListarLotes">
     <Parameter Name="TerminoDeBusqueda" Parameter="terminoDeBusqueda" Type="System.String" DbType="VarChar(100)" />
     <ElementType Name="ListarLotesResult">
@@ -48,5 +44,9 @@
       <Column Name="idMejorador" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.BajaLote" Method="BajaLote">
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

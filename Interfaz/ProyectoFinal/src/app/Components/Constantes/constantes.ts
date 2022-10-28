@@ -100,6 +100,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al eliminar el lote.',
                 EXITO:'Lote eliminado con éxito.',
+                NOELIMINADO:'No se pudo eliminar el lote, porque sus sobres se encuentran en algún proceso.',
             },
             Modificar:
             {

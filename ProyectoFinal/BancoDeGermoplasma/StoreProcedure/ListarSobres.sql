@@ -22,6 +22,7 @@ BEGIN
 	so.germinacion,
 	so.vigor,
 	so.fechaEstimada,
+	so.cantidadDeSemillas,
 	lo.numeroLote,
 	lo.descripcion,
 	lo.activo AS activoLote,

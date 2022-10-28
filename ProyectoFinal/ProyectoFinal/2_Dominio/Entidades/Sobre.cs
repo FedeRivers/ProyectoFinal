@@ -13,8 +13,6 @@ namespace ProyectoFinal._2_Dominio.Entidades
 
         public Ubicacion Ubicacion { get; set; }
 
-        public bool? Activo { get; set; }
-
         public DateTime? FechaDeIngreso { get; set; }
 
         public DateTime? FechaDeDevolucion { get; set; }
@@ -36,5 +34,9 @@ namespace ProyectoFinal._2_Dominio.Entidades
         public Estado Estado { get; set; }
 
         public string CodigoQR { get; set; }
+
+        public int? CantidadDeSemillas { get; set; }
+
+        public bool? Activo { get; set; }
     }
 }

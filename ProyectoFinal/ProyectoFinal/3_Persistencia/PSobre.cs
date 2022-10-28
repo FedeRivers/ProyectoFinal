@@ -81,7 +81,8 @@ namespace ProyectoFinal._3_Persistencia
                         input.Sobre.Estado.IdEstado,
                         input.Sobre.FechaEstimada,
                         input.Sobre.Peso,
-                        input.Sobre.CodigoQR
+                        input.Sobre.CodigoQR,
+                        input.Sobre.CantidadDeSemillas
                         );
                     if (result != -1)
                     {
@@ -147,6 +148,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Vigor = sobre.vigor,
                                 Peso = sobre.peso,
                                 CodigoQR = sobre.codigoQR,
+                                CantidadDeSemillas = sobre.cantidadDeSemillas,
                                 Lote = new Lote
                                 {
                                     NumeroLote = sobre.numeroLote,

@@ -12,6 +12,7 @@ import { ListarLotesParaDevolucionOut } from '../Parametros/Salida/ListarLotesPa
 import { ListarLotesParaDevolucionIn } from '../Parametros/Entrada/ListarLotesParaDevolucionIn';
 import { DevolverLotesOut } from '../Parametros/Salida/DevolverLotesOut';
 import { DevolverLotesIn } from '../Parametros/Entrada/DevolverLotesIn';
+import { BajaLoteOut } from '../Parametros/Salida/BajaLoteOut';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class LoteService {
   }
 
   public Baja(bajaLoteIn:BajaLoteIn){
-    return this.http.post(`${this.baseUrl+ MetodosUrl.Lote.BAJA}`,bajaLoteIn);
+    return this.http.post<BajaLoteOut>(`${this.baseUrl+ MetodosUrl.Lote.BAJA}`,bajaLoteIn);
   }
 
   public Modificar(modificarLoteIn:ModificarLoteIn){

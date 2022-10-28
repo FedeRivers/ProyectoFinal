@@ -12,20 +12,29 @@
                 <div class="col-md-12">
                     <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
                 </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanCantidadSemillas">Cantidad de semillas:</span>
+                    <input name="txtCantidadSemillas" type="Number" [disabled]="CantidadDeSemillasDeshabilitado" [(ngModel)]="Sobre.CantidadDeSemillas" [ngClass]="Sobre.CantidadDeSemillas!=undefined ? ValidarCantidadDeSemillas() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
+                        placeholder="Ingrese cantidad de semillas" aria-label="txtCantidadSemillas" aria-describedby="spanCantidadSemillas" required>
+                    <div class="invalid-feedback">{{MensajeCantidadSemillasInvalido}}</div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanCantidadSemillasGerminadas">Cantidad de semillas germinadas:</span>
+                    <input name="txtCantidadSemillasGerminadas" type="Number" [(ngModel)]="CantidadDeSemillasGerminadas" [ngClass]="CantidadDeSemillasGerminadas!=undefined ? ValidarSemillasGerminadas() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese cantidad de semillas germinadas"
+                        aria-label="txtCantidadSemillasGerminadas" aria-describedby="spanCantidadSemillasGerminadas" required>
+                    <div class="invalid-feedback">{{MensajeCantidadSemillasInvalido}}</div>
+                </div>
+
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanVigor">Vigor:</span>
-                    <input name="txtVigor" [disabled]="VigorDeshabilitado" [(ngModel)]="Sobre.Vigor" [ngClass]="Sobre.Vigor!=undefined ? ValidarVigor() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese vigor" aria-label="txtVigor" aria-describedby="spanVigor"
-                        required>
-                    <div class="invalid-feedback">{{MensajeVigorInvalido}}</div>
+                    <input name="txtVigor" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Vigor" placeholder="Porcentaje de vigor" aria-label="txtVigor" aria-describedby="spanVigor" required>
                 </div>
-
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanGerminacion">Germinación:</span>
-                    <input name="txtGerminacion" [disabled]="!VigorDeshabilitado" [(ngModel)]="Sobre.Germinacion" [ngClass]="Sobre.Germinacion!=undefined ? ValidarGerminacion() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese germinacion"
-                        aria-label="txtGerminacion" aria-describedby="spanGerminacion" required>
-                    <div class="invalid-feedback">{{MensajeGerminacionInvalida}}</div>
+                    <input name="txtGerminacion" class="form-control" [disabled]="true" [(ngModel)]="Sobre.Germinacion" placeholder="Porcentaje de germinación" aria-label="txtGerminacion" aria-describedby="spanGerminacion" required>
                 </div>
-
                 <div class="">
                     <button *ngIf="BtnModificar" class="btn btn-outline-success ml-1 mb-3" [disabled]="!ValidarFormulario()" (click)="AbrirModal()">Modificar germinacion</button>
                 </div>

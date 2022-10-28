@@ -7,5 +7,6 @@ namespace ProyectoFinal.Parametros.Salida
 {
     public class BajaLoteOut : ParametroBaseOut
     {
+        public bool LoteEliminado { get; set; }
     }
 }

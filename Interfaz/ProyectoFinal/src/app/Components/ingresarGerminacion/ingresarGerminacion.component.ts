@@ -18,12 +18,12 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   private sobres: Sobre[];
   
   private listarSobreIn: ListarSobreIn;
-
-  private germinacionEsValido: boolean = false; 
-  private vigorEsValido: boolean = false;
-  private vigorDeshabilitado: boolean = false;
-  private mensajeGerminacionInvalida: string = '';
-  private mensajeVigorInvalido: string = '';
+  private cantidadDeSemillasGerminadas!: number;
+  private cantidadDeSemillasEsValido: boolean = false;
+  private cantidadDeSemillasGerminadasEsValido: boolean = false;
+  private cantidadDeSemillasDeshabilitado: boolean = false;
+  private mensajeCantidadSemillasInvalido: string = '';
+  private mensajeCantidadSemillasGerminadasInvalido: string = '';
 
   @ViewChild("modal") modal: ModalComponent;
 
@@ -59,55 +59,61 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   public set Sobres(value: Sobre[]) {
     this.sobres = value;
   }
+  public get CantidadDeSemillasGerminadas(): number {
+    return this.cantidadDeSemillasGerminadas;
+  }
+  public set CantidadDeSemillasGerminadas(value: number){
+    if(value == null)
+    {
+      this.cantidadDeSemillasGerminadas = 0;
+    }
+    else
+    {
+      this.cantidadDeSemillasGerminadas = value;
+    }
+    this.CalcularGerminacion();
+  }
   //#endregion
 
   //#region Get y Set de validar datos introducidos por el usuario.
-  public get GerminacionEsValido(): boolean {
-    return this.germinacionEsValido;
+  public get CantidadDeSemillasGerminadasEsValido(): boolean {
+    return this.cantidadDeSemillasGerminadasEsValido;
   }
-  public set GerminacionEsValido(value: boolean) {
-    this.germinacionEsValido = value;
+  public set CantidadDeSemillasGerminadasEsValido(value: boolean) {
+    this.cantidadDeSemillasGerminadasEsValido = value;
   }
-  public get VigorEsValido(): boolean {
-    return this.vigorEsValido;
+  public get CantidadDeSemillasDeshabilitado(): boolean {
+    return this.cantidadDeSemillasDeshabilitado;
   }
-  public set VigorEsValido(value: boolean) {
-    this.vigorEsValido = value;
-  }
-  public get VigorDeshabilitado(): boolean {
-    return this.vigorDeshabilitado;
-  }
-  public set VigorDeshabilitado(value: boolean) {
-    this.vigorDeshabilitado = value;
+  public set CantidadDeSemillasDeshabilitado(value: boolean) {
+    this.cantidadDeSemillasDeshabilitado = value;
   }
   //#endregion
 
   //#region Get y Set de mensajes de error para mostrar al usuario
-
-  public get MensajeGerminacionInvalida(): string {
-    return this.mensajeGerminacionInvalida;
+  public get MensajeCantidadSemillasInvalido(): string {
+    return this.mensajeCantidadSemillasInvalido;
   }
-  public set MensajeGerminacionInvalida(value: string) {
-    this.mensajeGerminacionInvalida = value;
+  public set MensajeCantidadSemillasInvalido(value: string) {
+    this.mensajeCantidadSemillasInvalido = value;
   }
-
-  public get MensajeVigorInvalido(): string {
-    return this.mensajeVigorInvalido;
+  public get MensajeCantidadSemillasGerminadasInvalido(): string {
+    return this.mensajeCantidadSemillasGerminadasInvalido;
   }
-  public set MensajeVigorInvalido(value: string) {
-    this.mensajeVigorInvalido = value;
+  public set MensajeCantidadSemillasGerminadasInvalido(value: string) {
+    this.mensajeCantidadSemillasGerminadasInvalido = value;
   }
-
   //#endregion
   
   IngresarGerminacion()
   {
     let modificarSobreIn: ModificarSobreIn = new ModificarSobreIn();
-    if(this.vigorDeshabilitado)
+    if(this.cantidadDeSemillasDeshabilitado)
     {
       this.sobre.Estado.IdEstado = Estados.DESTRUIDO;
       this.sobre.Ubicacion.Camara.IdCamara = 3; 
     }
+
     modificarSobreIn.Sobre = this.sobre;
     this.sobreServicio.Modificar(modificarSobreIn)
       .subscribe( sobre => {
@@ -115,6 +121,18 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Sobre.Modificar.ERROR,true);
       });
+  }
+
+  CalcularGerminacion()
+  {
+    if(this.cantidadDeSemillasDeshabilitado)
+    {
+      this.sobre.Germinacion = this.cantidadDeSemillasGerminadas * 100 / this.sobre.CantidadDeSemillas;
+    }
+    else
+    {
+      this.sobre.Vigor = this.cantidadDeSemillasGerminadas * 100 / this.sobre.CantidadDeSemillas;
+    }
   }
 
   Listar()
@@ -136,7 +154,7 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
   Seleccionar(sobre:Sobre)
   {
     this.sobre = sobre;
-    this.vigorDeshabilitado = this.sobre.Vigor!=undefined; 
+    this.cantidadDeSemillasDeshabilitado = this.sobre.CantidadDeSemillas!=undefined; 
     this.Ocultar();
   }
 
@@ -153,8 +171,6 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;
-    this.mensajeVigorInvalido = '';
-    this.mensajeGerminacionInvalida = '';
   }
 
   BotonSeleccionado(boton:string)
@@ -167,23 +183,37 @@ export class IngresarGerminacionComponent extends FormularioBase implements OnIn
     }
   }
 
-  ValidarVigor():boolean
+  ValidarCantidadDeSemillas():boolean
   {
-    this.mensajeGerminacionInvalida = this.ValidarPorcentaje(this.Sobre.Vigor);
-    this.mensajeGerminacionInvalida != '' ? this.vigorEsValido = false : this.vigorEsValido = true;
-    return this.vigorEsValido;
+    this.mensajeCantidadSemillasInvalido = this.ValidarPorcentaje(this.Sobre.CantidadDeSemillas);
+    this.mensajeCantidadSemillasInvalido != '' ? this.cantidadDeSemillasEsValido = false : this.cantidadDeSemillasEsValido = true;
+    return this.cantidadDeSemillasEsValido;
   }
 
-  ValidarGerminacion():boolean
+  ValidarSemillasGerminadas():boolean
   {
-    this.mensajeGerminacionInvalida = this.ValidarPorcentaje(this.sobre.Germinacion);
-    this.mensajeGerminacionInvalida != '' ? this.germinacionEsValido = false: this.germinacionEsValido = true;
-    return this.germinacionEsValido;
+    this.mensajeCantidadSemillasGerminadasInvalido = this.ValidarPorcentaje(this.cantidadDeSemillasGerminadas);
+    if(this.mensajeCantidadSemillasGerminadasInvalido != '')
+    {
+      this.cantidadDeSemillasGerminadasEsValido = false;
+    }
+    else if(this.cantidadDeSemillasGerminadas > this.sobre.CantidadDeSemillas)
+    {
+      this.cantidadDeSemillasGerminadasEsValido = false;
+      this.MensajeCantidadSemillasGerminadasInvalido = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO
+    }
+    else
+    {
+      this.cantidadDeSemillasGerminadasEsValido = true;
+    }
+    return this.cantidadDeSemillasGerminadasEsValido;
   }
+
+
   
   ValidarFormulario():boolean
   {
-    return this.vigorEsValido && !this.vigorDeshabilitado || this.vigorDeshabilitado && this.germinacionEsValido;
+    return this.cantidadDeSemillasEsValido && this.cantidadDeSemillasGerminadasEsValido;
   }
 
   Confirmar()
