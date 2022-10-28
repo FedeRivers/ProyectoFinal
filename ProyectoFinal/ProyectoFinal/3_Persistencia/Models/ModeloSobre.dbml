@@ -86,6 +86,21 @@
     <Parameter Name="CodigoQR" Parameter="codigoQR" Type="System.String" DbType="VarChar(MAX)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
+    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Humedad" Parameter="humedad" Type="System.Double" DbType="Float" />
+    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Double" DbType="Float" />
+    <Parameter Name="Vigor" Parameter="vigor" Type="System.Double" DbType="Float" />
+    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaEstimada" Parameter="fechaEstimada" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="peso" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="CodigoQR" Parameter="codigoQR" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="CantidadDeSemillas" Parameter="cantidadDeSemillas" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.ListarSobres" Method="ListarSobres">
     <Parameter Name="NumeroSobre" Parameter="numeroSobre" Type="System.Decimal" DbType="Decimal(18,0)" />
     <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Decimal" DbType="Decimal(18,0)" />
@@ -107,6 +122,7 @@
       <Column Name="germinacion" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="vigor" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="fechaEstimada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cantidadDeSemillas" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="numeroLote" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="activoLote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
@@ -118,19 +134,5 @@
       <Column Name="idEstado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="nombreEstado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.ModificarSobre" Method="ModificarSobre">
-    <Parameter Name="IdSobre" Parameter="idSobre" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdCamara" Parameter="idCamara" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Humedad" Parameter="humedad" Type="System.Double" DbType="Float" />
-    <Parameter Name="Germinacion" Parameter="germinacion" Type="System.Double" DbType="Float" />
-    <Parameter Name="Vigor" Parameter="vigor" Type="System.Double" DbType="Float" />
-    <Parameter Name="NumeroLote" Parameter="numeroLote" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdEstado" Parameter="idEstado" Type="System.Int32" DbType="Int" />
-    <Parameter Name="FechaEstimada" Parameter="fechaEstimada" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="peso" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="CodigoQR" Parameter="codigoQR" Type="System.String" DbType="VarChar(MAX)" />
-    <Return Type="System.Int32" />
   </Function>
 </Database>

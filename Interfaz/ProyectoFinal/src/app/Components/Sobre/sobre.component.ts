@@ -25,6 +25,7 @@ import { Usuario } from '../Usuario/class/usuario';
 import { ExisteSobreIn } from 'src/app/Parametros/Entrada/ExisteSobreIn';
 import { ModalqrComponent } from '../Modal/modalqr/modalqr.component';
 
+
 @Component({
   selector: 'app-sobre',
   templateUrl: './sobre.component.html',

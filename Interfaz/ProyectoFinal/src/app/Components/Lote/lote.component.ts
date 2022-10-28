@@ -157,10 +157,10 @@ export class LoteComponent extends FormularioBase implements OnInit {
   BajaLote()
   {
     let bajaLoteIn : BajaLoteIn = new BajaLoteIn();
-    bajaLoteIn.IdLote = this.lote.NumeroLote;
+    bajaLoteIn.NumeroLote = this.lote.NumeroLote;
     this.loteServicio.Baja(bajaLoteIn)
     .subscribe( lote => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Baja.EXITO,false);
+      lote.LoteEliminado ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Baja.EXITO,false) : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Baja.NOELIMINADO,true);
     }, err =>{
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Lote.Baja.ERROR,true);
     });

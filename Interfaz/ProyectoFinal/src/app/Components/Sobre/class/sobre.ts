@@ -18,6 +18,7 @@ export class Sobre{
     private estado: Estado;
     private semilla: Semilla;
     private codigoQR!: string;
+    private cantidadDeSemillas!: number;
     private activo!: boolean;
     
     constructor(){
@@ -117,18 +118,27 @@ export class Sobre{
         this.semilla = value;
     }
 
-    public get Activo(): boolean {
-        return this.activo;
-    }
-    public set Activo(value: boolean) {
-        this.activo = value;
-    }
     public get CodigoQR(): string {
         return this.codigoQR;
     }
     public set CodigoQR(value: string) {
         this.codigoQR = value;
     }
+    
+    public get CantidadDeSemillas(): number {
+        return this.cantidadDeSemillas;
+    }
+    public set CantidadDeSemillas(value: number) {
+        this.cantidadDeSemillas = value;
+    }
+
+    public get Activo(): boolean {
+        return this.activo;
+    }
+    public set Activo(value: boolean) {
+        this.activo = value;
+    }
+
 
 
 }
