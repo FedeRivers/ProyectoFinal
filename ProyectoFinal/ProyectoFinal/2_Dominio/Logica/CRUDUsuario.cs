@@ -110,5 +110,19 @@ namespace ProyectoFinal._2_Dominio.Logica
                 return builder.ToString();
             }
         }
+
+        public ResetearContrasenaOut ResetearContrasena(ResetearContrasenaIn input)
+        {
+            var output = new ResetearContrasenaOut();
+            var contrasenaGenerada = GenerarContrasena();
+            input.Usuario.Contrasena = ComputeSha256Hash(contrasenaGenerada);
+            output = new PUsuario().ResetearContrasena(input);
+            if (output.Status.StatusCode == 200)
+            {
+                Mail mail = new Mail();
+                mail.Enviar(input.Usuario.Mail, input.Usuario.Nombre, contrasenaGenerada);
+            }
+            return output;
+        }
     }
 }

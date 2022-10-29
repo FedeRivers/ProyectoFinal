@@ -79,7 +79,8 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.tipoDeUsuarioService.ListarTipoDeUsuario(listarTipoDeUsuarioIn)
     .subscribe( lista => {
       if(lista.TiposDeUsuario!=undefined){
-        this.tiposDeUsuario =  lista.TiposDeUsuario;
+        
+        this.tiposDeUsuario = lista.TiposDeUsuario.filter( t => t.IdTipoDeUsuario != 1);
       }
     }, err => {
          this.modal.Mensaje = err;

@@ -346,6 +346,7 @@
     <Compile Include="Parametros\Entrada\ObtenerEstadisticasIn.cs" />
     <Compile Include="Parametros\Entrada\ObtenerSobreIn.cs" />
     <Compile Include="Parametros\Entrada\ParametroBaseIn.cs" />
+    <Compile Include="Parametros\Entrada\ResetearContrasenaIn.cs" />
     <Compile Include="Parametros\Salida\AgregarModuloOut.cs" />
     <Compile Include="Parametros\Salida\AltaLoteOut.cs" />
     <Compile Include="Parametros\Salida\AltaMejoradorOut.cs" />
@@ -395,6 +396,7 @@
     <Compile Include="Parametros\Salida\ObtenerEstadisticasOut.cs" />
     <Compile Include="Parametros\Salida\ObtenerSobreOut.cs" />
     <Compile Include="Parametros\Salida\ParametroBaseOut.cs" />
+    <Compile Include="Parametros\Salida\ResetearContrasenaOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

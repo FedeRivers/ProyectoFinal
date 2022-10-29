@@ -20,10 +20,12 @@ export class LoginComponent implements OnInit {
   private loginIn:LoginIn;
   private usuario: Usuario;
   private loginValido:EventEmitter<Usuario>;
+  private loading: boolean = false;
+
 
   constructor(private usuarioServicio:UsuarioService) { 
-    this.loginIn = new LoginIn();
     this.usuario = new Usuario();
+    this.loginIn = new LoginIn();
     this.loginValido = new EventEmitter();
   }
   
@@ -35,6 +37,13 @@ export class LoginComponent implements OnInit {
   }
   public set Usuario(value: Usuario) {
     this.usuario = value;
+  }
+
+  public get Loading(): boolean {
+    return this.loading;
+  }
+  public set Loading(value: boolean) {
+    this.loading = value;
   }
 
 
@@ -61,9 +70,12 @@ export class LoginComponent implements OnInit {
   }
 
   Login(){
+    this.loading = true;
     this.usuarioServicio.Login(this.loginIn)
       .subscribe( loginOut => {
+        this.usuario = loginOut.Usuario;
         this.loginValido.emit(loginOut.Usuario);
+        this.loading = false;
     })
     
   }

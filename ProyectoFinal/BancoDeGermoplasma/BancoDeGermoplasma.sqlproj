@@ -127,6 +127,7 @@
     <Build Include="StoreProcedure\DevolverLotes.sql" />
     <Build Include="StoreProcedure\ExisteSemilla.sql" />
     <Build Include="StoreProcedure\ExisteMejorador.sql" />
+    <Build Include="StoreProcedure\ResetearContrasena.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BancoDeGermoplasma.refactorlog" />

@@ -42,5 +42,11 @@ namespace ProyectoFinal._1_Servicios
         {
             return new CRUDUsuario().ListarUsuarios(input);
         }
+
+        [HttpPost]
+        public ResetearContrasenaOut ResetearContrasena([FromBody]ResetearContrasenaIn input)
+        {
+            return new CRUDUsuario().ResetearContrasena(input);
+        }
     }
 }

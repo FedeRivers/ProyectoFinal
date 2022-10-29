@@ -141,7 +141,7 @@ export class SemillaComponent extends FormularioBase implements OnInit {
     bajaSemillaIn.IdSemilla = this.semilla.IdSemilla;
     this.semillaServicio.Baja(bajaSemillaIn)
     .subscribe( semilla => {
-      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Semilla.Baja.EXITO,false);
+      semilla.SemillaEliminada ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Semilla.Baja.EXITO,false) : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Semilla.Baja.NOELIMINADO,true);
      }, err => {
       this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Semilla.Baja.ERROR,true);
      });

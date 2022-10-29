@@ -79,6 +79,24 @@ namespace ProyectoFinal._3_Persistencia
             return output;
         }
 
+        public ResetearContrasenaOut ResetearContrasena(ResetearContrasenaIn input)
+        {
+            var output = new ResetearContrasenaOut { Status = new HttpStatusCodeResult(404) };
+            using (var dataContext = new ModeloUsuarioDataContext())
+            {
+                try
+                {
+                    var result = dataContext.ResetearContrasena(input.Usuario.IdUsuario, input.Usuario.Contrasena);
+                    output.Status = new HttpStatusCodeResult(200); 
+                }
+                catch (Exception ex)
+                {
+                    output.Status = new HttpStatusCodeResult(404);
+                }
+            }
+            return output;
+        }
+
         public LoginOut Login(LoginIn input)
         {
             var output = new LoginOut { Status = new HttpStatusCodeResult(404) };

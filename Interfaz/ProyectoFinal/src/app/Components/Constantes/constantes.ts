@@ -129,6 +129,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al eliminar la semilla.',
                 EXITO:'Semilla eliminada con éxito.',
+                NOELIMINADO:'No se pudo eliminar la semilla, porque pertenece a sobres activos.',
             },
             Modificar:
             {
@@ -220,6 +221,7 @@ export const MetodosUrl = {
         MODIFICAR : 'ModificarUsuario',
         LISTAR : 'ListarUsuarios',
         LOGIN : 'Login',
+        RESETEARCONTRASENA : 'ResetearContrasena',
     },
     TiposDeUsuario :
     {

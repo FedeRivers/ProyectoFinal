@@ -65,20 +65,31 @@ export class BuscarDuplicadosComponent implements OnInit {
 
   BuscarDuplicados()
   {
-    let buscarDuplicadosIn:BuscarDuplicadosIn = new BuscarDuplicadosIn();
-    this.listaDeBusqueda = this.textoIngresado.trim().split(/\r\n|\r|\n/);
-    this.listaDeBusqueda.forEach( nombre => {
-      let semilla:Semilla = new Semilla();
-      semilla.Nombre = nombre;
-      buscarDuplicadosIn.NombresDeSemillas.push(semilla);
-    });
-    
-    this.sobreServicio.BuscarDuplicados(buscarDuplicadosIn)
-    .subscribe( sobres => {
-      this.Sobres = sobres.Sobres;
-     }, err => {
-      //this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
-    });
+    if(this.textoIngresado.trim() != "")
+    {
+      let buscarDuplicadosIn:BuscarDuplicadosIn = new BuscarDuplicadosIn();
+      this.listaDeBusqueda = this.textoIngresado.trim().split(/\r\n|\r|\n/);
+      this.listaDeBusqueda.forEach( nombre => {
+        let semilla:Semilla = new Semilla();
+        semilla.Nombre = nombre;
+        buscarDuplicadosIn.NombresDeSemillas.push(semilla);
+      });
+      
+      this.sobreServicio.BuscarDuplicados(buscarDuplicadosIn)
+      .subscribe( sobres => {
+        this.Sobres = sobres.Sobres;
+        this.mostrarTabla = true;
+      }, err => {
+        //this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
+      });
+    }
+  }
+
+  Limpiar()
+  {
+    this.textoIngresado = '';
+    this.listaDeBusqueda = [];
+    this.mostrarTabla = false;
   }
 
   VerDetalle(sobre:Sobre)
