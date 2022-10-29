@@ -9,11 +9,19 @@
     <div class="container-fluid text-center">
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-4 mb-3 ml-auto">
+            <div class="col-md-2 mb-3 ml-auto">
                 <span class="input-group">             
-                    <button class="btn btn-secondary" (click)="BuscarDuplicados();MostrarTabla = true">
+                    <button class="btn btn-secondary" (click)="BuscarDuplicados()">
                         <i id="iBuscar" class="bi bi-search"></i>
                         Buscar duplicados                
+                    </button>
+                </span>
+            </div>
+            <div class="col-md-2 mb-3 ml-auto">
+                <span class="input-group">             
+                    <button class="btn btn-secondary" (click)="Limpiar()">
+                        <i class="bi bi-eraser"></i>
+                        Limpiar               
                     </button>
                 </span>
             </div>

@@ -7,6 +7,7 @@ import { ExisteSemillaIn } from '../Parametros/Entrada/ExisteSemillaIn';
 import { ListarSemillaIn } from '../Parametros/Entrada/ListarSemillaIn';
 import { ModificarSemillaIn } from '../Parametros/Entrada/ModificarSemillaIn';
 import { AltaSemillaOut } from '../Parametros/Salida/AltaSemillaOut';
+import { BajaSemillaOut } from '../Parametros/Salida/BajaSemillaOut';
 import { ExisteSemillaOut } from '../Parametros/Salida/ExisteSemillaOut';
 import { ListarSemillaOut } from '../Parametros/Salida/ListarSemillaOut';
 
@@ -24,7 +25,7 @@ export class SemillaService {
   }
 
   public Baja(bajaSemillaIn:BajaSemillaIn){
-    return this.http.post(`${this.baseUrl+MetodosUrl.Semilla.BAJA}`,bajaSemillaIn);
+    return this.http.post<BajaSemillaOut>(`${this.baseUrl+MetodosUrl.Semilla.BAJA}`,bajaSemillaIn);
   }
 
   public Modificar(modificarSemillaIn:ModificarSemillaIn){

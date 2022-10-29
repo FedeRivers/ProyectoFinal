@@ -45,6 +45,11 @@ namespace ProyectoFinal._3_Persistencia
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
+                        output.SemillaEliminada = true;
+                    }
+                    else
+                    {
+                        output.SemillaEliminada = false;
                     }
                 }
                 catch (Exception ex)

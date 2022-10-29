@@ -5,8 +5,7 @@ using System.Web;
 
 namespace ProyectoFinal.Parametros.Salida
 {
-    public class BajaSemillaOut : ParametroBaseOut
+    public class ResetearContrasenaOut : ParametroBaseOut
     {
-        public bool SemillaEliminada { get; set; }
     }
 }

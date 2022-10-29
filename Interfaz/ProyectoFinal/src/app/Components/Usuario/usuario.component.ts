@@ -11,6 +11,7 @@ import { FormularioBase } from '../FormularioBase/class/formularioBase';
 import { TipoDeUsuario } from '../TipoDeUsuario/class/tipoDeUsuario';
 import { ListarTipoDeUsuarioIn } from '../../Parametros/Entrada/ListarTipoDeUsuarioIn';
 import { TipoDeUsuarioService } from '../../Services/tipoDeUsuario.service';
+import { ResetearContrasenaIn } from '../../Parametros/Entrada/ResetearContrasenaIn';
 
 
 
@@ -34,6 +35,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   private mailEsValido: boolean = false; 
   private cedulaEsValida: boolean = false;
   private tipoDeUsuarioEsValido: boolean = false; 
+  private btnResetearContrasena: boolean = false;
 
   private mensajeNombreInvalido: string = '';
   private mensajeApellidoInvalido: string = '';
@@ -186,6 +188,18 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
       });
   }
 
+  ResetearContrasena()
+  {
+    let resetearContrasenaIn:ResetearContrasenaIn = new ResetearContrasenaIn();
+    resetearContrasenaIn.Usuario = this.usuario;
+    this.usuarioServicio.ResetearContrasena(resetearContrasenaIn)
+    .subscribe( usuario => {
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false);
+    }, err => {
+      this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
+    });
+  }
+
   Listar()
   {
     let listarUsuariosIn: ListarUsuariosIn = new ListarUsuariosIn();
@@ -216,14 +230,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     });
   }
 
-
-  Seleccionar(usuario:Usuario)
-  {
-    this.usuario = usuario;
-    this.Ocultar();
-  }
-
- Regresar()
+  Regresar()
   {
     this.Listar();
     this.Ocultar();
@@ -258,6 +265,19 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
         this.BtnModificar = true;
         this.ListarTiposDeUsuario();
         break;
+      case "ResetearContrasena":
+        this.btnResetearContrasena = true;
+        this.AbrirModal();
+        break;
+    }
+  }
+
+  Seleccionar(usuario:Usuario)
+  {
+    this.usuario = usuario;
+    if(!this.btnResetearContrasena)
+    {
+      this.Ocultar();
     }
   }
 
@@ -311,9 +331,13 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     {
       this.BajaUsuario();
     }
-    else
+    else if(this.BtnModificar)
     {
       this.ModificarUsuario();
+    }
+    else
+    {
+      this.ResetearContrasena();
     }
   }
 

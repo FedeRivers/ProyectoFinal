@@ -10,6 +10,7 @@ import { MetodosUrl } from '../Components/Constantes/constantes';
 import { LoginOut } from '../Parametros/Salida/LoginOut';
 import { AltaUsuarioOut } from '../Parametros/Salida/AltaUsuarioOut';
 import { ModificarUsuarioOut } from '../Parametros/Salida/ModificarUsuarioOut';
+import { ResetearContrasenaIn } from '../Parametros/Entrada/ResetearContrasenaIn';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,11 @@ export class UsuarioService {
 
   public Listar(listarUsuariosIn:ListarUsuariosIn){
     return this.http.get<ListarUsuariosOut>(`${this.baseUrl+MetodosUrl.Usuario.LISTAR}?TerminoDeBusqueda=${listarUsuariosIn.terminoDeBusqueda}`);
+  }
+
+  public ResetearContrasena(resetearContrasenaIn:ResetearContrasenaIn)
+  {
+    return this.http.post(`${this.baseUrl+MetodosUrl.Usuario.RESETEARCONTRASENA}`,resetearContrasenaIn);
   }
 
 }

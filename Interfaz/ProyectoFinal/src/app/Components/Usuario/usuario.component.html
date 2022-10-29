@@ -83,6 +83,7 @@
                         <th scope="col" sorteable="cedula">Cédula</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -100,11 +101,14 @@
                         <td>
                             <ngb-highlight [result]="usuario.Cedula"></ngb-highlight>
                         </td>
-                        <td>
-                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(usuario); BotonSeleccionado('Modificar')"></i>
+                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario != 1">
+                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="BotonSeleccionado('Modificar');Seleccionar(usuario)"></i>
                         </td>
-                        <td>
-                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(usuario); BotonSeleccionado('Baja')"></i>
+                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario != 1">
+                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="BotonSeleccionado('Baja');Seleccionar(usuario)"></i>
+                        </td>
+                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario != 1">
+                            <i class="bi bi-arrow-repeat" data-toggle="tooltip" data-placement="top" title="Resetear contraseña" (click)="BotonSeleccionado('ResetearContrasena');Seleccionar(usuario)"></i>
                         </td>
                     </tr>
                 </tbody>

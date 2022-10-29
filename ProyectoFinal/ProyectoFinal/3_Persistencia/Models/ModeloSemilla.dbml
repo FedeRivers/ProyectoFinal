@@ -5,10 +5,6 @@
     <Parameter Name="IdTaxonomia" Parameter="idTaxonomia" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.BajaSemilla" Method="BajaSemilla">
-    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.ModificarSemilla" Method="ModificarSemilla">
     <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
@@ -30,6 +26,10 @@
   <Function Name="dbo.ExisteSemilla" Method="ExisteSemilla">
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Taxonomia" Parameter="taxonomia" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BajaSemilla" Method="BajaSemilla">
+    <Parameter Name="IdSemilla" Parameter="idSemilla" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

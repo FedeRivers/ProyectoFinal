@@ -1,17 +1,32 @@
-<div class="form-floating form-signin w-100 h-50 m-auto text-center ">
-    <form>
-        <h1 class="h3 mb-3 fw-normal">Inicie sesión</h1>
-        <div class="input-group mb-3">
-            <span for="spanTxtMail" class="input-group-text">Email:</span>
-            <input type="text" [(ngModel)]="Mail" class="form-control" id="txtMail" name="txtMail" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanTxtMail">
+<div class="row">
+    <div class="form-floating form-signin w-100 h-50 m-auto text-center ">
+        <div *ngIf="Loading" class="text-center">
+            <div class="spinner-border" role="status">
+            </div>
         </div>
-        <div class="input-group mb-3">
-            <span for="txtContrasena" class="input-group-text">Contraseña:</span>
-            <input type="password" [(ngModel)]="Contrasena" class="form-control" id="txtContrasena" name="txtContrasena" placeholder="Ingrese contraseña">
-        </div>
-        <div class="col-md-12">
-            <input type="button" class="btn btn-outline-primary" (click)="Login()" value="Iniciar sesión">
-        </div>
-        <p class="mt-5 mb-3 text-muted">©2022</p>
-    </form>
+
+
+        <form *ngIf="!Loading">
+            <h1 class="h3 mb-3 fw-normal">Inicie sesión</h1>
+            <div class="input-group mb-3">
+                <span for="spanTxtMail" class="input-group-text">Email:</span>
+                <input type="text" [(ngModel)]="Mail" class="form-control" id="txtMail" name="txtMail" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanTxtMail">
+            </div>
+            <div class="input-group mb-3">
+                <span for="txtContrasena" class="input-group-text">Contraseña:</span>
+                <input type="password" [(ngModel)]="Contrasena" class="form-control" id="txtContrasena" name="txtContrasena" placeholder="Ingrese contraseña">
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div *ngIf="Usuario == null" class="col-md-10 alert alert-danger">
+                    <span>Mail o contraseña incorrecta.</span>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="col-md-12">
+                <input type="button" class="btn btn-outline-primary" (click)="Login()" value="Iniciar sesión">
+            </div>
+            <p class="mt-5 mb-3 text-muted">©2022</p>
+        </form>
+    </div>
 </div>
