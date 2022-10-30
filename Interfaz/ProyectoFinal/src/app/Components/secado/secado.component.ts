@@ -74,12 +74,20 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
       this.ListarSobres();
     },1000)
   }
+  public get NumeroSobre() : number
+  {
+    return this.listarSobreIn.NumeroSobre;
+  }
 
   public set NumeroLote(value: number) {
     this.listarSobreIn.NumeroLote = value;
     setTimeout(() => {
       this.ListarSobres();
     },1000)
+  }
+  public get NumeroLote() : number
+  {
+    return this.listarSobreIn.NumeroLote;
   }
 
   public set NombreSemilla(value: string) {
@@ -88,12 +96,20 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
       this.ListarSobres();
     },1000)
   }
+  public get NombreSemilla() : string
+  {
+    return this.listarSobreIn.NombreSemilla;
+  }
   
   public set EstadoSobre(value: number){
     this.listarSobreIn.IdEstado = value;
     setTimeout(() => {
       this.ListarSobres();
     },1000)
+  }
+  public get EstadoSobre() : number
+  {
+    return this.listarSobreIn.IdEstado;
   }
 
   public set Camara(value: number){
@@ -198,7 +214,12 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
     this.estadoService.Listar(new ListarEstadosIn())
       .subscribe( lista =>{
         if(lista.Estados!=undefined) {
-          this.estados = lista.Estados;
+          lista.Estados.forEach(estado => {
+            if(estado.IdEstado == 5 || estado.IdEstado == 11 || estado.IdEstado == 13 || estado.IdEstado == 14)
+            {
+              this.estados.push(estado);
+            }
+          });
         }
       }, err => {
       this.modal.Error = true;
@@ -319,6 +340,12 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
     {
       this.ExportarExcel();
     }
+  }
+
+  Limpiar()
+  {
+    this.listarSobreIn = new ListarSobreIn();
+    this.ListarSobres();
   }
 
 

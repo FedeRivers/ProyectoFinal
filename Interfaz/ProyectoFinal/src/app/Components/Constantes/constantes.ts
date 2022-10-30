@@ -94,7 +94,7 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el lote.',
                 EXITO:'Lote ingresado con éxito.',
-                EXISTELOTE:'Ya existe el número de lote para el mejorador.',
+                EXISTELOTE:'Ya existe el número de lote.',
             },
             Baja:
             {

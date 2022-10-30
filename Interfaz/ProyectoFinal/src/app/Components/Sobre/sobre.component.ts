@@ -109,12 +109,18 @@ export class SobreComponent extends FormularioBase implements OnInit {
       this.Listar();
     },1000)
   }
+  public get NumeroSobre():number {
+    return this.listarSobreIn.NumeroSobre;
+  }
 
   public set NumeroLote(value: number) {
     this.listarSobreIn.NumeroLote = value;
     setTimeout(() => {
       this.Listar();
     },1000)
+  }
+  public get NumeroLote():number {
+    return this.listarSobreIn.NumeroLote;
   }
 
   public set NombreSemilla(value: string) {
@@ -123,6 +129,9 @@ export class SobreComponent extends FormularioBase implements OnInit {
       this.Listar();
     },1000)
   }
+  public get NombreSemilla():string {
+    return this.listarSobreIn.NombreSemilla;
+  }
   
   public set EstadoSobre(value: number){
     this.listarSobreIn.IdEstado = value;
@@ -130,12 +139,18 @@ export class SobreComponent extends FormularioBase implements OnInit {
       this.Listar();
     },1000)
   }
+  public get EstadoSobre():number {
+    return this.listarSobreIn.IdEstado;
+  }
 
   public set Camara(value: number){
     this.listarSobreIn.IdCamara = value;
     setTimeout(() => {
       this.Listar();
     },1000)
+  }
+  public get Camara():number {
+    return this.listarSobreIn.IdCamara;
   }
 
 
@@ -406,7 +421,12 @@ export class SobreComponent extends FormularioBase implements OnInit {
     this.estadoService.Listar(new ListarEstadosIn())
       .subscribe( lista =>{
         if(lista.Estados!=undefined) {
-          this.estados = lista.Estados;
+          lista.Estados.forEach(estado => {
+            if( estado.IdEstado != 4 && estado.IdEstado != 12 )
+            {
+              this.estados.push(estado);
+            }
+          });
         }
       }, err => {
       this.modal.Error = true;
@@ -516,6 +536,11 @@ export class SobreComponent extends FormularioBase implements OnInit {
     {
       this.Ocultar();
     }
+  }
+
+  LimpiarFiltros()
+  {
+    this.listarSobreIn = new ListarSobreIn();
   }
 
   Limpiar()

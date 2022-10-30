@@ -79,7 +79,11 @@ USING (
 		   (6, 1),
 		   (7, 1),
 		   (8, 1),
-		   (9, 1)
+		   (9, 1),
+		   (10, 1),
+		   (11, 1),
+		   (12, 1),
+		   (13, 1)
 ) AS SOURCE ( NewIdModulo, NewIdTipoDeUsuario )
 ON TARGET.[idModulo] = SOURCE.NewIdModulo AND TARGET.[idTipoDeUsuario] = SOURCE.NewIdTipoDeUsuario 
 WHEN NOT MATCHED BY TARGET THEN 
