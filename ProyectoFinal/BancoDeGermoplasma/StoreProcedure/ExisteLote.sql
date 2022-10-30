@@ -1,9 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[ExisteLote]
-	@NumeroLote INT,
-	@IdMejorador INT 
+	@NumeroLote INT
 AS
 BEGIN
-	IF EXISTS(SELECT * FROM Lotes WHERE numeroLote = @NumeroLote AND idMejorador = @IdMejorador)
+	IF EXISTS(SELECT * FROM Lotes WHERE numeroLote = @NumeroLote)
 	RETURN 0
 	ELSE
 	RETURN -1

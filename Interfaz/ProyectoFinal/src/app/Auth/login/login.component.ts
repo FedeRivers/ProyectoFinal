@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   set Contrasena(value:string){
     if(value!="")
     {
-      this.loginIn.contrasena = CryptoJS.SHA256(value).toString(); //.AES.encrypt(value,"123").toString();
+      this.loginIn.contrasena = CryptoJS.SHA256(value).toString(); 
     }
     else
     {

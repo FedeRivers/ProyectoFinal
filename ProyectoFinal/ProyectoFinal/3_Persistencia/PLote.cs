@@ -188,7 +188,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ExisteLote(input.Lote.NumeroLote, input.Lote.Mejorador.IdMejorador);
+                    var result = dataContext.ExisteLote(input.Lote.NumeroLote);
                     output.ExisteLote = result == 0;
                     output.Status = new HttpStatusCodeResult(200);
                 }

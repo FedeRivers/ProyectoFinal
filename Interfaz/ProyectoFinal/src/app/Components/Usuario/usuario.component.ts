@@ -233,7 +233,10 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   Regresar()
   {
     this.Listar();
-    this.Ocultar();
+    if(!this.btnResetearContrasena)
+    {
+      this.Ocultar();
+    }
     this.Limpiar();
   }
 
@@ -248,6 +251,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.mailEsValido = false; 
     this.cedulaEsValida = false;
     this.tipoDeUsuarioEsValido = false; 
+    this.btnResetearContrasena = false;
   }
 
   BotonSeleccionado(boton:string)
