@@ -162,7 +162,7 @@ export class SemillaComponent extends FormularioBase implements OnInit {
   Listar()
   {
     let listarSemillaIn: ListarSemillaIn = new ListarSemillaIn();
-    listarSemillaIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarSemillaIn.TerminoDeBusqueda = this.terminoDeBusqueda;
     this.semillas = [];
     this.semillaServicio.Listar(listarSemillaIn)
       .subscribe( lista => {

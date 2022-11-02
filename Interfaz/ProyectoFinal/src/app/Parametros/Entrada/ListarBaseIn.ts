@@ -1,12 +1,15 @@
 export class ListarBaseIn{
-    private TerminoDeBusqueda: string= '';
+    private terminoDeBusqueda: string;
     
-    constructor(){}
-    
-    public get terminoDeBusqueda(): string {
-        return this.TerminoDeBusqueda;
+    constructor()
+    {
+        this.terminoDeBusqueda = '';
     }
-    public set terminoDeBusqueda(value: string ) {
-        this.TerminoDeBusqueda = value;
+    
+    public get TerminoDeBusqueda(): string {
+        return this.terminoDeBusqueda;
+    }
+    public set TerminoDeBusqueda(value: string ) {
+        this.terminoDeBusqueda = value;
     }
 }

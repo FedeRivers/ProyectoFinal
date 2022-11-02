@@ -203,7 +203,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   Listar()
   {
     let listarUsuariosIn: ListarUsuariosIn = new ListarUsuariosIn();
-    listarUsuariosIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarUsuariosIn.TerminoDeBusqueda = this.terminoDeBusqueda;
     this.usuarios = [];
     this.usuarioServicio.Listar(listarUsuariosIn)
       .subscribe(lista => {

@@ -7,8 +7,16 @@ export class FormularioBase{
     private btnAlta: boolean = false;
     private btnBaja: boolean = false;
     private btnModificar: boolean = false;
+    private page: number;
+    private pageSize: number;
+
+  
     
-    constructor(){}
+    constructor()
+    {
+        this.page = 1;
+        this.pageSize = 10;
+    }
 
     public get EstaSeleccionado(): boolean {
         return this.estaSeleccionado;
@@ -37,6 +45,21 @@ export class FormularioBase{
         this.btnModificar = value;
     }
 // #endregion
+
+//#region Get y Set de los paginados
+public get Page() {
+    return this.page;
+}
+public set Page(value) {
+    this.page = value;
+}
+public get PageSize() {
+    return this.pageSize;
+}
+public set PageSize(value) {
+    this.pageSize = value;
+}
+//#endregion
 
     Ocultar()
     {

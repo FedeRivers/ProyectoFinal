@@ -56,16 +56,14 @@
         </div>
 
         <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
-            <div class="row input-group">
-                <div class="row mb-3 col-md-8">
-                    <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
-                    <div class="col-xs-3 col-sm-auto">
-                        <input id="table-complete-search" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
-                    </div>
-                    <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
+            <div class="row">
+
+                <div class="input-group mb-1 col-md-4">
+                    <span class="input-group-text" id="spanBusquedaUsuario">Buscar por nombre:</span>
+                    <input [(ngModel)]="TerminoDeBusqueda" name="txtBusquedaUsuario" class="form-control" style="height:auto;" placeholder="Ingrese nombre" aria-label="txtBusquedaUsuario" aria-describedby="spanBusquedaUsuario">
                 </div>
-                <div class="col-md-2"></div>
-                <div class="mb-3 ml-auto col-md-2">
+                <div class="col-md-6"></div>
+                <div class="mb-1 ml-auto col-md-2">
                     <span class="input-group">             
                         <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
                             <i id="iAgregar" class="bi bi-plus-square"></i>
@@ -87,45 +85,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="pointer" *ngFor="let usuario of Usuarios">
+                    <tr class="pointer" *ngFor="let usuario of Usuarios | slice: (Page-1) * PageSize : Page * PageSize">
                         <td>
-                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                            <ngb-highlight [result]="usuario.Nombre"></ngb-highlight>
+                            {{usuario.Nombre}}
                         </td>
                         <td>
                             <ngb-highlight [result]="usuario.Apellido "></ngb-highlight>
                         </td>
                         <td>
-                            <ngb-highlight [result]="usuario.Mail"></ngb-highlight>
+                            <ngb-highlight [result]="usuario.Mail "></ngb-highlight>
                         </td>
                         <td>
-                            <ngb-highlight [result]="usuario.Cedula"></ngb-highlight>
+                            <ngb-highlight [result]="usuario.Cedula "></ngb-highlight>
                         </td>
-                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario != 1">
-                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="BotonSeleccionado('Modificar');Seleccionar(usuario)"></i>
+                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario !=1 ">
+                            <i class="bi bi-pencil " data-toggle="tooltip " data-placement="top " title="Modificar " (click)="BotonSeleccionado( 'Modificar');Seleccionar(usuario) "></i>
                         </td>
-                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario != 1">
-                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="BotonSeleccionado('Baja');Seleccionar(usuario)"></i>
+                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario !=1 ">
+                            <i class="bi bi-trash3 " data-toggle="tooltip " data-placement="top " title="Eliminar " (click)="BotonSeleccionado( 'Baja');Seleccionar(usuario) "></i>
                         </td>
-                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario != 1">
-                            <i class="bi bi-arrow-repeat" data-toggle="tooltip" data-placement="top" title="Resetear contraseña" (click)="BotonSeleccionado('ResetearContrasena');Seleccionar(usuario)"></i>
+                        <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario !=1 ">
+                            <i class="bi bi-arrow-repeat " data-toggle="tooltip " data-placement="top " title="Resetear contraseña " (click)="BotonSeleccionado( 'ResetearContrasena');Seleccionar(usuario) "></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-between p-2">
-                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-                <!-- </ngb-pagination> -->
-
-                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-                <!-- <option [ngValue]="2">2 items per page</option> -->
-                <!-- <option [ngValue]="4">4 items per page</option> -->
-                <!-- <option [ngValue]="6">6 items per page</option> -->
-                <!-- </select> -->
+        </div>
+        <div class="row justify-content-md-center ">
+            <div class="mt-1 ">
+                <ngb-pagination [(page)]="Page " [pageSize]="PageSize " [collectionSize]="Usuarios.length "></ngb-pagination>
             </div>
         </div>
     </div>
 </body>
-<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
+<app-modal #modal (Aceptar)="Regresar() " (Confirmar)="Confirmar() "></app-modal>
 
 </html>

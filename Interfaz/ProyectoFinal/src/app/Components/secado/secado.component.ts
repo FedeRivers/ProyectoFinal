@@ -228,25 +228,31 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
   }
 
   ExportarExcel():void {
-    let exportarExcelIn = new ExportarExcelIn();
+    /*let exportarExcelIn = new ExportarExcelIn();
     exportarExcelIn.Sobres = this.sobresAExportar;
     this.sobreServicio.ExportarExcel(exportarExcelIn)
     .subscribe( resp =>{
       if(resp.Status.StatusCode != 404)
-      {
-        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
+      {*/
 
-        const book: XLSX.WorkBook = XLSX.utils.book_new();
+
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
+       const book: XLSX.WorkBook = XLSX.utils.book_new();
+        var range = {s: {c:0, r:0}, e: {c:1, r:1048575 }};
+        worksheet['!ref'] = XLSX.utils.encode_range({s: {c:0, r:0}, e: {c:1, r:1048575 }});
+
+
+
         XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
     
         XLSX.writeFile(book, 'pruebaExcel.xlsx');
-        this.ListarSobres();
+     /*   this.ListarSobres();
       }
       
       }, err => {
       this.modal.Error = true;
       this.modal.open();
-    });
+    });*/
 
   }
 

@@ -179,11 +179,13 @@ export const RecursosDeIdioma = {
             {
                 HUMEDAD:'Tomar Humedad',
                 GERMINACION: 'Tomar Germinación',
+                VACIO: 'No hay alertas',
             },
             Cuerpo: 
             {
                 HUMEDAD:'Las semillas de %s del lote %s se encuentran próximas a su porcentaje de humedad óptimo.',
-                GERMINACION: 'Las semillas de %s del lote %s se encuentran listas para contabilizar su germinación.'
+                GERMINACION: 'Las semillas de %s del lote %s se encuentran listas para contabilizar su germinación.',
+                VACIO: 'Por el momento no hay alertas que mostrar.',
             },
         },
     

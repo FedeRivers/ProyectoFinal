@@ -81,8 +81,8 @@
                 <app-devolucion></app-devolucion>
             </ng-template>
         </li>
-        <li [ngbNavItem]="14">
-            <app-alerta></app-alerta>
+        <li [ngbNavItem]="14" (click)="ListarAlertas()">
+            <app-alerta [CargarAlertas]="Listar"></app-alerta>
         </li>
         <li [ngbNavItem]="15">
             <a ngbNavLink><i class="bi bi-person-circle" style="font-size: 18px;"></i></a>
@@ -98,9 +98,4 @@
     </ul>
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-
-
-
-    <!-- <app-modal></app-modal> -->
-    <!-- <app-login></app-login> -->
 </div>

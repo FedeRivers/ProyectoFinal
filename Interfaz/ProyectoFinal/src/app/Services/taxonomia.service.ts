@@ -31,6 +31,6 @@ export class TaxonomiaService {
   }
 
   public Listar(listarMejoradorIn:ListarTaxonomiaIn){
-    return this.http.get<ListarTaxonomiaOut>(`${this.baseUrl+MetodosUrl.Taxonomia.LISTAR}?TerminoDeBusqueda=${listarMejoradorIn.terminoDeBusqueda}`);
+    return this.http.get<ListarTaxonomiaOut>(`${this.baseUrl+MetodosUrl.Taxonomia.LISTAR}?TerminoDeBusqueda=${listarMejoradorIn.TerminoDeBusqueda}`);
   }
 }

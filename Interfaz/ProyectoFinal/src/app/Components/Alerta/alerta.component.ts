@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ListarAlertasIn } from 'src/app/Parametros/Entrada/ListarAlertasIn';
 import { AlertaService } from 'src/app/Services/alerta.service';
 import { Usuario } from '../Usuario/class/usuario';
@@ -20,7 +20,20 @@ export class AlertaComponent implements OnInit {
   private botonVisible: boolean = true;
   private listarAlertasIn:ListarAlertasIn;
 
-  constructor(private alertaServicio:AlertaService) { 
+  private cargarAlertas: boolean = false;
+  public get CargarAlertas(): boolean {
+    return this.cargarAlertas;
+  }
+  @Input()
+  public set CargarAlertas(value: boolean) {
+    this.cargarAlertas = value;
+    if(value)
+    {
+      this.ListarAlertas();
+    }
+  }
+  
+  constructor(private alertaServicio?:AlertaService) { 
     this.alertas = [];
     this.listaMensajesAlertas = [];
     this.listarAlertasIn = new ListarAlertasIn();
@@ -54,7 +67,7 @@ export class AlertaComponent implements OnInit {
     let usuario:Usuario = JSON.parse(sessionStorage.getItem('usuario')!);
     this.listarAlertasIn.IdTipoDeUsuario = usuario.TipoDeUsuario.IdTipoDeUsuario;
     this.listarAlertasIn.CantidadDeAlertas +=1;
-    this.alertaServicio.Listar(this.listarAlertasIn)
+    this.alertaServicio!.Listar(this.listarAlertasIn)
       .subscribe( lista =>{
         this.alertas = lista.Alertas;
         this.botonVisible = this.alertas.length < this.listarAlertasIn.CantidadDeAlertas; 
@@ -65,22 +78,32 @@ export class AlertaComponent implements OnInit {
   ListarMensajesAlerta()
   {
     this.listaMensajesAlertas = [];
-    this.alertas.forEach(alerta => {
-      let mensajeAlerta:MensajeAlerta = new MensajeAlerta();
-      if( alerta.IdCamara == Camaras.SECADO )
-      {
-        mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.HUMEDAD;
-        mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.HUMEDAD,alerta.NombreSemilla,alerta.NumeroLote.toString());
-      }
-      else
-      {
-        mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.GERMINACION;
-        mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.GERMINACION,alerta.NombreSemilla,alerta.NumeroLote.toString());
-      }
-      mensajeAlerta.Fecha = alerta.FechaDeEjecucion;
-      mensajeAlerta.IdAlerta = alerta.IdAlerta;
-      this.listaMensajesAlertas.push(mensajeAlerta);
-    });
+    if(this.alertas.length > 0)
+    {
+      this.alertas.forEach(alerta => {
+        let mensajeAlerta:MensajeAlerta = new MensajeAlerta();
+        if( alerta.IdCamara == Camaras.SECADO )
+        {
+          mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.HUMEDAD;
+          mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.HUMEDAD,alerta.NombreSemilla,alerta.NumeroLote.toString());
+        }
+        else
+        {
+          mensajeAlerta.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.GERMINACION;
+          mensajeAlerta.Mensaje = sprintf(RecursosDeIdioma.Alertas.Mensajes.Cuerpo.GERMINACION,alerta.NombreSemilla,alerta.NumeroLote.toString());
+        }
+        mensajeAlerta.Fecha = alerta.FechaDeEjecucion;
+        mensajeAlerta.IdAlerta = alerta.IdAlerta;
+        this.listaMensajesAlertas.push(mensajeAlerta);
+      });
+    }
+    else
+    {
+      let mensajeAlertaVacio:MensajeAlerta = new MensajeAlerta();
+      mensajeAlertaVacio.Titulo = RecursosDeIdioma.Alertas.Mensajes.Titulo.VACIO;
+      mensajeAlertaVacio.Mensaje = RecursosDeIdioma.Alertas.Mensajes.Cuerpo.VACIO;
+      this.listaMensajesAlertas.push(mensajeAlertaVacio);
+    }
   }
 
   CargarMas(){
@@ -92,7 +115,7 @@ export class AlertaComponent implements OnInit {
   {
     let desactivarAlertaIn:DesactivarAlertaIn = new DesactivarAlertaIn();
     desactivarAlertaIn.IdAlerta = mensajeAlerta.IdAlerta;
-    this.alertaServicio.DesactivarAlerta(desactivarAlertaIn)
+    this.alertaServicio!.DesactivarAlerta(desactivarAlertaIn)
       .subscribe( alerta =>{
         this.ListarAlertas();
       });

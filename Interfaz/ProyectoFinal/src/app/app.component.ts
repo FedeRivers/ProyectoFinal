@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Usuario } from './Components/Usuario/class/usuario';
 import { Keys, RecursosDeIdioma } from './Components/Constantes/constantes';
+
 
 @Component({
   selector: 'app-root',
@@ -24,14 +25,19 @@ export class AppComponent {
   private moduloEstadisticas: boolean = false;
   private moduloSecado: boolean = false;
   private moduloDevolucion: boolean = false;
+  private listar: boolean = false;
+
+
+
 
   constructor(){
     this.usuario = new Usuario();
     let session:Usuario =  JSON.parse(sessionStorage.getItem(Keys.USUARIO)!);
-    if(session!=null){
+    if(session != null){
       this.usuario = session;
       this.ValidarPermisos();
     }
+
   }
 
   public get Usuario(): Usuario {
@@ -137,6 +143,14 @@ export class AppComponent {
     this.moduloDevolucion = value;
   }
 
+  @Output()
+  public get Listar(): boolean {
+    return this.listar;
+  }
+  public set Listar(value: boolean) {
+    this.listar = value;
+  }
+
 
   ListarFormularios(usuario:Usuario)
   {
@@ -146,6 +160,11 @@ export class AppComponent {
       sessionStorage.setItem('usuario',JSON.stringify(usuario));
       this.ValidarPermisos();
     }
+  }
+
+  ListarAlertas()
+  {
+    this.listar = true;
   }
 
   ValidarPermisos()

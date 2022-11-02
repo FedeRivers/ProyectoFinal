@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE ListarLotes
-	@TerminoDeBusqueda varchar(100)
+	@TerminoDeBusqueda varchar(100) = null
 AS
 BEGIN
 	IF (@TerminoDeBusqueda is not null)

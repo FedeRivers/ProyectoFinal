@@ -154,7 +154,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   Listar()
   {
     let listarMejoradorIn:ListarMejoradorIn = new ListarMejoradorIn();
-    listarMejoradorIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarMejoradorIn.TerminoDeBusqueda = this.terminoDeBusqueda;
     this.mejoradores = [];
     this.mejoradorServicio.Listar(listarMejoradorIn)
     .subscribe( lista => {

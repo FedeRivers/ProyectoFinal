@@ -16,14 +16,11 @@
                     </div>
 
                     <div class="input-group mb-3 col-md-6">
-                        <span class="input-group-text" id="spanNombre">Nombre:</span>
+                        <span class="input-group-text" id="spanNombre">Tipo de usuario:</span>
                         <input name="txtNombre" [(ngModel)]="TipoDeUsuario.Nombre" readonly aria-label="txtNombre" aria-describedby="spanNombre" required>
                     </div>
 
-                    <div class="col-md-4"></div>
-
-                    <div class="mb-3 ml-auto col-md-2">
-                    </div>
+                    <div class="col-md-6"></div>
 
                     <table class="table table-hover col-md-5 col-lg-5">
                         <thead class="table-primary">
@@ -33,10 +30,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="pointer" *ngFor="let modulo of TipoDeUsuario.Modulos">
+                            <tr class="pointer" *ngFor="let modulo of TipoDeUsuario.Modulos | slice: (Page-1) * PageSize : Page * PageSize">
                                 <td>
-                                    <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                                    <ngb-highlight [result]="modulo.Nombre"></ngb-highlight>
+                                    {{modulo.Nombre}}
                                 </td>
                                 <td>
                                     <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="EliminarModulo(modulo)"></i>
@@ -53,10 +49,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="pointer " *ngFor="let modulo of ModulosFiltrada ">
+                            <tr class="pointer " *ngFor="let modulo of ModulosFiltrada | slice: (Page-1) * PageSize : Page * PageSize">
                                 <td>
-                                    <!-- <img [src]=" 'https://upload.wikimedia.org/wikipedia/commons/' + country.flag " class="me-2 " style="width: 20px "> -->
-                                    <ngb-highlight [result]="modulo.Nombre "></ngb-highlight>
+                                    {{modulo.Nombre}}
                                 </td>
                                 <td>
                                     <i class="bi bi-plus-square " data-toggle="tooltip " data-placement="top " title="Agregar " (click)="AgregarModulo(modulo) "></i>
@@ -66,6 +61,17 @@
                     </table>
                 </div>
             </form>
+            <div class="row justify-content-md-center ">
+                <div class="mt-1 col-md-5">
+                    <ngb-pagination [(page)]="Page" [pageSize]="PageSize " [collectionSize]="TiposDeUsuario.length "></ngb-pagination>
+                </div>
+
+                <div class="col-md-2"></div>
+
+                <div class="mt-1 col-md-5">
+                    <ngb-pagination [(page)]="Page " [pageSize]="PageSize " [collectionSize]="ModulosFiltrada.length "></ngb-pagination>
+                </div>
+            </div>
         </div>
         <div *ngIf="!EstaSeleccionado " class="row justify-content-md-center ">
             <div class="col-md-4 col-lg-4 border p-2 border-opacity-10 mt-5 ">
@@ -81,8 +87,7 @@
                     <tbody>
                         <tr class="pointer " *ngFor="let tipoDeUsuario of TiposDeUsuario ">
                             <td>
-                                <!-- <img [src]=" 'https://upload.wikimedia.org/wikipedia/commons/' + country.flag " class="me-2 " style="width: 20px "> -->
-                                <ngb-highlight [result]="tipoDeUsuario.Nombre "></ngb-highlight>
+                                {{tipoDeUsuario.Nombre}}
                             </td>
                             <td>
                                 <i class="bi bi-pencil " data-toggle="tooltip " data-placement="top " title="Modificar " (click)="Seleccionar(tipoDeUsuario) "></i>
@@ -90,16 +95,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-between p-2 ">
-                    <!-- <ngb-pagination [collectionSize]="(total$ | async)! " [(page)]="service.page " [pageSize]="service.pageSize "> -->
-                    <!-- </ngb-pagination> -->
-
-                    <!-- <select class="form-select " style="width: auto " name="pageSize " [(ngModel)]="service.pageSize "> -->
-                    <!-- <option [ngValue]="2 ">2 items per page</option> -->
-                    <!-- <option [ngValue]="4 ">4 items per page</option> -->
-                    <!-- <option [ngValue]="6 ">6 items per page</option> -->
-                    <!-- </select> -->
-                </div>
             </div>
         </div>
     </div>

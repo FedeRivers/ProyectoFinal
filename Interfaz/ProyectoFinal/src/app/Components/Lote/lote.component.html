@@ -43,20 +43,15 @@
             </form>
         </div>
 
-        <div *ngIf="!EstaSeleccionado" class="row justify-content-md-center">
-            <div class="col-md-6 col-lg-6 border p-2 border-opacity-10 mt-5 ">
+        <div *ngIf="!EstaSeleccionado" class="justify-content-md-center">
+            <div class="border p-2 border-opacity-10">
                 <div class="row mb-1">
-                    <div class="col-md-9">
-                        <div class="row">
-                            <label for="txtTerminoDeBusqueda" class="col-xs-3 col-sm-auto col-form-label">Buscar por numero:</label>
-                            <div class="col-xs-3 col-sm-auto">
-                                <input id="txtTerminoDeBusqueda" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
-                            </div>
-                            <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
-                        </div>
+                    <div class="input-group col-md-4">
+                        <span class="input-group-text" id="spanBusquedaLote">Buscar por número:</span>
+                        <input [(ngModel)]="TerminoDeBusqueda" type="number" name="txtBusquedaLote" class="form-control" style="height:auto;" placeholder="Ingrese número" aria-label="txtBusquedaLote" aria-describedby="spanBusquedaLote">
                     </div>
-
-                    <div class="col-md-3">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-2">
                         <span class="input-group">             
                         <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
                             <i id="iAgregar" class="bi bi-plus-square"></i>
@@ -78,17 +73,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="pointer" *ngFor="let lote of Lotes">
+                        <tr class="pointer" *ngFor="let lote of Lotes | slice: (Page-1) * PageSize : Page * PageSize">
                             <td>
-                                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                                <!-- <ngb-highlight lote.Numero></ngb-highlight> -->
                                 {{lote.NumeroLote}}
                             </td>
                             <td>
-                                <ngb-highlight [result]="lote.Descripcion"></ngb-highlight>
+                                {{lote.Descripcion}}
                             </td>
                             <td>
-                                <ngb-highlight [result]="lote.Mejorador.Nombre"></ngb-highlight>
+                                {{lote.Mejorador.Nombre}}
                             </td>
                             <td>
                                 <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(lote); BotonSeleccionado('Modificar')"></i>
@@ -99,15 +92,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-between p-2">
-                    <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-                    <!-- </ngb-pagination> -->
-
-                    <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-                    <!-- <option [ngValue]="2">2 items per page</option> -->
-                    <!-- <option [ngValue]="4">4 items per page</option> -->
-                    <!-- <option [ngValue]="6">6 items per page</option> -->
-                    <!-- </select> -->
+            </div>
+            <div class="row justify-content-md-center ">
+                <div class="mt-1 ">
+                    <ngb-pagination [(page)]="Page " [pageSize]="PageSize " [collectionSize]="Lotes.length "></ngb-pagination>
                 </div>
             </div>
         </div>

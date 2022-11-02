@@ -69,13 +69,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarLotes")]
-		public ISingleResult<ListarLotesResult> ListarLotes([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
-			return ((ISingleResult<ListarLotesResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarLote")]
 		public int ModificarLote([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NumeroLote", DbType="Int")] System.Nullable<int> numeroLote, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador)
 		{
@@ -109,6 +102,111 @@ namespace ProyectoFinal._3_Persistencia.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), numeroLote);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarLotes")]
+		public ISingleResult<ListarLotesResult> ListarLotes([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TerminoDeBusqueda", DbType="VarChar(100)")] string terminoDeBusqueda)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), terminoDeBusqueda);
+			return ((ISingleResult<ListarLotesResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class ListarLotesParaDevolucionResult
+	{
+		
+		private int _numeroLote;
+		
+		private string _descripcion;
+		
+		private System.Nullable<System.DateTime> _fechaDeIngreso;
+		
+		private int _idMejorador;
+		
+		private System.Nullable<bool> _activo;
+		
+		public ListarLotesParaDevolucionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroLote", DbType="Int NOT NULL")]
+		public int numeroLote
+		{
+			get
+			{
+				return this._numeroLote;
+			}
+			set
+			{
+				if ((this._numeroLote != value))
+				{
+					this._numeroLote = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this._descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeIngreso", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fechaDeIngreso
+		{
+			get
+			{
+				return this._fechaDeIngreso;
+			}
+			set
+			{
+				if ((this._fechaDeIngreso != value))
+				{
+					this._fechaDeIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idMejorador", DbType="Int NOT NULL")]
+		public int idMejorador
+		{
+			get
+			{
+				return this._idMejorador;
+			}
+			set
+			{
+				if ((this._idMejorador != value))
+				{
+					this._idMejorador = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
+		public System.Nullable<bool> activo
+		{
+			get
+			{
+				return this._activo;
+			}
+			set
+			{
+				if ((this._activo != value))
+				{
+					this._activo = value;
+				}
+			}
 		}
 	}
 	
@@ -295,104 +393,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._activoMejorador != value))
 				{
 					this._activoMejorador = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ListarLotesParaDevolucionResult
-	{
-		
-		private int _numeroLote;
-		
-		private string _descripcion;
-		
-		private System.Nullable<System.DateTime> _fechaDeIngreso;
-		
-		private int _idMejorador;
-		
-		private System.Nullable<bool> _activo;
-		
-		public ListarLotesParaDevolucionResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numeroLote", DbType="Int NOT NULL")]
-		public int numeroLote
-		{
-			get
-			{
-				return this._numeroLote;
-			}
-			set
-			{
-				if ((this._numeroLote != value))
-				{
-					this._numeroLote = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string descripcion
-		{
-			get
-			{
-				return this._descripcion;
-			}
-			set
-			{
-				if ((this._descripcion != value))
-				{
-					this._descripcion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fechaDeIngreso", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fechaDeIngreso
-		{
-			get
-			{
-				return this._fechaDeIngreso;
-			}
-			set
-			{
-				if ((this._fechaDeIngreso != value))
-				{
-					this._fechaDeIngreso = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idMejorador", DbType="Int NOT NULL")]
-		public int idMejorador
-		{
-			get
-			{
-				return this._idMejorador;
-			}
-			set
-			{
-				if ((this._idMejorador != value))
-				{
-					this._idMejorador = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activo", DbType="Bit")]
-		public System.Nullable<bool> activo
-		{
-			get
-			{
-				return this._activo;
-			}
-			set
-			{
-				if ((this._activo != value))
-				{
-					this._activo = value;
 				}
 			}
 		}

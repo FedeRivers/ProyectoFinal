@@ -33,7 +33,7 @@ export class SemillaService {
   }
 
   public Listar(listarSemillaIn:ListarSemillaIn){
-    return this.http.get<ListarSemillaOut>(`${this.baseUrl+MetodosUrl.Semilla.LISTAR}?TerminoDeBusqueda=${listarSemillaIn.terminoDeBusqueda}`);
+    return this.http.get<ListarSemillaOut>(`${this.baseUrl+MetodosUrl.Semilla.LISTAR}?TerminoDeBusqueda=${listarSemillaIn.TerminoDeBusqueda}`);
   }
 
   public ExisteSemilla(existeSemillaIn:ExisteSemillaIn)

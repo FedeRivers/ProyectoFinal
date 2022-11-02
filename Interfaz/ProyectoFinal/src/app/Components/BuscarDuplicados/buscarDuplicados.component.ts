@@ -3,13 +3,14 @@ import { SobreService } from 'src/app/Services/sobre.service';
 import { BuscarDuplicadosIn } from '../../Parametros/Entrada/BuscarDuplicadosIn';
 import { Sobre } from '../Sobre/class/sobre';
 import { Semilla } from 'src/app/Components/Semilla/class/semilla';
+import { FormularioBase } from '../FormularioBase/class/formularioBase';
 
 @Component({
   selector: 'app-buscar-duplicados',
   templateUrl: './buscarDuplicados.component.html',
   styleUrls: ['./buscarDuplicados.component.css']
 })
-export class BuscarDuplicadosComponent implements OnInit {
+export class BuscarDuplicadosComponent extends FormularioBase implements OnInit {
 
   private textoIngresado: string = '';
   private listaDeBusqueda: string[] ;
@@ -19,6 +20,7 @@ export class BuscarDuplicadosComponent implements OnInit {
 
 
   constructor( private sobreServicio: SobreService ){
+    super();
     this.listaDeBusqueda = [];
     this.sobres = [];
     this.sobre = new Sobre();
@@ -68,7 +70,7 @@ export class BuscarDuplicadosComponent implements OnInit {
     if(this.textoIngresado.trim() != "")
     {
       let buscarDuplicadosIn:BuscarDuplicadosIn = new BuscarDuplicadosIn();
-      this.listaDeBusqueda = this.textoIngresado.trim().split(/\r\n|\r|\n/);
+      this.listaDeBusqueda = this.textoIngresado.trim().split(/\r\n|\r|\n/).filter( texto => texto!="");
       this.listaDeBusqueda.forEach( nombre => {
         let semilla:Semilla = new Semilla();
         semilla.Nombre = nombre;
