@@ -8,6 +8,7 @@ export class Usuario {
     private cedula!: string;
     private contrasena!: string;
     private tipoDeUsuario: TipoDeUsuario;
+    private celular!: string;
     private activo!: boolean;
 
     constructor()
@@ -56,6 +57,13 @@ export class Usuario {
     }
     public set Contrasena(value: string) {
         this.contrasena = value;
+    }
+
+    public get Celular(): string {
+        return this.celular;
+    }
+    public set Celular(value: string) {
+        this.celular = value;
     }
 
     public get TipoDeUsuario(): TipoDeUsuario{

@@ -19,7 +19,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AltaMejorador(input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
+                    var result = dataContext.AltaMejorador(input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion,input.Mejorador.Celular);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -63,7 +63,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ModificarMejorador(input.Mejorador.IdMejorador, input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion);
+                    var result = dataContext.ModificarMejorador(input.Mejorador.IdMejorador, input.Mejorador.Nombre, input.Mejorador.Mail, input.Mejorador.Direccion, input.Mejorador.Celular);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -97,7 +97,8 @@ namespace ProyectoFinal._3_Persistencia
                                 Mail = mejorador.mail,
                                 Direccion = mejorador.direccion,
                                 Activo = mejorador.activo,
-                                FechaDeIngreso = mejorador.fechaDeIngreso
+                                FechaDeIngreso = mejorador.fechaDeIngreso,
+                                Celular = mejorador.celular,
                             });
                         }
                         output.Status = new HttpStatusCodeResult(200);
@@ -118,7 +119,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ExisteMejorador(input.Mail ,input.IdMejorador);
+                    var result = dataContext.ExisteMejorador(input.Mail ,input.IdMejorador,input.Celular);
                     return result;
                 }
                 catch (Exception ex)

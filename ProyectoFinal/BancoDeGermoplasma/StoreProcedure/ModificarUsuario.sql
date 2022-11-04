@@ -5,15 +5,10 @@
 	@Contrasena varchar(100),
 	@Mail varchar(100),
 	@Cedula varchar(10),
-	@IdTipoDeUsuario int
+	@IdTipoDeUsuario int,
+	@Celular varchar(9)
 
 AS
 BEGIN
-	BEGIN TRY
-		UPDATE Usuarios SET nombre = @Nombre, apellido = @Apellido, contrasena = @Contrasena, mail = @Mail, cedula = @Cedula, idTipoDeUsuario = @IdTipoDeUsuario, fechaDeModificacion = GETDATE() WHERE idUsuario = @IdUsuario
-		return 0
-	END TRY
-	BEGIN CATCH
-		return -1
-	END CATCH
+	UPDATE Usuarios SET nombre = @Nombre, apellido = @Apellido, contrasena = @Contrasena, mail = @Mail, cedula = @Cedula, idTipoDeUsuario = @IdTipoDeUsuario, fechaDeModificacion = GETDATE(), celular = @Celular WHERE idUsuario = @IdUsuario
 END

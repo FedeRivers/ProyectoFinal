@@ -11,5 +11,7 @@ namespace ProyectoFinal.Parametros.Salida
         public bool ExisteMail { get; set; }
 
         public bool ExisteCedula { get; set; }
+
+        public bool ExisteCelular { get; set; }
     }
 }

@@ -35,6 +35,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   private mailEsValido: boolean = false; 
   private cedulaEsValida: boolean = false;
   private tipoDeUsuarioEsValido: boolean = false; 
+  private celularEsValido: boolean = false; 
   private btnResetearContrasena: boolean = false;
 
   private mensajeNombreInvalido: string = '';
@@ -42,7 +43,8 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   private mensajeMailInvalido: string = '';
   private mensajeCedulaInvalida: string = '';
   private mensajeTipoDeUsuarioInvalido: string = '';
-  
+  private mensajeCelularInvalido: string = '';
+
   @ViewChild("modal") modal: ModalComponent;
 
   constructor(private usuarioServicio: UsuarioService,private tipoDeUsuarioServicio:TipoDeUsuarioService) {
@@ -122,6 +124,12 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   public set CedulaEsValida(value: boolean) {
     this.cedulaEsValida = value;
   }
+  public get CelularEsValido(): boolean {
+    return this.celularEsValido;
+  }
+  public set CelularEsValido(value: boolean) {
+    this.celularEsValido = value;
+  }
   //#endregion
 
   //#region Get y Set de mensajes de error para mostrar al usuario
@@ -149,6 +157,12 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
   public set MensajeCedulaInvalida(value: string) {
     this.mensajeCedulaInvalida = value;
   }
+  public get MensajeCelularInvalido(): string {
+    return this.mensajeCelularInvalido;
+  }
+  public set MensajeCelularInvalido(value: string) {
+    this.mensajeCelularInvalido = value;
+  }
   //#endregion
   
   AltaUsuario()
@@ -158,6 +172,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
       .subscribe( usuario => {
         usuario.ExisteCedula ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTECEDULA,true) 
         : usuario.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTEMAIL,true)
+        : usuario.ExisteCelular ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTECELULAR,true)
         : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXITO,false);
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.ERROR,true);
@@ -182,6 +197,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
       .subscribe( usuario => {
         usuario.ExisteCedula ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTECEDULA,true) 
         : usuario.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTEMAIL,true)
+        : usuario.ExisteCelular ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Alta.EXISTECELULAR,true) 
         : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.EXITO,false);
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Usuario.Modificar.ERROR,true);
@@ -318,6 +334,13 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
     this.mensajeTipoDeUsuarioInvalido = this.ValidarNumero(this.usuario.TipoDeUsuario.IdTipoDeUsuario.toString());
     this.mensajeTipoDeUsuarioInvalido != '' ? this.tipoDeUsuarioEsValido = false: this.tipoDeUsuarioEsValido = true;
     return this.tipoDeUsuarioEsValido;
+  }
+
+  ValidarCelularUsuario():boolean
+  {
+    this.mensajeCelularInvalido = this.ValidarCelular(this.usuario.Celular);
+    this.mensajeCelularInvalido != '' ? this.celularEsValido = false : this.celularEsValido = true;
+    return this.celularEsValido;
   }
   
   ValidarFormulario():boolean

@@ -228,4 +228,26 @@ public set PageSize(value) {
         return this.mensaje;
     }
 
+
+    ValidarCelular(texto:string):string
+    {
+       this.mensaje = this.CampoVacio(texto);
+        if(this.mensaje == '')
+        {
+            this.mensaje = this.ValidarNumero(texto);
+            if(this.mensaje == '' && texto.length == 9)
+            {
+                if(texto.charAt(0) != '0' || texto.charAt(1) != '9')
+                {
+                    this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
+                }
+            }
+            else
+            {
+                this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
+            } 
+        }
+        return this.mensaje;
+    }
+
 }

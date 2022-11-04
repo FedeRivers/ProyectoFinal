@@ -26,6 +26,8 @@ namespace ProyectoFinal._2_Dominio
 
         public DateTime FechaDeModificacion { get; set; }
 
+        public string Celular { get; set; }
+
         public bool Activo { get; set; }
     }
 }

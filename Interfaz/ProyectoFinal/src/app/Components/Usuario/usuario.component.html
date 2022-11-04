@@ -36,7 +36,12 @@
                         aria-describedby="spanCedula" required>
                     <div class="invalid-feedback">{{MensajeCedulaInvalida}}</div>
                 </div>
-
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanCelular">Celular:</span>
+                    <input name="txtCelular" class="form-control" [(ngModel)]="Usuario.Celular" [ngClass]="Usuario.Celular!=undefined ? ValidarCelularUsuario() ? 'is-valid':'is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese celular" aria-label="txtCelular"
+                        aria-describedby="spanCelular" requeried>
+                    <div class="invalid-feedback">{{MensajeCelularInvalido}}</div>
+                </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanTipoDeUsuario">Tipo de usuario:</span>
                     <select name="txtTipoDeUsuario" class="form-select" [(ngModel)]="Usuario.TipoDeUsuario.IdTipoDeUsuario" [ngClass]="Usuario.TipoDeUsuario.IdTipoDeUsuario != undefined ? ValidarTipoDeUsuario() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
@@ -79,6 +84,7 @@
                         <th scope="col" sortable="apellido">Apellido</th>
                         <th scope="col" sortable="mail">Mail</th>
                         <th scope="col" sorteable="cedula">Cédula</th>
+                        <th scope="col" sorteable="cedula">Celular</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -90,13 +96,16 @@
                             {{usuario.Nombre}}
                         </td>
                         <td>
-                            <ngb-highlight [result]="usuario.Apellido "></ngb-highlight>
+                            {{usuario.Apellido}}
                         </td>
                         <td>
-                            <ngb-highlight [result]="usuario.Mail "></ngb-highlight>
+                            {{usuario.Mail}}
                         </td>
                         <td>
-                            <ngb-highlight [result]="usuario.Cedula "></ngb-highlight>
+                            {{usuario.Cedula}}
+                        </td>
+                        <td>
+                            {{usuario.Celular}}
                         </td>
                         <td *ngIf="usuario.TipoDeUsuario.IdTipoDeUsuario !=1 ">
                             <i class="bi bi-pencil " data-toggle="tooltip " data-placement="top " title="Modificar " (click)="BotonSeleccionado( 'Modificar');Seleccionar(usuario) "></i>

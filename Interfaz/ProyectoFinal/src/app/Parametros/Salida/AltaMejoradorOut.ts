@@ -3,6 +3,7 @@ import { ParametroBaseOut } from "./ParametroBaseOut";
 export class AltaMejoradorOut extends ParametroBaseOut{
 
     private existeMail!: boolean;
+    private existeCelular!: boolean;
 
     constructor()
     {
@@ -14,5 +15,11 @@ export class AltaMejoradorOut extends ParametroBaseOut{
     }
     public set ExisteMail(value: boolean) {
         this.existeMail = value;
+    }
+    public get ExisteCelular(): boolean {
+        return this.existeCelular;
+    }
+    public set ExisteCelular(value: boolean) {
+        this.existeCelular = value;
     }
 }

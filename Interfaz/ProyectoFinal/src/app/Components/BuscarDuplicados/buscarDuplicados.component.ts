@@ -101,7 +101,6 @@ export class BuscarDuplicadosComponent extends FormularioBase implements OnInit 
 
   ValidarDuplicado(sobre:Sobre):string
   {
-    let estilo = ''
     return sobre.Germinacion >= 50 && sobre.Peso >= 200 ? 'table-danger' : sobre.Semilla.Taxonomia.Nombre != null ? 'table-success' : 'table-primary';
   }
 

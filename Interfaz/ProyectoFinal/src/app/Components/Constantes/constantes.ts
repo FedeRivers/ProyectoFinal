@@ -18,9 +18,9 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el usuario.',
                 EXITO:'Usuario ingresado con éxito.',
-                EXISTEMAIL : 'El mail que desea ingresar ya existe.',
-                EXISTECEDULA : 'La cédula que desea ingresar ya existe.',
-                
+                EXISTEMAIL:'El mail que desea ingresar ya existe.',
+                EXISTECEDULA:'La cédula que desea ingresar ya existe.',
+                EXISTECELULAR:'El celular que desea ingresar ya existe.'
             },
             Baja:
             {
@@ -39,7 +39,8 @@ export const RecursosDeIdioma = {
             {
                 ERROR:'Ocurrió un error al ingresar el mejorador.',
                 EXITO:'Mejorador ingresado con éxito.',
-                EXISTEMAIL:'El mail ingresado ya existe.'
+                EXISTEMAIL:'El mail ingresado ya existe.',
+                EXISTECELULAR:'El celular ingresado ya existe.',
             },
             Baja :
             {
@@ -318,6 +319,7 @@ export const ExpresionesRegulares = {
     LETRAS_NUMEROS_Y_ESPACIOS : new RegExp("^[a-zA-Z0-9 ]+$"),
     NUMEROS: new RegExp("^[0-9]+$"),
     LETRAS_NUMEROS_ESPACIOS_Y_PUNTOS : new RegExp("^[a-zA-Z0-9 .]+$"),
+    CELULAR : new RegExp("/^09\d{7}$/"),
 }
 
 export const Keys = {

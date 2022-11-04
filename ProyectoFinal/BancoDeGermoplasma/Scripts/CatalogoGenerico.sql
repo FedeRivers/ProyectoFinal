@@ -51,9 +51,9 @@ SET IDENTITY_INSERT [dbo].[TiposDeUsuario] OFF
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
 MERGE INTO [dbo].[Usuarios] AS TARGET 
 USING (
-	VALUES (1, N'juan', N'alvarez', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', N'juanda_2007@hotmail.es', N'44821864', 1, 1),
-		   (2, N'Federico', N'Rios', N'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', N'federico@gmail.com', N'55671228', 1, 1)
-) AS SOURCE ( NewIdUsuario, NewNombre, NewApellido, NewContrasena, NewMail, NewCedula, NewIdTipoDeUsuario, NewActivo )
+	VALUES (1, N'juan', N'alvarez', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', N'juanda_2007@hotmail.es', N'44821864', 1, '098999991', 1),
+		   (2, N'Federico', N'Rios', N'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', N'federico@gmail.com', N'55671228', 1, '098999992', 1)
+) AS SOURCE ( NewIdUsuario, NewNombre, NewApellido, NewContrasena, NewMail, NewCedula, NewIdTipoDeUsuario, NewCelular , NewActivo )
 ON TARGET.[idUsuario] = SOURCE.NewIdUsuario 
 WHEN MATCHED THEN 
 	UPDATE SET [nombre] = SOURCE.NewNombre,
@@ -62,10 +62,11 @@ WHEN MATCHED THEN
 			   [mail] = SOURCE.NewMail,
 			   [cedula] = SOURCE.NewCedula,
 			   [idTipoDeUsuario] = SOURCE.NewIdTipoDeUsuario,
+			   [celular] = SOURCE.NewCelular,
 			   [activo] = SOURCE.NewActivo
 WHEN NOT MATCHED BY TARGET THEN 
-	INSERT ([idUsuario],[nombre],[apellido],[contrasena],[mail],[cedula],[idTipoDeUsuario],[activo])
-	VALUES (SOURCE.NewIdUsuario,SOURCE.NewNombre,SOURCE.NewApellido,SOURCE.NewContrasena,SOURCE.NewMail,SOURCE.NewCedula,SOURCE.NewIdTipoDeUsuario,SOURCE.NewActivo);
+	INSERT ([idUsuario],[nombre],[apellido],[contrasena],[mail],[cedula],[idTipoDeUsuario],[celular],[activo])
+	VALUES (SOURCE.NewIdUsuario,SOURCE.NewNombre,SOURCE.NewApellido,SOURCE.NewContrasena,SOURCE.NewMail,SOURCE.NewCedula,SOURCE.NewIdTipoDeUsuario,SOURCE.NewCelular,SOURCE.NewActivo);
 SET IDENTITY_INSERT [dbo].[Usuarios] OFF 
 
 /*Modulos Por Tipos De Usuario */
@@ -175,20 +176,21 @@ WHEN NOT MATCHED BY TARGET THEN
 SET IDENTITY_INSERT [dbo].[Mejoradores] ON 
 MERGE INTO [dbo].[Mejoradores] AS TARGET 
 USING (
-	VALUES (1, N'Pedro Carro', N'pedrocarro@hotmail.com', N'la casita', CAST(N'2022-09-01 19:53:54.680' AS DateTime), 1),
-		   (2, N'Pablo Sosa', N'pablososa@hotmail.com', N'pablo mi casita', CAST(N'2022-09-01 19:54:30.300' AS DateTime), 1),
-		   (3, N'Rogelio Perez', N'rogelioperez@gmail.es', N'una calle y casa', CAST(N'2022-09-01 19:55:41.610' AS DateTime), 1)
-) AS SOURCE ( NewIdMejorador, NewNombre, NewMail, NewDireccion, NewFechaDeIngreso, NewActivo )
+	VALUES (1, N'Pedro Carro', N'pedrocarro@hotmail.com', N'la casita', CAST(N'2022-09-01 19:53:54.680' AS DateTime), N'099999991',1),
+		   (2, N'Pablo Sosa', N'pablososa@hotmail.com', N'pablo mi casita', CAST(N'2022-09-01 19:54:30.300' AS DateTime), N'099999992', 1),
+		   (3, N'Rogelio Perez', N'rogelioperez@gmail.es', N'una calle y casa', CAST(N'2022-09-01 19:55:41.610' AS DateTime),N'099999993', 1)
+) AS SOURCE ( NewIdMejorador, NewNombre, NewMail, NewDireccion, NewFechaDeIngreso, NewCelular, NewActivo )
 ON TARGET.[idMejorador] = SOURCE.NewIdMejorador 
 WHEN MATCHED THEN 
 	UPDATE SET [nombre] = SOURCE.NewNombre,
 			   [mail] = SOURCE.NewMail,
 			   [direccion] = SOURCE.NewDireccion,
 			   [fechaDeIngreso] = SOURCE.NewFechaDeIngreso,
+			   [celular] = SOURCE.NewCelular,
 			   [activo] = SOURCE.NewActivo
 WHEN NOT MATCHED BY TARGET THEN 
-	INSERT ([idMejorador],[nombre],[mail],[direccion],[fechaDeIngreso],[activo])
-	VALUES (SOURCE.NewIdMejorador,SOURCE.NewNombre,SOURCE.NewMail,SOURCE.NewDireccion,SOURCE.NewFechaDeIngreso,SOURCE.NewActivo);
+	INSERT ([idMejorador],[nombre],[mail],[direccion],[fechaDeIngreso],[celular],[activo])
+	VALUES (SOURCE.NewIdMejorador,SOURCE.NewNombre,SOURCE.NewMail,SOURCE.NewDireccion,SOURCE.NewFechaDeIngreso,SOURCE.NewCelular,SOURCE.NewActivo);
 SET IDENTITY_INSERT [dbo].[Mejoradores] OFF 
 
 /*Lotes*/

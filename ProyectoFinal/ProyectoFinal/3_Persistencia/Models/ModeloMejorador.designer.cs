@@ -62,13 +62,6 @@ namespace ProyectoFinal._3_Persistencia.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaMejorador")]
-		public int AltaMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(50)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(50)")] string direccion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, mail, direccion);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BajaMejorador")]
 		public int BajaMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador)
 		{
@@ -76,10 +69,17 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarMejorador")]
-		public int ModificarMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(50)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(50)")] string direccion)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaMejorador")]
+		public int AltaMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(50)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(50)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="VarChar(9)")] string celular)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idMejorador, nombre, mail, direccion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, mail, direccion, celular);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarMejorador")]
+		public int ModificarMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMejorador", DbType="Int")] System.Nullable<int> idMejorador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(50)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(50)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="VarChar(9)")] string celular)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idMejorador, nombre, mail, direccion, celular);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -91,9 +91,9 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteMejorador")]
-		public int ExisteMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idMejorador)
+		public int ExisteMejorador([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idMejorador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="VarChar(9)")] string celular)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mail, idMejorador);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mail, idMejorador, celular);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -110,6 +110,8 @@ namespace ProyectoFinal._3_Persistencia.Models
 		private string _direccion;
 		
 		private System.Nullable<System.DateTime> _fechaDeIngreso;
+		
+		private string _celular;
 		
 		private System.Nullable<bool> _activo;
 		
@@ -193,6 +195,22 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._fechaDeIngreso != value))
 				{
 					this._fechaDeIngreso = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_celular", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string celular
+		{
+			get
+			{
+				return this._celular;
+			}
+			set
+			{
+				if ((this._celular != value))
+				{
+					this._celular = value;
 				}
 			}
 		}

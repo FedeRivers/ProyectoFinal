@@ -22,6 +22,7 @@ namespace ProyectoFinal._2_Dominio.Logica
             else
             {
                 resultado.ExisteMail = existe == 1;
+                resultado.ExisteCelular = existe == 2;
                 return resultado;
             }
         }
@@ -42,6 +43,7 @@ namespace ProyectoFinal._2_Dominio.Logica
             else
             {
                 resultado.ExisteMail = existe == 1;
+                resultado.ExisteCelular = existe == 2;
                 return resultado;
             }
         }
