@@ -8,6 +8,7 @@ import { Modulo } from '../Modulo/class/modulo';
 import { RecursosDeIdioma } from '../Constantes/constantes';
 import { AgregarModuloIn } from 'src/app/Parametros/Entrada/AgregarModuloIn';
 import { EliminarModuloIn } from 'src/app/Parametros/Entrada/EliminarModuloIn';
+import { FormularioBase } from '../FormularioBase/class/formularioBase';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { EliminarModuloIn } from 'src/app/Parametros/Entrada/EliminarModuloIn';
   templateUrl: './tipoDeUsuario.component.html',
   styleUrls: ['./tipoDeUsuario.component.css']
 })
-export class TipoDeUsuarioComponent implements OnInit {
+export class TipoDeUsuarioComponent  implements OnInit {
 
   private tipoDeUsuario: TipoDeUsuario;
   private tiposDeUsuario: TipoDeUsuario[];
@@ -23,6 +24,8 @@ export class TipoDeUsuarioComponent implements OnInit {
   private modulosFiltrada : Modulo[];
   private estaSeleccionado: boolean = false;
   private mensajeNombreInvalido: string = '';
+  private page = 1;
+  private pageSize = 15;
 
   @ViewChild("modal") modal!: ModalComponent;
 
@@ -70,6 +73,20 @@ export class TipoDeUsuarioComponent implements OnInit {
     this.mensajeNombreInvalido = value;
   }
 
+//#region Get y Set de los paginados
+public get Page() {
+  return this.page;
+}
+public set Page(value) {
+  this.page = value;
+}
+public get PageSize() {
+  return this.pageSize;
+}
+public set PageSize(value) {
+  this.pageSize = value;
+}
+//#endregion
 
   Listar()
   {

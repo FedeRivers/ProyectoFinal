@@ -5,6 +5,7 @@
     [mail] VARCHAR(50) NOT NULL, 
     [direccion] VARCHAR(50) NOT NULL, 
     [fechaDeIngreso] DATETIME NULL DEFAULT GETDATE(), 
+	[celular] VARCHAR(9) NOT NULL, 
     [activo] BIT NULL DEFAULT 1, 
     CONSTRAINT [PK_Mejoradores] PRIMARY KEY ([idMejorador]),
 )

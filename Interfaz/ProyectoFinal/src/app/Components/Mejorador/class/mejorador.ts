@@ -1,11 +1,12 @@
 
 export class Mejorador{
     
-    private idMejorador!: Number;
+    private idMejorador!: number;
     private nombre!: string;
     private mail!: string;
     private direccion!: string;
     private fechaDeIngreso!: Date;
+    private celular!: string;
     private activo!: boolean;
 
 
@@ -14,7 +15,7 @@ export class Mejorador{
     public get IdMejorador(){
         return this.idMejorador;
     }
-    public set IdMejorador(value:Number){
+    public set IdMejorador(value:number){
         this.idMejorador = value;
     }
 
@@ -54,6 +55,13 @@ export class Mejorador{
 
     public set Activo(value: boolean) {
         this.activo = value;
+    }
+
+    public get Celular(): string {
+        return this.celular;
+    }
+    public set Celular(value: string) {
+        this.celular = value;
     }
 
 }

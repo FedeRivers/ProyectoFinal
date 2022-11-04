@@ -25,11 +25,11 @@
             </form>
         </div>
 
-        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
+        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10">
             <div class="row">
-                <div class="input-group mb-3 col-md-3 col-lg-3">
+                <div class="input-group mb-1 col-md-3 col-lg-3">
                     <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
-                    <input [(ngModel)]="NumeroSobre" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
+                    <input [(ngModel)]="NumeroSobre" type="number" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
                 </div>
                 <div class="col-md-9"></div>
             </div>
@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="pointer" *ngFor="let sobre of Sobres">
+                    <tr class="pointer" *ngFor="let sobre of Sobres | slice: (Page-1) * PageSize : Page * PageSize">
                         <td>
                             {{sobre.Lote.NumeroLote}}
                         </td>
@@ -63,15 +63,10 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-between p-2">
-                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-                <!-- </ngb-pagination> -->
-
-                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-                <!-- <option [ngValue]="2">2 items per page</option> -->
-                <!-- <option [ngValue]="4">4 items per page</option> -->
-                <!-- <option [ngValue]="6">6 items per page</option> -->
-                <!-- </select> -->
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="mt-1 ">
+                <ngb-pagination [(page)]="Page" [pageSize]="PageSize" [collectionSize]="Sobres.length"></ngb-pagination>
             </div>
         </div>
     </div>

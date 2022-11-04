@@ -7,8 +7,16 @@ export class FormularioBase{
     private btnAlta: boolean = false;
     private btnBaja: boolean = false;
     private btnModificar: boolean = false;
+    private page: number;
+    private pageSize: number;
+
+  
     
-    constructor(){}
+    constructor()
+    {
+        this.page = 1;
+        this.pageSize = 10;
+    }
 
     public get EstaSeleccionado(): boolean {
         return this.estaSeleccionado;
@@ -37,6 +45,21 @@ export class FormularioBase{
         this.btnModificar = value;
     }
 // #endregion
+
+//#region Get y Set de los paginados
+public get Page() {
+    return this.page;
+}
+public set Page(value) {
+    this.page = value;
+}
+public get PageSize() {
+    return this.pageSize;
+}
+public set PageSize(value) {
+    this.pageSize = value;
+}
+//#endregion
 
     Ocultar()
     {
@@ -202,6 +225,28 @@ export class FormularioBase{
             }
         }
 
+        return this.mensaje;
+    }
+
+
+    ValidarCelular(texto:string):string
+    {
+       this.mensaje = this.CampoVacio(texto);
+        if(this.mensaje == '')
+        {
+            this.mensaje = this.ValidarNumero(texto);
+            if(this.mensaje == '' && texto.length == 9)
+            {
+                if(texto.charAt(0) != '0' || texto.charAt(1) != '9')
+                {
+                    this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
+                }
+            }
+            else
+            {
+                this.mensaje = RecursosDeIdioma.MensajesFormularios.CAMPO_INVALIDO;
+            } 
+        }
         return this.mensaje;
     }
 

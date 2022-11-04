@@ -1,15 +1,16 @@
 <li ngbDropdown class="nav-item">
-    <!-- <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a> -->
-    <i class="nav-link bi bi-bell " style="color:red;font-size: 18px;" ngbDropdownToggle>
-            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-        </i>
+
+    <div class="position-relative">
+        <i class="nav-link bi bi-bell" style="color:red;font-size: 18px; " ngbDropdownToggle></i>
+    </div>
+
     <div ngbDropdownMenu class="pre-scrollable">
         <div *ngFor="let mensaje of ListaMensajesAlertas" class="card mb-1" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{mensaje.Titulo}}</h5>
                 <p class="card-text">{{mensaje.Mensaje}}</p>
                 <p class="card-text">{{mensaje.Fecha | date}}</p>
-                <i class="bi bi-trash3"><a class="card-text" (click)="DesactivarAlerta(mensaje)" style="cursor:pointer">Tarea realizada</a></i>
+                <i class="bi bi-trash3" *ngIf="mensaje.Fecha!=undefined"><a class="card-text" (click)="DesactivarAlerta(mensaje)" style="cursor:pointer">Tarea realizada</a></i>
             </div>
         </div>
         <div>

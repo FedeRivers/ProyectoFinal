@@ -20,7 +20,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario);
+                    var result = dataContext.AltaUsuario(input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario, input.Usuario.Celular);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -64,7 +64,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario);
+                    var result = dataContext.ModificarUsuario(input.Usuario.IdUsuario, input.Usuario.Nombre, input.Usuario.Apellido, input.Usuario.Contrasena, input.Usuario.Mail, input.Usuario.Cedula, input.Usuario.TipoDeUsuario.IdTipoDeUsuario, input.Usuario.Celular);
                     if (result != -1)
                     {
                         output.Status = new HttpStatusCodeResult(200);
@@ -150,6 +150,7 @@ namespace ProyectoFinal._3_Persistencia
                                 Mail = usuario.mail,
                                 Contrasena = usuario.contrasena,
                                 Cedula = usuario.cedula,
+                                Celular = usuario.celular,
                                 Activo = usuario.activo,
                                 TipoDeUsuario = new TipoDeUsuario
                                 {
@@ -174,7 +175,7 @@ namespace ProyectoFinal._3_Persistencia
             {
                 try
                 {
-                    var result = dataContext.ExisteUsuario(usuario.Mail, usuario.Cedula, usuario.IdUsuario);
+                    var result = dataContext.ExisteUsuario(usuario.Mail, usuario.Cedula, usuario.IdUsuario,usuario.Celular);
                     return result;
                 }
                 catch (Exception ex)

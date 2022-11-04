@@ -41,7 +41,7 @@ export class LoteService {
   }
 
   public Listar(listarLoteIn:ListarLotesIn){
-    return this.http.get<ListarLotesOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTAR}?TerminoDeBusqueda=${listarLoteIn.terminoDeBusqueda}`);
+    return this.http.post<ListarLotesOut>(`${this.baseUrl+ MetodosUrl.Lote.LISTAR}`,listarLoteIn);
   }
 
   public ListarLotesParaDevolucion(listarLotesParaDevolucionIn:ListarLotesParaDevolucionIn)

@@ -30,6 +30,12 @@
                         aria-describedby="spanDireccion" requeried>
                     <div class="invalid-feedback">{{MensajeDireccionInvalido}}</div>
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="spanCelular">Celular:</span>
+                    <input name="txtCelular" class="form-control" [(ngModel)]="Mejorador.Celular" [ngClass]="Mejorador.Celular!=undefined ? ValidarCelularMejorador() ? 'is-valid':'is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese celular" aria-label="txtCelular"
+                        aria-describedby="spanCelular" requeried>
+                    <div class="invalid-feedback">{{MensajeCelularInvalido}}</div>
+                </div>
                 <div class="">
                     <button *ngIf="BtnAlta" class="btn btn-outline-success mr-1 mb-3" [disabled]="!ValidarFormulario()" (click)=" AbrirModal()">Agregar Mejorador</button>
                     <button *ngIf="BtnBaja" class="btn btn-outline-danger mb-3" (click)=" AbrirModal()">Eliminar Mejorador</button>
@@ -39,23 +45,18 @@
         </div>
 
         <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
-            <div class="row input-group">
-                <div class="row mb-3 col-md-8">
-
-                    <label for="txtTerminoDeBusqueda" class="col-xs-3 col-sm-auto col-form-label">Buscar por nombre:</label>
-                    <div class="col-xs-3 col-sm-auto">
-                        <input id="txtTerminoDeBusqueda" type="text" [(ngModel)]="TerminoDeBusqueda" class="form-control" name="searchTerm">
-                    </div>
-                    <!-- <span class="col col-form-label" *ngIf="Mejoradores.length>0 | async">Loading...</span> -->
-
+            <div class="row">
+                <div class="input-group mb-1 col-md-4">
+                    <span class="input-group-text" id="spanBusquedaMejorador">Buscar por nombre:</span>
+                    <input [(ngModel)]="TerminoDeBusqueda" name="txtBusquedaNombreMejorador" class="form-control" style="height:auto;" placeholder="Ingrese nombre" aria-label="txtBusquedaNombreMejorador" aria-describedby="spanBusquedaMejorador">
                 </div>
                 <div class="col-md-2"></div>
-                <div class="mb-3 ml-auto col-md-2">
+                <div class="mb-1 ml-auto col-md-2">
                     <span class="input-group">             
-                    <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
-                        <i id="iAgregar" class="bi bi-plus-square"></i>
+                        <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
+                            <i id="iAgregar" class="bi bi-plus-square"></i>
                         Agregar                
-                    </button>
+                        </button>
                     </span>
                 </div>
             </div>
@@ -65,22 +66,25 @@
                     <tr>
                         <th scope="col" sortable="nombre">Nombre</th>
                         <th scope="col" sortable="mail">Mail</th>
-                        <th scope="col" sortable="direccion">Direccion</th>
+                        <th scope="col" sortable="direccion">Dirección</th>
+                        <th scope="col" sortable="celular">Celular</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="pointer" *ngFor="let mejorador of Mejoradores">
+                    <tr class="pointer" *ngFor="let mejorador of Mejoradores | slice: (Page-1) * PageSize : Page * PageSize">
                         <td>
-                            <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px"> -->
-                            <ngb-highlight [result]="mejorador.Nombre"></ngb-highlight>
+                            {{mejorador.Nombre}}
                         </td>
                         <td>
-                            <ngb-highlight [result]="mejorador.Mail "></ngb-highlight>
+                            {{mejorador.Mail}}
                         </td>
                         <td>
-                            <ngb-highlight [result]="mejorador.Direccion"></ngb-highlight>
+                            {{mejorador.Direccion}}
+                        </td>
+                        <td>
+                            {{mejorador.Celular}}
                         </td>
                         <td>
                             <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(mejorador); BotonSeleccionado('Modificar')"></i>
@@ -91,15 +95,10 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-between p-2">
-                <!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> -->
-                <!-- </ngb-pagination> -->
-
-                <!-- <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize"> -->
-                <!-- <option [ngValue]="2">2 items per page</option> -->
-                <!-- <option [ngValue]="4">4 items per page</option> -->
-                <!-- <option [ngValue]="6">6 items per page</option> -->
-                <!-- </select> -->
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="mt-1 ">
+                <ngb-pagination [(page)]="Page" [pageSize]="PageSize" [collectionSize]="Mejoradores.length"></ngb-pagination>
             </div>
         </div>
     </div>

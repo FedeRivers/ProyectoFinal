@@ -29,10 +29,12 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   private nombreEsValido:boolean = false;
   private mailEsValido: boolean = false;
   private direccionEsValido: boolean = false;
+  private celularEsValido: boolean = false;
 
   private mensajeNombreInvalido: string = '';
   private mensajeMailInvalido: string = '';
   private mensajeDireccionInvalido: string = '';
+  private mensajeCelularInvalido: string = '';
 
 
   @ViewChild("modal") modal: ModalComponent;
@@ -114,6 +116,12 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   public set MensajeDireccionInvalido(value: string) {
     this.mensajeDireccionInvalido = value;
   }
+  public get MensajeCelularInvalido(): string {
+    return this.mensajeCelularInvalido;
+  }
+  public set MensajeCelularInvalido(value: string) {
+    this.mensajeCelularInvalido = value;
+  }
   //#endregion
   
   AltaMejorador()
@@ -122,6 +130,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.mejoradorServicio.Agregar(this.altaMejoradorIn)
       .subscribe( mejorador => {
         mejorador.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXISTEMAIL,true) 
+        : mejorador.ExisteCelular ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXISTECELULAR,true) 
         : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXITO,false);
         }, err => {
           this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.ERROR,true);
@@ -145,6 +154,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.mejoradorServicio.Modificar(this.modificarMejoradorIn)
       .subscribe( mejorador => {
         mejorador.ExisteMail ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXISTEMAIL,true) 
+        : mejorador.ExisteCelular ? this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Alta.EXISTECELULAR,true) 
         : this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.EXITO,false);
        }, err => {
         this.modal.MostrarMensaje(RecursosDeIdioma.MensajesServicios.Mejorador.Modificar.ERROR,true);
@@ -154,7 +164,7 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
   Listar()
   {
     let listarMejoradorIn:ListarMejoradorIn = new ListarMejoradorIn();
-    listarMejoradorIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarMejoradorIn.TerminoDeBusqueda = this.terminoDeBusqueda;
     this.mejoradores = [];
     this.mejoradorServicio.Listar(listarMejoradorIn)
     .subscribe( lista => {
@@ -226,6 +236,13 @@ export class MejoradorComponent extends FormularioBase implements OnInit  {
     this.mensajeDireccionInvalido =  this.ValidarLetrasNumerosEspaciosYPunto(this.mejorador.Direccion);
     this.mensajeDireccionInvalido != '' ? this.direccionEsValido = false : this.direccionEsValido = true;
     return this.direccionEsValido;
+  }
+
+  ValidarCelularMejorador():boolean
+  {
+    this.mensajeCelularInvalido = this.ValidarCelular(this.mejorador.Celular);
+    this.mensajeCelularInvalido != '' ? this.celularEsValido = false : this.celularEsValido = true;
+    return this.celularEsValido;
   }
 
   ValidarFormulario():boolean

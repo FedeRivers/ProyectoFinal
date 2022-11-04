@@ -30,6 +30,6 @@ export class MejoradorService {
   }
 
   public Listar(listarMejoradorIn:ListarMejoradorIn){
-    return this.http.get<ListarMejoradorOut>(`${this.baseUrl+MetodosUrl.Mejorador.LISTAR}?TerminoDeBusqueda=${listarMejoradorIn.terminoDeBusqueda}`);
+    return this.http.get<ListarMejoradorOut>(`${this.baseUrl+MetodosUrl.Mejorador.LISTAR}?TerminoDeBusqueda=${listarMejoradorIn.TerminoDeBusqueda}`);
   }
 }

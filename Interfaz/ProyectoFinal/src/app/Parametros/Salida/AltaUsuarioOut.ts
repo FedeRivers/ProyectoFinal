@@ -4,6 +4,7 @@ export class AltaUsuarioOut extends ParametroBaseOut{
     
     private existeMail!: boolean;
     private existeCedula!: boolean;
+    private existeCelular!: boolean;
 
     constructor()
     {
@@ -22,5 +23,12 @@ export class AltaUsuarioOut extends ParametroBaseOut{
     }
     public set ExisteCedula(value: boolean) {
         this.existeCedula = value;
+    }
+
+    public get ExisteCelular(): boolean {
+        return this.existeCelular;
+    }
+    public set ExisteCelular(value: boolean) {
+        this.existeCelular = value;
     }
 }

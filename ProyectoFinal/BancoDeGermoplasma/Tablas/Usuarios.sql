@@ -7,6 +7,7 @@
     [cedula] VARCHAR(10) NOT NULL, 
     [fechaDeIngreso] DATETIME NULL DEFAULT GETDATE(), 
     [fechaDeModificacion] DATETIME NULL DEFAULT GETDATE(), 
+	[celular] VARCHAR(9) NOT NULL,
 	[activo] BIT NOT NULL DEFAULT 1, 
     [idTipoDeUsuario] INT NOT NULL
     CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([idUsuario] ASC),

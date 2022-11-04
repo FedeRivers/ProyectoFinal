@@ -131,7 +131,7 @@ export class TaxonomiaComponent extends FormularioBase implements OnInit {
   Listar()
   {
     let listarTaxonomiaIn: ListarTaxonomiaIn = new ListarTaxonomiaIn();
-    listarTaxonomiaIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    listarTaxonomiaIn.TerminoDeBusqueda = this.terminoDeBusqueda;
     this.taxonomias = [];
     this.taxonomiaServicio.Listar(listarTaxonomiaIn)
       .subscribe(lista => {

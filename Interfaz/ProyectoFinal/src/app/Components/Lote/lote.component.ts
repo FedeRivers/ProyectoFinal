@@ -43,7 +43,6 @@ export class LoteComponent extends FormularioBase implements OnInit {
     this.lotes = [];
     this.mejoradores = [];
     this.lote = new Lote();
-    console.log('MENSAJE EN CONSTRUCTOR');
     this.modal = new ModalComponent();
     this.mejorador = new Mejorador();
   }
@@ -180,8 +179,8 @@ export class LoteComponent extends FormularioBase implements OnInit {
 
   Listar()
   {
-   let listarLoteIn: ListarLotesIn = new ListarLotesIn();
-    listarLoteIn.terminoDeBusqueda = this.terminoDeBusqueda;
+    let listarLoteIn: ListarLotesIn = new ListarLotesIn();
+    listarLoteIn.TerminoDeBusqueda = this.terminoDeBusqueda;
     this.lotes = [];
     this.loteServicio.Listar(listarLoteIn)
       .subscribe(lista => {

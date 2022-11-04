@@ -6,6 +6,8 @@ import { ItemColor } from './class/itemColor';
 import { EstadisticaService } from 'src/app/Services/estadistica.service';
 import { ObtenerEstadisticasIn } from 'src/app/Parametros/Entrada/obtenerEstadisticasIn';
 import { Graficas } from '../Constantes/constantes';
+import * as XLSX from 'xlsx';
+import { moveSyntheticComments } from 'typescript';
 
 @Component({
   selector: 'app-estadistica',
@@ -53,6 +55,10 @@ export class EstadisticaComponent implements OnInit {
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     
     this.Listar();
+  }
+
+  ngOnInit(): void {
+
   }
 
   //#region Get y Set Calendario
@@ -208,8 +214,19 @@ export class EstadisticaComponent implements OnInit {
     this.customColors = [];
   }
 
-  ngOnInit(): void {
-
+  Exportar()
+  {
+    let encabezado:string = "";
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.items);
+    const book: XLSX.WorkBook = XLSX.utils.book_new();
+    
+    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+    if(this.graficaSeleccionada == 1)
+    {
+      encabezado = "Especie";
+    }
+    XLSX.utils.sheet_add_aoa(worksheet, [[encabezado, "Cantidad"]], { origin: "A1" });   
+    XLSX.writeFile(book, 'Estadisticas.xlsx');
   }
 
   onSelect(data:any): void {

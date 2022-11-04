@@ -76,10 +76,17 @@ namespace ProyectoFinal._3_Persistencia.Models
 			return ((ISingleResult<LoginResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaUsuario")]
-		public int AltaUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(50)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ResetearContrasena")]
+		public int ResetearContrasena([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(100)")] string contrasena)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, apellido, contrasena, mail, cedula, idTipoDeUsuario);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, contrasena);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AltaUsuario")]
+		public int AltaUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(100)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="VarChar(9)")] string celular)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, apellido, contrasena, mail, cedula, idTipoDeUsuario, celular);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -91,23 +98,16 @@ namespace ProyectoFinal._3_Persistencia.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ModificarUsuario")]
-		public int ModificarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(50)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario)
+		public int ModificarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(100)")] string contrasena, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoDeUsuario", DbType="Int")] System.Nullable<int> idTipoDeUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="VarChar(9)")] string celular)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, nombre, apellido, contrasena, mail, cedula, idTipoDeUsuario);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, nombre, apellido, contrasena, mail, cedula, idTipoDeUsuario, celular);
 			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ExisteUsuario")]
-		public int ExisteUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idUsuario)
+		public int ExisteUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mail", DbType="VarChar(100)")] string mail, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Celular", DbType="VarChar(9)")] string celular)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mail, cedula, idUsuario);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ResetearContrasena")]
-		public int ResetearContrasena([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Contrasena", DbType="VarChar(100)")] string contrasena)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, contrasena);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), mail, cedula, idUsuario, celular);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -319,6 +319,8 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private System.Nullable<System.DateTime> _fechaDeModificacion;
 		
+		private string _celular;
+		
 		private bool _activo;
 		
 		private int _idTipoDeUsuario;
@@ -379,7 +381,7 @@ namespace ProyectoFinal._3_Persistencia.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contrasena", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contrasena", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string contrasena
 		{
 			get
@@ -455,6 +457,22 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._fechaDeModificacion != value))
 				{
 					this._fechaDeModificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_celular", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string celular
+		{
+			get
+			{
+				return this._celular;
+			}
+			set
+			{
+				if ((this._celular != value))
+				{
+					this._celular = value;
 				}
 			}
 		}

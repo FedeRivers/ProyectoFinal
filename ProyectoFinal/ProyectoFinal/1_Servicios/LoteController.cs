@@ -37,8 +37,8 @@ namespace ProyectoFinal._1_Servicios
             return new CRUDLote().DevolverLotes(input);
         }
 
-        [HttpGet]
-        public ListarLotesOut ListarLotes([FromUri]ListarLotesIn input)
+        [HttpPost]
+        public ListarLotesOut ListarLotes([FromBody]ListarLotesIn input)
         {
             return new CRUDLote().ListarLotes(input);
         }

@@ -37,7 +37,7 @@ export class UsuarioService {
   }
 
   public Listar(listarUsuariosIn:ListarUsuariosIn){
-    return this.http.get<ListarUsuariosOut>(`${this.baseUrl+MetodosUrl.Usuario.LISTAR}?TerminoDeBusqueda=${listarUsuariosIn.terminoDeBusqueda}`);
+    return this.http.get<ListarUsuariosOut>(`${this.baseUrl+MetodosUrl.Usuario.LISTAR}?TerminoDeBusqueda=${listarUsuariosIn.TerminoDeBusqueda}`);
   }
 
   public ResetearContrasena(resetearContrasenaIn:ResetearContrasenaIn)

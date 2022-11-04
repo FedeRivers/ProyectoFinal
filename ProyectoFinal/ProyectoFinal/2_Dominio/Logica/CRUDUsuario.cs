@@ -32,7 +32,8 @@ namespace ProyectoFinal._2_Dominio.Logica
             else
             {
                 resultado.ExisteMail = existe == 1 || existe == 2;
-                resultado.ExisteCedula = existe == 1 || existe == 3; 
+                resultado.ExisteCedula = existe == 1 || existe == 3;
+                resultado.ExisteCelular = existe == 1 || existe == 4;
             }
             return resultado;
 
@@ -50,6 +51,7 @@ namespace ProyectoFinal._2_Dominio.Logica
             {
                 resultado.ExisteMail = existe == 1 || existe == 2;
                 resultado.ExisteCedula = existe == 1 || existe == 3;
+                resultado.ExisteCelular = existe == 1 || existe == 4;
             }
             return resultado;
         }

@@ -51,7 +51,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
   private lotes: Lote[];
 
   private listarSobreIn: ListarSobreIn;
-  
+
   private numeroSobreEsValido: boolean = false;
   private ubicacionEsValida: boolean = false; 
   private humedadEsValida: boolean = false;
