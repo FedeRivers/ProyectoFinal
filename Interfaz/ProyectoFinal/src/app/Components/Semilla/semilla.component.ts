@@ -232,7 +232,7 @@ export class SemillaComponent extends FormularioBase implements OnInit {
 
   ValidarNombre():boolean
   {
-    this.mensajeNombreInvalido = this.ValidarLetrasYEspacio(this.semilla.Nombre);
+    this.mensajeNombreInvalido = this.ValidarLetrasNumerosYEspacio(this.semilla.Nombre);
     this.mensajeNombreInvalido != '' ? this.nombreEsValido = false : this.nombreEsValido = true;
     return this.nombreEsValido;
   }
