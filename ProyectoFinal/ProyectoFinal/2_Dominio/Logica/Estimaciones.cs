@@ -81,15 +81,16 @@ namespace ProyectoFinal._2_Dominio.Logica
 
             //Vamos a inicializar valores:
             #region xvalores
-            x[0] = 41174;
-            x[1] = 41539;
-            x[2] = 41905;
-            x[3] = 42271;
-            x[4] = 42638;
-            x[5] = 43004;
-            x[6] = 43370;
-            x[7] = 43736;
+            x[0] = 36791;
+            x[1] = 38252;
+            x[2] = 38983;
+            x[3] = 39715;
+            x[4] = 40811;
+            x[5] = 42273;
+            x[6] = 42640;
+            x[7] = 43371;
             x[8] = 44103;
+
 
 
             #endregion
