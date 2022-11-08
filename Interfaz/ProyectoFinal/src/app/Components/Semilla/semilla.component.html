@@ -86,7 +86,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row justify-content-md-center ">
+        <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
             <div class="mt-1 ">
                 <ngb-pagination [(page)]="Page " [pageSize]="PageSize " [collectionSize]="Semillas.length "></ngb-pagination>
             </div>

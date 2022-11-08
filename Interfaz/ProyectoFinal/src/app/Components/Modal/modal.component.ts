@@ -10,6 +10,7 @@ export class ModalComponent implements OnInit {
   closeResult = '';
   private aceptar: EventEmitter<string>;
   private confirmar: EventEmitter<string>;
+  private cancelar: EventEmitter<string>;
   private mensaje: string = '';
   private error: boolean;
   private confirmado: boolean = false;
@@ -27,6 +28,7 @@ export class ModalComponent implements OnInit {
     }
     this.aceptar = new EventEmitter();
     this.confirmar = new EventEmitter();
+    this.cancelar = new EventEmitter();
   }
   
   ngOnInit(): void {
@@ -61,12 +63,19 @@ export class ModalComponent implements OnInit {
   public set Confirmar(value: EventEmitter<string>) {
     this.confirmar = value;
   }
-   
+
   public get Confirmado(): boolean {
     return this.confirmado;
   }
   public set Confirmado(value: boolean) {
     this.confirmado = value;
+  }
+  @Output()
+  public get Cancelar(): EventEmitter<string> {
+    return this.cancelar;
+  }
+  public set Cancelar(value: EventEmitter<string>) {
+    this.cancelar = value;
   }
 
   open() {
@@ -90,6 +99,10 @@ export class ModalComponent implements OnInit {
       {
         this.aceptar.emit();
         this.confirmado=false;
+      }
+      else
+      {
+        this.cancelar.emit();
       }
       this.error = false;
     });

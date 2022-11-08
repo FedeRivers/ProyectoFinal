@@ -49,8 +49,8 @@
                                 <td [ngClass]="ValidarDuplicado(sobre)">
                                     {{sobre.Semilla.Nombre}}
                                 </td>
-                                <td>
-                                    <a (click)="VerDetalle(sobre)" *ngIf="sobre.Semilla.Taxonomia.Nombre!=null">
+                                <td (click)="VerDetalle(sobre)">
+                                    <a *ngIf="sobre.Semilla.Taxonomia.Nombre!=null">
                                         <i class="bi bi-eye-fill" data-toggle="tooltip" data-placement="top" title="Ver detalles"></i>
                                     </a>
                                 </td>

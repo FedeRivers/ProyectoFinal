@@ -240,6 +240,7 @@ export class LoteComponent extends FormularioBase implements OnInit {
         break;
       case "Baja":
         this.BtnBaja = true;
+        this.ListarMejoradores();
         break;
       case "Modificar":
         this.BtnModificar = true;

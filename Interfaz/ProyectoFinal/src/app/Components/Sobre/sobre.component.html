@@ -205,7 +205,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
             <div class="mt-1 ">
                 <ngb-pagination [(page)]="Page" [pageSize]="PageSize" [collectionSize]="Sobres.length"></ngb-pagination>
             </div>
@@ -213,7 +213,7 @@
     </div>
 
 </body>
-<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()"></app-modal>
+<app-modal #modal (Aceptar)="Regresar()" (Confirmar)="Confirmar()" (Cancelar)="Limpiar()"></app-modal>
 <app-modalQR #modalQR></app-modalQR>
 
 </html>

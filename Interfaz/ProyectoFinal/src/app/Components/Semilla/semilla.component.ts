@@ -222,6 +222,7 @@ export class SemillaComponent extends FormularioBase implements OnInit {
         break;
       case "Baja":
         this.BtnBaja = true;
+        this.ListarTaxonomias();
         break;
       case "Modificar":
         this.BtnModificar = true;
