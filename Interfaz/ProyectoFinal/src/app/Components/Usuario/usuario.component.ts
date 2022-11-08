@@ -280,6 +280,7 @@ export class UsuarioComponent extends FormularioBase implements OnInit {
         break;
       case "Baja":
         this.BtnBaja = true;
+        this.ListarTiposDeUsuario();
         break;
       case "Modificar":
         this.BtnModificar = true;

@@ -483,6 +483,8 @@ export class SobreComponent extends FormularioBase implements OnInit {
         break;
       case "Baja":
         this.BtnBaja = true;
+        this.ListarSemillas();
+        this.ListarLotes();
         break;
       case "Modificar":
         this.BtnModificar = true;
@@ -531,11 +533,11 @@ export class SobreComponent extends FormularioBase implements OnInit {
   Regresar()
   {
     this.Listar();
-    this.Limpiar();
     if(!this.btnGerminar && !this.btnTomarHumedad && !this.btnSecar)
     {
       this.Ocultar();
     }
+    this.Limpiar();
   }
 
   LimpiarFiltros()
@@ -545,10 +547,13 @@ export class SobreComponent extends FormularioBase implements OnInit {
 
   Limpiar()
   {
-    this.sobre= new Sobre();
+    this.sobre = new Sobre();
     this.BtnAlta = false;
     this.BtnBaja = false;
     this.BtnModificar = false;
+    this.btnGerminar = false;
+    this.btnTomarHumedad = false;
+    this.btnSecar = false;
     this.mensajeUbicacionInvalida = '';
     this.mensajeHumedadInvalida = '';
     this.mensajeGerminacionInvalida = '';

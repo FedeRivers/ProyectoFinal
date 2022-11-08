@@ -92,6 +92,7 @@ export class BuscarDuplicadosComponent extends FormularioBase implements OnInit 
     this.textoIngresado = '';
     this.listaDeBusqueda = [];
     this.mostrarTabla = false;
+    this.sobre = new Sobre();
   }
 
   VerDetalle(sobre:Sobre)
