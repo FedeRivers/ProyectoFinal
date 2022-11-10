@@ -28,21 +28,21 @@ export class Usuario {
         return this.nombre;
     }
     public set Nombre(value: string) {
-        this.nombre = value;
+        this.nombre = value.trim();
     }
 
     public get Apellido(): string {
         return this.apellido;
     }
     public set Apellido(value: string) {
-        this.apellido = value;
+        this.apellido = value.trim();
     }
 
     public get Mail(): string {
         return this.mail;
     }
     public set Mail(value: string) {
-        this.mail = value;
+        this.mail = value.trim();
     }
 
     public get Cedula(): string {
@@ -56,7 +56,7 @@ export class Usuario {
         return this.contrasena;
     }
     public set Contrasena(value: string) {
-        this.contrasena = value;
+        this.contrasena = value.trim();
     }
 
     public get Celular(): string {

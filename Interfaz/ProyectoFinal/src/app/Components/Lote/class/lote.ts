@@ -23,7 +23,7 @@ export class Lote{
         return this.descripcion;
     }
     public set Descripcion(value: string) {
-        this.descripcion = value;
+        this.descripcion = value.trim();
     }
 
     public get FechaDeIngreso(): Date {

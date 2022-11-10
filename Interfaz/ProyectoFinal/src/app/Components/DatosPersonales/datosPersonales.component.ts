@@ -111,7 +111,7 @@ export class DatosPersonalesComponent extends FormularioBase implements OnInit {
 
   public ValidarContrasena():boolean
   {
-    this.mensajeContrasenaInvalida = this.ValidarLetrasNumerosYEspacio(this.contrasena);
+    this.mensajeContrasenaInvalida = this.CampoVacio(this.contrasena);
     this.mensajeContrasenaInvalida != '' ? this.contrasenaEsValida = false 
     : this.contrasenaEsValida = CryptoJS.SHA256(this.contrasena).toString() == this.usuario.Contrasena;
     ! this.contrasenaEsValida && this.mensajeContrasenaInvalida == '' 
@@ -121,14 +121,14 @@ export class DatosPersonalesComponent extends FormularioBase implements OnInit {
 
   public ValidarContrasenaNueva():boolean
   {
-    this.mensajeContrasenaNuevaInvalida = this.ValidarLetrasNumerosYEspacio(this.contrasenaNueva);
+    this.mensajeContrasenaNuevaInvalida = this.CampoVacio(this.contrasenaNueva);
     this.mensajeContrasenaNuevaInvalida != '' ? this.contrasenaNuevaEsValida = false : this.contrasenaNuevaEsValida = true;
     return this.contrasenaNuevaEsValida;
   }
 
   public ValidarConfirmarContrasenaNueva():boolean
   {
-    this.mensajeConfirmarContrasenaNuevaInvalida = this.ValidarLetrasNumerosYEspacio(this.confirmarContrasenaNueva);
+    this.mensajeConfirmarContrasenaNuevaInvalida = this.CampoVacio(this.confirmarContrasenaNueva);
     this.mensajeConfirmarContrasenaNuevaInvalida != '' ? this.confirmarContrasenaNuevaEsValida = false 
     : this.confirmarContrasenaNuevaEsValida = this.contrasenaNueva == this.confirmarContrasenaNueva;
     ! this.confirmarContrasenaNuevaEsValida && this.mensajeConfirmarContrasenaNuevaInvalida == '' 

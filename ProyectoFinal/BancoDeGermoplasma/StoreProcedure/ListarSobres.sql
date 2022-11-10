@@ -12,6 +12,7 @@ BEGIN
 	so.numeroSobre,
 	so.peso,
 	so.codigoQR,
+	ub.idCamara,
 	ub.fila,
 	ub.columna,
 	ca.nombre,

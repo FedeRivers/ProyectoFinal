@@ -9,8 +9,10 @@
     <div class="container text-center">
         <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
             <form class="col-md-8 form border border-5">
-                <div class="col-md-12">
-                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                <div class="row border-bottom border-2 mb-3">
+                    <div class="col-md-12">
+                        <i class="bi bi-arrow-left regresar pointer" (click)="Regresar()" data-toggle="tooltip" data-placement="top" title="Regresar"></i>
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanHumedad">Humedad:</span>
@@ -33,36 +35,38 @@
                 </div>
                 <div class="col-md-9"></div>
             </div>
-            <table class="table table-hover">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col" sortable="lote">Lote</th>
-                        <th scope="col" sortable="sobre">Sobre</th>
-                        <th scope="col" sortable="semilla">Semilla</th>
-                        <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="pointer" *ngFor="let sobre of Sobres | slice: (Page-1) * PageSize : Page * PageSize">
-                        <td>
-                            {{sobre.Lote.NumeroLote}}
-                        </td>
-                        <td>
-                            {{sobre.NumeroSobre}}
-                        </td>
-                        <td>
-                            {{sobre.Semilla.Nombre}}
-                        </td>
-                        <td>
-                            {{sobre.FechaDeIngreso | date:'short' }}
-                        </td>
-                        <td>
-                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="lote">Lote</th>
+                            <th scope="col" sortable="sobre">Sobre</th>
+                            <th scope="col" sortable="semilla">Semilla</th>
+                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let sobre of Sobres | slice: (Page-1) * PageSize : Page * PageSize">
+                            <td>
+                                {{sobre.Lote.NumeroLote}}
+                            </td>
+                            <td>
+                                {{sobre.NumeroSobre}}
+                            </td>
+                            <td>
+                                {{sobre.Semilla.Nombre}}
+                            </td>
+                            <td>
+                                {{sobre.FechaDeIngreso | date:'short' }}
+                            </td>
+                            <td>
+                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(sobre); BotonSeleccionado('Modificar')"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
             <div class="mt-1 ">

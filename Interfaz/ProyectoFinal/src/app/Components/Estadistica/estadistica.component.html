@@ -23,7 +23,7 @@
                     <div class="col-md-5 mb-5">
                         <div class="dp-hidden position-absolute">
                             <div class="input-group">
-                                <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [startDate]="FromDate!" tabindex="-1">
+                                <input name="datepicker" readonly class="form-control" ngbDatepicker #datepicker="ngbDatepicker" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [startDate]="FromDate!" tabindex="-1">
                                 <ng-template #t let-date let-focused="focused">
                                     <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="HoveredDate = date" (mouseleave)="HoveredDate = null">
                               {{ date.day }}
@@ -32,13 +32,13 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate" [value]="formatter.format(FromDate)" (input)="FromDate = validateInput(FromDate, dpFromDate.value)">
+                            <input #dpFromDate readonly class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate" [value]="formatter.format(FromDate)" (input)="FromDate = validateInput(FromDate, dpFromDate.value)">
                             <button class="btn btn-outline-secondary bi bi-calendar-week" (click)="datepicker.toggle()" type="button"></button>
                         </div>
                     </div>
                     <div class="col-md-5 mb-5">
                         <div class="input-group">
-                            <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate" [value]="formatter.format(ToDate)" (input)="ToDate = validateInput(ToDate, dpToDate.value)">
+                            <input #dpToDate class="form-control" readonly placeholder="yyyy-mm-dd" name="dpToDate" [value]="formatter.format(ToDate)" (input)="ToDate = validateInput(ToDate, dpToDate.value)">
                             <button class="btn btn-outline-secondary bi bi-calendar-week" (click)="datepicker.toggle()" type="button"></button>
                         </div>
                     </div>

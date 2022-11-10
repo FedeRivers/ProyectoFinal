@@ -28,71 +28,73 @@
             </div>
 
             <div class="col-md-12 col-lg-12" *ngIf="!DevolucionPorSobre">
-
-                <table class="table table-hover ">
-                    <thead class="table-primary">
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col" sortable="numero">Numero</th>
-                            <th scope="col" sortable="numero">Descripcion</th>
-                            <th scope="col" sortable="numero">Fecha de ingreso</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="pointer" *ngFor="let lote of Lotes | slice: (Page-1) * PageSize : Page * PageSize">
-                            <td>
-                                <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="SeleccionarLote($event,lote)">
-                            </td>
-                            <td>
-                                {{lote.NumeroLote}}
-                            </td>
-                            <td>
-                                {{lote.Descripcion}}
-                            </td>
-                            <td>
-                                {{lote.FechaDeIngreso | date:'short'}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover ">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" sortable="numero">Numero</th>
+                                <th scope="col" sortable="numero">Descripcion</th>
+                                <th scope="col" sortable="numero">Fecha de ingreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="pointer" *ngFor="let lote of Lotes | slice: (Page-1) * PageSize : Page * PageSize">
+                                <td>
+                                    <input type="checkbox" (click)="SeleccionarLote($event,lote)">
+                                </td>
+                                <td>
+                                    {{lote.NumeroLote}}
+                                </td>
+                                <td>
+                                    {{lote.Descripcion}}
+                                </td>
+                                <td>
+                                    {{lote.FechaDeIngreso | date:'short'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="col-md-12 col-lg-12" *ngIf="DevolucionPorSobre">
-                <table class="table table-hover">
-                    <thead class="table-primary">
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col" sortable="numero">Numero de sobre</th>
-                            <th scope="col" sortable="lote">Lote</th>
-                            <th scope="col" sortable="semilla">Semilla</th>
-                            <th scope="col" sortable="germinacion">Germinacion</th>
-                            <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="pointer" *ngFor="let sobre of Sobres | slice: (Page-1) * PageSize : Page * PageSize">
-                            <td>
-                                <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="SeleccionarSobre($event,sobre)">
-                            </td>
-                            <td>
-                                {{sobre.NumeroSobre}}
-                            </td>
-                            <td>
-                                {{sobre.Lote.NumeroLote }}
-                            </td>
-                            <td>
-                                {{sobre.Semilla.Nombre }}
-                            </td>
-                            <td>
-                                {{sobre.Germinacion }}
-                            </td>
-                            <td>
-                                {{sobre.FechaDeIngreso | date:'short' }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" sortable="numero">Numero de sobre</th>
+                                <th scope="col" sortable="lote">Lote</th>
+                                <th scope="col" sortable="semilla">Semilla</th>
+                                <th scope="col" sortable="germinacion">Germinacion</th>
+                                <th scope="col" sortable="fechaDeIngreso">Fecha de ingreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="pointer" *ngFor="let sobre of Sobres | slice: (Page-1) * PageSize : Page * PageSize">
+                                <td>
+                                    <input class="form-check-input ml-3 mt-2" type="checkbox" (click)="SeleccionarSobre($event,sobre)">
+                                </td>
+                                <td>
+                                    {{sobre.NumeroSobre}}
+                                </td>
+                                <td>
+                                    {{sobre.Lote.NumeroLote }}
+                                </td>
+                                <td>
+                                    {{sobre.Semilla.Nombre }}
+                                </td>
+                                <td>
+                                    {{sobre.Germinacion }}
+                                </td>
+                                <td>
+                                    {{sobre.FechaDeIngreso | date:'short' }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div *ngIf="!DevolucionPorSobre">

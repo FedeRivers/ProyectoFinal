@@ -112,6 +112,7 @@
       <Column Name="numeroSobre" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="peso" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
       <Column Name="codigoQR" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="idCamara" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="fila" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="columna" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

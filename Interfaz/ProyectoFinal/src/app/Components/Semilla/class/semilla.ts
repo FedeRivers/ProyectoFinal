@@ -23,7 +23,7 @@ export class Semilla{
         return this.nombre;
     }
     public set Nombre(value: string) {
-        this.nombre = value;
+        this.nombre = value.trim();
     }
 
     public get FechaDeIngreso(): Date {
