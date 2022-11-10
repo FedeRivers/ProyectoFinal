@@ -172,6 +172,7 @@ namespace ProyectoFinal._3_Persistencia
                                 {
                                     Camara = new Camara
                                     {
+                                        IdCamara = sobre.idCamara,
                                         Nombre = sobre.nombre
                                     },
                                     Fila = sobre.fila,

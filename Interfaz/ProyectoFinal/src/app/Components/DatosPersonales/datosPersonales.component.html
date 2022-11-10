@@ -27,22 +27,22 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanContrasena">Contraseña:</span>
                     <input name="txtContrasena" type="password" [(ngModel)]="Contrasena" [disabled]="!CambiarContrasena" [ngClass]="Contrasena!=undefined || CambiarContrasena == true ? ValidarContrasena() ? 'form-control is-valid':'form-control is-invalid':'form-control'"
-                        [placeholder]="Placeholder" aria-label="txtContrasena" aria-describedby="spanContrasena">
-                    <a class="input-group-text" (click)="CambiarContrasena = true"><i class="bi bi-pencil"></i></a>
+                        [placeholder]="Placeholder" aria-label="txtContrasena" aria-describedby="spanContrasena" maxlength="30">
+                    <a class="input-group-text" (click)="CambiarContrasena = Usuario.TipoDeUsuario.IdTipoDeUsuario != 1"><i class="bi bi-pencil"></i></a>
                     <div class="invalid-feedback">{{MensajeContrasenaInvalida}}</div>
                 </div>
 
                 <div class="input-group mb-3" *ngIf="CambiarContrasena">
                     <span class="input-group-text" id="spanNuevaContrasena">Contraseña nueva:</span>
                     <input name="txtNuevaContrasena" type="password" [(ngModel)]="ContrasenaNueva" [ngClass]="ContrasenaNueva!=undefined ? ValidarContrasenaNueva() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nueva contraseña"
-                        aria-label="txtNuevaContrasena" aria-describedby="spanNuevaContrasena">
+                        aria-label="txtNuevaContrasena" aria-describedby="spanNuevaContrasena" maxlength="30">
                     <div class="invalid-feedback">{{MensajeContrasenaNuevaInvalida}}</div>
                 </div>
 
                 <div class="input-group mb-3" *ngIf="CambiarContrasena">
                     <span class="input-group-text" id="spanNuevaContrasenaConfirmar">Confirmar contraseña nueva:</span>
                     <input name="txtNuevaContrasenaConfirmar" type="password" [(ngModel)]="ConfirmarContrasenaNueva" [ngClass]="ConfirmarContrasenaNueva!=undefined ? ValidarConfirmarContrasenaNueva() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Confirmar contraseña nueva"
-                        aria-label="txtNuevaContrasenaConfirmar" aria-describedby="spanNuevaContrasenaConfirmar">
+                        aria-label="txtNuevaContrasenaConfirmar" aria-describedby="spanNuevaContrasenaConfirmar" maxlength="30">
                     <div class="invalid-feedback">{{MensajeConfirmarContrasenaNuevaInvalida}}</div>
                 </div>
 

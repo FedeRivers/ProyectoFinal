@@ -2,7 +2,7 @@
     <app-login (LoginValido)="ListarFormularios($event)"></app-login>
 </div>
 <div *ngIf="Usuario.IdUsuario!=undefined">
-    <ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content">
         <li [ngbNavItem]="1" *ngIf="ModuloMejorador">
             <a ngbNavLink><b>Mejoradores</b></a>
             <ng-template ngbNavContent>

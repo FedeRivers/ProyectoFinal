@@ -9,31 +9,34 @@
     <div class="container text-center">
         <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
             <form class="col-md-8 form border border-5">
-                <div class="col-md-12">
-                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                <div class="row border-bottom border-2 mb-3">
+                    <div class="col-md-12">
+                        <i class="bi bi-arrow-left regresar pointer" (click)="Regresar()" data-toggle="tooltip" data-placement="top" title="Regresar"></i>
+                    </div>
                 </div>
+
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNombre">Nombre:</span>
                     <input name="txtNombre" [(ngModel)]="Mejorador.Nombre" [ngClass]="Mejorador.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese nombre" aria-label="txtNombre"
-                        aria-describedby="spanNombre" required>
+                        aria-describedby="spanNombre" maxlength="30" required>
                     <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanMail">Mail:</span>
                     <input name="txtMail" class="form-control" [(ngModel)]="Mejorador.Mail" [ngClass]="Mejorador.Mail!=undefined ? ValidarMailMejorador() ? 'is-valid':'is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese mail" aria-label="txtMail" aria-describedby="spanMail"
-                        required>
+                        maxlength="40" required>
                     <div class="invalid-feedback">{{MensajeMailInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanDireccion">Dirección:</span>
                     <input name="txtDireccion" class="form-control" [(ngModel)]="Mejorador.Direccion" [ngClass]="Mejorador.Direccion!=undefined ? ValidarDireccion() ? 'is-valid':'is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese dirección" aria-label="txtDireccion"
-                        aria-describedby="spanDireccion" requeried>
+                        aria-describedby="spanDireccion" maxlength="40" requeried>
                     <div class="invalid-feedback">{{MensajeDireccionInvalido}}</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanCelular">Celular:</span>
                     <input name="txtCelular" class="form-control" [(ngModel)]="Mejorador.Celular" [ngClass]="Mejorador.Celular!=undefined ? ValidarCelularMejorador() ? 'is-valid':'is-invalid':'form-control'" [disabled]="BtnBaja" placeholder="Ingrese celular" aria-label="txtCelular"
-                        aria-describedby="spanCelular" requeried>
+                        aria-describedby="spanCelular" maxlength="9" requeried>
                     <div class="invalid-feedback">{{MensajeCelularInvalido}}</div>
                 </div>
                 <div class="">
@@ -44,14 +47,14 @@
             </form>
         </div>
 
-        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-5">
+        <div *ngIf="!EstaSeleccionado" class="border p-2 border-opacity-10 mt-3">
             <div class="row">
-                <div class="input-group mb-1 col-md-4">
+                <div class="input-group mb-1 col-md-7 col-lg-7 col-sd-12">
                     <span class="input-group-text" id="spanBusquedaMejorador">Buscar por nombre:</span>
-                    <input [(ngModel)]="TerminoDeBusqueda" name="txtBusquedaNombreMejorador" class="form-control" style="height:auto;" placeholder="Ingrese nombre" aria-label="txtBusquedaNombreMejorador" aria-describedby="spanBusquedaMejorador">
+                    <input [(ngModel)]="TerminoDeBusqueda" maxlength="30" name="txtBusquedaNombreMejorador" class="form-control" style="height:auto;" placeholder="Ingrese nombre" aria-label="txtBusquedaNombreMejorador" aria-describedby="spanBusquedaMejorador">
                 </div>
-                <div class="col-md-2"></div>
-                <div class="mb-1 ml-auto col-md-2">
+                <div class="col-md-3 col-lg-3 col-sd-12"></div>
+                <div class="mb-1 col-md-2 col-lg-2 col-sd-12">
                     <span class="input-group">             
                         <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
                             <i id="iAgregar" class="bi bi-plus-square"></i>
@@ -60,41 +63,42 @@
                     </span>
                 </div>
             </div>
-
-            <table class="table table-hover">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col" sortable="nombre">Nombre</th>
-                        <th scope="col" sortable="mail">Mail</th>
-                        <th scope="col" sortable="direccion">Dirección</th>
-                        <th scope="col" sortable="celular">Celular</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="pointer" *ngFor="let mejorador of Mejoradores | slice: (Page-1) * PageSize : Page * PageSize">
-                        <td>
-                            {{mejorador.Nombre}}
-                        </td>
-                        <td>
-                            {{mejorador.Mail}}
-                        </td>
-                        <td>
-                            {{mejorador.Direccion}}
-                        </td>
-                        <td>
-                            {{mejorador.Celular}}
-                        </td>
-                        <td>
-                            <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(mejorador); BotonSeleccionado('Modificar')"></i>
-                        </td>
-                        <td>
-                            <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(mejorador);BotonSeleccionado('Baja')"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col" sortable="nombre">Nombre</th>
+                            <th scope="col" sortable="mail">Mail</th>
+                            <th scope="col" sortable="direccion">Dirección</th>
+                            <th scope="col" sortable="celular">Celular</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer" *ngFor="let mejorador of Mejoradores | slice: (Page-1) * PageSize : Page * PageSize">
+                            <td>
+                                {{mejorador.Nombre}}
+                            </td>
+                            <td>
+                                {{mejorador.Mail}}
+                            </td>
+                            <td>
+                                {{mejorador.Direccion}}
+                            </td>
+                            <td>
+                                {{mejorador.Celular}}
+                            </td>
+                            <td>
+                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(mejorador); BotonSeleccionado('Modificar')"></i>
+                            </td>
+                            <td>
+                                <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(mejorador);BotonSeleccionado('Baja')"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
             <div class="mt-1 ">

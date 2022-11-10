@@ -228,31 +228,23 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
   }
 
   ExportarExcel():void {
-    /*let exportarExcelIn = new ExportarExcelIn();
+    let exportarExcelIn = new ExportarExcelIn();
     exportarExcelIn.Sobres = this.sobresAExportar;
     this.sobreServicio.ExportarExcel(exportarExcelIn)
     .subscribe( resp =>{
       if(resp.Status.StatusCode != 404)
-      {*/
-
-
+      {
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sobresAExportar);
-       const book: XLSX.WorkBook = XLSX.utils.book_new();
-        var range = {s: {c:0, r:0}, e: {c:1, r:1048575 }};
-        worksheet['!ref'] = XLSX.utils.encode_range({s: {c:0, r:0}, e: {c:1, r:1048575 }});
-
-
-
+        const book: XLSX.WorkBook = XLSX.utils.book_new();    
         XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
-    
         XLSX.writeFile(book, 'pruebaExcel.xlsx');
-     /*   this.ListarSobres();
+        this.Limpiar();
+        this.ListarSobres();
       }
-      
-      }, err => {
+    }, err => {
       this.modal.Error = true;
       this.modal.open();
-    });*/
+    });
 
   }
 
@@ -322,6 +314,7 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
       this.Ocultar();
     }
     this.ListarSobres();
+    this.Limpiar();
   }
 
   ValidarPeso()
@@ -351,7 +344,11 @@ export class SecadoComponent  extends FormularioBase implements OnInit {
   Limpiar()
   {
     this.listarSobreIn = new ListarSobreIn();
-    this.ListarSobres();
+    this.sobresAExportar = [];
+    this.btnTomarHumedad = false;
+    this.btnIngresarPeso = false;
+    this.btnEditar = false;
+    this.btnExportar = false;
   }
 
 

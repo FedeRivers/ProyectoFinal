@@ -24,21 +24,21 @@ export class Mejorador{
     }
 
     public set Nombre(value: string) {
-        this.nombre = value;
+        this.nombre = value.trim();
     }
 
     public get Mail(): string {
         return this.mail;
     }
     public set Mail(value: string) {
-        this.mail = value;
+        this.mail = value.trim();
     }
 
     public get Direccion(): string {
         return this.direccion;
     }
     public set Direccion(value: string) {
-        this.direccion = value;
+        this.direccion = value.trim();
     }
 
     public get FechaDeIngreso(): Date {

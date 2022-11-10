@@ -393,7 +393,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
     this.sobreServicio.Listar(this.listarSobreIn)
       .subscribe( lista => {
         if (lista.Sobres != undefined) {
-            this.sobres = lista.Sobres;
+            this.sobres = lista.Sobres.filter( s => s.Ubicacion.Camara.IdCamara != 1);
           }
       }, err => {
         this.modal.Error = true;
@@ -440,7 +440,7 @@ export class SobreComponent extends FormularioBase implements OnInit {
     this.camaraService.Listar(new ListarCamaraIn())
       .subscribe( lista =>{
         if(lista.Camaras!=undefined) {
-          this.camaras = lista.Camaras;
+          this.camaras = lista.Camaras.filter( c => c.IdCamara != 1);
         }
       }, err => {
       this.modal.Error = true;

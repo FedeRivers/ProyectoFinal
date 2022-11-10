@@ -9,13 +9,15 @@
     <div class="container text-center">
         <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
             <form class="col-md-8 form border border-5">
-                <div class="col-md-12">
-                    <i class="bi bi-arrow-90deg-left" (click)="Regresar()"></i>
+                <div class="row border-bottom border-2 mb-3">
+                    <div class="col-md-12">
+                        <i class="bi bi-arrow-left regresar pointer" (click)="Regresar()" data-toggle="tooltip" data-placement="top" title="Regresar"></i>
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanNombre">Nombre:</span>
                     <input name="txtNombre" [(ngModel)]="Taxonomia.Nombre" [ngClass]="Taxonomia.Nombre!=undefined ? ValidarNombre() ? 'form-control is-valid':'form-control is-invalid':'form-control'" placeholder="Ingrese nombre" aria-label="txtNombre" aria-describedby="spanNombre"
-                        required>
+                        maxlength="50" required>
                     <div class="invalid-feedback">{{MensajeNombreInvalido}}</div>
                 </div>
                 <div class="">
@@ -26,52 +28,53 @@
             </form>
         </div>
 
-        <div *ngIf="!EstaSeleccionado">
-            <div class="border p-2 border-opacity-10">
+        <div *ngIf="!EstaSeleccionado" class="row justify-content-md-center">
+            <div class="col-md-10 border p-2 border-opacity-10">
                 <div class="row mb-1">
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-7 col-lg-7 col-sd-12">
                         <span class="input-group-text" id="spanBusquedaTaxonomia">Buscar por nombre:</span>
-                        <input [(ngModel)]="TerminoDeBusqueda" name="txtBusquedaTaxonomia" class="form-control" style="height:auto;" placeholder="Ingrese nombre" aria-label="txtBusquedaTaxonomia" aria-describedby="spanBusquedaTaxonomia">
+                        <input [(ngModel)]="TerminoDeBusqueda" maxlength="30" name="txtBusquedaTaxonomia" class="form-control" style="height:auto;" placeholder="Ingrese nombre" aria-label="txtBusquedaTaxonomia" aria-describedby="spanBusquedaTaxonomia">
                     </div>
-                    <div class="col-md-6"></div>
+                    <div class="col-md-3 col-lg-3 col-sd-12"></div>
 
-                    <div class="col-md-2">
+                    <div class="mb-1 col-md-2 col-lg-2 col-sd-12">
                         <span class="input-group">             
-                        <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
-                            <i id="iAgregar" class="bi bi-plus-square"></i>
-                            Agregar                
-                        </button>
-                        </span>
+                            <button class="btn btn-success" (click)="Ocultar();BotonSeleccionado('Alta')">
+                                <i id="iAgregar" class="bi bi-plus-square"></i>
+                                Agregar                
+                            </button>
+                            </span>
                     </div>
                 </div>
-
-                <table class="table table-hover">
-                    <thead class="table-primary">
-                        <tr>
-                            <th scope="col" sortable="nombre">Nombre</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="pointer" *ngFor="let taxonomia of Taxonomias | slice: (Page-1) * PageSize : Page * PageSize">
-                            <td>
-                                {{taxonomia.Nombre}}
-                            </td>
-                            <td>
-                                <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(taxonomia); BotonSeleccionado('Modificar')"></i>
-                            </td>
-                            <td>
-                                <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(taxonomia);BotonSeleccionado('Baja')"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
-                <div class="mt-1 ">
-                    <ngb-pagination [(page)]="Page " [pageSize]="PageSize " [collectionSize]="Taxonomias.length "></ngb-pagination>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col" sortable="nombre">Nombre</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="pointer" *ngFor="let taxonomia of Taxonomias | slice: (Page-1) * PageSize : Page * PageSize">
+                                <td>
+                                    {{taxonomia.Nombre}}
+                                </td>
+                                <td>
+                                    <i class="bi bi-pencil" data-toggle="tooltip" data-placement="top" title="Modificar" (click)="Seleccionar(taxonomia); BotonSeleccionado('Modificar')"></i>
+                                </td>
+                                <td>
+                                    <i class="bi bi-trash3" data-toggle="tooltip" data-placement="top" title="Eliminar" (click)="Seleccionar(taxonomia);BotonSeleccionado('Baja')"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
+            <div class="mt-1 ">
+                <ngb-pagination [(page)]="Page " [pageSize]="PageSize " [collectionSize]="Taxonomias.length "></ngb-pagination>
             </div>
         </div>
     </div>

@@ -758,6 +758,8 @@ namespace ProyectoFinal._3_Persistencia.Models
 		
 		private string _codigoQR;
 		
+		private System.Nullable<int> _idCamara;
+		
 		private System.Nullable<int> _fila;
 		
 		private System.Nullable<int> _columna;
@@ -864,6 +866,22 @@ namespace ProyectoFinal._3_Persistencia.Models
 				if ((this._codigoQR != value))
 				{
 					this._codigoQR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idCamara", DbType="Int")]
+		public System.Nullable<int> idCamara
+		{
+			get
+			{
+				return this._idCamara;
+			}
+			set
+			{
+				if ((this._idCamara != value))
+				{
+					this._idCamara = value;
 				}
 			}
 		}

@@ -32,7 +32,7 @@ namespace ProyectoFinal._2_Dominio.Logica
             new CRUDAlerta().AltaAlerta(new AltaAlertaIn() { Sobre = input.Sobre, IdTipoDeUsuario = input.IdTipoDeUsuario });
             if (input.Sobre.Ubicacion.Camara.IdCamara != 0)
             {
-                var existeEspacioLibreOut = instancia.ExisteEspacioLibre(new ExisteEspacioLibreIn { IdCamara = input.Sobre.Ubicacion.Camara.IdCamara });
+                var existeEspacioLibreOut = instancia.ExisteEspacioLibre(new ExisteEspacioLibreIn { IdCamara = (int)input.Sobre.Ubicacion.Camara.IdCamara });
                 resultado.CamaraLlena = existeEspacioLibreOut.Columna == 0;
                 if (!resultado.CamaraLlena || input.Sobre.Estado.IdEstado == (int)EnumeradoEstados.Destruido)
                 {
@@ -40,7 +40,7 @@ namespace ProyectoFinal._2_Dominio.Logica
                     {
                         Columna = existeEspacioLibreOut.Columna,
                         Fila = existeEspacioLibreOut.Fila,
-                        IdCamara = input.Sobre.Ubicacion.Camara.IdCamara,
+                        IdCamara = (int)input.Sobre.Ubicacion.Camara.IdCamara,
                         IdSobre = input.Sobre.IdSobre,
                         IdEstado = input.Sobre.Estado.IdEstado
                     }).Status;
@@ -171,7 +171,7 @@ namespace ProyectoFinal._2_Dominio.Logica
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.Secando;
                 }
-                else if (sobre.Humedad <= 7 && sobre.Germinacion > 84 && input.Sobre.Peso == 0)//Si la humedad y la germinación son óptimas
+                else if (sobre.Humedad <= 6 && sobre.Germinacion > 84 && input.Sobre.Peso == 0)//Si la humedad y la germinación son óptimas
                 {
                     input.Sobre.Estado.IdEstado = (int)EnumeradoEstados.EsperandoPesaje;//el estado de los sobres es esperando pesaje.
                 }

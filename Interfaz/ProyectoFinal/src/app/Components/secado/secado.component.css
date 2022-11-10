@@ -1,7 +1,11 @@
+.pointer {
+    cursor: pointer;
+}
+
 i {
     font-size: 20px;
 }
 
-.pointer {
-    cursor: pointer;
+.regresar {
+    font-size: 30px;
 }

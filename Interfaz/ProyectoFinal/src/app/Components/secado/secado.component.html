@@ -7,25 +7,25 @@
 
 <body>
     <div class="container-fluid text-center">
-        <div class="row" *ngIf="!EstaSeleccionado">
-            <div class="border p-3 border-opacity-10">
+        <div class="row justify-content-md-center" *ngIf="!EstaSeleccionado">
+            <div class="border p-3 border-opacity-10 col-md-12">
                 <div class="row">
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <div class="input-group mb-3 col-md-6 col-lg-2 col-sd-12">
                         <span class="input-group-text" id="spanBusquedaNumeroSobre">Sobre:</span>
                         <input [(ngModel)]="NumeroSobre" type="number" name="txtBusquedaNumeroSobre" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroSobre" aria-describedby="spanBusquedaNumeroSobre">
                     </div>
 
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <div class="input-group mb-3 col-md-6 col-lg-2 col-sd-12">
                         <span class="input-group-text" id="spanBusquedaNumeroLote">Lote:</span>
                         <input [(ngModel)]="NumeroLote" type="number" name="txtBusquedaNumeroLote" class="form-control" style="height:auto;" placeholder="Buscar por número" aria-label="txtBusquedaNumeroLote" aria-describedby="spanBusquedaNumeroLote">
                     </div>
 
-                    <div class="input-group mb-3 col-md-3 col-lg-3">
+                    <div class="input-group mb-3 col-md-6 col-lg-3 col-sd-12">
                         <span class="input-group-text" id="spanBusquedaNombreSemilla">Semilla:</span>
                         <input [(ngModel)]="NombreSemilla" name="txtBusquedaNombreSemilla" class="form-control" style="height:auto;" placeholder="Buscar por nombre de semilla" aria-label="txtBusquedaNombreSemilla" aria-describedby="spanBusquedaNombreSemilla">
                     </div>
 
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <div class="input-group mb-3 col-md-6 col-lg-2 col-sd-12">
                         <span class="input-group-text" id="spanBusquedaEstado">Estado:</span>
                         <select name="txtBusquedaEstado" class="form-select form-control" [(ngModel)]="EstadoSobre" style="height:auto;" aria-label="txtBusquedaEstado" aria-describedby="spanBusquedaEstado">
                         <option *ngFor="let estado of Estados" [ngValue]="estado.IdEstado" > 
@@ -34,7 +34,7 @@
                     </select>
                     </div>
 
-                    <div class="input-group mb-3 col-md-2 col-lg-2">
+                    <div class="input-group mb-3 col-md-6 col-lg-2 col-sd-6">
                         <span class="input-group">             
                             <button class="btn btn-info" (click)="Limpiar()">
                                 <i class="bi bi-eraser"></i>
@@ -43,15 +43,17 @@
                         </span>
                     </div>
 
-                    <div class="mb-3 col-md-1 col-lg-1">
-                        <span>             
+                    <div class="input-group mb-3 col-md-6 col-lg-1 col-sd-6">
+                        <span class="input-group">             
                             <button [disabled]="SobresAExportar.length == 0" class="btn btn-success" (click)="BotonSeleccionado('Exportar')">
                                 <i id="iAgregar" class="bi bi-filetype-xls"></i>
                                 Exportar                
                             </button>
                         </span>
                     </div>
-                    <table class="table table-hover col-md-12 col-lg-12">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
                         <thead class="table-primary">
                             <tr>
                                 <th scope="col"></th>
@@ -72,7 +74,7 @@
                         <tbody>
                             <tr class="pointer" *ngFor="let sobre of Sobres | slice: (Page-1) * PageSize : Page * PageSize">
                                 <td>
-                                    <input [disabled]="!(sobre.Peso > 0)" class="form-check-input ml-3 mt-2" type="checkbox" (click)="Seleccionar($event,'Check',sobre)">
+                                    <input [disabled]="!(sobre.Peso > 0)" type="checkbox" (click)="Seleccionar($event,'Check',sobre)">
                                 </td>
                                 <td>{{sobre.NumeroSobre}}</td>
                                 <td>{{sobre.Lote.NumeroLote }}</td>
@@ -85,11 +87,11 @@
                                 <td>{{sobre.Semilla.Nombre }}</td>
                                 <td>{{sobre.Estado.Nombre }}</td>
                                 <td>
-                                    <a (click)="Seleccionar($event,'Editar',sobre)"><i class="bi bi-pencil" *ngIf="sobre.Humedad <= 7" data-toggle="tooltip" data-placement="top" title="Ingresar peso"></i></a>
+                                    <a (click)="Seleccionar($event,'Editar',sobre)"><i class="bi bi-pencil" *ngIf="sobre.Humedad <= 6" data-toggle="tooltip" data-placement="top" title="Ingresar peso"></i></a>
                                 </td>
                                 <td>
                                     <span class="input-group">             
-                                        <button class="btn btn-secondary" [disabled]="!(sobre.Estado.IdEstado == 11)" (click)="Seleccionar($event,'TomarHumedad',sobre)">
+                                        <button class="btn btn-secondary" [disabled]="!(sobre.Humedad > 6 )" (click)="Seleccionar($event,'TomarHumedad',sobre)">
                                             <i class="bi bi-droplet-half" style="color: rgb(157, 202, 247);"></i>
                                             Tomar Humedad             
                                         </button>
@@ -102,8 +104,6 @@
             </div>
             <div class="col-md-12">
                 <div class="row justify-content-md-center">
-
-
                     <div class="mt-1">
                         <ngb-pagination [(page)]="Page" [pageSize]="PageSize" [collectionSize]="Sobres.length"></ngb-pagination>
                     </div>
@@ -112,8 +112,10 @@
         </div>
         <div class="row justify-content-md-center" *ngIf="EstaSeleccionado">
             <form class="col-md-4 form border border-5">
-                <div class="col-md-12">
-                    <a (click)="Regresar()" class="pointer"><i class="bi bi-arrow-90deg-left"></i></a>
+                <div class="row border-bottom border-2 mb-3">
+                    <div class="col-md-12">
+                        <i class="bi bi-arrow-left regresar pointer" (click)="Regresar()" data-toggle="tooltip" data-placement="top" title="Regresar"></i>
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="spanPeso">Peso:</span>

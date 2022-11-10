@@ -7,7 +7,7 @@ namespace ProyectoFinal._2_Dominio.Entidades
 {
     public class Camara
     {
-        public int IdCamara { get; set; }
+        public int? IdCamara { get; set; }
 
         public string Nombre { get; set; }
     }

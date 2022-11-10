@@ -14,6 +14,6 @@ export class Taxonomia{
         return this.nombre;
     }
     public set Nombre(value: string) {
-        this.nombre = value;
+        this.nombre = value.trim();
     }
 }
